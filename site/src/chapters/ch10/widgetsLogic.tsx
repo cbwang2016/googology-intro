@@ -49,7 +49,7 @@ const SYMS = ['∈', '=', '¬', '∧', '∨', '→', '↔', '∃', '∀', '(', '
 
 export function FormulaLab() {
   const { t } = useLang()
-  const [sk, setSk] = useState<StructKey>('v4')
+  const [sk, setSk] = useState<StructKey>('v3')
   const [custom, setCustom] = useState<boolean[][]>([
     [false, true, false],
     [false, false, true],

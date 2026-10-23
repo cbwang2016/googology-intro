@@ -33,7 +33,7 @@ export function ReflectionStaircase() {
   const { t } = useLang()
   const [i, setI] = useState(3)
   const s = STEPS[i]
-  const W = 66
+  const W = 57
   return (
     <div>
       <div className="scroll-x">
@@ -42,7 +42,7 @@ export function ReflectionStaircase() {
             <button
               key={k}
               className={`c10-step ${k === i ? 'on' : ''} ${k >= 8 ? 'informal' : ''}`}
-              style={{ left: k * W, bottom: k * 12, width: W - 4 }}
+              style={{ left: k * W, bottom: k * 7, width: W - 4 }}
               onClick={() => setI(k)}
               aria-label={st.name.en}
             >
@@ -199,7 +199,7 @@ export function ReflectionExpander() {
             <M t={`${reflTex(canon)}\\ \\Rightarrow\\ \\bigl(${reflTex(reflShow([...e.one, e.ak - 1]))}{-}\\bigr)^{\\alpha}\\ ${reflTex(reflShow(e.two))}`} />
           </div>
           <div className="c10-approx">
-            {[1, 2, 3, 4].map((n) => {
+            {[1, 2, 3].map((n) => {
               const a = reflShow(e.approx(n))
               return (
                 <div key={n}>

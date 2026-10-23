@@ -53,21 +53,33 @@ export default function Chapter09() {
           zh={<>Bashicu 的回答：在每一项下面再写一个数。第二行不单独做事，它的作用是<b>记账</b>：告诉第一行，每复制一次要往上抬多少。</>}
           en={<>Bashicu’s answer: write a second number under each term. The second row does nothing on its own. Its job is <b>bookkeeping</b>: it tells the first row how much to climb with each copy.</>}
         />
-        <Thm kind="definition" name={{ en: '2-row BMS (book Def. 6.4–6.12, 0-indexed)', zh: '双行 BMS（书中定义 6.4–6.12，从 0 编号）' }}>
+        <Thm kind="definition" name={{ en: '2-row BMS, part 1: parents (book Def. 6.4–6.12, 0-indexed)', zh: '双行 BMS（一）：父项（书中定义 6.4–6.12，从 0 编号）' }}>
           <B
             zh={
               <ol>
                 <li><b>父项</b>，第 0 行：左边第一个比它小的数。<b>祖先</b>：父项、父项的父项……</li>
                 <li><b>父项</b>，第 1 行：左边第一个比它小、并且<b>正上方是“它上方那个数”的祖先</b>的数。</li>
-                <li><b>坏根</b>：看末列最下面的非零数，它的父项所在的列。坏根到末列之前是<b>坏部</b> B，坏根之前是<b>好部</b> G。</li>
-                <li><b>阶差向量</b> Δ = 末列 − 坏根，但这个最下面非零数所在的行及其以下记为 0。</li>
-                <li>末列全为 0：删掉它，值加 1。否则 <M t="S[n]=G\,B\,(B+\Delta)\,(B+2\Delta)\cdots(B+n\Delta)" />，<M t="S=\sup_n S[n]" />。</li>
               </ol>
             }
             en={
               <ol>
                 <li><b>Parent</b> in row 0: the first smaller entry to the left. <b>Ancestors</b>: the parent, its parent, and so on.</li>
                 <li><b>Parent</b> in row 1: the first smaller entry to the left <b>whose top entry is an ancestor of the top entry above it</b>.</li>
+              </ol>
+            }
+          />
+        </Thm>
+        <Thm kind="definition" name={{ en: '2-row BMS, part 2: the expansion', zh: '双行 BMS（二）：展开' }}>
+          <B
+            zh={
+              <ol start={3}>
+                <li><b>坏根</b>：看末列最下面的非零数，它的父项所在的列。坏根到末列之前是<b>坏部</b> B，坏根之前是<b>好部</b> G。</li>
+                <li><b>阶差向量</b> Δ = 末列 − 坏根，但这个最下面非零数所在的行及其以下记为 0。</li>
+                <li>末列全为 0：删掉它，值加 1。否则 <M t="S[n]=G\,B\,(B+\Delta)\,(B+2\Delta)\cdots(B+n\Delta)" />，<M t="S=\sup_n S[n]" />。</li>
+              </ol>
+            }
+            en={
+              <ol start={3}>
                 <li><b>Bad root</b>: take the lowermost nonzero entry of the last column; the bad root is the column of its parent. From the bad root up to (not including) the last column is the <b>bad part</b> B; everything before it is the <b>good part</b> G.</li>
                 <li><b>Ascension offset</b> Δ = last column − bad root, except that Δ is 0 in the row of that lowermost nonzero entry and below.</li>
                 <li>If the last column is all zeros, delete it and add 1. Otherwise <M t="S[n]=G\,B\,(B+\Delta)\,(B+2\Delta)\cdots(B+n\Delta)" />, and <M t="S=\sup_n S[n]" />.</li>
@@ -109,11 +121,7 @@ export default function Chapter09() {
           zh={<>PSS 的项是嵌套的 <M t="p_k" />（书中写作 <M t="\psi^H_k" />），例如 <M t="p_1(p_2(p_3))" />。展开规则：最里面、最后的 <M t="p_{k+1}" /> 往外层找，找到第一个包住它的 <M t="p_k" />，然后把这个 <M t="p_k(\cdots)" /> 一层层套进自己里面。</>}
           en={<>PSS terms are nested <M t="p_k" /> (the book writes <M t="\psi^H_k" />), such as <M t="p_1(p_2(p_3))" />. The rule: the innermost last <M t="p_{k+1}" /> looks outward for the first enclosing <M t="p_k" />, then nests copies of that <M t="p_k(\cdots)" /> inside one another.</>}
         />
-        <P
-          zh={<>字典很简单：一列 (d, s) 就是一项 <M t="p_{s+1}" />，放在第 d 层括号里。第 0 行的父项，正好就是“直接包住它的那一项”；第 0 行的祖先，就是所有外层括号。</>}
-          en={<>The dictionary is simple: a column (d, s) is a term <M t="p_{s+1}" /> sitting at bracket depth d. Its row-0 parent is exactly the term that directly encloses it, and its row-0 ancestors are all the enclosing brackets.</>}
-        />
-        <Widget title={{ en: 'PSS ↔ 2-row BMS translator', zh: 'PSS ↔ 双行 BMS 翻译器' }} hint={{ en: 'Type either form. Gold = last term, green = bad root, pink = the rest of the bad part.', zh: '两种写法都能输入。金色 = 最后一项，绿色 = 坏根，粉色 = 坏部的其余部分。' }}>
+        <Widget title={{ en: 'PSS ↔ 2-row BMS translator', zh: 'PSS ↔ 双行 BMS 翻译器' }} hint={{ en: 'Dictionary: a column (d, s) is the term p_{s+1} at bracket depth d, so a row-0 parent is the directly enclosing term. Type either form. Gold = last term, green = bad root, pink = rest of the bad part.', zh: '字典：一列 (d, s) 就是第 d 层括号里的一项 p_{s+1}，所以第 0 行的父项就是直接包住它的那一项。两种写法都能输入。金色 = 最后一项，绿色 = 坏根，粉色 = 坏部其余部分。' }}>
           <PssTranslator />
         </Widget>
         <P
@@ -122,8 +130,8 @@ export default function Chapter09() {
         />
         <H3 en="One matrix sweeps through Chapters 7 and 8" zh="一个矩阵，扫过第 7、8 两章" />
         <P
-          zh={<>现在看 <Mx s="(0,0)(1,1)(2,2)" />。坏根是 c1，Δ = (1,0)，于是 <M t="[n]=(0,0)(1,1)(2,1)(3,1)\cdots(n+1,1)" />。把这些项的值排出来：</>}
-          en={<>Now look at <Mx s="(0,0)(1,1)(2,2)" />. The bad root is c1 and Δ = (1,0), so <M t="[n]=(0,0)(1,1)(2,1)(3,1)\cdots(n+1,1)" />. Line up the values of these terms:</>}
+          zh={<>现在看 <Mx s="(0,0)(1,1)(2,2)" />。坏根是 c1，Δ = (1,0)，于是 <M t="[n]=(0,0)(1,1)(2,1)(3,1)\cdots(n+1,1)" />。第二行停在 1 不动，所有的攀登都发生在第一行：每多复制一份，第一行就多爬一格。把这些项的值排出来，看它们在第 7、8 章的尺子上落在哪里：</>}
+          en={<>Now look at <Mx s="(0,0)(1,1)(2,2)" />. The bad root is c1 and Δ = (1,0), so <M t="[n]=(0,0)(1,1)(2,1)(3,1)\cdots(n+1,1)" />. Row 1 stays at 1 and all the climbing happens in row 0: each extra copy is one more step up. Line up the values of these terms and see where they land on the ruler of Chapters 7 and 8:</>}
         />
         <Widget title={{ en: 'Walking a fundamental sequence', zh: '沿着基本列走' }} hint={{ en: 'Values come from the book’s tables (ψ = Madore’s ψ). A dash means the book gives no value.', zh: '值取自书中的表格（ψ 指 Madore 的 ψ）。“—” 表示书中没有给出。' }}>
           <FsWalker initial={1} />
@@ -133,13 +141,13 @@ export default function Chapter09() {
           en={<>ζ₀, Γ₀, LVO, … the whole Veblen hierarchy of Chapter 7 is just a few more entries in the top row. The limit is <M t="(0,0)(1,1)(2,2)=\mathrm{BHO}=\psi(\varepsilon_{\Omega+1})" />, Chapter 8’s Bachmann–Howard ordinal. <Status kind="folklore" /></>}
         />
         <P
-          zh={<>继续：<Mx s="(0,0)(1,1)(2,2)(3,3)…" /> 走过 <M t="\psi(\psi_2(0)),\psi(\psi_3(0)),\dots" />，极限是 <M t="\mathrm{BO}=\psi(\Omega_\omega)" />——双行 BMS（即 PSS Hydra）的极限，和第 8 章的 Buchholz 九头蛇同一个高度。<Status kind="folklore" /></>}
-          en={<>Keep going: <Mx s="(0,0)(1,1)(2,2)(3,3)…" /> runs through <M t="\psi(\psi_2(0)),\psi(\psi_3(0)),\dots" /> with limit <M t="\mathrm{BO}=\psi(\Omega_\omega)" />: the limit of 2-row BMS (the PSS hydra), the same height as Chapter 8’s Buchholz hydra. <Status kind="folklore" /></>}
+          zh={<>继续：<Mx s="(0,0)(1,1)(2,2)(3,3)…" /> 走过 <M t="\psi(\psi_2(0)),\psi(\psi_3(0)),\dots" />，极限是 <M t="\mathrm{BO}=\psi(\Omega_\omega)" />——双行 BMS（即 PSS Hydra）的极限，也是 <M t="\Pi^1_1\text{-}\mathsf{CA}_0" /> 的证明论序数（PSS 的良序性与序型 2018 年已被证明）。它恰好是第 8 章单条九头蛇 (+(0(ω))) 的值；而整个 Buchholz 九头蛇游戏的增长率约为更大的 TFBO（<M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" /> 的证明论序数）。<Status kind="proved" /></>}
+          en={<>Keep going: <Mx s="(0,0)(1,1)(2,2)(3,3)…" /> runs through <M t="\psi(\psi_2(0)),\psi(\psi_3(0)),\dots" /> with limit <M t="\mathrm{BO}=\psi(\Omega_\omega)" />: the limit of 2-row BMS (the PSS hydra), and the proof-theoretic ordinal of <M t="\Pi^1_1\text{-}\mathsf{CA}_0" /> (PSS was proved well-founded, with this order type, in 2018). It is the value of Chapter 8’s single hydra (+(0(ω))); the Buchholz hydra <i>game</i> as a whole grows like the larger TFBO, the ordinal of <M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" />. <Status kind="proved" /></>}
         />
         <Caution>
           <L
-            zh={<>除了 ε₀ 那一条有上面的简短证明外，这些等式都来自社区的分析（书中也以分析的方式给出），不是形式化证明。</>}
-            en={<>Apart from the ε₀ identity, proved in the first section, these equalities come from community analysis (the book presents them the same way), not from formal proofs.</>}
+            zh={<>除了 ε₀（第一节已证）和双行极限 BO（2018 年已证）之外，中间各项的值都来自社区的分析（书中也以分析的方式给出），不是形式化证明。</>}
+            en={<>Apart from ε₀ (proved in the first section) and the 2-row limit BO (proved in 2018), the intermediate values come from community analysis (the book presents them the same way), not from formal proofs.</>}
           />
         </Caution>
       </Section>
@@ -150,21 +158,34 @@ export default function Chapter09() {
           zh={<>现在允许任意多行。约定：按列从左到右书写，如 <Mx s="(0,0,0)(1,1,1)" />；行和列都从 0 编号，第 0 行在最上面；列末尾的 0 可以省略（第一个 0 除外），例如 <Mx s="(0)(1,1,1)" />。</>}
           en={<>Now allow any number of rows. Conventions: write columns left to right, like <Mx s="(0,0,0)(1,1,1)" />; rows and columns are numbered from 0, row 0 on top; trailing zeros of a column may be dropped (except the very first 0), e.g. <Mx s="(0)(1,1,1)" />.</>}
         />
-        <Thm kind="definition" name={{ en: 'BMS (book Def. 13.1–13.4)', zh: 'BMS（书中定义 13.1–13.4）' }}>
+        <H3 en="The rule in full" zh="完整的规则" />
+        <Thm kind="definition" name={{ en: 'BMS, part 1: parents and the bad root (book Def. 13.1–13.4)', zh: 'BMS（一）：父项与坏根（书中定义 13.1–13.4）' }}>
           <B
             zh={
               <ol>
                 <li><b>父项</b>。第 0 行：左边第一个更小的数。第 y 行（y &gt; 0）：左边第一个更小、并且正上方（第 y−1 行）是“它正上方那个数”的祖先的数。<b>祖先</b>：父项、父项的父项……</li>
                 <li><b>坏根</b>：末列中最下面的非零数，记它在第 t 行；它的父项所在的列 r 就是坏根。G = 坏根之前的列，B = 从坏根到末列之前的列。</li>
-                <li><b>阶差向量</b>：<M t="\Delta_y=L_y-R_y" />（<M t="y<t" />），<M t="\Delta_y=0" />（<M t="y\ge t" />），L 为末列，R 为坏根列。</li>
-                <li><b>额外规则</b>（书中用红字标出）：坏部中的一个数，只有当坏根在它<b>同一行的祖先</b>之中（或它就在坏根列里）时才提升；否则在所有复制中原样不动。</li>
-                <li>末列全为 0：删去它，值加 1。否则 <M t="S[n]=G\,B^{(0)}B^{(1)}\cdots B^{(n)}" />，其中 <M t="B^{(k)}" /> 是给 B 中每个要提升的数加上 <M t="k\Delta" />；<M t="S=\sup_n S[n]" />。</li>
               </ol>
             }
             en={
               <ol>
                 <li><b>Parent.</b> Row 0: the first smaller entry to the left. Row y &gt; 0: the first smaller entry to the left whose entry directly above (row y−1) is an ancestor of the entry directly above the given one. <b>Ancestors</b>: the parent, its parent, and so on.</li>
                 <li><b>Bad root.</b> Take the lowermost nonzero entry of the last column, in row t. The column r of its parent is the bad root. G = the columns before r; B = the columns from r up to (not including) the last.</li>
+              </ol>
+            }
+          />
+        </Thm>
+        <Thm kind="definition" name={{ en: 'BMS, part 2: Δ, the special rule, the expansion', zh: 'BMS（二）：Δ、额外规则与展开' }}>
+          <B
+            zh={
+              <ol start={3}>
+                <li><b>阶差向量</b>：<M t="\Delta_y=L_y-R_y" />（<M t="y<t" />），<M t="\Delta_y=0" />（<M t="y\ge t" />），L 为末列，R 为坏根列。</li>
+                <li><b>额外规则</b>（书中用红字标出）：坏部中的一个数，只有当坏根在它<b>同一行的祖先</b>之中（或它就在坏根列里）时才提升；否则在所有复制中原样不动。</li>
+                <li>末列全为 0：删去它，值加 1。否则 <M t="S[n]=G\,B^{(0)}B^{(1)}\cdots B^{(n)}" />，其中 <M t="B^{(k)}" /> 是给 B 中每个要提升的数加上 <M t="k\Delta" />；<M t="S=\sup_n S[n]" />。</li>
+              </ol>
+            }
+            en={
+              <ol start={3}>
                 <li><b>Ascension offset.</b> <M t="\Delta_y=L_y-R_y" /> for <M t="y<t" /> and <M t="\Delta_y=0" /> for <M t="y\ge t" />, where L is the last column and R the bad root.</li>
                 <li><b>Special rule</b> (printed in red in the book): an entry of B ascends only if the bad root is among its <b>ancestors in its own row</b> (or it lies in the bad-root column). Otherwise it stays unchanged in every copy.</li>
                 <li>If the last column is all zeros, delete it and add 1. Otherwise <M t="S[n]=G\,B^{(0)}B^{(1)}\cdots B^{(n)}" />, where <M t="B^{(k)}" /> adds <M t="k\Delta" /> to every ascending entry of B, and <M t="S=\sup_n S[n]" />.</li>
@@ -178,12 +199,12 @@ export default function Chapter09() {
             en={<p>Let r be the bad root and L the last column. For every <M t="r<x<L" />, <M t="S_{x0}>S_{r0}" /> and r is a row-0 ancestor of x. Consequently the special rule never fires in 1- or 2-row BMS.</p>}
           />
         </Thm>
-        <Proof>
+        <Expand kind="proof" title={{ en: 'Proof of the lemma', zh: '引理的证明' }}>
           <L
             zh={<>第 y 行的父项按定义是第 y−1 行的祖先，再由传递性，第 y 行的祖先集合包含于第 y−1 行的祖先集合；所以 r 是 L 在第 0 行的祖先。设这条链为 <M t="L=c_0>c_1>\cdots>c_m=r" />。<M t="c_{i+1}" /> 是 <M t="c_i" /> 左边最近的更小者，所以二者之间每一列的第 0 行都 <M t="\ge S_{c_i0}>S_{r0}" />。于是 <M t="(r,L)" /> 中每列都大于 <M t="S_{r0}" />；从 x 出发沿父项链往左走，值严格下降，又不能越过更小的 r，只能停在 r。两行时，<M t="t\ge1" /> 推出 <M t="\Delta_1=0" />，<M t="t=0" /> 推出 <M t="\Delta=0" />，所以只有第 0 行会提升，而那里每个坏部的数都是 r 的后代。</>}
             en={<>A row-y parent is by definition a row-(y−1) ancestor, so by transitivity row-y ancestors are row-(y−1) ancestors; hence r is a row-0 ancestor of L. Write the chain <M t="L=c_0>c_1>\cdots>c_m=r" />. Since <M t="c_{i+1}" /> is the nearest smaller column left of <M t="c_i" />, every column strictly between them has row-0 entry <M t="\ge S_{c_i0}>S_{r0}" />. So every column in <M t="(r,L)" /> exceeds <M t="S_{r0}" />, and the parent chain of such an x decreases strictly without being able to jump past the smaller r: it ends at r. With two rows, <M t="t\ge1" /> forces <M t="\Delta_1=0" /> and <M t="t=0" /> forces <M t="\Delta=0" />, so only row 0 ascends, where every bad-part entry descends from r.</>}
           />
-        </Proof>
+        </Expand>
         <P
           zh={<>所以额外规则从 3 行开始才真正出场：第 1 行起的祖先链可以“绕过”坏根。</>}
           en={<>So the special rule first matters at three rows, where ancestor chains in row 1 and below can bypass the bad root.</>}
@@ -238,6 +259,7 @@ export default function Chapter09() {
           en={<>In general <M t="(0,\dots,0)(1,\dots,1)" /> with k+1 entries per column is the limit of k-row BMS. The 3-row limit is called <b>TSSO</b>, the 4-row limit <b>QSSO</b>, and the limit of all finite-row BMS is the <b>Small Hydra Ordinal, SHO</b>:</>}
         />
         <MB t="\mathrm{SHO}=\sup_k\,(\underbrace{0,\dots,0}_{k})(\underbrace{1,\dots,1}_{k})." />
+        <H3 en="Length versus height" zh="长度与高度" />
         <Quiz
           q={{
             zh: <p>哪个更大？<span className="mono">X = (0,0,0)(1,1,0)(2,2,0)…(99,99,0)</span>（100 列，数一直到 99），还是 <span className="mono">Y = (0,0,0)(1,1,1)</span>（两列，最大的数是 1）？</p>,
@@ -275,7 +297,7 @@ export default function Chapter09() {
           zh={<>坏根是 c0，Δ = (1,1,0)。c2 第 1 行的 0 没有父项，它的祖先里当然没有坏根，所以每份复制里它都保持为 0；没有这条规则，它会变成 1、2、……</>}
           en={<>The bad root is c0 and Δ = (1,1,0). The 0 in row 1 of c2 has no parent, so the bad root is not among its ancestors, and it stays 0 in every copy. Without the rule it would become 1, 2, …</>}
         />
-        <Widget title={{ en: 'Special rule: on vs off', zh: '额外规则：开与关' }} hint={{ en: 'The same expansion S[n], computed both ways.', zh: '同一个 S[n]，两种算法并排。' }}>
+        <Widget title={{ en: 'Special rule: on vs off — the same S[n], computed both ways', zh: '额外规则：开与关——同一个 S[n] 的两种算法' }}>
           <RuleCompare />
         </Widget>
         <H3 en="Without it: an endless staircase down" zh="没有它：一条走不完的下坡" />
@@ -294,6 +316,10 @@ export default function Chapter09() {
           zh={<>每一步都是“取基本列的一项”，所以如果这些矩阵代表序数，每一步都严格变小。可是模式永远重复下去：<M t="A_0>A_1>A_2>\cdots" /> 是一条无穷严格递降链。由第 3 章的定理，序数里没有这种东西。</>}
           en={<>Each step takes a fundamental-sequence term, so if these matrices denoted ordinals, every step would strictly decrease. Yet the pattern repeats forever: <M t="A_0>A_1>A_2>\cdots" /> is an infinite strictly decreasing chain. By Chapter 3’s theorem, ordinals have no such thing.</>}
         />
+        <P
+          zh={<>这不是假想的危险。据 Rachel Hunter 的良序性论文（arXiv:2307.04606）介绍，BMS 的前三个正式版本 BM1、BM2、BM3 都<b>不是</b>良基的。</>}
+          en={<>This is no idle worry. According to Rachel Hunter’s well-ordering paper (arXiv:2307.04606), the first three official versions, BM1, BM2 and BM3, were all <b>not</b> well-founded.</>}
+        />
         <Quiz
           q={{
             zh: <p>关掉额外规则后，矩阵 <M t="A_0,A_1,A_2,\dots" /> 越来越长、数越来越大，而且每个都由前一个经合法的展开得到。这说明什么？</p>,
@@ -309,10 +335,6 @@ export default function Chapter09() {
             zh: <p>“长”和“大”是错觉：S[n] 总应该比 S 小。若能赋值，就得到无穷递降的序数列，与第 3 章矛盾。所以去掉这条规则，多行 BMS 根本不是序数记号。</p>,
             en: <p>“Longer” and “bigger entries” are an illusion: S[n] must always be smaller than S. Any assignment of ordinals would give an infinite decreasing sequence of ordinals, contradicting Chapter 3. Without the rule, multi-row BMS is not an ordinal notation at all.</p>,
           }}
-        />
-        <P
-          zh={<>这不是假想的危险。据 2023 年的良序性论文介绍，BMS 的前三个正式版本 BM1、BM2、BM3 都<b>不是</b>良基的。</>}
-          en={<>This is no idle worry. According to the 2023 well-ordering paper, the first three official versions, BM1, BM2 and BM3, were all <b>not</b> well-founded.</>}
         />
       </Section>
 
@@ -333,8 +355,8 @@ export default function Chapter09() {
           />
         </Thm>
         <P
-          zh={<>书中说，证明概要最早由 test_alpha0 于 2022 年提出，后由 Vargovčík（即社区里的 Yto）发表在 arXiv 上：arXiv:2307.04606，《Well-Orderedness of the Bashicu Matrix System》，2023 年 7 月首发（现行版本的作者署名为 Rachel Hunter）。</>}
-          en={<>Per the book, the proof outline was first proposed by test_alpha0 in 2022 and later posted to arXiv by Vargovčík (the community’s Yto): arXiv:2307.04606, “Well-Orderedness of the Bashicu Matrix System,” first posted July 2023 (the current version lists the author as Rachel Hunter).</>}
+          zh={<>据书中介绍，test_alpha0 在 2022 年给出了证明概要；完整的证明由 Rachel Hunter 发表：《Well-Orderedness of the Bashicu Matrix System》，arXiv:2307.04606（2023）。</>}
+          en={<>According to the book, test_alpha0 sketched a proof in 2022; a full proof was posted by Rachel Hunter: “Well-Orderedness of the Bashicu Matrix System”, arXiv:2307.04606 (2023).</>}
         />
         <H3 en="The idea, in one picture" zh="一图看懂证明思路" />
         <P
@@ -391,15 +413,13 @@ export default function Chapter09() {
           zh={<>到 3 行，BMS 突然变得极其强大。书中说，BMS 的详细分析多年来一直是大数社区最重要的工作之一，“至今也没有彻底完成”。</>}
           en={<>At three rows BMS suddenly becomes enormously strong. The book says detailed analysis of BMS was for years among the most important work in the googology community, and “it is still not completely finished.”</>}
         />
+        <P
+          zh={<>BO 以上的名字（TFBO、EBO、JO、SRO、SSO、LRO、TSSO、QSSO、SHO）这里只是名字。它们的含义依赖“反射”“稳定”“投影”等思想，第 10 章会解释。这些位置来自社区的分析，属于社区估计。 <Status kind="folklore" /></>}
+          en={<>Above BO the names (TFBO, EBO, JO, SRO, SSO, LRO, TSSO, QSSO, SHO) are only names here. Their meaning relies on reflection, stability and projection, which Chapter 10 explains. Their positions come from community analysis and are community estimates. <Status kind="folklore" /></>}
+        />
         <Widget title={{ en: 'The strength ladder', zh: '强度阶梯' }} hint={{ en: 'Click a rung. Order on the ladder is plain dictionary order on the matrices.', zh: '点击一级台阶。阶梯上的先后，就是矩阵的字典序。' }}>
           <StrengthLadder />
         </Widget>
-        <Caution>
-          <L
-            zh={<>BO 以上的名字（TFBO、EBO、JO、SRO、SSO、LRO、TSSO、QSSO、SHO）这里只是名字。它们的含义依赖“反射”“稳定”“投影”等思想，第 10 章会解释。这些位置来自社区的分析，属于社区估计。</>}
-            en={<>Above BO the names (TFBO, EBO, JO, SRO, SSO, LRO, TSSO, QSSO, SHO) are only names here. Their meaning relies on reflection, stability and projection, which Chapter 10 explains. Their positions come from community analysis and are community estimates.</>}
-          />
-        </Caution>
         <H3 en="Where does the strength come from?" zh="力量从哪里来？" />
         <P
           zh={<>书中目前的解释叫<Term en="multi-row transfer" zh="多行传递" />。行从上往下编号为 1, 2, …，然后从最下面一行开始逐行删去；如果删掉第 n 行会改变坏根，就说这个表达式有“n 行传递”。</>}
@@ -434,12 +454,12 @@ export default function Chapter09() {
       {/* ---------------------------------------------------------------- */}
       <Section id="mountains" kicker={{ en: 'Teaser', zh: '预告' }} title={{ en: 'Mountains: the Y-sequence family', zh: '山脉：Y 序列家族' }}>
         <P
-          zh={<>BMS 之后，社区换了一种画法：只写一行数，但允许“跳跃”。Y 家族的序列都从 1 开始（相当于把初等序列每项加 1）。</>}
-          en={<>After BMS the community switched pictures: write a single row again, but allow jumps. Y-family sequences start at 1 (think of a primitive sequence with 1 added to every entry).</>}
+          zh={<>BMS 之后，社区换了一种画法：只写一行数，但允许“跳跃”。Y 家族的序列从 1 开始。</>}
+          en={<>After BMS the community switched pictures: a single row again, but with jumps. Y-family sequences start at 1.</>}
         />
         <P
           zh={<>第一步是 <b>LPrSS</b>：坏根仍是左边第一个更小的数，阶差 d = 末项 − 坏根，每复制一次加 d − 1。例如 (1,4,6,4) 的坏根是 1，d = 3，展开为 (1,4,6,3,6,8,5,8,10,…)。它的极限是 φ(ω,0)。</>}
-          en={<>First comes <b>LPrSS</b>: the bad root is still the first smaller entry to the left, d = last − bad root, and each copy adds d − 1. For example (1,4,6,4) has bad root 1 and d = 3, so it expands to (1,4,6,3,6,8,5,8,10,…). Its limit is φ(ω,0).</>}
+          en={<>First comes <b>LPrSS</b>: the bad root is the first smaller entry to the left, d = last − bad root, and each copy adds d − 1. For example (1,4,6,4) has bad root 1 and d = 3, so it expands to (1,4,6,3,6,8,5,8,10,…). Its limit is φ(ω,0).</>}
         />
         <P
           zh={<><b>0-Y 序列</b>更进一步：对序列反复取“每项 − 它的父项”，一层层往上画，就得到一座<b>山脉</b>。山脉的父项结构，正好就是 BMS 矩阵的父项结构。</>}
@@ -449,12 +469,8 @@ export default function Chapter09() {
           <Mountain />
         </Widget>
         <P
-          zh={<>书中的例子：0-Y(1,4,10,13) 对应 <Mx s="(0,0,0)(1,1,1)(2,2,2)(3,1,1)" />，展开为 (1,4,10,12,16,23,26,31,39,…)。组件把矩阵展开后再翻译回来，得到的正是这一串。</>}
-          en={<>The book’s example: 0-Y(1,4,10,13) corresponds to <Mx s="(0,0,0)(1,1,1)(2,2,2)(3,1,1)" /> and expands to (1,4,10,12,16,23,26,31,39,…). Expanding the matrix in the widget and translating back gives exactly this sequence.</>}
-        />
-        <P
-          zh={<>书中说 BMS 和 0-Y “完全等价”，同时也坦白：这种等价性“尚未得到严格的证明”。<Status kind="open" /></>}
-          en={<>The book calls BMS and 0-Y “completely equivalent,” and admits in the same breath that the equivalence “has not yet been rigorously proved.” <Status kind="open" /></>}
+          zh={<>书中的例子：0-Y(1,4,10,13) 对应 <Mx s="(0,0,0)(1,1,1)(2,2,2)(3,1,1)" />，展开为 (1,4,10,12,16,23,26,31,39,…)。组件把矩阵展开后再翻译回来，得到的正是这一串。书中说 BMS 和 0-Y “完全等价”，同时也坦白：这种等价性“尚未得到严格的证明”。<Status kind="open" /></>}
+          en={<>The book’s example: 0-Y(1,4,10,13) corresponds to <Mx s="(0,0,0)(1,1,1)(2,2,2)(3,1,1)" /> and expands to (1,4,10,12,16,23,26,31,39,…). Expanding the matrix in the widget and translating back gives exactly this sequence. The book calls BMS and 0-Y “completely equivalent,” and admits in the same breath that the equivalence “has not yet been rigorously proved.” <Status kind="open" /></>}
         />
         <H3 en="And the mountains keep rising" zh="山还在往上长" />
         <P

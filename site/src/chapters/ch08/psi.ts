@@ -7,7 +7,7 @@
  * Fundamental sequences (the convention this course fixes, book eq. 5.316–5.318 and Def 5.11):
  *   ω[k] = k,  Ω_ω[k] = Ω_k
  *   (a+b)[k] = a + b[k],  (a·b)[k] = a·b[k],  (a^b)[k] = a^{b[k]}  (b limit)
- *   ψ_m(0)[0] = Ω_m,  ψ_m(0)[k+1] = Ω_m^{ψ_m(0)[k]}
+ *   ψ_m(0)[0] = 1,  ψ_m(0)[k+1] = Ω_m^{ψ_m(0)[k]}   (so ψ(0)[k] = ω↑↑k = ε₀[k], the course convention)
  *   ψ_m(β+1)[0] = ψ_m(β),  ψ_m(β+1)[k+1] = ψ_m(β)^{ψ_m(β+1)[k]}
  *   ψ_m(β)[k] = ψ_m(β[k])  when β is a recursive limit
  *   Find-layer: the rightmost Ω_n is found by the innermost enclosing ψ_m with m < n.
@@ -170,7 +170,7 @@ export function fs(e: E, k: number): { r: E; info: StepInfo } {
       const ca = classify(e.a)
       const m = e.m
       if (ca.c === 'zero') {
-        let t: E = O(m)
+        let t: E = N(1)
         for (let j = 0; j < k; j++) t = Pw(O(m), t)
         return { r: t, info: { kind: 'psi0', m } }
       }

@@ -313,17 +313,17 @@ export function MountainTree() {
   const ord = shapeOk ? seqToOrd(s) : null
   return (
     <div>
-      <SeqEditor s={s} setS={setS} presets={[[0, 1, 2], [0, 1, 0, 1], [0, 1, 1, 2], [0, 0, 1], [0, 1, 2, 3, 1, 2, 2, 2, 0, 1, 2, 2, 1], [0, 1, 2, 2, 0, 1, 2, 1, 1]]} />
+      <SeqEditor s={s} setS={setS} presets={[[0, 1, 2], [0, 1, 0, 1], [0, 1, 1, 2], [0, 1, 2, 3, 1, 2, 2, 2, 0, 1, 2, 2, 1], [0, 1, 2, 2, 0, 1, 2, 1, 1]]} />
       {shapeOk ? (
         <>
           <div className="c05-two">
             <div>
               <div className="small muted">{t('mountain: each term links to its parent', '山形图：每一项连向它的父项')}</div>
-              <Mountain s={s} colors={blockCol} hover={hover} onHover={setHover} height={200} vbWidth={340} />
+              <Mountain s={s} colors={blockCol} hover={hover} onHover={setHover} height={125} vbWidth={340} />
             </div>
             <div>
               <div className="small muted">{t('tree: the same links, root at the bottom', '树：同样的连线，根在下面')}</div>
-              <TreeView tree={tree} colorOf={colorOf} height={200} vbWidth={340} />
+              <TreeView tree={tree} colorOf={colorOf} height={125} vbWidth={340} />
             </div>
           </div>
           <div className="readout">
@@ -562,8 +562,10 @@ export function ShellTable() {
   )
   return (
     <div>
-      <div className="scroll-x">{table(0)}</div>
-      <div className="scroll-x" style={{ marginTop: 8 }}>{table(1)}</div>
+      <div className="c05-two c05-shells">
+        <div className="scroll-x">{table(0)}</div>
+        <div className="scroll-x">{table(1)}</div>
+      </div>
       <div className="small muted" style={{ marginTop: 6 }}>
         {t('Hover or tap a number to light up every equal number. Row by row, the Hardy shell needs the ordinal ω^α to match the FGH shell at α.', '鼠标指向（或点击）一个数，所有相等的数都会亮起。逐行看：Hardy 外壳要用序数 ω^α 才追上 FGH 外壳的 α。')}
       </div>

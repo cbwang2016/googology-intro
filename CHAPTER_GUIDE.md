@@ -215,7 +215,7 @@ Each spec lists **Must teach** (later chapters rely on it), suggested widgets, t
   - Ω₂, ψ₁, the find-layer + rename-copies rule; **BO = ψ(Ω_ω)**; TFBO and EBO named;
   - Buchholz's ψ dictionary;
   - **Buchholz hydra** game (labels 0..ω; growth ≈ TFBO; termination unprovable in Π¹₁-CA+BI);
-  - PTO table rows: KP = ID₁ = BHO; Π¹₁-CA₀ = ψ(Ω_ω) = BO; Π¹₁-CA + BI = TFBO = ψ(ε_{Ω_ω+1}) (book mislabels this BO — use standard naming);
+  - PTO table rows: KP = ID₁ = BHO; Π¹₁-CA₀ = ψ(Ω_ω) = BO; Π¹₁-CA + BI = TFBO = ψ(ε_{Ω_ω+1}) (our notes once mislabelled this BO; the book itself is correct);
   - FGH and SGH catch up at BO (wow moment);
   - **mark ϑ/θ notation as optional only.**
 - **Widgets:** brick builder for C^n(α); ψ folding stepper with highlighted bad part; MOCF↔Veblen lookup; Buchholz-hydra game; SGH vs FGH catch-up race.

@@ -46,3 +46,10 @@
 .c05-shell td, .c05-shell th { text-align: center; white-space: nowrap; }
 .c05-shell td.c05-hl { background: rgba(125, 255, 168, 0.2); color: var(--green); }
 .c05-shell td { cursor: default; }
+
+.c05-shells { gap: 10px; }
+.c05-shell td, .c05-shell th { padding: 4px 6px; }
+.c05-shell th:first-child { white-space: normal; font-size: 0.85em; }
+
+.c05-narrow { display: none; }
+@media (max-width: 600px) { .c05-wide { display: none; } .c05-narrow { display: block; } }

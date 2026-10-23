@@ -143,11 +143,6 @@ export function FoldStepper({ presets, maxK = 2 }: { presets: Preset[]; maxK?: n
         <M t={toTex(annotate(cur))} />
         {known && <M t={`\\;=\\;${known}`} />}
       </div>
-      <div className="c08-legend small">
-        <span className="c08-sw gold" /> <L en="found layer" zh="找到的层（坏根）" />
-        <span className="c08-sw red" /> <L en="the Ω being folded / active end" zh="被展开的 Ω / 活动末端" />
-        <span className="c08-sw pink" /> <L en="copies (bad part)" zh="副本（坏部）" />
-      </div>
       {cls.c === 'lim' && terms.length > 0 && (
         <>
           <div className="small c08-rule">{infoText(terms[0].info, t)}</div>
@@ -297,16 +292,16 @@ export function BuchholzHydra() {
   const { pos, w, h } = useMemo(() => layout(tree), [tree])
   const drawable = size <= DRAW_LIMIT
   const VW = Math.max(320, w * 34 + 40)
-  const VH = Math.max(140, h * 46 + 40)
+  const VH = Math.max(120, h * 46 + 40)
   const px = (x: number) => 20 + (w <= 1 ? (VW - 40) / 2 : (x * (VW - 40)) / (w - 1))
   const py = (y: number) => VH - 22 - y * 46
   const br = toBrackets(tree)
   const nm = NAMES.get(br)
   const ruleText: Record<CutRule, { en: string; zh: string }> = {
     1: { en: 'rule 1: a 0-head on the root just dies', zh: '规则 1：长在根上的 0 号头直接死掉' },
-    2: { en: `rule 2: 0-head — its parent τ (gold) regrows ${round - 1} copies (pink) one level down`, zh: `规则 2：0 号头——它的父节点 τ（金色）在下一层长出 ${round - 1} 个副本（粉色）` },
-    3: { en: 'rule 3: u-head — first node below with a smaller label (gold) is the bad root; its subtree is copied in place of the head, relabelled u−1 and 0 (pink)', zh: '规则 3：u 号头——往下第一个标签更小的节点（金色）是坏根；把它的子树复制到头的位置，根改为 u−1，头改为 0（粉色）' },
-    4: { en: `rule 4: an ω-head becomes ${round}`, zh: `规则 4：ω 号头变成 ${round}` },
+    2: { en: `rule 1: 0-head — its parent τ (gold) regrows ${round - 1} copies (pink) one level down`, zh: `规则 1：0 号头——它的父节点 τ（金色）在下一层长出 ${round - 1} 个副本（粉色）` },
+    3: { en: 'rule 2: u-head — first node below with a smaller label (gold) is the bad root; its subtree is copied in place of the head, relabelled u−1 and 0 (pink)', zh: '规则 2：u 号头——往下第一个标签更小的节点（金色）是坏根；把它的子树复制到头的位置，根改为 u−1，头改为 0（粉色）' },
+    4: { en: `rule 3: an ω-head becomes ${round}`, zh: `规则 3：ω 号头变成 ${round}` },
   }
   return (
     <div>
@@ -318,7 +313,7 @@ export function BuchholzHydra() {
         ))}
       </div>
       {drawable ? (
-        <svg viewBox={`0 0 ${VW} ${VH}`} className="c08-hydra" style={{ maxHeight: 250 }}>
+        <svg viewBox={`0 0 ${VW} ${VH}`} className="c08-hydra" style={{ maxHeight: 200 }}>
           {pos.map((q, i) =>
             q.parent ? <line key={'l' + i} x1={px(q.parent.x)} y1={py(q.parent.y)} x2={px(q.x)} y2={py(q.y)} stroke="#3a4680" strokeWidth={2} /> : null,
           )}

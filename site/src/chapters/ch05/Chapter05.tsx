@@ -1,8 +1,20 @@
 import './ch05.css'
+import katex from 'katex'
 import { B, L, P, Term } from '../../i18n'
 import { M, MB } from '../../math'
 import { Caution, Expand, H3, KeyIdea, OpenProblem, Prereq, Proof, Quiz, Section, Thm, Widget } from '../../ui/blocks'
 import { BrokenRule, Countdown, Expander, MountainTree, Odometer, ShellTable } from './widgets'
+
+/** Display math with a narrower layout for phones (both are top-level .mb blocks; CSS shows one). */
+function MBR({ wide, narrow }: { wide: string; narrow: string }) {
+  const r = (x: string) => ({ __html: katex.renderToString(x, { displayMode: true, throwOnError: false }) })
+  return (
+    <>
+      <div className="mb c05-wide" dangerouslySetInnerHTML={r(wide)} />
+      <div className="mb c05-narrow" dangerouslySetInnerHTML={r(narrow)} />
+    </>
+  )
+}
 
 export default function Chapter05() {
   return (
@@ -40,7 +52,7 @@ export default function Chapter05() {
           <Odometer />
         </Widget>
         <Thm kind="fact" name={{ en: '(arrays are base-ω numerals)', zh: '（数阵就是 ω 进制数）' }} status="proved">
-          <MB t="F_{a_m,\ldots,a_1,a_0}(n)=f_{\omega^m\cdot a_m+\cdots+\omega\cdot a_1+a_0}(n)." />
+          <MBR wide="F_{a_m,\ldots,a_1,a_0}(n)=f_{\omega^m\cdot a_m+\cdots+\omega\cdot a_1+a_0}(n)." narrow="\begin{aligned}&F_{a_m,\ldots,a_1,a_0}(n)\\&\ =f_{\omega^m\cdot a_m+\cdots+\omega\cdot a_1+a_0}(n).\end{aligned}" />
         </Thm>
         <Proof>
           <L
@@ -69,7 +81,7 @@ export default function Chapter05() {
           zh={<>从刻度 0 出发：<M t="()[n]=n+1" />。迭代 <M t="n" /> 次，刻度 +1——但这里不把“0”改成“1”，而是在末尾<b>再添一个 0</b>：</>}
           en={<>Start at mark 0: <M t="()[n]=n+1" />. Iterating <M t="n" /> times adds 1 to the mark — but instead of changing a digit, we <b>append a 0</b>:</>}
         />
-        <MB t="(0)[n]=()^{n}[n]\sim 1,\qquad (0,0)[n]=(0)^{n}[n]\sim 2,\qquad (\underbrace{0,\ldots,0}_{m})[n]\sim m." />
+        <MBR wide="(0)[n]=()^{n}[n]\sim 1,\qquad (0,0)[n]=(0)^{n}[n]\sim 2,\qquad (\underbrace{0,\ldots,0}_{m})[n]\sim m." narrow="\begin{gathered}(0)[n]=()^{n}[n]\sim 1,\\ (0,0)[n]=(0)^{n}[n]\sim 2,\\ (\underbrace{0,\ldots,0}_{m})[n]\sim m.\end{gathered}" />
         <H3 en="Folding is diagonalization" zh="折叠就是对角化" />
         <P
           zh={<>要越过所有有限刻度，就对角化：用 <M t="n" /> 个 0。PrSS 的妙处在于记法——把重复的“循环节” 0 只留一个，后面再添一项“循环节首项 + 1”：</>}
@@ -80,8 +92,9 @@ export default function Chapter05() {
           zh={<>同样的折叠一再发生：<M t="(0,1,0,1)" /> 折叠了跟在 <M t="(0,1)" /> 后面的那串 0；<M t="(0,1,1)" /> 折叠了循环节 <M t="0,1" />；<M t="(0,1,2)" /> 折叠了循环节 <M t="1" />。</>}
           en={<>The same fold happens again and again: <M t="(0,1,0,1)" /> folds the zeros that follow <M t="(0,1)" />; <M t="(0,1,1)" /> folds the block <M t="0,1" />; <M t="(0,1,2)" /> folds the block <M t="1" />.</>}
         />
+        <H3 en="The rules" zh="正式规则" />
         <Thm kind="definition" name={{ en: 'PrSS (《大数理论》 Def 2.16)', zh: '初等序列（《大数理论》定义 2.16）' }}>
-          <MB t="\begin{aligned}&(1)\quad ()[n]=n+1\\&(2)\quad (\#,0)[n]=(\#)^{n}[n]\\&(3)\quad (\#_1,a_i,\#_2,a_m)[n]=(\#_1,\underbrace{a_i,\#_2,\ a_i,\#_2,\ \ldots,\ a_i,\#_2}_{n\ \text{copies of}\ a_i,\#_2})[n]\quad(a_m\neq 0)\end{aligned}" />
+          <MB t="\begin{aligned}&(1)\quad ()[n]=n+1\\&(2)\quad (\#,0)[n]=(\#)^{n}[n]\\&(3)\quad (\#_1,a_i,\#_2,a_m)[n]\ \ (a_m\neq 0)\\&\qquad=(\#_1,\underbrace{a_i,\#_2,\ \ldots,\ a_i,\#_2}_{n})[n]\end{aligned}" />
           <B
             zh={<p>其中 <M t="a_i" /> 是 <M t="a_m" /> 左边、从右往左第一个比 <M t="a_m" /> <b>小</b>的项（在标准表达式里它恰好等于 <M t="a_m-1" />）。<M t="(\#)^n[n]" /> 表示把 <M t="(\#)[\cdot]" /> 迭代 <M t="n" /> 次。</p>}
             en={<p>Here <M t="a_i" /> is the first term to the left of <M t="a_m" /> that is <b>smaller</b> than <M t="a_m" /> (in standard expressions it equals <M t="a_m-1" />), and <M t="(\#)^n[n]" /> means <M t="(\#)[\cdot]" /> iterated <M t="n" /> times.</p>}
@@ -106,13 +119,10 @@ export default function Chapter05() {
             </ul>
           }
         />
+        <H3 en="One expansion, dissected" zh="解剖一次展开" />
         <Widget title={{ en: 'Anatomy of one expansion', zh: '一次展开的解剖图' }} hint={{ en: 'Edit the sequence or pick one. The ordinal line checks the result against Def 3.6.', zh: '编辑序列或选一个现成的。最下面一行用定义 3.6 核对结果。' }}>
           <Expander />
         </Widget>
-        <P
-          zh={<>注意规则 (3) 删掉了末项、复制坏部，却不把末项一起复制。这个细节是整个记号的命门；在“为什么一定会停”一节里，我们会看到改掉它的后果。</>}
-          en={<>Notice that rule (3) deletes the last term and copies the bad part <i>without</i> the last term. That detail is the notation’s lifeline; in the section “Why it must stop” we will see what happens if you change it.</>}
-        />
         <H3 en="Four digits beat Graham’s number" zh="四个数字打败 Graham 数" />
         <Thm name={{ en: '(a four-term sequence)', zh: '（一个四项序列）' }}>
           <B zh={<p><M t="(0,1,0,0)[3]>G(64)" />，即 Graham 数。</p>} en={<p><M t="(0,1,0,0)[3]>G(64)" />, Graham’s number.</p>} />
@@ -136,15 +146,15 @@ export default function Chapter05() {
           en={<>Strip off the shell — the square brackets and the iteration — and look at the sequence alone. Rule (2) becomes “+1”, rule (3) becomes “take the limit”, and the sequence becomes a name for an <b>ordinal</b>:</>}
         />
         <Thm kind="definition" name={{ en: 'PrSS as an ordinal notation (Def 2.18)', zh: '作为序数记号的初等序列（定义 2.18）' }}>
-          <MB t="\begin{aligned}&()=0,\qquad (\#,0)=(\#)+1,\\&(\#_1,a_i,\#_2,a_m)=\sup\{(\#_1,a_i,\#_2),\ (\#_1,a_i,\#_2,a_i,\#_2),\ \ldots\}\quad(a_m\neq0).\end{aligned}" />
+          <MBR wide="\begin{aligned}&()=0,\qquad (\#,0)=(\#)+1,\\&(\#_1,a_i,\#_2,a_m)=\sup\{(\#_1,a_i,\#_2),\ (\#_1,a_i,\#_2,a_i,\#_2),\ \ldots\}\quad(a_m\neq0).\end{aligned}" narrow="\begin{aligned}&()=0,\qquad (\#,0)=(\#)+1,\\&(\#_1,a_i,\#_2,a_m)\quad(a_m\neq0)\\&\ =\sup\{(\#_1,a_i,\#_2),\\&\qquad (\#_1,a_i,\#_2,a_i,\#_2),\ \ldots\}.\end{aligned}" />
         </Thm>
-        <MB t="\begin{aligned}(0)&=1 & (0,1)&=\omega & (0,1,0,1)&=\omega\cdot2 & (0,1,1)&=\omega^2\\ (0,1,2)&=\omega^\omega & (0,1,2,1)&=\omega^{\omega+1} & (0,1,2,2)&=\omega^{\omega^2} & (0,1,2,3)&=\omega^{\omega^\omega}\end{aligned}" />
+        <MBR wide="\begin{aligned}(0)&=1 & (0,1)&=\omega & (0,1,0,1)&=\omega\cdot2 & (0,1,1)&=\omega^2\\ (0,1,2)&=\omega^\omega & (0,1,2,1)&=\omega^{\omega+1} & (0,1,2,2)&=\omega^{\omega^2} & (0,1,2,3)&=\omega^{\omega^\omega}\end{aligned}" narrow="\begin{aligned}(0)&=1 & (0,1)&=\omega\\ (0,1,0,1)&=\omega\cdot2 & (0,1,1)&=\omega^2\\ (0,1,2)&=\omega^\omega & (0,1,2,1)&=\omega^{\omega+1}\\ (0,1,2,2)&=\omega^{\omega^2} & (0,1,2,3)&=\omega^{\omega^\omega}\end{aligned}" />
         <H3 en="Reading a sequence" zh="读出一个序列" />
         <P
           zh={<>有一个简单的翻译算法：在每个 0 处切开，各段用加号相连；单独的 <M t="(0)" /> 读作 1；<M t="(0,X)" /> 读作 <M t="\omega^{X'}" />，其中 <M t="X'" /> 是把 <M t="X" /> 每项减 1，再递归地读。</>}
           en={<>There is a simple translation: cut before every 0 and join the pieces with plus signs; a lone <M t="(0)" /> reads as 1; <M t="(0,X)" /> reads as <M t="\omega^{X'}" />, where <M t="X'" /> is <M t="X" /> with every term lowered by 1, read recursively.</>}
         />
-        <MB t="(0,1,2,2,\;0,1,2,1,1,\;0,1,2,1,1,\;0,1,1,1)=\omega^{\omega^2}+\omega^{\omega+2}\cdot2+\omega^3." />
+        <MBR wide="(0,1,2,2,\;0,1,2,1,1,\;0,1,2,1,1,\;0,1,1,1)=\omega^{\omega^2}+\omega^{\omega+2}\cdot2+\omega^3." narrow="\begin{gathered}(0,1,2,2,\;0,1,2,1,1,\\ 0,1,2,1,1,\;0,1,1,1)\\ =\omega^{\omega^2}+\omega^{\omega+2}\cdot2+\omega^3.\end{gathered}" />
         <H3 en="Mountains and trees" zh="山形图与树" />
         <P
           zh={<>更好的办法是<b>画出来</b>。把每一项画成一根高度为“值 + 1”的柱子，并把它连到它的父项。这些连线构成一棵根在下面的树——这就是第 6 章九头蛇的身体。</>}
@@ -213,15 +223,12 @@ export default function Chapter05() {
           en={<>Expanding makes the sequence longer and the number in the brackets bigger. Does it really ever stop?</>}
         />
         <P
-          zh={<>为了能把全过程放进一屏，我们换用本书介绍的“原版”外壳（定义 2.17）：末尾的 0 不再表示迭代，只让自变量 +1。</>}
-          en={<>To fit a whole run on one screen we switch to the book’s “original” shell (Def 2.17): a trailing 0 no longer means iteration; it only adds 1 to the argument.</>}
+          zh={<>为了能把全过程放进一屏，我们换用本书介绍的“原版”外壳（定义 2.17）：末尾的 0 不再表示迭代，只让自变量 +1；规则 (3) 不变：</>}
+          en={<>To fit a whole run on one screen we switch to the book’s “original” shell (Def 2.17): a trailing 0 no longer means iteration; it only adds 1 to the argument. Rule (3) is unchanged:</>}
         />
-        <MB t="()[n]=n,\qquad (\#,0)[n]=(\#)[n+1],\qquad \text{rule (3) unchanged.}" />
-        <P
-          zh={<>每一行旁边标上序列所读的序数，右边的“高度计”显示它在序数尺上的位置。</>}
-          en={<>Each line is labelled with the ordinal its sequence names, and the altimeter on the right shows where that ordinal sits on the ruler.</>}
-        />
-        <Widget title={{ en: 'Countdown with an ordinal altimeter', zh: '带序数高度计的倒数' }} hint={{ en: 'Start with (0,1,2)[2] one step at a time. For (0,1,2)[3], switch on fast-forward.', zh: '先一步一步走 (0,1,2)[2]。走 (0,1,2)[3] 时请打开快进。' }}>
+        <MB t="()[n]=n,\qquad (\#,0)[n]=(\#)[n+1]." />
+        <H3 en="The countdown" zh="倒数开始" />
+        <Widget title={{ en: 'Countdown with an ordinal altimeter', zh: '带序数高度计的倒数' }} hint={{ en: 'Each line carries the ordinal its sequence names; the altimeter shows where it sits. Step through (0,1,2)[2]; for (0,1,2)[3], switch on fast-forward.', zh: '每一行旁标着序列所读的序数，右边的高度计显示它在序数尺上的位置。先一步一步走 (0,1,2)[2]；走 (0,1,2)[3] 时请打开快进。' }}>
           <Countdown />
         </Widget>
         <P
@@ -232,7 +239,7 @@ export default function Chapter05() {
           zh={<><M t="(0,1,2)[3]" /> 要长得多：它走到 <M t="(0,1,1)[3\times2^{27}]" />，即 <M t="(0,1,1)[402\,653\,184]" />，最后得到</>}
           en={<><M t="(0,1,2)[3]" /> runs much longer: it reaches <M t="(0,1,1)[3\times2^{27}]" />, that is <M t="(0,1,1)[402{,}653{,}184]" />, and finally</>}
         />
-        <MB t="(0,1,2)[3]=3\cdot2^{27}\cdot2^{3\cdot2^{27}}=3\cdot2^{402\,653\,211}." />
+        <MBR wide="(0,1,2)[3]=3\cdot2^{27}\cdot2^{3\cdot2^{27}}=3\cdot2^{402\,653\,211}." narrow="\begin{aligned}(0,1,2)[3]&=3\cdot2^{27}\cdot2^{3\cdot2^{27}}\\&=3\cdot2^{402\,653\,211}.\end{aligned}" />
         <P
           zh={<>记住这个数。下一章它会在一个看似毫不相干的地方再次出现。</>}
           en={<>Remember this number. It will reappear in the next chapter, somewhere that looks completely unrelated.</>}
@@ -291,12 +298,12 @@ export default function Chapter05() {
           zh={<>序列 <M t="(0,1,2,\ldots,k)" /> 的树是一根直棍。直棍每长一节，序数就多一层指数：</>}
           en={<>The tree of <M t="(0,1,2,\ldots,k)" /> is a straight stick. Each extra segment adds one more storey to the exponent tower:</>}
         />
-        <MB t="(0)=1,\quad (0,1)=\omega,\quad (0,1,2)=\omega^{\omega},\quad (0,1,2,3)=\omega^{\omega^{\omega}},\quad (0,1,\ldots,k)=\omega\uparrow\uparrow k." />
+        <MBR wide="(0)=1,\quad (0,1)=\omega,\quad (0,1,2)=\omega^{\omega},\quad (0,1,2,3)=\omega^{\omega^{\omega}},\quad (0,1,\ldots,k)=\omega\uparrow\uparrow k." narrow="\begin{gathered}(0)=1,\quad (0,1)=\omega,\quad (0,1,2)=\omega^{\omega},\\ (0,1,2,3)=\omega^{\omega^{\omega}},\\ (0,1,\ldots,k)=\omega\uparrow\uparrow k.\end{gathered}" />
         <P
           zh={<>没有哪个有限序列能写出 <M t="\varepsilon_0" />：每个序列都在某个 <M t="\omega\uparrow\uparrow k" /> 之下。把梯子的高度也交给 <M t="n" />，就得到整个记号的对角线：</>}
           en={<>No finite sequence names <M t="\varepsilon_0" />: each one sits below some <M t="\omega\uparrow\uparrow k" />. Let the height of the ladder depend on <M t="n" /> too, and you get the diagonal of the whole notation:</>}
         />
-        <MB t="F(n)=(0,1,2,\ldots,n)[n]=f_{\omega\uparrow\uparrow n}(n)=f_{\varepsilon_0}(n)." />
+        <MBR wide="F(n)=(0,1,2,\ldots,n)[n]=f_{\omega\uparrow\uparrow n}(n)=f_{\varepsilon_0}(n)." narrow="\begin{aligned}F(n)&=(0,1,2,\ldots,n)[n]\\&=f_{\omega\uparrow\uparrow n}(n)=f_{\varepsilon_0}(n).\end{aligned}" />
         <P
           zh={<>这就是 PrSS 的极限：<M t="(0,1,2,3,\ldots)=\varepsilon_0" />，它的强度是 <M t="\varepsilon_0" />。三条规则、一串自然数，就越过了第 3 章那座无限高的 <M t="\omega" /> 塔。</>}
           en={<>This is PrSS’s limit: <M t="(0,1,2,3,\ldots)=\varepsilon_0" />, and its strength is <M t="\varepsilon_0" />. Three rules and a list of natural numbers have climbed Chapter 3’s infinitely tall tower of <M t="\omega" />’s.</>}
@@ -312,9 +319,10 @@ export default function Chapter05() {
       {/* ---------------------------------------------------------------- */}
       <Section id="wellorder" kicker={{ en: 'The sword of Damocles', zh: '达摩克利斯之剑' }} title={{ en: 'Why it must stop — and how to break it', zh: '为什么一定会停——以及怎样把它弄坏' }}>
         <P
-          zh={<>想让记号更强？一个诱人的改法（本书式 2.387）：展开时把末项也放进循环节一起复制。序列会变得更长——看起来只会更大。</>}
-          en={<>Want a stronger notation? A tempting tweak (the book’s eq. 2.387): when expanding, copy the last term along with the bad part. Sequences get longer, so surely the numbers get bigger.</>}
+          zh={<>规则 (3) 删掉末项，只复制坏部，<b>不</b>复制末项本身。想让记号更强？一个诱人的改法（本书式 2.387）：把末项也放进循环节一起复制。序列会变得更长——看起来只会更大。</>}
+          en={<>Rule (3) deletes the last term and copies the bad part <i>without</i> it. Want a stronger notation? A tempting tweak (the book’s eq. 2.387): copy the last term along with the bad part. Sequences get longer, so surely the numbers get bigger.</>}
         />
+        <H3 en="Two machines, one start" zh="两台机器，同一个起点" />
         <Widget title={{ en: 'Break the rule', zh: '把规则弄坏' }} hint={{ en: 'Both machines start from (0,1,2)[2].', zh: '两台机器都从 (0,1,2)[2] 出发。' }}>
           <BrokenRule />
         </Widget>
@@ -326,7 +334,7 @@ export default function Chapter05() {
           zh={<>这种无穷展开叫<Term en="infinite descending chain" zh="无穷降链" />，有它的记号叫<b>非良序</b>的。它和停机问题很像：一个记号良序，等于说它的展开程序总会停机。</>}
           en={<>An endless expansion like this is an <Term en="infinite descending chain" zh="无穷降链" />, and a notation with one is <b>ill-founded</b>. It resembles the halting problem: a notation is well-founded exactly when its expansion program always halts.</>}
         />
-        <Thm name={{ en: '(PrSS is well-founded)', zh: '（初等序列是良序的）' }}>
+        <Thm name={{ en: '(PrSS is well-founded)', zh: '（初等序列是良序的）' }} status="proved">
           <B
             zh={<p>对每个标准表达式 <M t="s" /> 和每个 <M t="n" />，按任一种外壳展开 <M t="(s)[n]" />，都会在有限步内到达 <M t="()" />。</p>}
             en={<p>For every standard expression <M t="s" /> and every <M t="n" />, expanding <M t="(s)[n]" /> in either shell reaches <M t="()" /> after finitely many steps.</p>}
@@ -338,10 +346,11 @@ export default function Chapter05() {
             en={<>Dropping a trailing 0 takes <M t="\alpha+1" /> to <M t="\alpha" />; a rule-(3) expansion takes <M t="\alpha" /> to <M t="\alpha[n]<\alpha" /> (the fact “expansion = fundamental sequence” from the section on mountains and trees). So the ordinal strictly drops at every step. An endless expansion would give an infinite strictly decreasing sequence of ordinals, contradicting Chapter 3’s theorem. (The book’s FGH shell keeps several nested calls alive at once; the same argument runs on the finite multiset of their ordinals.)</>}
           />
         </Proof>
+        <H3 en="How rigorous is this?" zh="这有多严格？" />
         <Caution>
           <L
-            zh={<>诚实地说：本书在这里只给出了一个直观的“说明”，因为它跳过了序列与序数对应关系的证明，并明确说这“远非严格的证明”。上面“展开 = 基本列”的推导补上了这一环；更完整的严格证明见 WWW620（2024）与 みずどら（2024）。同样的树结构在 Kirby–Paris 九头蛇（1982）中早已被严格处理过，第 6 章细说。</>}
-            en={<>In fairness: at this point the book offers only an intuitive “explanation”, because it skips proving the sequence–ordinal correspondence, and it says plainly that this is “far from a rigorous proof”. The derivation “expansion = fundamental sequence” fills that gap; fuller rigorous proofs are by WWW620 (2024) and みずどら (2024). The same tree structure was handled rigorously long before, in the Kirby–Paris hydra (1982) — more in Chapter 6.</>}
+            zh={<>诚实地说：本书在这里只给出了一个直观的“说明”，因为它跳过了序列与序数对应关系的证明，并明确说这“远非严格的证明”。上面“展开 = 基本列”的推导补上了这一环；书中还引用了两篇更完整的严格证明：WWW620 与 みずどら 2024 年的网络文章。同样的树结构在 Kirby–Paris 九头蛇（1982）中早已被严格处理过，第 6 章细说。</>}
+            en={<>In fairness: at this point the book offers only an intuitive “explanation”, because it skips proving the sequence–ordinal correspondence, and it says plainly that this is “far from a rigorous proof”. The derivation “expansion = fundamental sequence” fills that gap; the book also cites two fuller rigorous proofs, online write-ups by WWW620 and みずどら (both 2024). The same tree structure was handled rigorously long before, in the Kirby–Paris hydra (1982) — more in Chapter 6.</>}
           />
         </Caution>
         <H3 en="Walking a tightrope" zh="走钢丝" />

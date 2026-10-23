@@ -47,7 +47,7 @@ export function StrengthLadder() {
             <L en={<>Met in Chapter {r.ch}.</>} zh={<>第 {r.ch} 章已经见过。</>} />
           )}
         </div>
-        <MatrixView S={S} an={an} stage={an.kind === 'limit' ? 3 : 1} cw={30} rh={44} />
+        <MatrixView S={S} an={an} stage={an.kind === 'limit' ? 3 : 1} cw={30} rh={36} />
         <div className="small">
           <L en="rows" zh="行数" />: <b>{rows(S)}</b> · <L en="columns" zh="列数" />: <b>{S.length}</b> · 0-Y: <span className="mono">({oy.join(',')})</span>
         </div>
@@ -134,7 +134,7 @@ export function DescentChain() {
           <span className="stat-value">{prev ? (cmpLex(f.S, prev) < 0 ? t('yes', '是') : t('no', '否')) : '—'}</span>
         </span>
       </div>
-      <MatrixView S={f.S} cells={f.S.map((c, x) => c.map((v) => ({ v, copy: x < 6 ? -1 : 1, lifted: false, frozen: false, forced: false })))} cw={f.S.length > 22 ? 25 : 30} rh={36} />
+      <MatrixView S={f.S} cells={f.S.map((c, x) => c.map((v) => ({ v, copy: x < 6 ? -1 : 1, lifted: false, frozen: false, forced: false })))} cw={f.S.length > 22 ? 25 : 30} rh={30} />
       <div className="btn-row">
         <button className="btn small" disabled={pos >= frames.length - 1} onClick={() => setPos(pos + 1)}>
           <L en="One FS step" zh="走一步" />
@@ -181,7 +181,7 @@ export function Mountain() {
   const Y = rows(S)
   const X = S.length
   const cw = X > 14 ? 40 : 48
-  const lh = 46
+  const lh = 40
   const W = 30 + X * cw
   const H = 24 + (Y + 1) * lh
   const cx = (x: number) => 30 + x * cw + cw / 2

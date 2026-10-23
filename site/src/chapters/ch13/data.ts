@@ -109,9 +109,19 @@ export const PROBLEMS: Problem[] = [
     body: { en: 'There is no rigorous general definition of f ∼ α that matches intuition. All growth-rate analysis rests on informal foundations.', zh: '至今没有一个既严格又符合直觉的 f ∼ α 的一般定义。一切增长率分析都建立在不严格的基础上。' },
   },
   {
-    ch: 4, area: 'notations', status: 'open',
+    ch: 5, area: 'notations', status: 'open',
     title: { en: 'How reliable are the analyses?', zh: '已有的分析有多可靠？' },
     body: { en: 'Notation analysis is largely pattern-finding (incomplete induction). Newer analyses often overturn older ones; nobody knows how many accepted results are wrong.', zh: '记号分析大多是“找规律”（不完全归纳）。新的分析经常推翻旧的；没有人知道目前公认的结果里有多少是错的。' },
+  },
+  {
+    ch: 5, area: 'notations', status: 'open',
+    title: { en: 'Proving strong notations well-founded', zh: '证明强记号的良序性' },
+    body: { en: 'PrSS is easy, but many stronger notations remain undecided. Tools are missing, and there is a barrier of principle: a theory cannot prove well-founded a notation beyond its proof-theoretic ordinal.', zh: 'PrSS 很容易，但许多更强的记号的良序性仍悬而未决。既缺工具，又有原则性障碍：一个理论证明不了超过其证明论序数的记号是良序的。' },
+  },
+  {
+    ch: 6, area: 'logic', status: 'open',
+    title: { en: 'Does unprovable mean fast?', zh: '不可证就意味着增长快吗？' },
+    body: { en: 'Goodstein and the hydra pair independence with ε₀-growth, but no general theorem forces an independent totality statement to produce fast growth.', zh: 'Goodstein 与九头蛇把独立性和 ε₀ 级增长联系在一起，但没有一般定理保证“独立的全定义性命题”一定带来快速增长。' },
   },
   {
     ch: 7, area: 'numbers', status: 'open',
@@ -119,14 +129,24 @@ export const PROBLEMS: Problem[] = [
     body: { en: 'Friedman’s subcubic graph numbers grow faster than TREE, yet nobody knows whether SCG(2) exceeds TREE(3). Their exact growth rates are also unknown.', zh: 'Friedman 的子三次图数比 TREE 长得快，可没有人知道 SCG(2) 是否大于 TREE(3)。它们的精确增长率也未知。' },
   },
   {
+    ch: 7, area: 'numbers', status: 'open',
+    title: { en: 'The true value of tree(3)', zh: 'tree(3) 的真值' },
+    body: { en: 'tree(1) = 2 and tree(2) = 5, but for tree(3) only the lower bound 844,424,930,131,960 is known.', zh: 'tree(1) = 2，tree(2) = 5，而 tree(3) 只知道下界 844,424,930,131,960。' },
+  },
+  {
     ch: 7, area: 'logic', status: 'open',
-    title: { en: 'Is the TREE upper bound rigorous?', zh: 'TREE 的上界严格吗？' },
-    body: { en: 'The domination step behind the upper bounds for tree and TREE is heuristic in the book; a rigorous argument is still wanted.', zh: '书中 tree 与 TREE 增长率上界的“控制”一步是启发式的，仍需严格的论证。' },
+    title: { en: 'Make “growth = PTO” rigorous for tree(n)', zh: '让 tree(n) 的“增长率 = PTO”严格化' },
+    body: { en: 'The step “tree dominates every function ACA₀ + Π¹₂-BI proves total” is heuristic in the book; a rigorous argument is still wanted.', zh: '“tree 支配 ACA₀ + Π¹₂-BI 能证明全定义的每个函数”这一步在书中是启发式的，仍需严格的论证。' },
   },
   {
     ch: 8, area: 'ordinals', status: 'open',
     title: { en: 'A unified, rigorous OCF beyond EBO', zh: '越过 EBO 的统一而严格的折叠函数' },
     body: { en: 'Above ψ(Ω_{Ω_…}) “everyone uses different collapsing rules”. Making community OCFs rigorous and linking them to proof theory’s OCFs is open work.', zh: '在 ψ(Ω_{Ω_…}) 之上，“每个人用的折叠规则都不一样”。把社区的 OCF 严格化，并与证明论中的 OCF 接轨，仍是未完成的工作。' },
+  },
+  {
+    ch: 8, area: 'ordinals', status: 'open',
+    title: { en: 'Exact growth of the Buchholz hydra', zh: 'Buchholz 九头蛇的确切增长率' },
+    body: { en: '“BH(n) grows like TFBO” follows the heuristic growth ≈ PTO and is not rigorously proved.', zh: '“BH(n) 的增长率约为 TFBO”来自“增长率 ≈ PTO”的启发式，并无严格证明。' },
   },
   {
     ch: 9, area: 'notations', status: 'open',
@@ -174,19 +194,24 @@ export const PROBLEMS: Problem[] = [
     body: { en: 'Can any physical process compute something a Turing machine cannot? It is a thesis, not a theorem; so far there is no hope in sight of a hypercomputer.', zh: '有没有某个物理过程能算出图灵机算不出的东西？这是论题而非定理；目前看不到造出超计算机的希望。' },
   },
   {
+    ch: 11, area: 'computation', status: 'open',
+    title: { en: 'The Collatz conjecture', zh: 'Collatz 猜想' },
+    body: { en: 'That every Collatz orbit reaches 1 says a certain program halts on every input — a Π₂ statement, still open. Collatz-like maps are exactly what blocks BB values.', zh: '“每条 Collatz 轨道都到达 1”等于说某个程序在每个输入上都停机——一个 Π₂ 命题，至今未解。Collatz 式映射正是确定 BB 值的拦路虎。' },
+  },
+  {
     ch: 12, area: 'computation', status: 'open',
-    title: { en: 'BB(6) and the cryptids', zh: 'BB(6) 与“隐秘生物”' },
-    body: { en: 'S(6) > 2↑↑↑5 is known, but some 6-state machines (Antihydra) follow Collatz-like rules nobody can analyse. Settling them seems as hard as famous open problems.', zh: '已知 S(6) > 2↑↑↑5，但有些 6 状态机（如 Antihydra）遵循类 Collatz 规则，无人能分析。解决它们似乎和著名难题一样难。' },
+    title: { en: 'BB(6) and the cryptids', zh: 'BB(6) 与“隐兽”' },
+    body: { en: 'S(6) > 2↑↑↑5 is known, but about 663 six-state machines were still undecided in October 2026, among them cryptids like Antihydra that follow Collatz-like rules nobody can analyse.', zh: '已知 S(6) > 2↑↑↑5，但截至 2026 年 10 月仍有约 663 台六状态机器未判定，其中包括 Antihydra 这类遵循 Collatz 式规则、无人能分析的“隐兽”。' },
   },
   {
     ch: 12, area: 'logic', status: 'open',
     title: { en: 'Where does ZFC stop knowing BB?', zh: 'ZFC 从哪里开始不知道 BB？' },
-    body: { en: 'BB(5) is proved, so the threshold N satisfies 6 ≤ N; Andrew Wade’s 432-state machine (August 2025) gives N ≤ 432. Aaronson has guessed the truth may be as low as 7–9.', zh: 'BB(5) 已被证明，所以阈值 N ≥ 6；Andrew Wade 的 432 状态机（2025 年 8 月）给出 N ≤ 432。Aaronson 猜测真正的阈值也许低到 7～9。' },
+    body: { en: 'BB(5) is proved, so the threshold N satisfies N ≥ 6. Wade’s 432-state machine (Aug 2025) was cut to 254 states (Mira & Ketchersid, 13 Oct 2026) and then 230 (Glazer, 19 Oct 2026): 6 ≤ N ≤ 230 as of October 2026. Aaronson conjectures N ≤ 20.', zh: 'BB(5) 已被证明，所以阈值 N ≥ 6。Wade 的 432 状态机（2025 年 8 月）先被压到 254 状态（Mira 与 Ketchersid，2026 年 10 月 13 日），再到 230 状态（Glazer，2026 年 10 月 19 日）：截至 2026 年 10 月，6 ≤ N ≤ 230。Aaronson 猜测 N ≤ 20。' },
   },
   {
     ch: 12, area: 'computation', status: 'conjecture',
     title: { en: 'Steps versus ones', zh: '步数与 1 的个数' },
-    body: { en: 'The book conjectures S(n) ∼ Σ(n)² (in its growth sense). Only much weaker relations, like S(n) < Σ(3n+6), are proved.', zh: '书中猜测 S(n) ∼ Σ(n)²（增长意义下）。目前只证明了弱得多的关系，例如 S(n) < Σ(3n+6)。' },
+    body: { en: 'The book conjectures roughly S(n) ≈ Σ(n)². Only much weaker relations, like S(n) < Σ(3n+6), are proved.', zh: '书中猜测大致有 S(n) ≈ Σ(n)²。目前只证明了弱得多的关系，例如 S(n) < Σ(3n+6)。' },
   },
   {
     ch: 13, area: 'ordinals', status: 'open',

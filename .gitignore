@@ -1,2 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+*.log
 .claude
 
+# Local copies of the source book (copyrighted) and their text extractions.
+# Keep them out of the public repository; the study notes in ref/notes/ are our own.
+ref/book.pdf
+ref/book.txt
+ref/parts/

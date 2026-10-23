@@ -22,7 +22,7 @@
 .c10-verdict.yes { color: var(--green); }
 .c10-verdict.no { color: var(--red); }
 .c10-defset { color: var(--gold); font-weight: 500; font-family: var(--mono); font-size: 13.5px; }
-.c10-trace { max-height: 120px; overflow: auto; background: #0b1128; border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; }
+.c10-trace { max-height: 62px; overflow: auto; background: #0b1128; border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; }
 .c10-trace .ok { color: #bdf5cf; }
 .c10-trace .bad { color: #ffb3b3; }
 
@@ -42,8 +42,8 @@
 .c10-vl-panel p { margin: 0; }
 
 /* staircase */
-.c10-stairs { position: relative; height: 222px; margin: 6px 0; }
-.c10-step { position: absolute; height: 52px; background: var(--card2); border: 1px solid var(--line); border-radius: 10px 10px 4px 4px; cursor: pointer; padding: 0 2px; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: transform 0.15s, border-color 0.15s; }
+.c10-stairs { position: relative; height: 140px; margin: 6px 0; }
+.c10-step { position: absolute; height: 44px; background: var(--card2); border: 1px solid var(--line); border-radius: 10px 10px 4px 4px; cursor: pointer; padding: 0 2px; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: transform 0.15s, border-color 0.15s; }
 .c10-step:hover { border-color: var(--cyan); transform: translateY(-2px); }
 .c10-step.informal { border-style: dashed; background: rgba(255, 122, 182, 0.06); }
 .c10-step.on { border-color: var(--gold); background: rgba(255, 211, 107, 0.16); box-shadow: 0 0 14px rgba(255, 211, 107, 0.3); }
@@ -76,7 +76,7 @@
 /* cardinal tower */
 .c10-tower-wrap { display: flex; gap: 14px; flex-wrap: wrap; }
 .c10-tower { flex: 1 1 260px; display: flex; flex-direction: column-reverse; gap: 4px; }
-.c10-floor { display: flex; justify-content: space-between; gap: 8px; align-items: center; text-align: left; padding: 6px 10px; border-radius: 8px; background: var(--card2); border: 1px solid var(--line); border-left: 6px solid; cursor: pointer; font-size: 14px; }
+.c10-floor { display: flex; justify-content: space-between; gap: 8px; align-items: center; text-align: left; padding: 4px 10px; border-radius: 8px; background: var(--card2); border: 1px solid var(--line); border-left: 6px solid; cursor: pointer; font-size: 13.5px; line-height: 1.3; }
 .c10-floor:hover { border-color: var(--cyan); }
 .c10-floor.on { background: rgba(255, 211, 107, 0.12); border-top-color: var(--gold); border-right-color: var(--gold); border-bottom-color: var(--gold); }
 .c10-floor.ceiling { background: repeating-linear-gradient(135deg, rgba(255, 107, 107, 0.12) 0 8px, transparent 8px 16px); }
@@ -97,9 +97,9 @@
 .c10-why { min-height: 2.2em; }
 .c10-lp { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; }
 .c10-lp-left { flex: 0 1 260px; }
-.c10-heat { width: 256px; height: 256px; max-width: 100%; image-rendering: pixelated; border: 1px solid var(--line); border-radius: 6px; cursor: crosshair; display: block; }
+.c10-heat { width: 196px; height: 196px; max-width: 100%; image-rendering: pixelated; border: 1px solid var(--line); border-radius: 6px; cursor: crosshair; display: block; }
 .c10-lp-right { flex: 1 1 240px; display: flex; flex-direction: column; gap: 8px; }
-.c10-bars { display: flex; align-items: flex-end; gap: 4px; height: 112px; padding-top: 4px; }
+.c10-bars { display: flex; align-items: flex-end; gap: 4px; height: 92px; padding-top: 4px; }
 .c10-bar-col { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 14px; }
 .c10-bar { width: 100%; background: linear-gradient(180deg, var(--pink), var(--violet)); border-radius: 4px 4px 0 0; position: relative; min-height: 4px; }
 .c10-bar span { position: absolute; top: -16px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--text); font-family: var(--mono); }
@@ -112,3 +112,7 @@
 .c10-state.preprint { color: var(--orange); border-color: rgba(255, 169, 94, 0.5); }
 .c10-state.unknown { color: var(--gold); border-color: rgba(255, 211, 107, 0.5); }
 .c10-table tr.frontier { background: rgba(255, 169, 94, 0.08); }
+
+table.grid.c10-table td, table.grid.c10-table th { padding-top: 3px; padding-bottom: 3px; }
+.c10-laver td { height: 25px; line-height: 1; padding: 0 3px; }
+.c10-laver th { line-height: 1.2; }

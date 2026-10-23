@@ -58,7 +58,7 @@ export function MatrixView({
   const P = useMemo(() => (arcs || stage > 0 ? parentTable(S) : null), [S, arcs, stage])
   const lim: Limit | null = an && an.kind === 'limit' ? an : null
   const padL = 26
-  const padT = 26
+  const padT = arcs || stage >= 1 ? 26 : 8
   const ch = 26
   const showDelta = !!lim && stage >= 4
   const W = padL + X * cw + (showDelta ? cw + 22 : 6)
@@ -354,7 +354,7 @@ export function BmsExpander({ presets = EXP_PRESETS, initial = 0, startStage = 1
           </button>
         ))}
       </div>
-      {S && S.length > 0 && <MatrixView S={S} stage={lim ? stage : Math.min(stage, 1)} an={an ?? undefined} rh={stage >= 5 ? 40 : 50} />}
+      {S && S.length > 0 && <MatrixView S={S} stage={lim ? stage : Math.min(stage, 1)} an={an ?? undefined} rh={stage >= 5 ? 34 : 42} />}
       <div className="c09-explain">{explain}</div>
       {S && stage >= 5 && cells && (
         <>
@@ -365,7 +365,7 @@ export function BmsExpander({ presets = EXP_PRESETS, initial = 0, startStage = 1
               <L en="special rule" zh="额外规则" />
             </label>
           </div>
-          <MatrixView S={cells.map((c) => c.map((e) => e.v))} cells={cells} braces cw={cells.length > 20 ? 28 : 34} rh={cells[0] && cells[0].length > 3 ? 36 : 40} />
+          <MatrixView S={cells.map((c) => c.map((e) => e.v))} cells={cells} braces cw={cells.length > 20 ? 28 : 34} rh={cells[0] && cells[0].length > 3 ? 32 : 36} />
           <div className="c09-vals small">
             <span>
               <M t="S=" /> <Val S={S} />
@@ -404,7 +404,7 @@ export function FsWalker({ roots = WALK_ROOTS, initial = 1 }: { roots?: typeof W
         ))}
       </div>
       <Slider value={n} min={0} max={5} onChange={setN} label="n" />
-      <MatrixView S={cells.map((c) => c.map((e) => e.v))} cells={cells} braces cw={30} rh={42} />
+      <MatrixView S={cells.map((c) => c.map((e) => e.v))} cells={cells} braces cw={30} rh={34} />
       <div className="c09-terms">
         {terms.map((tm, k) => (
           <div key={k} className={`c09-term ${k === n ? 'cur' : ''}`}>
@@ -461,7 +461,7 @@ export function PssTranslator() {
   const E = S && lim ? expand(S, 2) : null
   return (
     <div>
-      <div className="btn-row">
+      <div className="btn-row c09-chips">
         {PSS_PRESETS.map((p) => (
           <button key={p} className={`chip mono ${p === src ? 'on' : ''}`} onClick={() => setSrc(p)}>
             {p}
@@ -472,7 +472,7 @@ export function PssTranslator() {
       {!ok && <div className="caution small">{t('Type a 2-row matrix like (0,0)(1,1)(2,2), or a PSS term like p1(p2(p3)). Depths must step by one.', '请输入双行矩阵，如 (0,0)(1,1)(2,2)；或 PSS 表达式，如 p1(p2(p3))。深度每次只能加一。')}</div>}
       {S && ok && (
         <>
-          <MatrixView S={S} stage={lim ? 3 : 1} an={an ?? undefined} arcs />
+          <MatrixView S={S} stage={lim ? 3 : 1} an={an ?? undefined} arcs rh={40} />
           <div className="c09-pss">
             <div>
               <span className="muted small">PSS</span> <M t={pssColoured(S, colour)} />
@@ -487,8 +487,8 @@ export function PssTranslator() {
           <div className="muted small">
             {lim ? (
               <L
-                en={<>Row 0 = bracket depth (the row-0 arc points to the enclosing term). Row 1 = subscript − 1. The last term (gold) looks outward for the first enclosing term with a smaller subscript: that is the bad root (green). Everything from it onward (green + pink) is the part that gets copied.</>}
-                zh={<>第 0 行 = 括号深度（第 0 行的弧指向外面一层的项）；第 1 行 = 下标 − 1。最后一项（金色）往外层找第一个下标更小的项：那就是坏根（绿色）。从它开始的部分（绿色 + 粉色）就是被复制的部分。</>}
+                en={<>Row 0 = bracket depth, row 1 = subscript − 1. The last term (gold) looks outward for the first enclosing term with a smaller subscript: the bad root (green). Green + pink gets copied.</>}
+                zh={<>第 0 行 = 括号深度，第 1 行 = 下标 − 1。最后一项（金色）往外层找第一个下标更小的项：坏根（绿色）。绿色 + 粉色就是被复制的部分。</>}
               />
             ) : (
               <L en="The last term is p₁: a successor (+1)." zh="最后一项是 p₁：后继（+1）。" />
@@ -533,7 +533,7 @@ export function RuleCompare() {
   const diff = on.reduce((a, c, x) => a + c.filter((e, y) => e.v !== off[x][y].v).length, 0)
   return (
     <div>
-      <div className="btn-row">
+      <div className="btn-row c09-chips">
         {RULE_PRESETS.map((p) => (
           <button key={p} className={`chip mono ${p === src ? 'on' : ''}`} onClick={() => setSrc(p)}>
             {fmtMat(parseMat(p)!, true)}
@@ -546,13 +546,13 @@ export function RuleCompare() {
           <L en="Rule on (BM4)" zh="有额外规则（BM4）" />
         </b>
       </div>
-      <MatrixView S={on.map((c) => c.map((e) => e.v))} cells={on} braces cw={30} rh={38} />
+      <MatrixView S={on.map((c) => c.map((e) => e.v))} cells={on} braces cw={30} rh={31} />
       <div className="small">
         <b className="c09-bad">
           <L en="Rule off" zh="去掉额外规则" />
         </b>
       </div>
-      <MatrixView S={off.map((c) => c.map((e) => e.v))} cells={off} braces cw={30} rh={38} />
+      <MatrixView S={off.map((c) => c.map((e) => e.v))} cells={off} braces cw={30} rh={31} />
       <div className="muted small">
         {diff === 0 ? (
           <L en="No difference here: in every row where Δ ≠ 0, all bad-part entries descend from the bad root." zh="这里没有区别：在 Δ 不为 0 的每一行，坏部的数都是坏根的后代。" />

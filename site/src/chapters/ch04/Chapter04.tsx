@@ -78,8 +78,8 @@ export default function Chapter04() {
           en={<>The recipe has three lines: <M t="f_0(n)=n+1" />; at a successor, iterate the previous function <M t="n" /> times; at a limit, diagonalize along a “ladder” climbing to it. The one missing detail: <b>which ladder?</b></>}
         />
         <P
-          zh={<>这个体系通常叫<Term en="fast-growing hierarchy" zh="快速增长层次" />（FGH），也叫 Löb–Wainer 层次：Martin Löb 和 Stanley Wainer 在 1970 年用它给“可证明终止的程序能算多快”分级。这正是第 6 章的主题。</>}
-          en={<>The system is called the <Term en="fast-growing hierarchy" zh="快速增长层次" /> (FGH), or the Löb–Wainer hierarchy: Martin Löb and Stanley Wainer used it in 1970 to grade how fast provably terminating programs can grow — the theme of Chapter 6.</>}
+          zh={<>这个体系通常叫<Term en="fast-growing hierarchy" zh="快速增长层次" />（FGH），也叫 Löb–Wainer 层次：Martin Löb 和 Stanley Wainer 1970 年用它给可计算函数分级，后来它成了衡量“可证明终止的程序能长多快”的标准尺子——这是第 6 章的主题。</>}
+          en={<>The system is called the <Term en="fast-growing hierarchy" zh="快速增长层次" /> (FGH), or the Löb–Wainer hierarchy, after Martin Löb and Stanley Wainer, who used it in 1970 to classify computable functions. It became the standard yardstick for how fast provably terminating programs can grow — the theme of Chapter 6.</>}
         />
       </Section>
 
@@ -228,7 +228,7 @@ export default function Chapter04() {
       </Section>
 
       {/* ---------------------------------------------------------------- */}
-      <Section id="omega" kicker={{ en: 'Crossing ω', zh: '越过 ω' }} title={{ en: 'f_ω: the diagonal, made precise', zh: 'f_ω：把对角线说严格' }}>
+      <Section id="omega" kicker={{ en: 'Crossing ω', zh: '越过 ω' }} title={{ en: 'Level ω: the diagonal, made precise', zh: 'ω 层：把对角线说严格' }}>
         <P
           zh={<>由于 <M t="\omega[n]=n" />，<M t="f_\omega(n)=f_n(n)" />：这正是第 2 章对角化 <M t="d(n)=n\uparrow^{n}n" /> 的同一招，只是行换成了 FGH 的各层。</>}
           en={<>Since <M t="\omega[n]=n" />, <M t="f_\omega(n)=f_n(n)" /> — the very diagonal trick of Chapter 2’s <M t="d(n)=n\uparrow^{n}n" />, with the rows now being FGH levels.</>}
@@ -246,8 +246,38 @@ export default function Chapter04() {
           />
         </Proof>
         <P
-          zh={<>所以 <M t="f_\omega" /> 的大小就是“<M t="n-1" /> 个箭头”，它最终超过每一个固定的层——这就是第 2 章那个神秘的刻度 <M t="\omega" /> 的精确含义。（用类似下面引理 E 的换底技巧还可以证明：<M t="d(n)=n\uparrow^{n}n" /> 最终超过每个 <M t="f_m" />，又被 <M t="f_{\omega+1}" /> 压住。）</>}
-          en={<>So <M t="f_\omega" /> is “<M t="n-1" /> arrows,” and it eventually beats every fixed level — the precise meaning of Chapter 2’s mysterious mark <M t="\omega" />. (A base-change argument like Lemma E below also shows that <M t="d(n)=n\uparrow^{n}n" /> eventually beats every <M t="f_m" /> yet stays below <M t="f_{\omega+1}" />.)</>}
+          zh={<>所以 <M t="f_\omega" /> 的大小就是“<M t="n-1" /> 个箭头”，它最终超过每一个固定的层——这就是第 2 章那个神秘刻度 <M t="\omega" /> 的精确含义。那么第 2 章的对角函数本身落在哪里？</>}
+          en={<>So <M t="f_\omega" /> is “<M t="n-1" /> arrows,” and it eventually beats every fixed level — the precise meaning of Chapter 2’s mysterious mark <M t="\omega" />. And where does Chapter 2’s own diagonal function land?</>}
+        />
+        <Thm name={{ en: '(where the diagonal d(n) = n↑ⁿn sits)', zh: '（对角函数 d(n) = n↑ⁿn 的位置）' }}>
+          <B
+            zh={<p>对 <M t="n\ge3" />：<M t="f_\omega(n)\ \le\ d(n)=n\uparrow^{n}n\ <\ f_{\omega+1}(n)" />。</p>}
+            en={<p>For <M t="n\ge3" />: <M t="f_\omega(n)\ \le\ d(n)=n\uparrow^{n}n\ <\ f_{\omega+1}(n)" />.</p>}
+          />
+        </Thm>
+        <Proof>
+          <L
+            zh={<>下界：<M t="d(n)=n\uparrow^{n-1}\bigl(n\uparrow^{n}(n-1)\bigr)\ge n\uparrow^{n-1}(3n)\ge2\uparrow^{n-1}(3n)\ge f_\omega(n)" />。上界：<M t="d(n)\le2\uparrow^{n}(n^2)<2\uparrow^{n^2-1}(n^2+1)\le f_\omega(n^2)\le f_\omega(f_\omega(n))\le f_{\omega+1}(n)" />。每一步的理由见下面的展开。</>}
+            en={<>Lower: <M t="d(n)=n\uparrow^{n-1}\bigl(n\uparrow^{n}(n-1)\bigr)\ge n\uparrow^{n-1}(3n)\ge2\uparrow^{n-1}(3n)\ge f_\omega(n)" />. Upper: <M t="d(n)\le2\uparrow^{n}(n^2)<2\uparrow^{n^2-1}(n^2+1)\le f_\omega(n^2)\le f_\omega(f_\omega(n))\le f_{\omega+1}(n)" />. The justification of each step is in the panel below.</>}
+          />
+        </Proof>
+        <Expand title={{ en: 'Every step of the sandwich for d(n)', zh: 'd(n) 夹逼的每一步' }}>
+          <P
+            zh={<><b>三个箭头小事实</b>（<M t="a\ge2,\ c\ge1" />，都对 <M t="b" /> 或 <M t="c" /> 归纳，只用第 2 章的引理 A、B）：(α) <M t="a\uparrow^{c+1}b\ge a\uparrow^{c}b" />：<M t="b=0" /> 时两边为 1；<M t="a\uparrow^{c+1}(b+1)=a\uparrow^{c}(a\uparrow^{c+1}b)\ge a\uparrow^{c}(b+1)" />。(β) 底数单调：<M t="a\le a'" /> 推出 <M t="a\uparrow^{c}b\le a'\uparrow^{c}b" />，对 <M t="(c,b)" /> 归纳即可。(γ) <M t="b\ge1" /> 时 <M t="a\uparrow^{c}b\le2\uparrow^{c}(ab)" />：<M t="c=1" /> 时 <M t="a^b\le2^{ab}" />；归纳步令 <M t="X=a\uparrow^{c+1}b\le Y=2\uparrow^{c+1}(ab)" />，则 <M t="a\uparrow^{c+1}(b+1)=a\uparrow^{c}X\le2\uparrow^{c}(aY)\le2\uparrow^{c}(2\uparrow^{c}Y)=2\uparrow^{c+1}(ab+2)\le2\uparrow^{c+1}(ab+a)" />，这里用了 <M t="a\le Y" />、<M t="Y\ge4" /> 和 <M t="aY\le Y^2\le2^Y\le2\uparrow^{c}Y" />。</>}
+            en={<><b>Three small arrow facts</b> (<M t="a\ge2,\ c\ge1" />; each by induction on <M t="b" /> or <M t="c" />, using only Chapter 2’s Lemmas A and B): (α) <M t="a\uparrow^{c+1}b\ge a\uparrow^{c}b" />: both sides are 1 at <M t="b=0" />, and <M t="a\uparrow^{c+1}(b+1)=a\uparrow^{c}(a\uparrow^{c+1}b)\ge a\uparrow^{c}(b+1)" />. (β) Monotone in the base: <M t="a\le a'" /> implies <M t="a\uparrow^{c}b\le a'\uparrow^{c}b" />, by induction on <M t="(c,b)" />. (γ) For <M t="b\ge1" />, <M t="a\uparrow^{c}b\le2\uparrow^{c}(ab)" />: for <M t="c=1" />, <M t="a^b\le2^{ab}" />; in the step put <M t="X=a\uparrow^{c+1}b\le Y=2\uparrow^{c+1}(ab)" />, so <M t="a\uparrow^{c+1}(b+1)=a\uparrow^{c}X\le2\uparrow^{c}(aY)\le2\uparrow^{c}(2\uparrow^{c}Y)=2\uparrow^{c+1}(ab+2)\le2\uparrow^{c+1}(ab+a)" />, using <M t="a\le Y" />, <M t="Y\ge4" /> and <M t="aY\le Y^2\le2^Y\le2\uparrow^{c}Y" />.</>}
+          />
+          <P
+            zh={<><b>下界。</b> 规则 (3) 给出第一个等号。<M t="n\ge3" /> 时由引理 B 和 C，<M t="n\uparrow^{n}(n-1)\ge n\uparrow^{n}2=n\uparrow^{n-1}n\ge n^n\ge3n" />，再用引理 B。然后用 (β) 把底数 <M t="n" /> 换成 2，最后用有限层定理 (b)（<M t="m=n-1" />）：<M t="f_\omega(n)=f_n(n)\le2\uparrow^{n-1}(3n)" />。</>}
+            en={<><b>Lower bound.</b> The first equality is rule (3). For <M t="n\ge3" />, Lemmas B and C give <M t="n\uparrow^{n}(n-1)\ge n\uparrow^{n}2=n\uparrow^{n-1}n\ge n^n\ge3n" />; apply Lemma B. Then (β) trades base <M t="n" /> for 2, and the finite-level theorem (b) with <M t="m=n-1" /> gives <M t="f_\omega(n)=f_n(n)\le2\uparrow^{n-1}(3n)" />.</>}
+          />
+          <P
+            zh={<><b>上界。</b> (γ) 取 <M t="a=b=c=n" />；然后由 (α)（<M t="n^2-1\ge n" />）和引理 B 得严格不等号；接着是 ω 层定理 (i)（参数 <M t="n^2" />）；再由 <M t="f_\omega(n)\ge2\uparrow^{n-1}(n+1)\ge2^{n+1}\ge n^2" /> 和 <M t="f_\omega" /> 递增；最后 <M t="n\ge2" /> 时 <M t="f_{\omega+1}(n)=f_\omega^{\,n}(n)\ge f_\omega^{\,2}(n)" />，因为 <M t="f_\omega(x)\ge x" />。</>}
+            en={<><b>Upper bound.</b> (γ) with <M t="a=b=c=n" />; then (α) (as <M t="n^2-1\ge n" />) plus Lemma B for the strict step; then the ω-level theorem (i) at input <M t="n^2" />; then <M t="f_\omega(n)\ge2\uparrow^{n-1}(n+1)\ge2^{n+1}\ge n^2" /> and monotonicity of <M t="f_\omega" />; finally <M t="f_{\omega+1}(n)=f_\omega^{\,n}(n)\ge f_\omega^{\,2}(n)" /> for <M t="n\ge2" />, since <M t="f_\omega(x)\ge x" />.</>}
+          />
+        </Expand>
+        <P
+          zh={<>所以 <M t="d" /> 夹在刻度 <M t="\omega" /> 和 <M t="\omega+1" /> 之间：它不低于 <M t="f_\omega" />，又被 <M t="f_{\omega+1}" /> 压住。第 2 章把它标为 <M t="\omega" />，正是这个意思。</>}
+          en={<>So <M t="d" /> is squeezed between marks <M t="\omega" /> and <M t="\omega+1" />: never below <M t="f_\omega" />, always below <M t="f_{\omega+1}" />. That is exactly what Chapter 2’s label <M t="\omega" /> meant.</>}
         />
         <Quiz
           q={{ zh: <p><M t="f_{\omega+1}" /> 是否在<b>每一个</b>输入上都大于 <M t="f_\omega" />？</p>, en: <p>Is <M t="f_{\omega+1}" /> bigger than <M t="f_\omega" /> at <b>every</b> input?</p> }}
@@ -265,7 +295,7 @@ export default function Chapter04() {
       </Section>
 
       {/* ---------------------------------------------------------------- */}
-      <Section id="graham" kicker={{ en: 'Round 8, the showdown', zh: '第八回合 · 决战' }} title={{ en: 'f_{ω+1}(64) beats Graham’s number', zh: 'f_{ω+1}(64) 打败 Graham 数' }}>
+      <Section id="graham" kicker={{ en: 'Round 8, the showdown', zh: '第八回合 · 决战' }} title={{ en: 'Level ω+1 beats Graham’s number', zh: 'ω+1 层打败 Graham 数' }}>
         <P
           zh={<>回忆 Graham 数：令 <M t="g(x)=3\uparrow^{x}3" />，则 <M t="G(0)=4" />、<M t="G(k+1)=g(G(k))" />，Graham 数是 <M t="G(64)=g^{64}(4)" />。而 <M t="f_{\omega+1}(64)=f_\omega^{\,64}(64)" />。两边都是把一个“<M t="\omega" /> 级”函数迭代 64 次——问题在于每一层谁更大。</>}
           en={<>Recall Graham’s number: with <M t="g(x)=3\uparrow^{x}3" />, <M t="G(0)=4" />, <M t="G(k+1)=g(G(k))" />, and Graham’s number is <M t="G(64)=g^{64}(4)" />. Meanwhile <M t="f_{\omega+1}(64)=f_\omega^{\,64}(64)" />. Both iterate an “<M t="\omega" />-level” function 64 times; the question is who wins each layer.</>}
@@ -279,8 +309,8 @@ export default function Chapter04() {
         </Thm>
         <Proof>
           <L
-            zh={<>对 <M t="c" /> 归纳，内层对 <M t="b" /> 归纳。<M t="c=1" />：<M t="3^b<4^b" />。设对 <M t="c" /> 成立。<M t="b=1" />：<M t="3<4=2\uparrow^{c+1}2" />。从 <M t="b" /> 到 <M t="b+1" />：令 <M t="y=3\uparrow^{c+1}b" />，<M t="Y=2\uparrow^{c+1}(2b)" />，归纳假设给出 <M t="y<Y" />。于是 <M t="3\uparrow^{c+1}(b+1)=3\uparrow^{c}y<2\uparrow^{c}(2y)<2\uparrow^{c}(2Y)\le2\uparrow^{c}(2\uparrow^{c}Y)=2\uparrow^{c+1}(2b+2)" />，其中用了引理 B 和 <M t="2Y\le2^Y\le2\uparrow^{c}Y" />。</>}
-            en={<>Induct on <M t="c" />, and inside on <M t="b" />. For <M t="c=1" />: <M t="3^b<4^b" />. Assume it for <M t="c" />. For <M t="b=1" />: <M t="3<4=2\uparrow^{c+1}2" />. From <M t="b" /> to <M t="b+1" />: put <M t="y=3\uparrow^{c+1}b" />, <M t="Y=2\uparrow^{c+1}(2b)" />; the hypothesis gives <M t="y<Y" />. Then <M t="3\uparrow^{c+1}(b+1)=3\uparrow^{c}y<2\uparrow^{c}(2y)<2\uparrow^{c}(2Y)\le2\uparrow^{c}(2\uparrow^{c}Y)=2\uparrow^{c+1}(2b+2)" />, using Lemma B and <M t="2Y\le2^Y\le2\uparrow^{c}Y" />.</>}
+            zh={<>对 <M t="c" /> 归纳，内层对 <M t="b" /> 归纳。<M t="c=1" />：<M t="3^b<4^b" />。设对 <M t="c" /> 成立。<M t="b=1" />：<M t="3<4=2\uparrow^{c+1}2" />。从 <M t="b" /> 到 <M t="b+1" />：令 <M t="y=3\uparrow^{c+1}b" />，<M t="Y=2\uparrow^{c+1}(2b)" />，归纳假设给出 <M t="y<Y" />。于是 <M t="3\uparrow^{c+1}(b+1)=3\uparrow^{c}y<2\uparrow^{c}(2y)<2\uparrow^{c}(2Y)\le2\uparrow^{c}(2\uparrow^{c}Y)=2\uparrow^{c+1}(2b+2)" />，其中用了引理 B 和 <M t="2Y\le2^Y\le2\uparrow^{c}Y" />（后一步是上一节展开里的辅助不等式）。</>}
+            en={<>Induct on <M t="c" />, and inside on <M t="b" />. For <M t="c=1" />: <M t="3^b<4^b" />. Assume it for <M t="c" />. For <M t="b=1" />: <M t="3<4=2\uparrow^{c+1}2" />. From <M t="b" /> to <M t="b+1" />: put <M t="y=3\uparrow^{c+1}b" />, <M t="Y=2\uparrow^{c+1}(2b)" />; the hypothesis gives <M t="y<Y" />. Then <M t="3\uparrow^{c+1}(b+1)=3\uparrow^{c}y<2\uparrow^{c}(2y)<2\uparrow^{c}(2Y)\le2\uparrow^{c}(2\uparrow^{c}Y)=2\uparrow^{c+1}(2b+2)" />, using Lemma B and <M t="2Y\le2^Y\le2\uparrow^{c}Y" /> (the helper inequality from the previous scene’s panel).</>}
           />
         </Proof>
         <Thm kind="lemma" name={{ en: 'F (one step ahead)', zh: 'F（领先一步）' }}>
@@ -323,7 +353,7 @@ export default function Chapter04() {
           zh={<>算 <M t="f_{\omega^\omega}(3)" /> 时，第一件事是一路往下找最里层的调用：极限就取基本列第 3 项，后继 <M t="f_{\beta+1}(3)=f_\beta(f_\beta(f_\beta(3)))" /> 就钻进最里面的 <M t="f_\beta(3)" />。下标序数一路下降：</>}
           en={<>Computing <M t="f_{\omega^\omega}(3)" /> starts by hunting for the innermost call: at a limit take the 3rd rung; at a successor, <M t="f_{\beta+1}(3)=f_\beta(f_\beta(f_\beta(3)))" />, dive into the innermost <M t="f_\beta(3)" />. The index ordinal keeps falling:</>}
         />
-        <MB t="\omega^\omega\to\omega^3\to\omega^2\cdot3\to\omega^2\cdot2+\omega\cdot3\to\omega^2\cdot2+\omega\cdot2+3\to\omega^2\cdot2+\omega\cdot2+2\to\cdots\to2\to1\to0." />
+        <MB t="\omega^\omega\to\omega^3\to\omega^2\cdot3\to\omega^2\cdot2+\omega\cdot3\to\omega^2\cdot2+\omega\cdot2+3\to\cdots\to1\to0." />
         <Widget title={{ en: 'Countdown from ω^ω at n = 3', zh: '从 ω^ω 出发的倒计时（n = 3）' }} hint={{ en: 'Violet bars: limit steps. Cyan bars: successor steps, each leaving two outer calls waiting.', zh: '紫色：极限步；青色：后继步，每一步在外面留下两层等待的调用。' }}>
           <Countdown />
         </Widget>
@@ -338,7 +368,7 @@ export default function Chapter04() {
       </Section>
 
       {/* ---------------------------------------------------------------- */}
-      <Section id="epsilon0" kicker={{ en: 'The top of Cantor’s world', zh: 'Cantor 世界的顶端' }} title={{ en: 'f_ε₀', zh: 'f_ε₀' }}>
+      <Section id="epsilon0" kicker={{ en: 'The top of Cantor’s world', zh: 'Cantor 世界的顶端' }} title={{ en: 'Level ε₀', zh: 'ε₀ 层' }}>
         <P
           zh={<>用约定 <M t="\varepsilon_0[n]=\omega\uparrow\uparrow n" />，<M t="f_{\varepsilon_0}(n)=f_{\omega\uparrow\uparrow n}(n)" />：先爬 <M t="n" /> 层指数塔，再在那里对角化。它的前两个值平淡无奇：<M t="f_{\varepsilon_0}(0)=f_1(0)=0" />，<M t="f_{\varepsilon_0}(1)=f_\omega(1)=2" />。第三个值是：</>}
           en={<>With <M t="\varepsilon_0[n]=\omega\uparrow\uparrow n" />, <M t="f_{\varepsilon_0}(n)=f_{\omega\uparrow\uparrow n}(n)" />: climb a tower of <M t="n" /> omegas, then diagonalize there. The first two values are tame: <M t="f_{\varepsilon_0}(0)=f_1(0)=0" />, <M t="f_{\varepsilon_0}(1)=f_\omega(1)=2" />. The third:</>}
@@ -353,8 +383,8 @@ export default function Chapter04() {
           ]}
           answer={1}
           explain={{
-            zh: <p><M t="f_\omega(8)=f_8(8)\ge2\uparrow^{7}9>64" />，而 <M t="f_{\omega+1}" /> 递增，所以 <M t="f_{\varepsilon_0}(2)=f_{\omega+1}(f_\omega(8))>f_{\omega+1}(64)>G(64)" />。在 FGH 里，参数 2 已经足够把 Graham 数远远甩开。</p>,
-            en: <p><M t="f_\omega(8)=f_8(8)\ge2\uparrow^{7}9>64" /> and <M t="f_{\omega+1}" /> is increasing, so <M t="f_{\varepsilon_0}(2)=f_{\omega+1}(f_\omega(8))>f_{\omega+1}(64)>G(64)" />. In the FGH, input 2 already leaves Graham’s number far behind.</p>,
+            zh: <p><M t="f_\omega(8)=f_8(8)\ge2\uparrow^{7}9>64" />，而 <M t="f_{\omega+1}" /> 严格递增（与引理 M(ii) 同理，因为 <M t="f_\omega" /> 严格递增且 <M t="f_\omega(x)\ge x" />），所以 <M t="f_{\varepsilon_0}(2)=f_{\omega+1}(f_\omega(8))>f_{\omega+1}(64)>G(64)" />。在 FGH 里，参数 2 已经足够把 Graham 数远远甩开。</p>,
+            en: <p><M t="f_\omega(8)=f_8(8)\ge2\uparrow^{7}9>64" /> and <M t="f_{\omega+1}" /> is strictly increasing (as in Lemma M(ii), since <M t="f_\omega" /> is strictly increasing with <M t="f_\omega(x)\ge x" />), so <M t="f_{\varepsilon_0}(2)=f_{\omega+1}(f_\omega(8))>f_{\omega+1}(64)>G(64)" />. In the FGH, input 2 already leaves Graham’s number far behind.</p>,
           }}
         />
         <P
@@ -414,8 +444,8 @@ export default function Chapter04() {
         </Expand>
         <OpenProblem title={{ en: 'A rigorous notion of growth rate', zh: '增长率的严格定义' }}>
           <P
-            zh={<>没有一个公认的严格定义，既能给每个“合理”的函数分配一个序数，又满足所有直觉（迭代加一、对角化取上确界……）。定义 3.7、3.8、3.9 各有缺陷。大数社区对各种记号的“增长率分析”因此在严格意义上都是非正式的——它们是有充分证据的估计，而不是定理。</>}
-            en={<>There is no accepted rigorous definition that assigns an ordinal to every “reasonable” function while satisfying all the intuitions (iteration adds one, diagonalization takes the supremum, …). Defs 3.7, 3.8 and 3.9 each have flaws. As a result, the googology community’s growth-rate analyses of notations are, strictly speaking, informal: well-supported estimates, not theorems.</>}
+            zh={<>没有一个公认的严格定义，既能给每个“合理”的函数分配一个序数，又满足所有直觉（迭代加一、对角化取上确界……）。书中提出的几种候选定义（定义 3.7–3.9，包括上面的 3.8）各有缺陷。大数社区对各种记号的“增长率分析”因此在严格意义上都是非正式的——它们是有充分证据的估计，而不是定理。</>}
+            en={<>There is no accepted rigorous definition that assigns an ordinal to every “reasonable” function while satisfying all the intuitions (iteration adds one, diagonalization takes the supremum, …). The book’s candidate definitions (Defs 3.7–3.9, including 3.8 above) each have flaws. As a result, the googology community’s growth-rate analyses of notations are, strictly speaking, informal: well-supported estimates, not theorems.</>}
           />
         </OpenProblem>
       </Section>

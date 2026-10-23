@@ -360,8 +360,8 @@ export default function Chapter11() {
           />
         </Expand>
         <P
-          zh={<>反过来，不可计算的函数也可以长得极慢。下一章的忙碌海狸函数有一个“反函数”，它不可计算，却比任何趋于无穷的可计算函数长得都慢（第 12 章证明）。</>}
-          en={<>Conversely, an uncomputable function can grow extremely slowly. The next chapter’s Busy Beaver function has an “inverse” that is uncomputable yet grows more slowly than any computable function tending to infinity (proved in Chapter 12).</>}
+          zh={<>反过来，不可计算的函数也可以长得极慢。下一章的忙碌海狸函数有一个“反函数”，它不可计算，却最终比任何单调不减、无界的可计算函数都长得慢（第 12 章证明）。</>}
+          en={<>Conversely, an uncomputable function can grow extremely slowly. The next chapter’s Busy Beaver function has an “inverse” that is uncomputable yet is eventually below every nondecreasing, unbounded computable function (proved in Chapter 12).</>}
         />
         <P
           zh={<>大数爱好者真正关心的问题是：有没有不可计算的函数，比<b>每一个</b>可计算函数都长得快？答案是有，它就是下一章的主角。</>}
@@ -476,8 +476,8 @@ export default function Chapter11() {
         />
         <H3 en="Counting quantifiers" zh="数一数量词" />
         <P
-          zh={<>每一级对应一种逻辑形状。“M 会停”= “<b>存在</b>一个步数 s，M 在 s 步时停了”，形如 ∃，记作 <M t="\Sigma_1" />。Goldbach 猜想 = “<b>对所有</b>偶数 n ≥ 4，n 是两素数之和”，形如 ∀，记作 <M t="\Pi_1" />，即“某台机器永不停”。</>}
-          en={<>Each level matches a logical shape. “M halts” = “<b>there exists</b> a step count s at which M has halted” — an ∃ statement, called <M t="\Sigma_1" />. Goldbach’s conjecture = “<b>for all</b> even n ≥ 4, n is a sum of two primes” — a ∀ statement, <M t="\Pi_1" />, i.e. “some machine never halts.”</>}
+          zh={<>每一级对应一种逻辑形状。“M 会停”= “<b>存在</b>一个步数 s，M 在 s 步时停了”，形如 ∃，即第 10 章量词层级里的 <M t="\Sigma_1" />。Goldbach 猜想 = “<b>对所有</b>偶数 n ≥ 4，n 是两素数之和”，形如 ∀，记作 <M t="\Pi_1" />，即“某台机器永不停”。</>}
+          en={<>Each level matches a logical shape. “M halts” = “<b>there exists</b> a step count s at which M has halted” — an ∃ statement, class <M t="\Sigma_1" /> in Chapter 10’s quantifier count. Goldbach’s conjecture = “<b>for all</b> even n ≥ 4, n is a sum of two primes” — a ∀ statement, <M t="\Pi_1" />, i.e. “some machine never halts.”</>}
         />
         <P
           zh={<>孪生素数猜想 = “对所有 x，存在 p &gt; x 使 p、p+2 都是素数”，形如 ∀∃，即 <M t="\Pi_2" />：它说的是“某台机器在<b>每个</b>输入上都停”。这需要 <M t="\varnothing''" /> 才能判定。</>}
@@ -495,8 +495,8 @@ export default function Chapter11() {
         />
         <Expand kind="deeper" title={{ en: 'Turing degrees, Kleene’s O and Ω = ω₁ᶜᴷ', zh: 'Turing 度、Kleene 的 O 与 Ω = ω₁ᶜᴷ' }}>
           <P
-            zh={<>若 A 能被带神谕 B 的机器判定，记 <M t="A\le_T B" />。互相可归约的集合属于同一个 <Term en="Turing degree" zh="Turing 度" />。Friedberg 与 Muchnik（1956）各自证明：存在严格介于 <M t="\varnothing" /> 和 <M t="\varnothing'" /> 之间的度——Post 问题的答案。</>}
-            en={<>Write <M t="A\le_T B" /> if a machine with oracle B decides A; mutually reducible sets share a <Term en="Turing degree" zh="Turing 度" />. Friedberg and Muchnik (1956) independently showed there are degrees strictly between <M t="\varnothing" /> and <M t="\varnothing'" /> — the answer to Post’s problem.</>}
+            zh={<>若 A 能被带神谕 B 的机器判定，记 <M t="A\le_T B" />。互相可归约的集合属于同一个 <Term en="Turing degree" zh="Turing 度" />。Muchnik（1956）与 Friedberg（1957）各自证明：存在严格介于 <M t="\varnothing" /> 和 <M t="\varnothing'" /> 之间的度——Post 问题的答案。</>}
+            en={<>Write <M t="A\le_T B" /> if a machine with oracle B decides A; mutually reducible sets share a <Term en="Turing degree" zh="Turing 度" />. Muchnik (1956) and Friedberg (1957) independently showed there are degrees strictly between <M t="\varnothing" /> and <M t="\varnothing'" /> — the answer to Post’s problem.</>}
           />
           <P
             zh={<>Kleene 用自然数给递归序数“起名字”：0 是 0 的名字；若 n 是 α 的名字，<M t="2^n" /> 就是 α+1 的名字；若第 e 号程序 <M t="\varphi_e" /> 依次输出一列越来越大的序数的名字，<M t="3\cdot5^e" /> 就是它们上确界的名字。</>}

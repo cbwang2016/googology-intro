@@ -243,7 +243,7 @@ export function Chessboard() {
   return (
     <div>
       <Slider value={k} min={0} max={64} onChange={setK} label={<L en="squares filled" zh="已放的格子" />} />
-      <div className="chess-wrap">
+      <div className="chess-wrap c01-chess">
         <svg viewBox="0 0 8 8" className="chess">
           {Array.from({ length: 64 }, (_, i) => {
             const r = Math.floor(i / 8)
@@ -296,7 +296,7 @@ export function Arena({ upTo }: { upTo: number }) {
   const list = CHAMPIONS.slice(0, upTo)
   const maxBar = 4
   return (
-    <div className="arena">
+    <div className="arena c01-arena">
       {list.map((c, i) => {
         const off = c.slog > maxBar
         return (
@@ -365,7 +365,7 @@ export function TowerBuilder() {
   const names = [t('value', '数值'), t('digits', '位数'), t('digits of digits', '位数的位数'), t('digits³', '位数的位数的位数')]
   return (
     <div>
-      <div className="tower-stack">
+      <div className="tower-stack c01-tower">
         {bases
           .map((b, i) => (
             <div key={i} className="tower-layer" style={{ marginLeft: i * 18 }}>

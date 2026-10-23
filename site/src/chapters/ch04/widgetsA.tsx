@@ -42,7 +42,7 @@ function traceFS(a: O.Ord, n: number, wrap: (s: string) => string, out: TLine[])
 const FS_PRESETS = ['w*2', 'w^2', 'w^w', 'w^(w+1)', 'w^(w^w)', 'w^(w^(w+1)*2)*3', 'e0']
 
 export function FSStepper() {
-  const { t } = useLang()
+  const { t, pick } = useLang()
   const [src, setSrc] = useState('w^(w^(w+1)*2)*3')
   const [n, setN] = useState(2)
   const parsed = useMemo(() => {
@@ -61,7 +61,8 @@ export function FSStepper() {
       if (a === 'e0') lines = [{ tex: `\\varepsilon_0[${n}]=\\omega\\uparrow\\uparrow ${n}=${O.tex(O.omegaTower(n))}`, rule: 'e0' }]
       else {
         traceFS(a, n, (s) => s, lines)
-        lines.push({ tex: O.tex(O.fs(a, n)), rule: 'res' })
+        const fin = O.tex(O.fs(a, n))
+        if (lines[lines.length - 1].tex !== fin) lines.push({ tex: fin, rule: 'res' })
       }
       seq = Array.from({ length: 5 }, (_, i) => O.tex(F.fsIdx(a, i)))
     } else succ = true
@@ -90,7 +91,7 @@ export function FSStepper() {
           <div key={i} className="c04-tline">
             <span className="c04-eq">=</span>
             <M t={i === 0 ? `${head}=${l.tex.replace(/^\\varepsilon_0\[\d+\]=/, '')}` : l.tex} />
-            <span className="c04-rule">{t(RULE[l.rule].en, RULE[l.rule].zh)}</span>
+            <span className="c04-rule">{pick(RULE[l.rule].en, RULE[l.rule].zh)}</span>
           </div>
         ))}
       </div>
@@ -123,7 +124,7 @@ const M_PRESETS: [string, number][] = [
 ]
 
 export function FGHMachine() {
-  const { t } = useLang()
+  const { t, pick } = useLang()
   const [pi, setPi] = useState(2)
   const [sc, setSc] = useState(false)
   const start = useMemo<F.MState>(() => ({ stack: [{ a: F.parseIdx(M_PRESETS[pi][0]), k: 1n }], x: BigInt(M_PRESETS[pi][1]) }), [pi])
@@ -149,12 +150,12 @@ export function FGHMachine() {
     setCount(c)
   }
   const ruleText: Record<string, string> = {
-    zero: t('f₀(x) = x+1', 'f₀(x) = x+1'),
-    f0k: t('shortcut: f₀ᵏ(x) = x+k', '捷径：f₀ᵏ(x) = x+k'),
-    f1: t('shortcut: f₁ᵏ(x) = x·2ᵏ', '捷径：f₁ᵏ(x) = x·2ᵏ'),
-    f2: t('shortcut: f₂(x) = x·2ˣ', '捷径：f₂(x) = x·2ˣ'),
-    succ: t('successor: f_(β+1)(x) = f_βˣ(x)', '后继：f_(β+1)(x) = f_βˣ(x)'),
-    lim: t('limit: f_λ(x) = f_λ[x](x)', '极限：f_λ(x) = f_λ[x](x)'),
+    zero: pick('f₀(x) = x+1', 'f₀(x) = x+1'),
+    f0k: pick('shortcut: f₀ᵏ(x) = x+k', '捷径：f₀ᵏ(x) = x+k'),
+    f1: pick('shortcut: f₁ᵏ(x) = x·2ᵏ', '捷径：f₁ᵏ(x) = x·2ᵏ'),
+    f2: pick('shortcut: f₂(x) = x·2ˣ', '捷径：f₂(x) = x·2ˣ'),
+    succ: pick('successor: f_(β+1)(x) = f_βˣ(x)', '后继：f_(β+1)(x) = f_βˣ(x)'),
+    lim: pick('limit: f_λ(x) = f_λ[x](x)', '极限：f_λ(x) = f_λ[x](x)'),
   }
   const shown = hist.slice(-6)
   const [pa, pn] = M_PRESETS[pi]
@@ -320,7 +321,7 @@ function slogSize(s: Size): number {
       return Infinity
   }
 }
-function texSize(s: Size, m: number, n: number): string {
+function texSize(s: Size): string {
   switch (s.kind) {
     case 'exact':
       return F.commas(s.v)
@@ -329,14 +330,15 @@ function texSize(s: Size, m: number, n: number): string {
     case 'tower':
       return `2\\uparrow\\uparrow ${toTex(s.height)}`
     default:
-      return `2\\uparrow^{${m}}${n}`
+      return '\\text{(beyond towers of towers)}'
   }
 }
+export const eqT = (l: string, r: string) => (r.startsWith('\\approx') ? `${l}${r}` : r.startsWith('\\text') ? `${l}\\ ${r}` : r === l ? l : `${l}=${r}`)
 function fVal(m: number, n: number): { slog: number; tex: string } {
   const v = F.fValue(O.nat(m), n)
   if (v.kind === 'exact') return { slog: F.slogBig(v.v), tex: F.commas(v.v) }
   if (v.kind === 'approx') return { slog: F.slogHuge(v.v), tex: '\\approx ' + toTex(v.v) }
-  return { slog: Infinity, tex: `f_{${m}}(${n})` }
+  return { slog: Infinity, tex: '\\text{(beyond towers of towers)}' }
 }
 
 export function Sandwich() {
@@ -350,16 +352,16 @@ export function Sandwich() {
         const lo = arrowSize(2, m, n + 1)
         const up = arrowSize(2, m + 1, n + 1)
         const f = fVal(m + 1, n)
-        return { n, lo: slogSize(lo), f: f.slog, up: slogSize(up), loT: texSize(lo, m, n + 1), upT: texSize(up, m + 1, n + 1), fT: f.tex }
+        return { n, lo: slogSize(lo), f: f.slog, up: slogSize(up), loT: texSize(lo), upT: texSize(up), fT: f.tex }
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [m],
   )
   const W = 700
-  const H = 220
+  const H = 185
   const YMAX = 7
   const X = (n: number) => 50 + (n / 7) * (W - 90)
-  const Y = (v: number) => H - 26 - (Math.min(v, YMAX) / YMAX) * (H - 46)
+  const Y = (v: number) => H - 26 - (Math.min(v, YMAX) / YMAX) * (H - 56)
   const series: { key: 'lo' | 'f' | 'up'; col: string; name: string }[] = [
     { key: 'up', col: COL.pink, name: `2↑${m + 1 > 1 ? `^${m + 1}` : ''}(n+1)` },
     { key: 'f', col: COL.gold, name: `f${m + 1}(n)` },
@@ -384,9 +386,6 @@ export function Sandwich() {
             </text>
           </g>
         ))}
-        <text x={8} y={14} fill={COL.dim} fontSize={11}>
-          {t('tower height (slog₁₀): how many times you must take log₁₀ to get below 1', '塔高（slog₁₀）：要取多少次 log₁₀ 才能降到 1 以下')}
-        </text>
         {ns.map((n) => (
           <text key={n} x={X(n)} y={H - 8} fill={n === sel ? COL.gold : COL.dim} fontSize={11} textAnchor="middle">
             n={n}
@@ -410,7 +409,7 @@ export function Sandwich() {
           )
         })}
         {series.map((s, i) => (
-          <text key={s.key} x={W - 34} y={34 + i * 16} fill={s.col} fontSize={12} textAnchor="end">
+          <text key={s.key} x={60} y={30 + i * 16} fill={s.col} fontSize={12}>
             {s.name}
           </text>
         ))}
@@ -419,19 +418,19 @@ export function Sandwich() {
       <Slider value={sel} min={0} max={7} onChange={setSel} label="n" />
       <div className="readout c04-sand">
         <div style={{ color: COL.pink }}>
-          <M t={`2\\uparrow^{${m + 1}}${sel + 1}=${d.upT}`} />
+          <M t={eqT(`2\\uparrow^{${m + 1}}${sel + 1}`, d.upT)} />
         </div>
         <div style={{ color: COL.gold }}>
-          <M t={`f_{${m + 1}}(${sel})=${d.fT}`} />
+          <M t={eqT(`f_{${m + 1}}(${sel})`, d.fT)} />
         </div>
         <div style={{ color: COL.cyan }}>
-          <M t={`2\\uparrow^{${m}}${sel + 1}=${d.loT}`} />
+          <M t={eqT(`2\\uparrow^{${m}}${sel + 1}`, d.loT)} />
         </div>
       </div>
       <div className="muted small">
         <L
-          en={<>↑ = off the chart. The gold curve hugs the cyan one while the pink one flies away: <M t={`f_{${m + 1}}`} /> is “{m} arrow{m > 1 ? 's' : ''}, plus a little,” nowhere near {m + 1} arrows.</>}
-          zh={<>↑ 表示超出图表。金线紧贴青线，粉线一飞冲天：<M t={`f_{${m + 1}}`} /> 是“{m} 个箭头再多一点”，远远够不着 {m + 1} 个箭头。</>}
+          en={<>↑ = off the chart. The gold curve hugs the cyan one while the pink one flies away: <M t={`f_{${m + 1}}`} /> is “{m} arrow{m > 1 ? 's' : ''}, plus a little,” nowhere near {m + 1} arrows. (The theorem’s bounds are claimed only from n = 2 resp. n = 4 on.)</>}
+          zh={<>↑ 表示超出图表。金线紧贴青线，粉线一飞冲天：<M t={`f_{${m + 1}}`} /> 是“{m} 个箭头再多一点”，远远够不着 {m + 1} 个箭头。（定理的下界、上界分别只对 n ≥ 2、n ≥ 4 断言。）</>}
         />
       </div>
     </div>

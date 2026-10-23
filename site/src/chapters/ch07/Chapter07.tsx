@@ -242,11 +242,7 @@ export default function Chapter07() {
           />
         </Expand>
         <H3 en="The φ table" zh="φ 表" />
-        <P
-          zh={<>把 <M t="\varphi(\alpha,\beta)" /> 排成一张表：行是层级 α，列是编号 β。每一行都是上一行的不动点列表。点任何一格看它的含义和基本列。</>}
-          en={<>Lay <M t="\varphi(\alpha,\beta)" /> out as a table: rows are levels α, columns are indices β. Each row lists the fixed points of the rows before it. Click any cell for its meaning and fundamental sequence.</>}
-        />
-        <Widget title={{ en: 'The Veblen table', zh: 'Veblen 表' }} hint={{ en: 'Pink cells: the column value is already a fixed point, so it is absorbed.', zh: '粉色格子：列上的值已经是不动点，被原样吸收。' }}>
+        <Widget title={{ en: 'The Veblen table', zh: 'Veblen 表' }} hint={{ en: 'Row α, column β. Each row lists the common fixed points of the rows above. Click a cell; pink = absorbed (β is already a fixed point).', zh: '行是层级 α，列是编号 β，每行列出上面各行的共同不动点。点任一格查看；粉色 = β 已是不动点，被原样吸收。' }}>
           <VeblenGrid />
         </Widget>
         <P
@@ -255,8 +251,8 @@ export default function Chapter07() {
         />
         <Thm kind="fact" name={{ en: 'Veblen normal form', zh: 'Veblen 标准形式' }} status="proved">
           <B
-            zh={<p>Γ₀（第 5 节）以下每个非零序数都唯一地写成 <M t="\varphi(\alpha_1,\beta_1)+\cdots+\varphi(\alpha_k,\beta_k)" />，各项从大到小排，且每项满足 <M t="\alpha_i,\beta_i<\varphi(\alpha_i,\beta_i)" />。这推广了第 3 章的 Cantor 范式（书中定义 4.14）。</p>}
-            en={<p>Below Γ₀ (Section 5), every non-zero ordinal is uniquely <M t="\varphi(\alpha_1,\beta_1)+\cdots+\varphi(\alpha_k,\beta_k)" /> with non-increasing terms and <M t="\alpha_i,\beta_i<\varphi(\alpha_i,\beta_i)" /> for each term. This extends Chapter 3’s Cantor normal form (the book’s Def 4.14).</p>}
+            zh={<p>在 Γ₀（第一个满足 <M t="\varphi(\alpha,0)=\alpha" /> 的 α，见第 5 节）以下，每个非零序数都唯一地写成 <M t="\varphi(\alpha_1,\beta_1)+\cdots+\varphi(\alpha_k,\beta_k)" />，各项从大到小排，且每项满足 <M t="\alpha_i,\beta_i<\varphi(\alpha_i,\beta_i)" />。这推广了第 3 章的 Cantor 范式（书中定义 4.14）。</p>}
+            en={<p>Below Γ₀ (the first α with <M t="\varphi(\alpha,0)=\alpha" />; Section 5), every non-zero ordinal is uniquely <M t="\varphi(\alpha_1,\beta_1)+\cdots+\varphi(\alpha_k,\beta_k)" /> with non-increasing terms and <M t="\alpha_i,\beta_i<\varphi(\alpha_i,\beta_i)" /> for each term. This extends Chapter 3’s Cantor normal form (the book’s Def 4.14).</p>}
           />
         </Thm>
         <Expand kind="detail" title={{ en: 'How to compare two φ-terms', zh: '怎样比较两个 φ 项' }}>
@@ -303,9 +299,10 @@ export default function Chapter07() {
             en={<>Substitution can produce non-normal expressions, which must be simplified: e.g. <M t="\omega^{\varepsilon_0+1}[1]=\varphi(0,\varepsilon_0)=\varepsilon_0" />. The engine in the widgets simplifies at every step.</>}
           />
         </Expand>
+        <H3 en="Under the microscope" zh="放到显微镜下" />
         <Widget
           title={{ en: 'Fundamental-sequence microscope', zh: '基本列显微镜' }}
-          hint={{ en: 'Load an ordinal, then click any term to zoom in. The countdown keeps replacing α by α[n] (or α−1).', zh: '载入一个序数，点任意一项放大进去。“倒数”会不断把 α 换成 α[n]（后继就减一）。' }}
+          hint={{ en: 'Load an ordinal (syntax in the input box) and click a term to zoom in. The countdown replaces α by α[n], or α−1.', zh: '载入一个序数（语法见输入框），点某一项放大。倒数会把 α 换成 α[n]，后继则减一。' }}
         >
           <FSExplorer />
         </Widget>
@@ -395,8 +392,8 @@ export default function Chapter07() {
             zh={<><b>最后一个变量是计数器</b>，数的是第几号不动点。<b>它左边第一个非零变量 α 是层级</b>：把它减一，并把它右边紧挨着的位置空出来当作自变量 δ，得到要求不动点的映射。更左边的变量全部冻结。</>}
             en={<><b>The last argument is the counter</b>: which fixed point. <b>The first non-zero argument to its left, α, is the level</b>: lower it by one and free the slot just right of it as the variable δ — that is the map whose fixed points we list. Everything further left is frozen.</>}
           />
+          <MB t="\varphi(\#,\alpha{+}1,\underbrace{0,\ldots,0}_{Z},\beta)=f'(\beta),\qquad f(\delta)=\varphi(\#,\alpha,\delta,Z)." />
         </KeyIdea>
-        <MB t="\varphi(\#,\alpha{+}1,\underbrace{0,\ldots,0}_{Z},\beta)=\text{fixed point number }\beta\text{ of }\ \delta\mapsto\varphi(\#,\alpha,\delta,\underbrace{0,\ldots,0}_{Z})." />
         <Widget
           title={{ en: 'The Veblen odometer', zh: 'Veblen 里程表' }}
           hint={{ en: 'Each dial is an argument; @k marks its slot counted from the right. Cyan = counter, pink = level.', zh: '每个转盘是一个变量，@k 表示从右往左数第 k 个位置。青色是计数位，粉色是层级位。' }}
@@ -447,8 +444,8 @@ export default function Chapter07() {
         </Caution>
         <KeyIdea>
           <L
-            zh={<>“把自然数变量换成序数变量”（超限推广）看上去威风，实际收获却小。从 SVO 到 LVO 的跨度，在第 8 章的语言里只是指数上一个 <M t="\omega" /> 换成 <M t="\Omega" />（前瞻第 8 章，这里不需要懂 <M t="\Omega" />）。要真正前进，需要一个全新的“递归内核”——那正是下一章的折叠。</>}
-            en={<>Turning a natural-number variable into an ordinal one (a “transfinite extension”) looks mighty but gains little. In Chapter 8’s language the step from SVO to LVO is a single <M t="\omega" /> in an exponent replaced by <M t="\Omega" /> (a forward reference to Chapter 8; you need not know <M t="\Omega" /> here). Real progress needs a new recursive core: the collapsing of the next chapter.</>}
+            zh={<>“把自然数变量换成序数变量”（超限推广）看上去威风，实际收获却小。从 SVO 到 LVO 的跨度，换成第 8 章的记号，只是指数里改动了一个符号。要真正前进，需要一个全新的“递归内核”——那正是下一章的折叠。</>}
+            en={<>Turning a natural-number variable into an ordinal one (a “transfinite extension”) looks mighty but gains little. In Chapter 8’s notation, the step from SVO to LVO is a change of a single symbol in an exponent. Real progress needs a new recursive core: the collapsing of the next chapter.</>}
           />
         </KeyIdea>
       </Section>
@@ -473,12 +470,6 @@ export default function Chapter07() {
           zh={<>直观地说：从 <M t="B" /> 里删掉一些枝，再把一些“只有一个孩子的点”抹平（让它的父亲直接连到它的孩子），就能得到 <M t="A" />。被抹掉的点颜色随意；留下来的点颜色必须对得上。</>}
           en={<>Intuitively: delete some branches of <M t="B" /> and smooth away some vertices with a single child (joining parent straight to child), and you obtain <M t="A" />. Smoothed vertices may have any colour; surviving ones must match.</>}
         />
-        <Widget
-          title={{ en: 'Embedding checker', zh: '嵌入检查器' }}
-          hint={{ en: 'Click a vertex to select it, then add children, recolour or delete. The checker searches all embeddings exactly.', zh: '点击一个点选中它，再加孩子、改颜色或删除。检查器精确搜索所有可能的嵌入。' }}
-        >
-          <EmbeddingChecker />
-        </Widget>
         <Expand kind="detail" title={{ en: 'How the checker decides', zh: '检查器怎么判断' }}>
           <P
             zh={<>对有限有根树，<M t="A\le B" /> 当且仅当：(a) <M t="A" /> 嵌入 <M t="B" /> 的某个孩子子树；或 (b) 两根同色，且 <M t="A" /> 的各孩子子树能分别嵌入 <M t="B" /> 的<b>互不相同</b>的孩子子树（一个二分图匹配）。“互不相同”正是交汇点条件：<M t="A" /> 中两枝的交汇点是根，它们的像也必须在 <M t="h(\text{根})" /> 处分岔。</>}
@@ -489,6 +480,13 @@ export default function Chapter07() {
             en={<>《大数理论》 Def 21.48 describes embedding informally (delete vertices, merge edges) without stating rootedness or the meeting-point condition. We use Friedman’s standard definition; the values TREE(1), TREE(2), … in this chapter are verified by code under it.</>}
           />
         </Expand>
+        <H3 en="Test an embedding" zh="动手检验嵌入" />
+        <Widget
+          title={{ en: 'Embedding checker', zh: '嵌入检查器' }}
+          hint={{ en: 'Select a vertex, then edit. The checker searches all embeddings exactly.', zh: '选中一个点再编辑。检查器精确搜索所有嵌入。' }}
+        >
+          <EmbeddingChecker />
+        </Widget>
         <H3 en="Kruskal’s tree theorem" zh="Kruskal 树定理" />
         <Thm name={{ en: 'Kruskal (1960)', zh: 'Kruskal（1960）' }} status="proved">
           <B
@@ -530,6 +528,7 @@ export default function Chapter07() {
           zh={<>由 Kruskal 定理（加上 König 引理），游戏必然结束，而且最长长度有限。这个最长长度就是 <M t="\mathrm{TREE}(n)" />。</>}
           en={<>By Kruskal’s theorem (plus König’s lemma) the game must end, and the longest possible length is finite. That longest length is <M t="\mathrm{TREE}(n)" />.</>}
         />
+        <H3 en="Play a round" zh="来玩一局" />
         <Widget
           title={{ en: 'Play TREE(n)', zh: '玩 TREE(n)' }}
           hint={{ en: 'Build tree T_k in the editor and play it. If an earlier tree embeds, the gold numbers show how.', zh: '在编辑器里搭第 k 棵树 T_k，然后出牌。若前面某棵树能嵌进来，金色数字会告诉你怎么嵌。' }}
@@ -575,7 +574,7 @@ export default function Chapter07() {
       </Section>
 
       {/* ================================================================ */}
-      <Section id="strength" kicker={{ en: 'Measuring', zh: '丈量' }} title={{ en: 'How strong is Kruskal? Where do tree and TREE sit?', zh: 'Kruskal 有多强？tree 与 TREE 在尺子上的位置' }}>
+      <Section id="strength" kicker={{ en: 'Measuring', zh: '丈量' }} title={{ en: 'How strong is Kruskal’s theorem?', zh: 'Kruskal 定理有多强？' }}>
         <P
           zh={<>第 6 章里，九头蛇定理“为真却在 PA 中不可证”，代价是 ε₀。Kruskal 定理的有限形式同样如此，只是门槛高得多。</>}
           en={<>In Chapter 6 the hydra theorem was true but unprovable in PA, at the price ε₀. The finite form of Kruskal’s theorem is the same story with a much higher bar.</>}
@@ -631,8 +630,8 @@ export default function Chapter07() {
           />
         </Caution>
         <P
-          zh={<>（第 8 章会用 <M t="\vartheta" /> 记号把 TREE 的位置写成 <M t="\vartheta(\Omega^\omega\omega)" />，这里只需记住：略高于 SVO。）</>}
-          en={<>(Chapter 8’s <M t="\vartheta" /> notation would write TREE’s place as <M t="\vartheta(\Omega^\omega\omega)" />; for now just remember: just above SVO.)</>}
+          zh={<>（第 8 章会引入序数折叠记号，在那里 TREE 的位置可以精确写出；这里只需记住：略高于 SVO。）</>}
+          en={<>(Chapter 8 introduces the collapsing notation in which TREE’s place can be written exactly; for now just remember: just above SVO.)</>}
         />
         <H3 en="Graphs instead of trees: SCG" zh="把树换成图：SCG" />
         <P

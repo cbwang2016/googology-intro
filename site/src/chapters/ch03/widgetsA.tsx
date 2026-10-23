@@ -386,7 +386,7 @@ export function Sticks() {
   // layout source row
   const unitW = (s: Seg) => (s.kind === '1' ? 26 : 120)
   const total = segs.reduce((a, s) => a + unitW(s), 0) + 14 * segs.length
-  const scale = Math.min(1, (W - 40) / Math.max(total, 1))
+  const scale = Math.min(2.2, (W - 40) / Math.max(total, 1))
   const srcPos = new Map<string, number>()
   let cx = 20
   const srcDraw: { x: number; h: number; col: string; key: string }[] = []
@@ -411,7 +411,7 @@ export function Sticks() {
   })
   const norm = normalizeSegs(segs)
   const nTotal = norm.reduce((a, s) => a + (s.kind === '1' ? 26 : 120), 0) + 14 * norm.length
-  const nscale = Math.min(1, (W - 40) / Math.max(nTotal, 1))
+  const nscale = Math.min(2.2, (W - 40) / Math.max(nTotal, 1))
   let nx = 20
   const dstDraw: { x: number; h: number; col: string; key: string }[] = []
   const dstLimit: number[] = []

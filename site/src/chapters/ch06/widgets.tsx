@@ -147,7 +147,7 @@ export function GoodsteinStepper() {
   })() }))
   const maxLg = Math.max(1, ...pts.map((p) => (isFinite(p.lg) ? p.lg : 0)))
   const W = 600
-  const H = 110
+  const H = 92
   const X = (i: number) => 10 + (i * (W - 20)) / Math.max(1, pts.length - 1)
   const line = (f: (p: (typeof pts)[0]) => number) => pts.map((p, i) => `${i ? 'L' : 'M'}${X(i).toFixed(1)},${(H - 8 - f(p) * (H - 20)).toFixed(1)}`).join(' ')
   return (
@@ -205,7 +205,7 @@ export function GoodsteinStepper() {
           {t('25 steps', '25 步')}
         </button>
         <button className="btn small" disabled={done || blocked} onClick={() => go('skip', 1)}>
-          {t('skip the countdown of the last digit', '跳过末位的倒数')}
+          {t('skip last-digit countdown', '跳过末位倒数')}
         </button>
         <button className="btn small" disabled={done || blocked} onClick={() => go('skip', 60)}>
           {t('skip ×60', '跳过 ×60')}
@@ -299,7 +299,7 @@ export function HydraGame() {
         ))}
       </div>
       <div className="c06-hydra">
-        <TreeView tree={tree} height={250} onLeaf={dead || big ? undefined : (p) => doChop(p)} glow={glow} />
+        <TreeView tree={tree} height={210} vbWidth={560} onLeaf={dead || big ? undefined : (p) => doChop(p)} glow={glow} />
       </div>
       <div className="row small">
         <span className="stat">
@@ -318,7 +318,7 @@ export function HydraGame() {
         </span>
       </div>
       <div className="small muted mono c06-seq">
-        {t('as a primitive sequence: ', '读作初等序列：')}({seq.length > 60 ? seq.slice(0, 60).join(',') + ',…' : seq.join(',')})
+        {t('as a primitive sequence', '读作初等序列')}: ({seq.length > 60 ? seq.slice(0, 60).join(',') + ',…' : seq.join(',')})
       </div>
       <div className="btn-row">
         <select className="c06-select" value={strat} onChange={(e) => setStrat(e.target.value as Strategy)} aria-label={t('strategy', '策略')}>
@@ -562,11 +562,11 @@ const THEORIES: Theory[] = [
   { name: 'IΣ₁ ≈ PRA ≈ RCA₀', ord: '\\omega^\\omega', rank: 2, note: { en: 'Provably total functions: exactly the primitive recursive ones (Parsons, Mints, Takeuti), i.e. those below f_ω — H_α with α < ω^ω.', zh: '可证全函数恰好是原始递归函数（Parsons、Mints、Takeuti），即 f_ω 以下——Hardy 刻度 α < ω^ω。' } },
   { name: 'IΣ₂', ord: '\\omega^{\\omega^\\omega}', rank: 3, note: { en: 'Proves f_α total for every α < ω^ω (Hardy: α < ω^{ω^ω}).', zh: '能证明 α < ω^ω 的每个 f_α 处处有定义（Hardy 刻度：α < ω^{ω^ω}）。' } },
   { name: 'IΣₙ₊₁', ord: '\\omega\\uparrow\\uparrow(n+2)', rank: 4, note: { en: 'Each extra quantifier alternation allowed in induction buys one more storey of the ω-tower.', zh: '归纳公式每多允许一层量词交替，就多换来一层 ω 塔。' } },
-  { name: 'PA = ⋃ IΣₙ', ord: '\\varepsilon_0', rank: 5, note: { en: 'Proves TI(α) for every α < ε₀ but not TI(ε₀) (Gentzen 1943). Provably total functions: those dominated by some f_α, α < ε₀ (Wainer 1970). Goodstein, hydra and worm all sit exactly at the ceiling.', zh: '能证明每个 α < ε₀ 的 TI(α)，但证明不了 TI(ε₀)（Gentzen 1943）。可证全函数：被某个 f_α（α < ε₀）控制的函数（Wainer 1970）。Goodstein、九头蛇和 Worm 正好卡在天花板上。' } },
+  { name: 'PA = ⋃ IΣₙ', ord: '\\varepsilon_0', rank: 5, note: { en: 'Proves TI(α) for every α < ε₀ but not TI(ε₀) (Gentzen 1936, 1943). Provably total functions: those dominated by some f_α, α < ε₀ (Wainer 1970). Goodstein, hydra and worm all sit exactly at the ceiling.', zh: '能证明每个 α < ε₀ 的 TI(α)，但证明不了 TI(ε₀)（Gentzen 1936、1943）。可证全函数：被某个 f_α（α < ε₀）控制的函数（Wainer 1970）。Goodstein、九头蛇和 Worm 正好卡在天花板上。' } },
   { name: 'ATR₀', ord: '\\Gamma_0', rank: 6, ch: 7, note: { en: 'Predicative analysis; Kruskal’s theorem is out of reach. Chapter 7.', zh: '直谓分析；证明不了 Kruskal 定理。第 7 章。' } },
   { name: 'KP, ID₁', ord: '\\text{BHO}', rank: 7, ch: 8, note: { en: 'The Bachmann–Howard ordinal. Chapter 8.', zh: 'Bachmann–Howard 序数。第 8 章。' } },
-  { name: 'Π¹₁-CA₀', ord: '\\psi(\\Omega_\\omega)', rank: 8, ch: 8, note: { en: 'Chapter 8 (Buchholz’s ψ).', zh: '第 8 章（Buchholz 的 ψ）。' } },
-  { name: 'Z₂', ord: '\\psi_\\Omega(I_\\omega)', rank: 9, ch: 10, note: { en: 'Full second-order arithmetic: the current frontier of ordinal analysis (Arai). Chapter 10.', zh: '完整的二阶算术：序数分析目前的前沿（Arai）。第 10 章。' } },
+  { name: 'Π¹₁-CA₀', ord: '\\psi(\\Omega_\\omega)', rank: 8, ch: 8, note: { en: 'Buchholz’s ordinal BO. Chapter 8.', zh: 'Buchholz 序数 BO。第 8 章。' } },
+  { name: 'Z₂', ord: '\\psi_\\Omega(I_\\omega)', rank: 9, ch: 10, note: { en: 'Full second-order arithmetic, the frontier: claimed in a 2023 preprint by Arai, still being vetted. Chapter 10.', zh: '完整的二阶算术，序数分析的前沿：Arai 2023 年的预印本声称做到，仍在检验中。第 10 章。' } },
   { name: 'ZFC', ord: '?', rank: 10, ch: 10, note: { en: 'Unknown. Nobody can write down a notation for PTO(ZFC).', zh: '未知。没有人能写出 PTO(ZFC) 的记号。' } },
 ]
 export function PtoLadder() {

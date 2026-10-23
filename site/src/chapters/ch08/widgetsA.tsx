@@ -160,8 +160,8 @@ export function RecursiveOrders() {
       <div className="readout">
         {rule.rank ? (
           <L
-            en={<>Order type of the whole of ℕ under this program: <M t={rule.type} />. Each row is one copy of ω (only its first members are shown).</>}
-            zh={<>整个 ℕ 在这个程序下的序型：<M t={rule.type} />。每一行是一份 ω（只画出了开头几个成员）。</>}
+            en={<>Order type of ℕ under this program: <M t={rule.type} />.{rule.id === 'primes' && <> A one-line program, yet <M t="\omega^\omega" />.</>}</>}
+            zh={<>ℕ 在这个程序下的序型：<M t={rule.type} />。{rule.id === 'primes' && <>程序只有一行，序型却是 <M t="\omega^\omega" />。</>}</>}
           />
         ) : (
           <L

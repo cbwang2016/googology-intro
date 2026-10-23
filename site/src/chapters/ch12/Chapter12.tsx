@@ -276,8 +276,8 @@ export default function Chapter12() {
             en={<><b>Claim:</b> for every computable, nondecreasing, unbounded <M t="h" />, eventually <M t="S^{-1}(m)\le h(m)" />. Let <M t="u(k)=\min\{m: h(m)\ge k+1\}" />; it is computable, so by domination there is <M t="K" /> with <M t="S(k)>u(k)" /> for <M t="k\ge K" />.</>}
           />
           <P
-            zh={<>取 m 足够大使 <M t="k:=S^{-1}(m)-1\ge K" />。由 <M t="S^{-1}" /> 的定义，<M t="S(k)<m" />，于是 <M t="m>u(k)" />，从而 <M t="h(m)\ge h(u(k))\ge k+1=S^{-1}(m)" />。</>}
-            en={<>Take m large enough that <M t="k:=S^{-1}(m)-1\ge K" />. By definition of <M t="S^{-1}" />, <M t="S(k)<m" />, so <M t="m>u(k)" /> and <M t="h(m)\ge h(u(k))\ge k+1=S^{-1}(m)" />.</>}
+            zh={<>取 m 足够大使 <M t="k:=S^{-1}(m)-1\ge K" />。由 <M t="S^{-1}" /> 的定义，<M t="S(k)<m" />，于是 <M t="m>u(k)" />，从而 <M t="h(m)\ge h(u(k))\ge k+1=S^{-1}(m)" />。单调性不能省：令 <M t="h(m)" /> 为“恰在第 <M t="m-1" /> 步停机的机器的最少状态数”（没有则取 m），它可计算且趋于无穷，却在 <M t="m=S(n)+1" /> 处只有 <M t="h(m)\le n<S^{-1}(m)" />。</>}
+            en={<>Take m large enough that <M t="k:=S^{-1}(m)-1\ge K" />. By definition of <M t="S^{-1}" />, <M t="S(k)<m" />, so <M t="m>u(k)" /> and <M t="h(m)\ge h(u(k))\ge k+1=S^{-1}(m)" />. Monotonicity matters: let <M t="h(m)" /> be the fewest states of a machine halting at exactly step <M t="m-1" /> (or m if none). It is computable and tends to infinity, yet at <M t="m=S(n)+1" /> it gives <M t="h(m)\le n<S^{-1}(m)" />.</>}
           />
         </Expand>
       </Section>
@@ -312,8 +312,8 @@ export default function Chapter12() {
           en={<>The hardest machines carry numbers from the list of Georgi Georgiev (“Skelet”). Skelet #1 is a translated cycler — but it enters its cycle only after about <M t="5.42\times10^{51}" /> steps, with period 8,468,569,863. No simulation will ever get there.</>}
         />
         <P
-          zh={<>Skelet #17 是最后一个被攻克的：Chris Xu 在 2024 年证明它在模拟一种 Gray 码计数器，永不停机（arXiv 2407.02426）。</>}
-          en={<>Skelet #17 was the last to fall: in 2024 Chris Xu proved it simulates a kind of Gray-code counter and never halts (arXiv 2407.02426).</>}
+          zh={<>Skelet #17 与 Skelet #1 被公认为最难的两台。Chris Xu 证明 #17 在模拟一种 Gray 码计数器、永不停机（2023 年完成草稿，2024 年 7 月发布于 arXiv 2407.02426），mxdys 随后把它形式化——这是 BB(5) 证明的最后一块拼图。</>}
+          en={<>Skelet #17 and Skelet #1 were considered the two hardest. Chris Xu proved that #17 simulates a kind of Gray-code counter and never halts (sketched in 2023, posted July 2024 as arXiv 2407.02426), and mxdys formalised it — the last piece of the BB(5) proof.</>}
         />
         <P
           zh={<>同样的方法也重新证明了 <M t="S(4)=107" />，并解决了其他一些小规模情形；但五状态需要的非正则、手工的论证，在四状态时从未需要过：4 与 5 之间有一道真实的鸿沟。</>}
@@ -353,8 +353,8 @@ export default function Chapter12() {
           <Antihydra />
         </Widget>
         <P
-          zh={<>若 b 的奇偶像抛硬币，a 就是每步 +2 或 −1 的随机游走。从高度 a 出发最终跌到底的概率是 <M t="r^a" />，其中 r 是 <M t="r=\tfrac12 r^3+\tfrac12" /> 在 (0,1) 内的根，即 <M t="r=(\sqrt5-1)/2\approx0.618" />。</>}
-          en={<>If the parity of b behaved like coin flips, a would be a random walk with steps +2 and −1. Starting from height a, the probability of ever hitting bottom is <M t="r^a" />, where r is the root in (0,1) of <M t="r=\tfrac12 r^3+\tfrac12" />, namely <M t="r=(\sqrt5-1)/2\approx0.618" />.</>}
+          zh={<>若 b 的奇偶像抛硬币，a 就是每步 +2 或 −1 的随机游走。从高度 a 出发、最终跌破 0（即停机）的概率是 <M t="r^{a+1}" />，其中 r 是 <M t="r=\tfrac12 r^3+\tfrac12" /> 在 (0,1) 内的根，即 <M t="r=(\sqrt5-1)/2\approx0.618" />。</>}
+          en={<>If the parity of b behaved like coin flips, a would be a random walk with steps +2 and −1. Starting from height a, the probability of ever dropping below 0 (i.e. halting) is <M t="r^{a+1}" />, where r is the root in (0,1) of <M t="r=\tfrac12 r^3+\tfrac12" />, namely <M t="r=(\sqrt5-1)/2\approx0.618" />.</>}
         />
         <P
           zh={<>bbchallenge 已把它模拟了 <M t="2^{38}" /> 个规则步，此时 a 已超过 <M t="2^{37}" />。启发式地说，它几乎必然永不停机；但要<b>证明</b>这一点，需要关于 <M t="(3/2)^k" /> 奇偶性的定理，这超出了现有数论的能力。</>}
@@ -371,8 +371,8 @@ export default function Chapter12() {
       {/* ---------------------------------------------------------------- */}
       <Section id="independence" kicker={{ en: 'Beyond proof', zh: '超越证明' }} title={{ en: 'Busy beavers that ZFC cannot tame', zh: 'ZFC 驯服不了的海狸' }}>
         <P
-          zh={<>很多猜想都是“某台机器永不停机”。书中给出的例子：一台 25 状态机器当且仅当 Goldbach 猜想不成立时停机；15 状态对应 Erdős 关于 2 的幂的三进制猜想；744 状态对应黎曼猜想。</>}
-          en={<>Many conjectures say “some machine never halts.” The book’s examples: a 25-state machine halts iff Goldbach’s conjecture fails; 15 states for Erdős’s conjecture on powers of 2 in base 3; 744 states for the Riemann hypothesis.</>}
+          zh={<>很多猜想都是“某台机器永不停机”。书中给出的例子：一台 25 状态机器当且仅当 Goldbach 猜想不成立时停机；15 状态对应 Erdős 关于 2 的幂的三进制猜想；744 状态对应黎曼猜想。这些数字也出现在 bbchallenge 2025 年的 BB(5) 论文中，其中 Goldbach 机器已用 Lean 形式化验证。</>}
+          en={<>Many conjectures say “some machine never halts.” The book’s examples: a 25-state machine halts iff Goldbach’s conjecture fails; 15 states for Erdős’s conjecture on powers of 2 in base 3; 744 states for the Riemann hypothesis. The same figures appear in bbchallenge’s 2025 BB(5) paper, where the Goldbach machine is verified in Lean.</>}
         />
         <P
           zh={<>所以知道 <M t="S(25)" /> 就能解决 Goldbach 猜想：把那台机器跑 <M t="S(25)" /> 步。书中也指出这是循环论证：要算出 <M t="S(25)" />，本来就得先判定那台机器。</>}
@@ -475,8 +475,8 @@ export default function Chapter12() {
         </OpenProblem>
         <OpenProblem title={{ en: 'Where does provability end?', zh: '可证性的边界在哪里？' }}>
           <P
-            zh={<>已知 <M t="6\le n_{\mathrm{ZF}}\le230" />（2026 年 10 月）。真正的阈值是多少？Aaronson 猜测 <M t="n_{\mathrm{ZF}}\le20" />、<M t="n_{\mathrm{PA}}\le10" />。另一个开放问题是书中的猜想：<M t="S(n)" /> 与 <M t="\Sigma(n)" /> 之间的精确关系。</>}
-            en={<>We know <M t="6\le n_{\mathrm{ZF}}\le230" /> (October 2026). What is the true threshold? Aaronson conjectures <M t="n_{\mathrm{ZF}}\le20" /> and <M t="n_{\mathrm{PA}}\le10" />. Also open, from the book: the exact relationship between <M t="S(n)" /> and <M t="\Sigma(n)" />.</>}
+            zh={<>已知 <M t="6\le n_{\mathrm{ZF}}\le230" />（2026 年 10 月）。真正的阈值是多少？Aaronson 猜测 <M t="n_{\mathrm{ZF}}\le20" />、<M t="n_{\mathrm{PA}}\le10" />。另一个开放问题是 <M t="S(n)" /> 与 <M t="\Sigma(n)" /> 之间的精确关系：已证明 <M t="S(n)<\Sigma(3n+6)" />，书中猜测大致有 <M t="S(n)\approx\Sigma(n)^2" />。</>}
+            en={<>We know <M t="6\le n_{\mathrm{ZF}}\le230" /> (October 2026). What is the true threshold? Aaronson conjectures <M t="n_{\mathrm{ZF}}\le20" /> and <M t="n_{\mathrm{PA}}\le10" />. Also open: the exact relationship between <M t="S(n)" /> and <M t="\Sigma(n)" />. It is proved that <M t="S(n)<\Sigma(3n+6)" />; the book conjectures roughly <M t="S(n)\approx\Sigma(n)^2" />.</>}
           />
         </OpenProblem>
       </Section>

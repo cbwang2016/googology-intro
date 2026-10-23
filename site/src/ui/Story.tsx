@@ -201,6 +201,7 @@ export function StoryFlow({ storageKey, children }: { storageKey: string; childr
         ref={ref}
         className="chapter-flow"
         data-anim={anim % 2}
+        data-cur={beat}
         onTouchStart={(e) => (touch.current = { x: e.touches[0].clientX, y: e.touches[0].clientY })}
         onTouchEnd={(e) => {
           if (!story || !touch.current) return

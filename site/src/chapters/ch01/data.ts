@@ -14,7 +14,7 @@ export const LANDMARKS: Landmark[] = [
   { v: fromLog10(80), name: { en: 'atoms in the observable universe', zh: '可观测宇宙的原子数' }, tex: '\\approx10^{80}' },
   { v: fromLog10(100), name: { en: 'googol', zh: '古戈尔 googol' }, tex: '10^{100}' },
   { v: fromLog10(185), name: { en: 'Planck volumes in the universe', zh: '宇宙中的普朗克体积数' }, tex: '\\approx10^{185}' },
-  { v: fromLog10(41024319.2), name: { en: 'largest known prime', zh: '已知最大素数' }, tex: '2^{136279841}-1' },
+  { v: fromLog10(41024319.95), name: { en: 'largest known prime', zh: '已知最大素数' }, tex: '2^{136279841}-1' },
   { v: fromLog10(8e16), name: { en: 'Archimedes’ biggest', zh: '阿基米德的最大数' }, tex: '10^{8\\times10^{16}}' },
   { v: fromLog10(3.01e24), name: { en: 'a monkey typing all human data', zh: '猴子打出人类全部数据' }, tex: '\\approx2^{10^{25}}' },
   { v: fromLog10(3.7218383881977644e37), name: { en: '不可说不可说转 (Avatamsaka)', zh: '不可说不可说转' }, tex: '10^{7\\cdot2^{122}}' },
@@ -50,9 +50,9 @@ export const CHAMPIONS: Champion[] = [
   { who: { en: 'Journey to the West', zh: '《西游记》如来' }, era: { en: '16th c.', zh: '明代' }, trick: { en: '1750 kalpas × 129600 years', zh: '一千七百五十劫 × 十二万九千六百年' }, tex: '2.268\\times10^{8}', ...mk(fromNum(226800000)) },
   { who: { en: 'The chessboard legend', zh: '国际象棋的传说' }, era: { en: 'India, legend', zh: '古印度传说' }, trick: { en: 'doubling 64 times', zh: '翻倍 64 次' }, tex: '2^{64}-1', ...mk(fromNum(1.8446744073709552e19)) },
   { who: { en: '“Upper” numbers (上数)', zh: '《数术记遗》上数' }, era: { en: 'Han dynasty', zh: '汉代' }, trick: { en: 'each unit = previous squared', zh: '数穷则变：亿亿为兆' }, tex: '10^{4096}', ...mk(fromLog10(4096)) },
-  { who: { en: 'Archimedes, The Sand Reckoner', zh: '阿基米德《数沙者》' }, era: { en: '3rd c. BC', zh: '公元前 3 世纪' }, trick: { en: 'powers of powers', zh: '幂的幂' }, tex: '10^{8\\times10^{16}}', ...mk(fromLog10(8e16)) },
   { who: { en: 'Avatamsaka Sutra', zh: '《华严经》' }, era: { en: '1st–4th c.', zh: '约公元 1–4 世纪' }, trick: { en: 'square, 122 times', zh: '连续平方 122 次' }, tex: '10^{7\\cdot2^{122}}', ...mk(fromLog10(3.7218383881977644e37)) },
-  { who: { en: 'Jain cosmology (JPA)', zh: '耆那教 JPA' }, era: { en: '~4th c. BC', zh: '约公元前 4 世纪' }, trick: { en: 'a tower of exponents', zh: '指数塔' }, tex: '10^{10^{\\cdots^{10}}}\\ (\\approx10^{136}\\text{ levels})', v: null, slog: 1.285e136 },
+  { who: { en: 'Archimedes, The Sand Reckoner', zh: '阿基米德《数沙者》' }, era: { en: '3rd c. BC', zh: '公元前 3 世纪' }, trick: { en: 'powers of powers', zh: '幂的幂' }, tex: '10^{8\\times10^{16}}', ...mk(fromLog10(8e16)) },
+  { who: { en: 'Jain cosmology (JPA)', zh: '耆那教 JPA' }, era: { en: 'c. 1st c. BC–1st c. AD', zh: '约公元前后' }, trick: { en: 'a tower of exponents', zh: '指数塔' }, tex: '10^{10^{\\cdots^{10}}}\\ (\\approx10^{136}\\text{ levels})', v: null, slog: 1.285e136 },
 ]
 
 /** Tower values used in the comparison presets. */

@@ -25,8 +25,8 @@ export default function Chapter13() {
           en={<>Chapter 1 opened with a game: name a bigger number. With unlimited ink nobody ever wins. A real contest has to limit the ink.</>}
         />
         <P
-          zh={<>2007 年 1 月 26 日，有人真的这么比了一场。地点是 MIT 的 Stata 中心，屋里挤满了人，有人站上了椅子，门口还有二十多个学生伸着脖子往里看。</>}
-          en={<>On 26 January 2007 someone actually staged it. The venue was MIT’s Stata Center. The room was packed; people stood on chairs, and twenty-odd students craned their necks from the doorway.</>}
+          zh={<>2007 年 1 月 26 日，有人真的这么比了一场。地点是 MIT 的 Stata 中心，屋里挤满了人，有人站上了椅子，门口还有至少二十个学生伸着脖子往里看。</>}
+          en={<>On 26 January 2007 someone actually staged it. The venue was MIT’s Stata Center. The room was packed; people stood on chairs, and at least twenty students craned their necks from the doorway.</>}
         />
         <P
           zh={<>一边是普林斯顿的哲学家 Adam Elga，海报上的绰号是“邪恶博士”；另一边是 MIT 的哲学家 Agustín Rayo，绰号“墨西哥乘法王”。比赛像拳击赛一样开场：“红方……蓝方……”</>}
@@ -35,8 +35,8 @@ export default function Chapter13() {
 
         <H3 en="The rules" zh="规则" />
         <P
-          zh={<>两人轮流在黑板上写一个有限的自然数，每次都要比对方的大。另有三条规则：</>}
-          en={<>The two took turns writing a finite natural number on the board, each larger than the last. Three further rules applied:</>}
+          zh={<>两人轮流在黑板上写一个有限的自然数，每次都要比对方的大，不许用无穷。据 Elga 的比赛海报，另有三条规则：</>}
+          en={<>The two took turns writing a finite natural number on the board, each larger than the last; infinity was banned. According to Elga’s poster, three further rules applied:</>}
         />
         <B
           zh={
@@ -171,8 +171,8 @@ export default function Chapter13() {
         />
         <Thm kind="definition" name={{ en: 'naming', zh: '命名' }}>
           <B
-            zh={<p>设公式 <M t="\varphi(x_1)" /> 只有 <M t="x_1" /> 一个自由变元。若在 <M t="V" /> 中恰好有一个集合 <M t="m" /> 满足它，就说 <M t="\varphi" /> <b>命名</b>了 <M t="m" />。</p>}
-            en={<p>Let <M t="\varphi(x_1)" /> be a formula whose only free variable is <M t="x_1" />. If exactly one set <M t="m" /> in <M t="V" /> satisfies it, we say <M t="\varphi" /> <b>names</b> <M t="m" />.</p>}
+            zh={<p>设公式 <M t="\varphi(x_1)" /> 只有 <M t="x_1" /> 一个自由变元。若恰好有一个集合 <M t="m" /> 使 <M t="(V,\in)\models\varphi[m]" />（第 10 章的满足关系，赋值 <M t="x_1\mapsto m" />），就说 <M t="\varphi" /> 在 <M t="V" /> 中<b>命名</b>了 <M t="m" />——与第 10 章“在结构中命名”的定义相同，只是结构换成了整个宇宙。</p>}
+            en={<p>Let <M t="\varphi(x_1)" /> be a formula whose only free variable is <M t="x_1" />. If exactly one set <M t="m" /> has <M t="(V,\in)\models\varphi[m]" /> (Chapter 10’s satisfaction, with <M t="x_1\mapsto m" />), we say <M t="\varphi" /> <b>names</b> <M t="m" /> in <M t="V" /> — Chapter 10’s “names in a structure”, with the structure now the whole universe.</p>}
           />
         </Thm>
         <H3 en="A finite window: the sets V_k" zh="有限的窗口：集合 V_k" />

@@ -7,6 +7,7 @@ import { toTex } from '../../lib/huge'
 import * as O from '../ch03/ordinal'
 import { COL } from '../ch03/widgetsA'
 import * as F from './fgh'
+import { eqT } from './widgetsA'
 
 const ARW = (c: number) => (c <= 4 ? '\\uparrow'.repeat(c) + ' ' : `\\uparrow^{${c}}`)
 
@@ -14,15 +15,15 @@ const ARW = (c: number) => (c <= 4 ? '\\uparrow'.repeat(c) + ' ' : `\\uparrow^{$
 /* 5. Graham vs FGH, layer by layer                                     */
 /* ================================================================== */
 export function GrahamDuel() {
-  const { t } = useLang()
-  const [k, setK] = useState(1)
+  const { t, pick } = useLang()
+  const [k, setK] = useState(6)
   const W = 700
-  const H = 230
+  const H = 190
   const shownK = Math.min(k, 12)
-  const bh = 14
+  const bh = 10
   const blocks = (x: number, col: string, lead: number) =>
     Array.from({ length: shownK }, (_, i) => (
-      <rect key={i} x={x} y={H - 30 - (i + 1) * (bh + 3) - lead} width={150} height={bh} rx={3} fill={col} opacity={0.35 + (0.65 * (i + 1)) / shownK} />
+      <rect key={i} x={x} y={H - 30 - (i + 1) * (bh + 2) - lead} width={150} height={bh} rx={3} fill={col} opacity={0.35 + (0.65 * (i + 1)) / shownK} />
     ))
   const bTex = k === 0 ? 'G(0)=4' : k === 1 ? 'G(1)=3\\uparrow\\uparrow\\uparrow\\uparrow 3' : `G(${k})=3\\uparrow^{G(${k - 1})}3`
   const aTex = k === 0 ? 'a_0=64' : `a_{${k}}=f_\\omega(a_{${k - 1}})${k === 64 ? '=f_{\\omega+1}(64)' : ''}`
@@ -33,17 +34,17 @@ export function GrahamDuel() {
         {blocks(150, COL.cyan, 0)}
         {blocks(400, COL.gold, 6)}
         <text x={225} y={H - 10} fill={COL.cyan} fontSize={13} textAnchor="middle">
-          {t('Graham: b_k = G(k)', 'Graham：b_k = G(k)')}
+          {pick('Graham: bₖ = G(k)', 'Graham：bₖ = G(k)')}
         </text>
         <text x={475} y={H - 10} fill={COL.gold} fontSize={13} textAnchor="middle">
-          {t('FGH: a_k = f_ω^k(64)', 'FGH：a_k = f_ω^k(64)')}
+          {pick('FGH: aₖ = f_ω applied k times to 64', 'FGH：aₖ = 对 64 作用 k 次 f_ω')}
         </text>
         {k > 12 && (
           <text x={W / 2} y={30} fill={COL.dim} fontSize={12} textAnchor="middle">
             {t(`(${k} layers; 12 drawn)`, `（共 ${k} 层，只画了 12 层）`)}
           </text>
         )}
-        <text x={W / 2} y={H - 40 - shownK * (bh + 3)} fill={COL.green} fontSize={13} textAnchor="middle">
+        <text x={W / 2} y={H - 42 - shownK * (bh + 2)} fill={COL.green} fontSize={13} textAnchor="middle">
           aₖ ≥ bₖ + 1
         </text>
       </svg>
@@ -120,7 +121,7 @@ export function SmallCases() {
         <thead>
           <tr>
             <th colSpan={3}>
-              <L en="Lemma E: 3↑ᶜb < 2↑ᶜ(2b)" zh="引理 E：3↑ᶜb < 2↑ᶜ(2b)" />
+              <L en={<>Lemma E: <M t="3\uparrow^{c}b<2\uparrow^{c}(2b)" /></>} zh={<>引理 E：<M t="3\uparrow^{c}b<2\uparrow^{c}(2b)" /></>} />
             </th>
           </tr>
         </thead>
@@ -128,10 +129,10 @@ export function SmallCases() {
           {rowsE.map((r, i) => (
             <tr key={i}>
               <td>
-                <M t={`3${ARW(r.c)}${r.b}=${r.l}`} />
+                <M t={eqT(`3${ARW(r.c)}${r.b}`, r.l)} />
               </td>
               <td>
-                <M t={`2${ARW(r.c)}${2 * r.b}=${r.r}`} />
+                <M t={eqT(`2${ARW(r.c)}${2 * r.b}`, r.r)} />
               </td>
               <td style={{ color: r.ok ? COL.green : COL.red }}>{r.ok ? '✓' : '✗'}</td>
             </tr>
@@ -140,7 +141,7 @@ export function SmallCases() {
         <thead>
           <tr>
             <th colSpan={3}>
-              <L en="Lemma F: f_ω(x+1) > 3↑ˣ3" zh="引理 F：f_ω(x+1) > 3↑ˣ3" />
+              <L en={<>Lemma F: <M t="f_\omega(x+1)>3\uparrow^{x}3" /></>} zh={<>引理 F：<M t="f_\omega(x+1)>3\uparrow^{x}3" /></>} />
             </th>
           </tr>
         </thead>
@@ -216,10 +217,10 @@ export function TamperFS() {
     <div>
       <div className="btn-row">
         <button className={`chip ${weak ? 'on' : ''}`} onClick={() => setWeak(!weak)}>
-          <L en="weaken ε₀: pad every rung’s sequence with zeros" zh="削弱 ε₀：每一级梯子的基本列前面垫上 0" />
+          <L en={<>weaken <M t="\varepsilon_0" />: pad every rung’s sequence with zeros</>} zh={<>削弱 <M t="\varepsilon_0" />：每一级梯子的基本列前面垫上 0</>} />
         </button>
         <button className={`chip ${strong ? 'on' : ''}`} onClick={() => setStrong(!strong)}>
-          <L en="strengthen ω: ω[n] = f_ε₀(n)" zh="增强 ω：令 ω[n] = f_ε₀(n)" />
+          <L en={<>strengthen <M t="\omega" />: <M t="\omega[n]=f_{\varepsilon_0}(n)" /></>} zh={<>增强 <M t="\omega" />：令 <M t="\omega[n]=f_{\varepsilon_0}(n)" /></>} />
         </button>
       </div>
       <div className="scroll-x">

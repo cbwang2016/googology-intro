@@ -228,9 +228,9 @@ export function TwoRoads() {
   const e0 = eps(ZERO)
   const items = useMemo(() => {
     const A: Ord[] = []
-    for (let n = 0; n < 5; n++) A.push(fs(eps(ONE), n).v)
+    for (let n = 0; n < 4; n++) A.push(fs(eps(ONE), n).v)
     const B: Ord[] = [ZERO]
-    for (let n = 0; n < 5; n++) B.push(epsPow(e0, B[B.length - 1]))
+    for (let n = 0; n < 4; n++) B.push(epsPow(e0, B[B.length - 1]))
     const alt: Record<number, string> = {}
     // nicer second names for road A, verified by the engine
     const cands: [Ord, string][] = [
@@ -290,7 +290,6 @@ const ROWS: [string, Ord][] = [
   ['2', nat(2)],
   ['3', nat(3)],
   ['\\omega', W],
-  ['\\varepsilon_0', eps(ZERO)],
   ['\\Gamma_0', gamma(ZERO)],
 ]
 const COLS: [string, Ord][] = [
@@ -357,17 +356,17 @@ export function VeblenGrid() {
           </tbody>
         </table>
       </div>
-      <div className="btn-row">
-        <button className={`chip ${raw ? '' : 'on'}`} onClick={() => setRaw(false)}>
-          <L en="names (ω, ε, ζ, η)" zh="用名字（ω, ε, ζ, η）" />
-        </button>
-        <button className={`chip ${raw ? 'on' : ''}`} onClick={() => setRaw(true)}>
-          <L en="raw φ" zh="全用 φ" />
-        </button>
-      </div>
       <div className="readout c07-explain">
-        <div>
+        <div className="c07-explain-head">
           <M t={`\\varphi(${ROWS[ai][0]},${COLS[bi][0]})=${tex(v, raw)}`} />
+          <span className="c07-explain-chips">
+            <button className={`chip ${raw ? '' : 'on'}`} onClick={() => setRaw(false)}>
+              <L en="names (ω, ε, ζ, η)" zh="用名字（ω, ε, ζ, η）" />
+            </button>
+            <button className={`chip ${raw ? 'on' : ''}`} onClick={() => setRaw(true)}>
+              <L en="raw φ" zh="全用 φ" />
+            </button>
+          </span>
         </div>
         <div className="small">
           {absorbed ? (
@@ -451,7 +450,7 @@ export function FSExplorer() {
       setErr(String((e as Error).message))
     }
   }
-  const terms = isLimit(x) ? [0, 1, 2, 3, 4].map((n) => fs(x, n)) : []
+  const terms = isLimit(x) ? [0, 1, 2, 3].map((n) => fs(x, n)) : []
   const rule = terms[0]?.rule
   return (
     <div>
@@ -476,13 +475,12 @@ export function FSExplorer() {
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && load(text)}
           aria-label={t('ordinal', '序数')}
+          title={t('syntax: w, e_0, z_1, G0, phi(a,b), w^(..), +, *3', '语法：w, e_0, z_1, G0, phi(a,b), w^(..), +, *3')}
+          placeholder="w, e_0, z_1, G0, phi(a,b), w^(..), +, *3"
         />
         <button className="btn small" onClick={() => load(text)}>
           <L en="Load" zh="载入" />
         </button>
-        <span className="muted small">
-          <L en="syntax: w, e_0, z_1, G0, phi(a,b), w^(..), +, *3" zh="语法：w, e_0, z_1, G0, phi(a,b), w^(..), +, *3" />
-        </span>
       </div>
       {err && <div className="c07-err">{err}</div>}
       <div className="c07-crumbs">

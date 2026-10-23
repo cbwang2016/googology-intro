@@ -27,7 +27,8 @@ export default function Chapter06() {
           zh={<>第一个标本来自 1944 年的英国逻辑学家 Reuben Goodstein。先学一种写法：<Term en="hereditary base-b notation" zh="以 b 为底的遗传记法" />——把 <M t="n" /> 写成 <M t="b" /> 进制，再把每个指数、指数的指数……也都写成 <M t="b" /> 进制，直到只剩小于 <M t="b" /> 的数。</>}
           en={<>The first specimen is due to the British logician Reuben Goodstein (1944). It needs one piece of notation, <Term en="hereditary base-b notation" zh="以 b 为底的遗传记法" />: write <M t="n" /> in base <M t="b" />, then write every exponent — and every exponent of an exponent — in base <M t="b" /> too, until only numbers below <M t="b" /> remain.</>}
         />
-        <MB t="100=2^{6}+2^{5}+2^{2}=2^{2^{2}+2}+2^{2^{2}+1}+2^{2}." />
+        <MB t="\begin{aligned}100&=2^{6}+2^{5}+2^{2}\\&=2^{2^{2}+2}+2^{2^{2}+1}+2^{2}.\end{aligned}" />
+        <H3 en="Bump the base" zh="换底" />
         <Widget title={{ en: 'Hereditary notation and the bump', zh: '遗传记法与“换底”' }} hint={{ en: 'Watch what happens to the number when every b becomes b+1 — and to the ordinal when every b becomes ω.', zh: '看看把每个 b 换成 b+1 时数怎样变化——以及把 b 换成 ω 时得到什么序数。' }}>
           <HereditaryBump />
         </Widget>
@@ -41,7 +42,7 @@ export default function Chapter06() {
           zh={<>小的很温和：<M t="G(1)=1" />，<M t="G(2)=3" />，<M t="G(3)=5" />（<M t="3\to3\to3\to2\to1\to0" />）。从 4 开始就不一样了：</>}
           en={<>Small cases are tame: <M t="G(1)=1" />, <M t="G(2)=3" />, <M t="G(3)=5" /> (<M t="3\to3\to3\to2\to1\to0" />). Starting from 4 is another story:</>}
         />
-        <MB t="4=2^2\ \to\ 3^3-1=26\ \to\ 41\ \to\ 60\ \to\ 83\ \to\ 109\ \to\ \cdots" />
+        <MB t="\begin{aligned}4=2^2\ &\to\ 3^3-1=26\\&\to 41\to 60\to 83\to 109\to\cdots\end{aligned}" />
         <P
           zh={<>它涨啊涨，涨很久很久。可是 Goodstein 证明了：<b>无论从哪个 <M t="n" /> 出发，数列最终都会回到 0。</b></>}
           en={<>It climbs, and climbs, for a very long time. Yet Goodstein proved: <b>whatever <M t="n" /> you start from, the sequence eventually returns to 0.</b></>}
@@ -54,10 +55,11 @@ export default function Chapter06() {
           zh={<>证明的思路：给每一项投下一个“影子”——把遗传记法里的底 <M t="b" /> 全部换成 <M t="\omega" />。记 <M t="o_b(x)" /> 为 <M t="x" /> 在底 <M t="b" /> 下的影子，例如 <M t="o_3(26)=o_3(2\cdot3^2+2\cdot3+2)=\omega^2\cdot2+\omega\cdot2+2" />。</>}
           en={<>The proof casts a “shadow” of each term: replace the base <M t="b" /> by <M t="\omega" /> everywhere in the hereditary notation. Write <M t="o_b(x)" /> for the shadow of <M t="x" /> in base <M t="b" />; for instance <M t="o_3(26)=o_3(2\cdot3^2+2\cdot3+2)=\omega^2\cdot2+\omega\cdot2+2" />.</>}
         />
-        <Widget title={{ en: 'Goodstein stepper with its shadow', zh: 'Goodstein 数列与它的影子' }} hint={{ en: 'Gold: how many digits Gₖ has. Green: where its shadow sits on the ordinal ruler. One climbs, the other only falls.', zh: '金线：Gₖ 的位数。绿线：影子在序数尺上的位置。一条在涨，一条只降不升。' }}>
+        <H3 en="One climbs, one falls" zh="一个在涨，一个在跌" />
+        <Widget title={{ en: 'Goodstein stepper with its shadow', zh: 'Goodstein 数列与它的影子' }} hint={{ en: 'Gold: digits of Gₖ. Green: its shadow on the ordinal ruler.', zh: '金线：Gₖ 的位数。绿线：影子在序数尺上的位置。' }}>
           <GoodsteinStepper />
         </Widget>
-        <Thm name={{ en: 'Goodstein’s theorem (1944)', zh: 'Goodstein 定理（1944）' }}>
+        <Thm name={{ en: 'Goodstein’s theorem (1944)', zh: 'Goodstein 定理（1944）' }} status="proved">
           <B zh={<p>对每个 <M t="n" />，存在 <M t="k" /> 使 <M t="G_k(n)=0" />。</p>} en={<p>For every <M t="n" /> there is a <M t="k" /> with <M t="G_k(n)=0" />.</p>} />
         </Thm>
         <Proof>
@@ -72,7 +74,7 @@ export default function Chapter06() {
           en={<>Each step of the shadow is exactly a step of Chapter 4’s Hardy hierarchy: subtracting 1 raises the argument (the base) by 1, and at a limit one <M t="\omega" /> is replaced by the current base. This gives an exact formula (Cichon 1983; the book’s eq. 20.56):</>}
         />
         <MB t="G(n)=H_{o_2(n)}(3)-3." />
-        <MB t="G(4)=H_{\omega^\omega}(3)-3=f_3(3)-3=3\cdot2^{402\,653\,211}-3." />
+        <MB t="\begin{aligned}G(4)&=H_{\omega^\omega}(3)-3=f_3(3)-3\\&=3\cdot2^{402\,653\,211}-3.\end{aligned}" />
         <P
           zh={<>认出这个数了吗？<M t="H_{\omega^\omega}(3)" /> 正是第 5 章原版外壳里的 <M t="(0,1,2)[3]=3\cdot2^{402\,653\,211}" />。Goodstein 数列从 4 出发的旅程，和那次初等序列的倒数是同一段旅程。</>}
           en={<>Recognize it? <M t="H_{\omega^\omega}(3)" /> is Chapter 5’s <M t="(0,1,2)[3]=3\cdot2^{402{,}653{,}211}" /> in the original (Hardy) shell. Goodstein’s journey from 4 and that primitive-sequence countdown are the same journey.</>}
@@ -101,9 +103,10 @@ export default function Chapter06() {
             en={<p>A hydra is a rooted tree; its leaves are heads. Chop number <M t="m" /> removes a head <M t="h" />. If <M t="h" />’s parent <M t="p" /> is not the root, the subtree at <M t="p" /> (after the cut) is copied <M t="m" /> times and the copies are attached to <M t="p" />’s parent, <M t="h" />’s grandparent. If <M t="p" /> is the root, nothing regrows. Hercules wins when only the root is left.</p>}
           />
         </Thm>
-        <Widget title={{ en: 'Fight the hydra', zh: '与九头蛇搏斗' }} hint={{ en: 'Pink rings mark freshly grown heads. Try height 4 and watch the counter.', zh: '粉色圆圈标出刚长出来的头。试试高度 4，看看计数器。' }}>
+        <Widget title={{ en: 'Fight the hydra', zh: '与九头蛇搏斗' }} hint={{ en: 'Pink rings: fresh heads. Try height 4.', zh: '粉色圆圈：新长的头。试试高度 4。' }}>
           <HydraGame />
         </Widget>
+        <H3 en="How many chops?" zh="要砍多少刀？" />
         <P
           zh={<>按本书的规矩（总是砍最右边的头），高为 2 的直蛇要 3 刀，高为 3 的要 <b>37</b> 刀：在第 8 刀后它有 10 个头，在第 18 刀后有 19 个头。高为 4 的……你可以一直砍到地老天荒。</>}
           en={<>By the book’s convention (always chop the rightmost head), a straight hydra of height 2 takes 3 chops and one of height 3 takes <b>37</b>: after chop 8 it has 10 heads, after chop 18 it has 19. Height 4 — you can keep chopping until the end of time.</>}
@@ -122,7 +125,8 @@ export default function Chapter06() {
           zh={<>给九头蛇也投一个影子：用第 5 章的树序数，只是每个节点上要先把各分支<b>从大到小排好</b>再相加——这叫 Hessenberg <Term en="natural sum" zh="自然和" /> <M t="\oplus" />，它对每个加项严格单调。</>}
           en={<>Give the hydra a shadow too: Chapter 5’s tree ordinal, except that at each node the branches are first <b>sorted in decreasing order</b> and then added. This is the Hessenberg <Term en="natural sum" zh="自然和" /> <M t="\oplus" />, which is strictly increasing in each summand.</>}
         />
-        <Thm name={{ en: 'Kirby–Paris (1982)', zh: 'Kirby–Paris（1982）' }}>
+        <H3 en="Every strategy wins" zh="怎么砍都会赢" />
+        <Thm name={{ en: 'Kirby–Paris (1982)', zh: 'Kirby–Paris（1982）' }} status="proved">
           <B zh={<p>无论赫拉克勒斯每一刀砍哪个头，九头蛇都会在有限刀内死去。</p>} en={<p>Whichever head Hercules chops at each step, the hydra dies after finitely many chops.</p>} />
         </Thm>
         <Proof>
@@ -153,10 +157,10 @@ export default function Chapter06() {
         />
         <H3 en="The hydra is a primitive sequence" zh="九头蛇就是初等序列" />
         <P
-          zh={<>把九头蛇读成第 5 章的初等序列（每个节点的深度依次排列）。砍最右边的头：删掉末项；它的父项正是坏根；<M t="p" /> 以上的子树正是坏部。第 <M t="m" /> 刀就是带 <M t="m+1" /> 份坏部的展开：</>}
-          en={<>Read the hydra as a Chapter 5 primitive sequence (the depths of the nodes, left to right). Chopping the rightmost head deletes the last term; its parent is the bad root; the subtree at <M t="p" /> is the bad part. Chop <M t="m" /> is an expansion with <M t="m+1" /> copies of the bad part:</>}
+          zh={<>把九头蛇读成第 5 章的初等序列：按先序（从左到右）列出所有<b>非根</b>节点，每个节点记作“深度 − 1”（根的孩子记 0）。砍最右边的头就是删掉末项；它的父节点 <M t="p" /> 正是坏根；<M t="p" /> 以上的子树正是坏部。第 <M t="m" /> 刀就是带 <M t="m+1" /> 份坏部的展开：</>}
+          en={<>Read the hydra as a Chapter 5 primitive sequence: list the <b>non-root</b> nodes in pre-order (left to right), writing each node’s depth minus 1 (children of the root get 0). Chopping the rightmost head deletes the last term; its parent <M t="p" /> is the bad root; the subtree at <M t="p" /> is the bad part. Chop <M t="m" /> is an expansion with <M t="m+1" /> copies of the bad part:</>}
         />
-        <MB t="(0,1,2,2,1)\ \xrightarrow{\ m=3\ }\ (0,1,2,2,\ 0,1,2,2,\ 0,1,2,2,\ 0,1,2,2)." />
+        <MB t="\begin{gathered}(0,1,2,2,1)\ \xrightarrow{\ m=3\ }\\(0,1,2,2,\ 0,1,2,2,\ 0,1,2,2,\ 0,1,2,2).\end{gathered}" />
         <P
           zh={<>所以本书把这类记号叫作“Hydra 型”记号。第 9 章的 Bashicu 矩阵，就是长着多行身体的九头蛇。</>}
           en={<>That is why the book calls this family “hydra-type” notations. Chapter 9’s Bashicu matrices are hydras with multi-row bodies.</>}
@@ -226,13 +230,13 @@ export default function Chapter06() {
           en={<><Term en="Peano arithmetic (PA)" zh="Peano 算术（PA）" /> is the standard first-order theory of the natural numbers: a few basic equations for <M t="0" />, successor, <M t="+" />, <M t="\times" />, plus an induction axiom for <b>every</b> first-order formula <M t="\varphi" />. Nearly all of elementary number theory is provable in PA.</>}
         />
         <Expand kind="detail" title={{ en: 'The axioms of PA', zh: 'PA 的公理' }}>
-          <MB t="\begin{aligned}&Sx\neq0,\qquad Sx=Sy\to x=y,\\&x+0=x,\qquad x+Sy=S(x+y),\qquad x\cdot0=0,\qquad x\cdot Sy=x\cdot y+x,\\&\varphi(0)\wedge\forall x\,(\varphi(x)\to\varphi(Sx))\ \to\ \forall x\,\varphi(x)\quad\text{for every formula }\varphi.\end{aligned}" />
+          <MB t="\begin{aligned}&Sx\neq0,\quad Sx=Sy\to x=y,\\&x+0=x,\quad x+Sy=S(x+y),\\&x\cdot0=0,\quad x\cdot Sy=x\cdot y+x,\\&\varphi(0)\wedge\forall x\,(\varphi(x)\to\varphi(Sx))\\&\qquad\to\ \forall x\,\varphi(x).\end{aligned}" />
           <P
             zh={<>“一阶”意味着只能对自然数量化，不能对“自然数的集合”量化。限制归纳公式中量词交替的层数，得到子系统 <M t="\mathrm{I}\Sigma_n" />；PA 是它们的并。</>}
             en={<>“First-order” means quantifiers range over numbers, not over sets of numbers. Bounding the quantifier alternations allowed in induction gives the subsystems <M t="\mathrm{I}\Sigma_n" />; PA is their union.</>}
           />
         </Expand>
-        <Thm name={{ en: 'Gödel’s incompleteness theorems (1931), as slogans', zh: 'Gödel 不完备定理（1931），口号版' }}>
+        <Thm name={{ en: 'Gödel’s incompleteness theorems (1931), as slogans', zh: 'Gödel 不完备定理（1931），口号版' }} status="proved">
           <B
             zh={<ul><li><b>第一定理：</b>任何相容的、可由算法列出公理、且包含基本算术的理论 <M t="T" />，都有它既不能证明也不能否证的算术命题。（若 <M t="T" /> 只证明真命题，那么其中有真却不可证的命题。）</li><li><b>第二定理：</b>这样的 <M t="T" /> 不能证明自身的相容性 <M t="\mathrm{Con}(T)" />。</li></ul>}
             en={<ul><li><b>First:</b> every consistent theory <M t="T" /> with an algorithmically listable set of axioms that contains basic arithmetic has arithmetic statements it can neither prove nor refute. (If <M t="T" /> proves only true statements, some of these are true but unprovable.)</li><li><b>Second:</b> such a <M t="T" /> cannot prove its own consistency <M t="\mathrm{Con}(T)" />.</li></ul>}
@@ -242,7 +246,7 @@ export default function Chapter06() {
           zh={<>Gödel 的不可证命题是精心构造的“自指”句子。长期以来人们怀疑：是否有<b>自然的</b>数学命题也逃出了 PA 的掌心？第 10 章会把这两个定理说得更精确。</>}
           en={<>Gödel’s unprovable sentences are carefully engineered self-referential statements. For decades people wondered whether any <b>natural</b> mathematical statement escapes PA too. Chapter 10 states both theorems precisely.</>}
         />
-        <Thm name={{ en: 'Kirby–Paris (1982)', zh: 'Kirby–Paris（1982）' }}>
+        <Thm name={{ en: 'Kirby–Paris (1982)', zh: 'Kirby–Paris（1982）' }} status="proved">
           <B
             zh={<p>Goodstein 定理在 PA 中不可证。九头蛇定理（每个可计算的砍头策略都会赢）在 PA 中也不可证。两者都是真的，只是 PA 证明不了。</p>}
             en={<p>Goodstein’s theorem is not provable in PA. Neither is the hydra theorem (every computable chopping strategy wins). Both are true; PA just cannot prove them.</p>}
@@ -277,7 +281,7 @@ export default function Chapter06() {
           zh={<><M t="\mathrm{TI}(\alpha)" /> 等价于“<M t="\alpha" /> 以下没有（可定义的）无穷降链”。理论 <M t="T" /> 的<Term en="proof-theoretic ordinal" zh="证明论序数" /> <M t="\mathrm{PTO}(T)" />，直观地说，是 <M t="T" /> 能证明 <M t="\mathrm{TI}(\alpha)" /> 的那些 <M t="\alpha" /> 的上确界：<M t="T" /> 能证明“一定会结束”的最长倒数。</>}
           en={<><M t="\mathrm{TI}(\alpha)" /> amounts to “there is no (definable) infinite descending chain below <M t="\alpha" />”. The <Term en="proof-theoretic ordinal" zh="证明论序数" /> <M t="\mathrm{PTO}(T)" /> of a theory <M t="T" /> is, informally, the supremum of the <M t="\alpha" /> for which <M t="T" /> proves <M t="\mathrm{TI}(\alpha)" />: the longest countdown <M t="T" /> can prove always ends.</>}
         />
-        <Thm name={{ en: 'Gentzen (1936, 1943)', zh: 'Gentzen（1936，1943）' }}>
+        <Thm name={{ en: 'Gentzen (1936, 1943)', zh: 'Gentzen（1936，1943）' }} status="proved">
           <B
             zh={<p>PA 能证明每个 <M t="\alpha<\varepsilon_0" /> 的 <M t="\mathrm{TI}(\alpha)" />，但不能证明 <M t="\mathrm{TI}(\varepsilon_0)" />。即 <M t="\mathrm{PTO}(\mathrm{PA})=\varepsilon_0" />。</p>}
             en={<p>PA proves <M t="\mathrm{TI}(\alpha)" /> for every <M t="\alpha<\varepsilon_0" />, but not <M t="\mathrm{TI}(\varepsilon_0)" />. That is, <M t="\mathrm{PTO}(\mathrm{PA})=\varepsilon_0" />.</p>}
@@ -301,7 +305,7 @@ export default function Chapter06() {
           zh={<>一个函数在 <M t="T" /> 中<b>可证全</b>，是指 <M t="T" /> 能证明计算它的程序对每个输入都停机。对 PA 有一个精确的定理（Kreisel 1952；Wainer 1970；Buchholz–Wainer 1987）：</>}
           en={<>A function is <b>provably total</b> in <M t="T" /> if <M t="T" /> proves that a program computing it halts on every input. For PA there is a sharp theorem (Kreisel 1952; Wainer 1970; Buchholz–Wainer 1987):</>}
         />
-        <Thm name={{ en: '(provably total functions of PA)', zh: '（PA 的可证全函数）' }}>
+        <Thm name={{ en: '(provably total functions of PA)', zh: '（PA 的可证全函数）' }} status="proved">
           <B
             zh={<p>一个可计算函数在 PA 中可证全，当且仅当它被某个 <M t="f_\alpha" />（<M t="\alpha<\varepsilon_0" />，标准基本列）最终控制。</p>}
             en={<p>A computable function is provably total in PA if and only if it is eventually dominated by some <M t="f_\alpha" /> with <M t="\alpha<\varepsilon_0" /> (standard fundamental sequences).</p>}
@@ -329,8 +333,8 @@ export default function Chapter06() {
         </OpenProblem>
         <OpenProblem title={{ en: 'Proof-theoretic ordinals of strong theories', zh: '强理论的证明论序数' }}>
           <P
-            zh={<>序数分析目前做到二阶算术 <M t="Z_2" />。三阶算术、更不用说 ZFC 的证明论序数，至今没有人能写出来。第 7–10 章会沿着这把尺子一路往上爬。</>}
-            en={<>Ordinal analysis currently reaches second-order arithmetic <M t="Z_2" />. For third-order arithmetic, let alone ZFC, nobody can yet write the proof-theoretic ordinal down. Chapters 7–10 climb this ruler step by step.</>}
+            zh={<>序数分析的前沿是二阶算术 <M t="Z_2" />：T. Arai 2023 年的预印本（arXiv:2311.12459，对 <M t="\Pi_N" />-收集公理的序数分析）声称做到了这一步，学界仍在检验（第 10 章）。三阶算术、更不用说 ZFC 的证明论序数，至今毫无头绪。第 7–10 章会沿着这把尺子一路往上爬。</>}
+            en={<>The frontier of ordinal analysis is second-order arithmetic <M t="Z_2" />: a 2023 preprint by T. Arai (arXiv:2311.12459, an ordinal analysis of <M t="\Pi_N" />-collection) claims to reach it, and it is still being vetted (Chapter 10). For third-order arithmetic, let alone ZFC, the proof-theoretic ordinal is wide open. Chapters 7–10 climb this ruler step by step.</>}
           />
         </OpenProblem>
         <KeyIdea>

@@ -116,13 +116,10 @@ function Editor({
       <div className="btn-row">
         {colours > 1 &&
           Array.from({ length: colours }, (_, k) => (
-            <button key={k} className={`chip c07-colchip ${c === k ? 'on' : ''}`} onClick={() => setCol(k)} style={{ borderColor: COLOURS[k] }}>
+            <button key={k} className={`chip c07-colchip ${c === k ? 'on' : ''}`} onClick={() => setCol(k)} style={{ borderColor: COLOURS[k] }} title={CNAME[k].en} aria-label={CNAME[k].en}>
               <span className="c07-dot" style={{ background: COLOURS[k] }} />
-              <L {...CNAME[k]} />
             </button>
           ))}
-      </div>
-      <div className="btn-row">
         <button className="btn small" disabled={n >= maxSize} onClick={() => setTree(addChild(tree, sel, c))}>
           <L en="add child" zh="加子节点" />
         </button>

@@ -54,12 +54,12 @@ const DICT: [string, string, string][] = [
 /* Proof-theoretic ordinals (book Ch.15 table; names checked against the literature) */
 const PTO: [string, string, { en: string; zh: string }][] = [
   ['\\mathsf{PA},\\ \\mathsf{ACA}_0', '\\varepsilon_0=\\psi(0)', { en: 'Gentzen 1936 (Ch. 6)', zh: 'Gentzen 1936（第 6 章）' }],
-  ['\\mathsf{ATR}_0', '\\Gamma_0=\\psi(\\Omega^\\Omega)', { en: 'Feferman, Schütte (Ch. 7)', zh: 'Feferman、Schütte（第 7 章）' }],
+  ['\\mathsf{ATR}_0', '\\Gamma_0=\\psi(\\Omega^\\Omega)', { en: 'Friedman–McAloon–Simpson 1982 (Ch. 7)', zh: 'Friedman–McAloon–Simpson 1982（第 7 章）' }],
   ['\\mathsf{ACA}_0+\\Pi^1_2\\text{-}\\mathsf{BI}', '\\text{SVO}=\\psi(\\Omega^{\\Omega^\\omega})', { en: 'Kruskal’s theorem (Ch. 7)', zh: 'Kruskal 树定理（第 7 章）' }],
   ['\\mathsf{KP},\\ \\mathsf{ID}_1,\\ \\mathsf{ACA}+\\mathsf{BI}', '\\text{BHO}=\\psi(\\varepsilon_{\\Omega+1})', { en: 'Howard 1972', zh: 'Howard 1972' }],
   ['\\Pi^1_1\\text{-}\\mathsf{CA}_0,\\ \\mathsf{ID}_{<\\omega}', '\\text{BO}=\\psi(\\Omega_\\omega)', { en: 'Buchholz, Feferman, Pohlers, Sieg 1981', zh: 'Buchholz、Feferman、Pohlers、Sieg 1981' }],
   ['\\Pi^1_1\\text{-}\\mathsf{CA}+\\mathsf{BI},\\ \\mathsf{ID}_\\omega', '\\text{TFBO}=\\psi(\\psi_\\omega(0))', { en: 'Takeuti, Feferman, Buchholz', zh: 'Takeuti、Feferman、Buchholz' }],
-  ['\\mathsf{Z}_2', '\\psi_\\Omega(I_\\omega)\\ \\text{(Ch. 10)}', { en: 'current frontier (Arai)', zh: '目前的前沿（Arai）' }],
+  ['\\mathsf{Z}_2', '\\psi_\\Omega(I_\\omega)\\ \\text{(Ch. 10)}', { en: 'claimed in Arai’s 2023 preprint; still being vetted (Ch. 10)', zh: 'Arai 2023 年预印本给出，尚待检验（第 10 章）' }],
 ]
 
 export default function Chapter08() {
@@ -110,12 +110,8 @@ export default function Chapter08() {
       {/* ---------------------------------------------------------------- */}
       <Section id="recursive" kicker={{ en: 'A precise word', zh: '一个精确的词' }} title={{ en: 'Ordinals a computer can hold', zh: '计算机装得下的序数' }}>
         <P
-          zh={<>“写得出来”太含糊了。第 2 章给了我们一个精确的替身：<b>算法</b>。一个序数“写得出来”，就是说某个程序能把它的结构完整地交给你。</>}
-          en={<>“Writable” is too vague. Chapter 2 gave us a precise stand-in: <b>algorithms</b>. An ordinal is “writable” when some program can hand you its entire structure.</>}
-        />
-        <P
-          zh={<>怎么把一个无穷序数交给程序？不妨把它的每个位置都贴上一个自然数作标签，再让程序回答“标签 <M t="a" /> 排在标签 <M t="b" /> 前面吗？”。</>}
-          en={<>How do you hand an infinite ordinal to a program? Label each of its positions with a natural number, and let the program answer “does label <M t="a" /> come before label <M t="b" />?”</>}
+          zh={<>“写得出来”太含糊了。第 2 章给了一个精确的替身：<b>算法</b>。把无穷序数的每个位置贴上一个自然数标签，再让程序回答“标签 <M t="a" /> 排在 <M t="b" /> 前面吗？”——能这样交给程序的序数，才算写得出来。</>}
+          en={<>“Writable” is too vague; Chapter 2 gave us a precise stand-in, <b>algorithms</b>. Label each position of an infinite ordinal with a natural number and let a program answer “does label <M t="a" /> come before label <M t="b" />?” An ordinal that can be handed over this way counts as writable.</>}
         />
         <Thm kind="definition" name={{ en: 'recursive ordinal (Church–Kleene)', zh: '递归序数（Church–Kleene）' }}>
           <B
@@ -123,20 +119,12 @@ export default function Chapter08() {
             en={<p>Let <M t="D" /> be a set of natural numbers and <M t="\prec" /> a <b>well-order</b> on <M t="D" />, such that an algorithm decides, for any <M t="a,b" />, whether <M t="a\in D" /> and whether <M t="a\prec b" />, in finitely many steps. Such a <M t="(D,\prec)" /> is a <b>recursive well-order</b>; its order type is a <Term en="recursive ordinal" zh="递归序数" />.</p>}
           />
         </Thm>
-        <P
-          zh={<>同样是整个 ℕ，换一个比较程序，排出来的“长度”就完全不同。挑一个程序看看：</>}
-          en={<>The same set ℕ, sorted by a different comparison program, can have a completely different length. Pick a program:</>}
-        />
         <Widget
           title={{ en: 'One ℕ, many lengths', zh: '同一个 ℕ，不同的长度' }}
-          hint={{ en: 'Each row is a copy of ω. Hover a number to see its position.', zh: '每一行是一份 ω。鼠标悬停在数字上可以看它的位置。' }}
+          hint={{ en: 'The same ℕ, sorted by different comparison programs, has different lengths. Each row is a copy of ω (first members shown); hover a number for its position.', zh: '同一个 ℕ，换一个比较程序，排出的“长度”就不同。每一行是一份 ω（只画出开头几个）；鼠标悬停可看位置。' }}
         >
           <RecursiveOrders />
         </Widget>
-        <P
-          zh={<>“按素因子指数”那个程序只有一行，排出来的序型却是 <M t="\omega^\omega" />。“倒过来”那个程序同样可以判定，但它不是良序：0 ≻ 1 ≻ 2 ≻ … 降个没完，所以不算数。</>}
-          en={<>The “prime exponents” program is one line long, yet its order type is <M t="\omega^\omega" />. The “reversed” program is just as decidable, but it is not a well-order — 0 ≻ 1 ≻ 2 ≻ … descends forever — so it does not count.</>}
-        />
         <P
           zh={<>前几章见过的序数全都是递归的：Cantor 范式、初等序列、Veblen 范式，每一种记号都自带一个比较大小的算法。比如第 5 章的初等序列，把每个序列编成一个自然数，比较规则就是现成的程序，序型是 <M t="\varepsilon_0" />。</>}
           en={<>Every ordinal from the previous chapters is recursive: Cantor normal form, primitive sequences and Veblen normal forms all come with a comparison algorithm. Code each primitive sequence of Chapter 5 as a natural number, for instance, and its comparison rule is a program whose order type is <M t="\varepsilon_0" />.</>}
@@ -159,7 +147,7 @@ export default function Chapter08() {
           zh={<>由封闭性 (a)，递归序数从 0 开始排成连续的一段，中间没有空缺；由 (b)，这一段没有最大元。它的上确界，就是本章的主角。</>}
           en={<>By closure fact (a), the recursive ordinals form an unbroken initial stretch starting at 0; by (b), that stretch has no largest member. Its supremum is the hero of this chapter.</>}
         />
-        <Thm kind="theorem" name={{ en: 'the Church–Kleene ordinal', zh: 'Church–Kleene 序数' }}>
+        <Thm kind="theorem" name={{ en: 'the Church–Kleene ordinal (1937–38)', zh: 'Church–Kleene 序数（1937–38）' }}>
           <B
             zh={<p>令 <M t="\Omega=\omega_1^{\mathrm{CK}}" /> 为所有递归序数的上确界。那么 (i) <M t="\Omega" /> 不是递归序数——它是第一个非递归序数；(ii) <M t="\Omega" /> 是<b>可数</b>的。</p>}
             en={<p>Let <M t="\Omega=\omega_1^{\mathrm{CK}}" /> be the supremum of all recursive ordinals. Then (i) <M t="\Omega" /> is not recursive — it is the first non-recursive ordinal; (ii) <M t="\Omega" /> is <b>countable</b>.</p>}
@@ -167,14 +155,10 @@ export default function Chapter08() {
         </Thm>
         <Proof>
           <L
-            zh={<>(i) 递归序数恰好是所有 <M t="<\Omega" /> 的序数。如果 <M t="\Omega" /> 本身是递归的，就会有 <M t="\Omega<\Omega" />，矛盾。(ii) 每个递归序数至少被一个程序见证，而程序都是有限长的文本，可以排成一列 <M t="P_0,P_1,P_2,\ldots" />。所以递归序数只有可数多个，<M t="\Omega" /> 作为它们排成的序型，就是一个可数集合的良序的序型，因而可数。</>}
-            en={<>(i) The recursive ordinals are exactly the ordinals <M t="<\Omega" />. If <M t="\Omega" /> itself were recursive we would get <M t="\Omega<\Omega" />, a contradiction. (ii) Each recursive ordinal is witnessed by at least one program, and programs are finite texts that can be listed <M t="P_0,P_1,P_2,\ldots" />. So there are only countably many recursive ordinals, and <M t="\Omega" />, the order type of their list, is the order type of a well-ordered countable set — hence countable.</>}
+            zh={<>(i) 递归序数恰好是所有 <M t="<\Omega" /> 的序数；若 <M t="\Omega" /> 是递归的，就有 <M t="\Omega<\Omega" />。(ii) 程序是有限长的文本，只有可数多个，所以递归序数（即 <M t="\Omega" /> 的元素）只有可数多个：<M t="\Omega" /> 可数。</>}
+            en={<>(i) The recursive ordinals are exactly the ordinals <M t="<\Omega" />; if <M t="\Omega" /> were recursive we would get <M t="\Omega<\Omega" />. (ii) Programs are finite texts, so there are countably many of them; hence countably many recursive ordinals, i.e. elements of <M t="\Omega" />: <M t="\Omega" /> is countable.</>}
           />
         </Proof>
-        <P
-          zh={<>这个名字来自 Alonzo Church 和 Stephen Kleene（1937–38），下标 CK 正是他们的姓氏首字母。</>}
-          en={<>The name honours Alonzo Church and Stephen Kleene (1937–38); the “CK” is their initials.</>}
-        />
         <Quiz
           q={{
             zh: <p><M t="\Omega=\omega_1^{\mathrm{CK}}" /> 比我们能用算法写出的每一个序数都大。那么它是什么样的集合？</p>,
@@ -250,12 +234,12 @@ export default function Chapter08() {
             en={<p>For every <M t="\alpha\le\zeta_0" />, <M t="C(\alpha)" /> is exactly the set of ordinals <M t="<\varepsilon_\alpha" />; hence <M t="\psi(\alpha)=\varepsilon_\alpha" />. In particular <M t="\psi(0)=\varepsilon_0" /> and <M t="\psi(\zeta_0)=\varepsilon_{\zeta_0}=\zeta_0" />.</p>}
           />
         </Thm>
-        <Proof>
+        <Expand kind="proof" title={{ en: 'Proof: transfinite induction on α', zh: '证明：对 α 作超限归纳' }}>
           <L
             zh={<>对 <M t="\alpha" /> 作超限归纳，设命题对所有 <M t="\beta<\alpha" /> 成立，于是对 <M t="\eta<\alpha" /> 有 <M t="\psi(\eta)=\varepsilon_\eta" />。<b>(⊆)</b> 原始砖和所有 <M t="\psi(\eta)=\varepsilon_\eta" />（<M t="\eta<\alpha" />）都小于 <M t="\varepsilon_\alpha" />，而 ε 数对加、乘、幂封闭（因为 <M t="\varepsilon=\omega^\varepsilon" />），对 <M t="n" /> 归纳即得 <M t="C(\alpha)\subseteq\varepsilon_\alpha" />。<b>(⊇)</b> 对 <M t="\gamma<\varepsilon_\alpha" /> 作强归纳。若 <M t="\gamma" /> 不是 ε 数，它的 Cantor 范式 <M t="\omega^{\beta_1}c_1+\cdots+\omega^{\beta_m}c_m" /> 中每个 <M t="\beta_i<\gamma" />，由归纳假设可搭，故 <M t="\gamma" /> 可搭。若 <M t="\gamma=\varepsilon_\eta" />，则 <M t="\eta<\alpha" />，且 <M t="\eta<\varepsilon_\eta=\gamma" />，由归纳假设 <M t="\eta\in C(\alpha)" />，于是砖块 <M t="\psi(\eta)=\varepsilon_\eta=\gamma" /> 可用。注意 <M t="\alpha=\zeta_0" /> 时这里用到了 <M t="\eta<\varepsilon_\eta" />，它对 <M t="\eta<\zeta_0" /> 成立。</>}
             en={<>Transfinite induction on <M t="\alpha" />: assume the claim below <M t="\alpha" />, so <M t="\psi(\eta)=\varepsilon_\eta" /> for <M t="\eta<\alpha" />. <b>(⊆)</b> The starting bricks and all <M t="\psi(\eta)=\varepsilon_\eta" /> with <M t="\eta<\alpha" /> lie below <M t="\varepsilon_\alpha" />, and ε-numbers are closed under sums, products and powers (as <M t="\varepsilon=\omega^\varepsilon" />); induct on <M t="n" />. <b>(⊇)</b> Strong induction on <M t="\gamma<\varepsilon_\alpha" />. If <M t="\gamma" /> is not an ε-number, each exponent in its Cantor normal form <M t="\omega^{\beta_1}c_1+\cdots+\omega^{\beta_m}c_m" /> satisfies <M t="\beta_i<\gamma" />, so <M t="\gamma" /> is buildable. If <M t="\gamma=\varepsilon_\eta" />, then <M t="\eta<\alpha" /> and <M t="\eta<\varepsilon_\eta=\gamma" />, so <M t="\eta\in C(\alpha)" /> by hypothesis and the brick <M t="\psi(\eta)=\varepsilon_\eta=\gamma" /> is available. At <M t="\alpha=\zeta_0" /> this uses <M t="\eta<\varepsilon_\eta" />, which holds for all <M t="\eta<\zeta_0" />.</>}
           />
-        </Proof>
+        </Expand>
         <Expand kind="detail" title={{ en: 'Reading Def. 5.3 exactly', zh: '精读定义 5.3' }}>
           <P
             zh={<>书中 <M t="C^{n+1}" /> 的公式只列出了“新元素”，但它的例子（如 <M t="C^1(0)\ni0,1,\omega" />）表明集合是累积的，所以这里写成 <M t="C^n\cup\{\ldots\}" />。按这个读法，砖块机算出 <M t="C^1(0)=\{0,1,2,\omega,\omega+1,\omega\cdot2,\omega^2,\omega^\omega\}" />，与书一致。约定 <M t="0^0=1" />，对 <M t="\delta>0" /> 有 <M t="0^\delta=0" />。</>}
@@ -359,26 +343,26 @@ export default function Chapter08() {
         />
         <Thm kind="fact" status="convention" name={{ en: 'the fundamental sequences used in this course', zh: '本课程采用的基本列' }}>
           <B
-            zh={<p>对含 <M t="\Omega" /> 的极限，取 <M t="\psi(\#\ast\Omega)[0]=\psi(\#)" />，<M t="\psi(\#\ast\Omega)[k+1]=\psi(\#\ast\psi(\#\ast\Omega)[k])" />（书中式 5.316–5.318）；若参数末尾是裸的 <M t="\Omega" />，<M t="\#" /> 取 0。其余：<M t="\omega[k]=k" />；<M t="\psi(0)[0]=\omega" />，<M t="\psi(0)[k+1]=\omega^{\psi(0)[k]}" />；<M t="\psi(\beta+1)[0]=\psi(\beta)" />，<M t="\psi(\beta+1)[k+1]=\psi(\beta)^{\psi(\beta+1)[k]}" />；末尾是递归极限时，<M t="[k]" /> 直接传进去。</p>}
-            en={<p>For limits involving <M t="\Omega" />: <M t="\psi(\#\ast\Omega)[0]=\psi(\#)" /> and <M t="\psi(\#\ast\Omega)[k+1]=\psi(\#\ast\psi(\#\ast\Omega)[k])" /> (book eqs. 5.316–5.318); if the argument ends in a bare <M t="\Omega" />, <M t="\#" /> is 0. Otherwise: <M t="\omega[k]=k" />; <M t="\psi(0)[0]=\omega" />, <M t="\psi(0)[k+1]=\omega^{\psi(0)[k]}" />; <M t="\psi(\beta+1)[0]=\psi(\beta)" />, <M t="\psi(\beta+1)[k+1]=\psi(\beta)^{\psi(\beta+1)[k]}" />; when the argument ends in a recursive limit, <M t="[k]" /> is passed inside.</p>}
+            zh={<p>对含 <M t="\Omega" /> 的极限，取 <M t="\psi(\#\ast\Omega)[0]=\psi(\#)" />，<M t="\psi(\#\ast\Omega)[k+1]=\psi(\#\ast\psi(\#\ast\Omega)[k])" />（书中式 5.316–5.318）；若参数末尾是裸的 <M t="\Omega" />，<M t="\#" /> 取 0。其余：<M t="\omega[k]=k" />；<M t="\psi(0)[0]=1" />，<M t="\psi(0)[k+1]=\omega^{\psi(0)[k]}" />（即 <M t="\varepsilon_0[k]=\omega\uparrow\uparrow k" />，与第 4 章一致）；<M t="\psi(\beta+1)[0]=\psi(\beta)" />，<M t="\psi(\beta+1)[k+1]=\psi(\beta)^{\psi(\beta+1)[k]}" />；末尾是递归极限时，<M t="[k]" /> 直接传进去。</p>}
+            en={<p>For limits involving <M t="\Omega" />: <M t="\psi(\#\ast\Omega)[0]=\psi(\#)" /> and <M t="\psi(\#\ast\Omega)[k+1]=\psi(\#\ast\psi(\#\ast\Omega)[k])" /> (book eqs. 5.316–5.318); if the argument ends in a bare <M t="\Omega" />, <M t="\#" /> is 0. Otherwise: <M t="\omega[k]=k" />; <M t="\psi(0)[0]=1" />, <M t="\psi(0)[k+1]=\omega^{\psi(0)[k]}" /> (so <M t="\varepsilon_0[k]=\omega\uparrow\uparrow k" />, as in Chapter 4); <M t="\psi(\beta+1)[0]=\psi(\beta)" />, <M t="\psi(\beta+1)[k+1]=\psi(\beta)^{\psi(\beta+1)[k]}" />; when the argument ends in a recursive limit, <M t="[k]" /> is passed inside.</p>}
           />
         </Thm>
-        <Widget
-          title={{ en: 'Folding stepper: one Ω', zh: '折叠步进器：一个 Ω' }}
-          hint={{ en: 'The engine applies the rules literally. Click any term [k] to zoom into it; known values appear in gold.', zh: '引擎逐字执行规则。点击任意一项 [k] 进入它；已知的值用金色标出。' }}
-        >
-          <FoldStepper presets={PRESETS_ONE} />
-        </Widget>
         <Expand kind="detail" title={{ en: 'Conventions differ — and why it does not matter much', zh: '约定各不相同——以及为什么影响不大' }}>
           <P
             zh={<>书中不同小节的起始项并不统一：定义 5.1 取 <M t="\psi(\alpha+1)[0]=0" />；式 5.213 取 <M t="\psi(\Omega^\Omega)[0]=\psi(0)" />，而式 5.341 取 <M t="\psi(\Omega)" />；式 5.628–5.637 在第 0 项把 <M t="\Omega" /> 换成 0（乘方时换成 1）。这些选择给出同样的极限，所以序数的<b>值</b>不变。</>}
             en={<>The book is not uniform about first terms: Def. 5.1 uses <M t="\psi(\alpha+1)[0]=0" />; eq. 5.213 starts <M t="\psi(\Omega^\Omega)" /> at <M t="\psi(0)" /> while eq. 5.341 starts it at <M t="\psi(\Omega)" />; eqs. 5.628–5.637 replace <M t="\Omega" /> by 0 (by 1 under exponentiation) at step 0. All give the same limits, so the <b>values</b> of the ordinals are unchanged.</>}
           />
           <P
-            zh={<>但第 4 章强调过：基本列是 FGH 定义的一部分。不同约定下，<M t="f_\alpha(n)" /> 的具体数值不同，只是增长率的刻度不受影响。本课程固定采用上面的“<M t="\psi(\#)" /> 起步”约定。步进器展开前会先把末尾的 <M t="\Omega" /> 拆出来，例如把 <M t="\Omega\cdot2" /> 写成 <M t="\Omega+\Omega" />，把 <M t="\Omega^{\Omega+1}" /> 写成 <M t="\Omega^\Omega\cdot\Omega" />。</>}
-            en={<>But as Chapter 4 stressed, fundamental sequences are part of the FGH definition: different conventions change the exact numbers <M t="f_\alpha(n)" />, though not the growth marks. This course fixes the “start at <M t="\psi(\#)" />” convention stated in the box. Before expanding, the stepper splits off the last <M t="\Omega" />: <M t="\Omega\cdot2" /> becomes <M t="\Omega+\Omega" />, and <M t="\Omega^{\Omega+1}" /> becomes <M t="\Omega^\Omega\cdot\Omega" />.</>}
+            zh={<>但第 4 章强调过：基本列是 FGH 定义的一部分。不同约定下，<M t="f_\alpha(n)" /> 的具体数值不同，只是增长率的刻度不受影响。本课程固定采用“<M t="\psi(\#)" /> 起步”的约定（见本节的约定框）。步进器展开前会先把末尾的 <M t="\Omega" /> 拆出来，例如把 <M t="\Omega\cdot2" /> 写成 <M t="\Omega+\Omega" />，把 <M t="\Omega^{\Omega+1}" /> 写成 <M t="\Omega^\Omega\cdot\Omega" />。</>}
+            en={<>But as Chapter 4 stressed, fundamental sequences are part of the FGH definition: different conventions change the exact numbers <M t="f_\alpha(n)" />, though not the growth marks. This course fixes the “start at <M t="\psi(\#)" />” convention of this section’s convention box. Before expanding, the stepper splits off the last <M t="\Omega" />: <M t="\Omega\cdot2" /> becomes <M t="\Omega+\Omega" />, and <M t="\Omega^{\Omega+1}" /> becomes <M t="\Omega^\Omega\cdot\Omega" />.</>}
           />
         </Expand>
+        <Widget
+          title={{ en: 'Folding stepper: one Ω', zh: '折叠步进器：一个 Ω' }}
+          hint={{ en: 'The engine applies the rules literally. Gold: the layer found (bad root); red: the Ω being folded; pink: the copies (bad part). Click a term [k] to zoom in; known values appear on the right.', zh: '引擎逐字执行规则。金色：找到的层（坏根）；红色：被展开的 Ω；粉色：副本（坏部）。点击任意一项 [k] 进入它；已知的值显示在右侧。' }}
+        >
+          <FoldStepper presets={PRESETS_ONE} />
+        </Widget>
       </Section>
 
       {/* ---------------------------------------------------------------- */}
@@ -474,12 +458,8 @@ export default function Chapter08() {
           en={<>BHO is no longer the end but an ordinary expression to keep working on: <M t="\psi(\psi_1(0)+1)" />, <M t="\psi(\psi_1(1))" />, <M t="\psi(\psi_1(\Omega))" />, and upward.</>}
         />
 
-        <H3 en="Which layer gets copied?" zh="复制哪一层？" />
-        <P
-          zh={<>现在一个表达式里可能有好几层 <M t="\psi_m" />，又有好几种 <M t="\Omega_n" />。展开最后那个 <M t="\Omega_n" /> 时，该把哪一层 <M t="\psi" /> 复制进去？书中的答案分两步：<b>找层</b>，再<b>改名</b>。</>}
-          en={<>An expression may now contain several layers <M t="\psi_m" /> and several kinds of <M t="\Omega_n" />. When the last <M t="\Omega_n" /> unfolds, which <M t="\psi" /> layer gets copied in? The book’s answer has two steps: <b>find the layer</b>, then <b>rename</b>.</>}
-        />
-        <Thm kind="fact" status="convention" name={{ en: 'find the layer, rename the copies (book eqs. 5.564–5.571)', zh: '找层与补层（书中式 5.564–5.571）' }}>
+        <H3 en="Which layer gets copied? Find it, then rename" zh="复制哪一层？先找层，再改名" />
+        <Thm kind="fact" status="convention" name={{ en: 'find the layer, rename the copies (book eqs. 5.564–5.571)', zh: '找层与改名（书中式 5.564–5.571）' }}>
           <B
             zh={
               <ol>
@@ -499,7 +479,7 @@ export default function Chapter08() {
         </Thm>
         <Widget
           title={{ en: 'Folding stepper: many Ω’s', zh: '折叠步进器：多个 Ω' }}
-          hint={{ en: 'Gold: the layer found. Red: the Ωₙ being unfolded. Pink: the renamed copies.', zh: '金色：找到的层。红色：被展开的 Ωₙ。粉色：改了名的副本。' }}
+          hint={{ en: 'Gold: the layer found (bad root). Red: the Ωₙ being unfolded. Pink: the renamed copies (bad part).', zh: '金色：找到的层（坏根）。红色：被展开的 Ωₙ。粉色：改了名的副本（坏部）。' }}
         >
           <FoldStepper presets={PRESETS_MULTI} />
         </Widget>
@@ -590,30 +570,27 @@ export default function Chapter08() {
           zh={<>第 6 章的 Kirby–Paris 九头蛇对应 <M t="\varepsilon_0" />。1987 年，Buchholz 给九头蛇的每个节点贴上一个标签 <M t="0,1,2,\ldots" /> 或 <M t="\omega" />，让它强到了 Buchholz <M t="\psi_B" /> 的整个范围。</>}
           en={<>Chapter 6’s Kirby–Paris hydra lives at <M t="\varepsilon_0" />. In 1987 Buchholz gave every node a label <M t="0,1,2,\ldots" /> or <M t="\omega" />, making the hydra as strong as the whole range of his <M t="\psi_B" />.</>}
         />
+        <H3 en="The rules of the fight" zh="搏斗规则" />
         <Thm kind="definition" name={{ en: 'Buchholz hydra (rules as in the book, §21.27)', zh: 'Buchholz 九头蛇（规则同书中 §21.27）' }}>
           <B
             zh={
               <>
-                <p>九头蛇是一棵有根树：根标为 +，紧挨根的节点标 0，其余节点标 <M t="0,1,2,\ldots" /> 或 <M t="\omega" />。第 <M t="n" /> 回合（<M t="n=1,2,\ldots" />）你砍掉一个头（叶子）<M t="\sigma" />，记它的父节点为 <M t="\tau" />：</p>
+                <p>有根树：根标 +，紧挨根的节点标 0，其余节点标 <M t="0,1,2,\ldots" /> 或 <M t="\omega" />。第 <M t="n" /> 回合（<M t="n\ge1" />）砍掉一个头（叶子）<M t="\sigma" />，其父节点为 <M t="\tau" />（只剩根时你赢）：</p>
                 <ol>
-                  <li><M t="\sigma" /> 标 0 且 <M t="\tau" /> 是根：直接删掉。</li>
-                  <li><M t="\sigma" /> 标 0 且 <M t="\tau" /> 不是根：删掉 <M t="\sigma" />，再把（删完后的）<M t="\tau" /> 连同子树复制 <M t="n" /> 份，接到 <M t="\tau" /> 的父节点上。</li>
-                  <li><M t="\sigma" /> 标 <M t="u\ge1" />：往下找第一个标签 <M t="v<u" /> 的节点 <M t="\varepsilon" />。复制以 <M t="\varepsilon" /> 为根的子树，把副本的根改标 <M t="u-1" />、副本里的 <M t="\sigma" /> 改标 0，用这个副本替换 <M t="\sigma" />。</li>
-                  <li><M t="\sigma" /> 标 <M t="\omega" />：把它改标为 <M t="n+1" />。</li>
+                  <li><M t="\sigma" /> 标 0：若 <M t="\tau" /> 是根，<M t="\sigma" /> 直接消失；否则删掉 <M t="\sigma" />，把剩下的 <M t="\tau" />（连同子树）复制 <M t="n" /> 份，接到 <M t="\tau" /> 的父节点上。</li>
+                  <li><M t="\sigma" /> 标 <M t="u\ge1" />：往下找第一个标签 <M t="v<u" /> 的节点 <M t="\varepsilon" />，用 <M t="\varepsilon" /> 子树的副本替换 <M t="\sigma" />，副本的根改标 <M t="u-1" />，副本里的 <M t="\sigma" /> 改标 0。</li>
+                  <li><M t="\sigma" /> 标 <M t="\omega" />：改标为 <M t="n+1" />。</li>
                 </ol>
-                <p>只剩下根时，你赢。</p>
               </>
             }
             en={
               <>
-                <p>A hydra is a rooted tree: the root is labelled +, nodes next to the root are labelled 0, other nodes carry <M t="0,1,2,\ldots" /> or <M t="\omega" />. In round <M t="n" /> (<M t="n=1,2,\ldots" />) you cut a head (leaf) <M t="\sigma" /> with parent <M t="\tau" />:</p>
+                <p>A rooted tree: root labelled +, nodes next to the root labelled 0, all others <M t="0,1,2,\ldots" /> or <M t="\omega" />. In round <M t="n\ge1" /> you cut a head (leaf) <M t="\sigma" /> with parent <M t="\tau" /> (you win when only the root is left):</p>
                 <ol>
-                  <li><M t="\sigma" /> labelled 0 and <M t="\tau" /> the root: it simply disappears.</li>
-                  <li><M t="\sigma" /> labelled 0, <M t="\tau" /> not the root: remove <M t="\sigma" />, then attach <M t="n" /> copies of (the trimmed) <M t="\tau" /> with its subtree to <M t="\tau" />’s parent.</li>
-                  <li><M t="\sigma" /> labelled <M t="u\ge1" />: go down to the first node <M t="\varepsilon" /> with label <M t="v<u" />. Copy the subtree rooted at <M t="\varepsilon" />, relabel the copy’s root <M t="u-1" /> and the copy of <M t="\sigma" /> 0, and put this copy in place of <M t="\sigma" />.</li>
+                  <li><M t="\sigma" /> labelled 0: if <M t="\tau" /> is the root, <M t="\sigma" /> just disappears; otherwise remove <M t="\sigma" /> and attach <M t="n" /> copies of the trimmed <M t="\tau" /> (with its subtree) to <M t="\tau" />’s parent.</li>
+                  <li><M t="\sigma" /> labelled <M t="u\ge1" />: go down to the first node <M t="\varepsilon" /> with label <M t="v<u" /> and replace <M t="\sigma" /> by a copy of <M t="\varepsilon" />’s subtree, with the copy’s root relabelled <M t="u-1" /> and the copy of <M t="\sigma" /> relabelled 0.</li>
                   <li><M t="\sigma" /> labelled <M t="\omega" />: relabel it <M t="n+1" />.</li>
                 </ol>
-                <p>You win when only the root is left.</p>
               </>
             }
           />
@@ -629,8 +606,8 @@ export default function Chapter08() {
           en={<>Start with the <M t="\omega^\omega" /> hydra and keep cutting the rightmost head: it dies on cut 37. With only 0-labels this is Chapter 6’s Kirby–Paris hydra.</>}
         />
         <P
-          zh={<>规则 3 正是“找层再改名”：往下第一个标签更小的节点就是<b>坏根</b>，复制它的子树就是复制<b>坏部</b>，副本的根改标 <M t="u-1" />，对应副本改名为 <M t="\psi_{n-1}" />。标签 <M t="u" /> 就是 <M t="\psi_u" />：</>}
-          en={<>Rule 3 is literally “find the layer, then rename”: the first node below with a smaller label is the <b>bad root</b>, copying its subtree copies the <b>bad part</b>, and relabelling the copy’s root <M t="u-1" /> matches renaming the copies <M t="\psi_{n-1}" />. Label <M t="u" /> is <M t="\psi_u" />:</>}
+          zh={<>规则 2 正是“找层再改名”：往下第一个标签更小的节点就是<b>坏根</b>，复制它的子树就是复制<b>坏部</b>，副本的根改标 <M t="u-1" />，对应副本改名为 <M t="\psi_{n-1}" />。标签 <M t="u" /> 就是 <M t="\psi_u" />：</>}
+          en={<>Rule 2 is literally “find the layer, then rename”: the first node below with a smaller label is the <b>bad root</b>, copying its subtree copies the <b>bad part</b>, and relabelling the copy’s root <M t="u-1" /> matches renaming the copies <M t="\psi_{n-1}" />. Label <M t="u" /> is <M t="\psi_u" />:</>}
         />
         <MB t="(+(0(1)))=\varepsilon_0,\quad (+(0(1(1))))=\zeta_0,\quad (+(0(1(1(1)))))=\Gamma_0," />
         <MB t="(+(0(1(1(1(1))))))=\text{LVO},\quad (+(0(2)))=\text{BHO},\quad (+(0(\omega)))=\text{BO}." />
@@ -683,8 +660,8 @@ export default function Chapter08() {
           </table>
         </div>
         <P
-          zh={<>表中的等式是证明论的定理（<Term en="ordinal analysis" zh="序数分析" />）。最后一行 <M t="\mathsf Z_2" /> 是二阶算术，是目前序数分析的前沿，第 10 章再谈。</>}
-          en={<>The equalities in the table are theorems of <Term en="ordinal analysis" zh="序数分析" />. The last row, <M t="\mathsf Z_2" />, is second-order arithmetic, the current frontier, revisited in Chapter 10.</>}
+          zh={<>表中的等式是证明论的定理（<Term en="ordinal analysis" zh="序数分析" />）。最后一行 <M t="\mathsf Z_2" /> 是二阶算术，是目前序数分析的前沿：Arai 2023 年的预印本给出了它的序数，但还没有经过学界充分检验，第 10 章再谈。</>}
+          en={<>The equalities in the table are theorems of <Term en="ordinal analysis" zh="序数分析" />. The last row, <M t="\mathsf Z_2" />, is second-order arithmetic, the current frontier: Arai’s 2023 preprint gives its ordinal, but the analysis has not yet been fully vetted. Chapter 10 returns to it.</>}
         />
         <Expand kind="detail" title={{ en: 'What these theories are, in one line each', zh: '这些理论各是什么（每个一句话）' }}>
           <B
@@ -712,8 +689,8 @@ export default function Chapter08() {
         />
         <Expand kind="detail" title={{ en: 'A naming slip to watch for', zh: '一个要当心的命名错误' }}>
           <P
-            zh={<>《大数理论》第 15 章的表（式 15.174）把 <M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" /> 的 PTO 写作 <M t="\psi(\varepsilon_{\Omega_\omega+1})" />（Buchholz 记法），这一行常被标成“BO”。这个名字是错的：该序数是 Takeuti–Feferman–Buchholz 序数 TFBO（书中式 16.83 与 5.725 也这么称呼它），而 BO <M t="=\psi(\Omega_\omega)" /> 属于 <M t="\Pi^1_1\text{-}\mathsf{CA}_0" />。本课程遵循标准文献的命名。</>}
-            en={<>The PTO table in Chapter 15 of 《大数理论》 (eq. 15.174) gives <M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" /> the ordinal <M t="\psi(\varepsilon_{\Omega_\omega+1})" /> (Buchholz notation), and that row is often labelled “BO.” The label is wrong: this ordinal is the Takeuti–Feferman–Buchholz ordinal TFBO (as the book’s own eqs. 16.83 and 5.725 call it), while BO <M t="=\psi(\Omega_\omega)" /> belongs to <M t="\Pi^1_1\text{-}\mathsf{CA}_0" />. This course follows the standard naming in the literature.</>}
+            zh={<>《大数理论》第 15 章的表（式 15.174）把 <M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" /> 的 PTO 写作 <M t="\psi(\varepsilon_{\Omega_\omega+1})" />（Buchholz 记法），这个序数是 Takeuti–Feferman–Buchholz 序数 TFBO（书中式 16.83 与 5.725 也这样称呼它），不要和 BO <M t="=\psi(\Omega_\omega)" /> 混淆——后者属于更弱的 <M t="\Pi^1_1\text{-}\mathsf{CA}_0" />。两者名字相近，网上的整理资料偶尔会把它们弄混。</>}
+            en={<>The PTO table in Chapter 15 of 《大数理论》 (eq. 15.174) gives <M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" /> the ordinal <M t="\psi(\varepsilon_{\Omega_\omega+1})" /> (Buchholz notation), This ordinal is the Takeuti–Feferman–Buchholz ordinal TFBO (as the book’s eqs. 16.83 and 5.725 call it). Do not confuse it with BO <M t="=\psi(\Omega_\omega)" />, which belongs to the weaker <M t="\Pi^1_1\text{-}\mathsf{CA}_0" />; the similar names are easy to mix up, and online summaries occasionally do.</>}
           />
         </Expand>
       </Section>
@@ -734,20 +711,16 @@ export default function Chapter08() {
         >
           <CatchUp />
         </Widget>
-        <Thm name={{ en: 'Girard 1981', zh: 'Girard 1981' }}>
+        <Thm name={{ en: 'Girard 1981; Wainer 1989', zh: 'Girard 1981；Wainer 1989' }}>
           <B
-            zh={<p>在合适的基本列系统下：(i) <M t="g_{\text{BHO}}" /> 与 <M t="f_{\varepsilon_0}" /> 增长率相当；(ii) 第一个满足 <M t="g_\alpha\approx f_\alpha" /> 的 <M t="\alpha" /> 是 <M t="\psi(\Omega_\omega)=" /> BO。</p>}
-            en={<p>For suitable systems of fundamental sequences: (i) <M t="g_{\text{BHO}}" /> grows like <M t="f_{\varepsilon_0}" />; (ii) the first <M t="\alpha" /> with <M t="g_\alpha\approx f_\alpha" /> is <M t="\psi(\Omega_\omega)=" /> BO.</p>}
+            zh={<p>在合适的基本列系统下：(i) <M t="g_{\text{BHO}}" /> 与 <M t="f_{\varepsilon_0}" /> 增长率相当；(ii) 第一个满足 <M t="g_\alpha\approx f_\alpha" /> 的 <M t="\alpha" /> 是 <M t="\psi(\Omega_\omega)=" /> BO，书中写作 <M t="f_{\text{BO}}(n-1)\le g_{\text{BO}}(n)\le f_{\text{BO}}(n+1)" />。在 BO 这一点上，用数造出 BO 级别快的函数，和用 <M t="\omega" /> 造出 BO 本身，难度相同。</p>}
+            en={<p>For suitable systems of fundamental sequences: (i) <M t="g_{\text{BHO}}" /> grows like <M t="f_{\varepsilon_0}" />; (ii) the first <M t="\alpha" /> with <M t="g_\alpha\approx f_\alpha" /> is <M t="\psi(\Omega_\omega)=" /> BO; the book states it as <M t="f_{\text{BO}}(n-1)\le g_{\text{BO}}(n)\le f_{\text{BO}}(n+1)" />. At BO, building a BO-fast function out of numbers is as hard as building the ordinal BO out of <M t="\omega" />.</p>}
           />
         </Thm>
-        <P
-          zh={<>书中给出的精确形式是 <M t="f_{\text{BO}}(n-1)\le g_{\text{BO}}(n)\le f_{\text{BO}}(n+1)" />。在 BO 这一点上，用数从下往上造出一个 BO 级别快的函数，和用 <M t="\omega" /> 从下往上造出 BO 本身，难度完全相同。</>}
-          en={<>The book states it as <M t="f_{\text{BO}}(n-1)\le g_{\text{BO}}(n)\le f_{\text{BO}}(n+1)" />. At BO, building a BO-fast function out of numbers is exactly as hard as building the ordinal BO out of <M t="\omega" />.</>}
-        />
         <Caution>
           <L
-            zh={<>追平点强烈依赖基本列的选取。Cichon 和 Wainer 的基本列在 <M t="\varepsilon_0" /> 处就追平；某些 Buchholz 式的基本列甚至在 <M t="\omega^2" /> 就追平。Wainer 本人曾误以为追平点在 <M t="\Gamma_0" />，1989 年才公开更正。“在 BO 处追平”是对“自然”基本列而言的。</>}
-            en={<>The catch-up point depends heavily on the fundamental sequences. With Cichon and Wainer’s, the hierarchies already meet at <M t="\varepsilon_0" />; with some Buchholz-style ones, as early as <M t="\omega^2" />. Wainer himself once believed the meeting point was <M t="\Gamma_0" /> and published the correction in 1989. “They meet at BO” refers to the “natural” fundamental sequences.</>}
+            zh={<>追平点强烈依赖基本列的选取。例如换用 Cichon 的基本列，Weiermann 证明了对 <M t="\alpha<\varepsilon_0" /> 和 <M t="n\ge3" /> 有 <M t="g_{\omega^{\omega\cdot2+\alpha+\omega}}(n)\ge f_\alpha(n)" />，两者在 <M t="\varepsilon_0" /> 附近就已追平；他还构造过另一种基本列，让追平点落在 <M t="\Gamma_0" />。“在 BO 处追平”是对通常那种“自然”基本列而言的。</>}
+            en={<>The catch-up point depends heavily on the fundamental sequences. With Cichon’s sequences, for instance, Weiermann proved <M t="g_{\omega^{\omega\cdot2+\alpha+\omega}}(n)\ge f_\alpha(n)" /> for <M t="\alpha<\varepsilon_0" /> and <M t="n\ge3" />, so the two meet already around <M t="\varepsilon_0" />; he also built sequences under which they meet at <M t="\Gamma_0" />. “They meet at BO” refers to the usual, “natural” fundamental sequences.</>}
           />
         </Caution>
         <KeyIdea>
@@ -772,6 +745,7 @@ export default function Chapter08() {
           zh={<>本章新增的刻度都是递归序数，远在 <M t="\omega_1^{\mathrm{CK}}" /> 之下。<M t="\Omega" /> 只是借来的“脚手架”，最后折叠出来的仍是算法装得下的序数。</>}
           en={<>Every new mark in this chapter is a recursive ordinal, far below <M t="\omega_1^{\mathrm{CK}}" />. <M t="\Omega" /> is only borrowed scaffolding; what comes out of the fold is still an ordinal an algorithm can hold.</>}
         />
+        <H3 en="Open problems" zh="悬而未决的问题" />
         <OpenProblem title={{ en: 'A rigorous, unified googological OCF', zh: '严格、统一的大数 OCF' }}>
           <P
             zh={<>EBO 以上，社区的 OCF 用法“非常混乱”，各人的折叠规则不同。证明论里的 OCF 严格，但很少有大数爱好者真正掌握。把两者接起来，是悬而未决的工作。</>}
