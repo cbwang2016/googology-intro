@@ -53,13 +53,13 @@ const DICT: [string, string, string][] = [
 
 /* Proof-theoretic ordinals (book Ch.15 table; names checked against the literature) */
 const PTO: [string, string, { en: string; zh: string }][] = [
-  ['\\mathsf{PA},\\ \\mathsf{ACA}_0', '\\varepsilon_0=\\psi(0)', { en: 'Gentzen 1936 (Ch. 6)', zh: 'Gentzen 1936（第 6 章）' }],
-  ['\\mathsf{ATR}_0', '\\Gamma_0=\\psi(\\Omega^\\Omega)', { en: 'Friedman–McAloon–Simpson 1982 (Ch. 7)', zh: 'Friedman–McAloon–Simpson 1982（第 7 章）' }],
-  ['\\mathsf{ACA}_0+\\Pi^1_2\\text{-}\\mathsf{BI}', '\\text{SVO}=\\psi(\\Omega^{\\Omega^\\omega})', { en: 'Kruskal’s theorem (Ch. 7)', zh: 'Kruskal 树定理（第 7 章）' }],
+  ['\\mathsf{PA},\\ \\mathsf{ACA}_0', '\\varepsilon_0=\\psi(0)', { en: 'Gentzen 1936', zh: 'Gentzen 1936' }],
+  ['\\mathsf{ATR}_0', '\\Gamma_0=\\psi(\\Omega^\\Omega)', { en: 'Friedman–McAloon–Simpson 1982', zh: 'Friedman–McAloon–Simpson 1982' }],
+  ['\\mathsf{ACA}_0+\\Pi^1_2\\text{-}\\mathsf{BI}', '\\text{SVO}=\\psi(\\Omega^{\\Omega^\\omega})', { en: 'Rathjen–Weiermann 1993', zh: 'Rathjen–Weiermann 1993' }],
   ['\\mathsf{KP},\\ \\mathsf{ID}_1,\\ \\mathsf{ACA}+\\mathsf{BI}', '\\text{BHO}=\\psi(\\varepsilon_{\\Omega+1})', { en: 'Howard 1972', zh: 'Howard 1972' }],
-  ['\\Pi^1_1\\text{-}\\mathsf{CA}_0,\\ \\mathsf{ID}_{<\\omega}', '\\text{BO}=\\psi(\\Omega_\\omega)', { en: 'Buchholz, Feferman, Pohlers, Sieg 1981', zh: 'Buchholz、Feferman、Pohlers、Sieg 1981' }],
-  ['\\Pi^1_1\\text{-}\\mathsf{CA}+\\mathsf{BI},\\ \\mathsf{ID}_\\omega', '\\text{TFBO}=\\psi(\\psi_\\omega(0))', { en: 'Takeuti, Feferman, Buchholz', zh: 'Takeuti、Feferman、Buchholz' }],
-  ['\\mathsf{Z}_2', '\\psi_\\Omega(I_\\omega)\\ \\text{(Ch. 10)}', { en: 'claimed in Arai’s 2023 preprint; still being vetted (Ch. 10)', zh: 'Arai 2023 年预印本给出，尚待检验（第 10 章）' }],
+  ['\\Pi^1_1\\text{-}\\mathsf{CA}_0,\\ \\mathsf{ID}_{<\\omega}', '\\text{BO}=\\psi(\\Omega_\\omega)', { en: 'Buchholz–Feferman–Pohlers–Sieg 1981', zh: 'Buchholz–Feferman–Pohlers–Sieg 1981' }],
+  ['\\Pi^1_1\\text{-}\\mathsf{CA}+\\mathsf{BI},\\ \\mathsf{ID}_\\omega', '\\text{TFBO}=\\psi(\\psi_\\omega(0))', { en: 'Takeuti; Feferman; Buchholz', zh: 'Takeuti; Feferman; Buchholz' }],
+  ['\\mathsf{Z}_2', '\\psi_\\Omega(I_\\omega)\\ \\text{(Ch. 10)}', { en: 'Arai 2023 preprint, being vetted', zh: 'Arai 2023 预印本，待检验' }],
 ]
 
 export default function Chapter08() {
@@ -571,11 +571,11 @@ export default function Chapter08() {
           en={<>Chapter 6’s Kirby–Paris hydra lives at <M t="\varepsilon_0" />. In 1987 Buchholz gave every node a label <M t="0,1,2,\ldots" /> or <M t="\omega" />, making the hydra as strong as the whole range of his <M t="\psi_B" />.</>}
         />
         <H3 en="The rules of the fight" zh="搏斗规则" />
-        <Thm kind="definition" name={{ en: 'Buchholz hydra (rules as in the book, §21.27)', zh: 'Buchholz 九头蛇（规则同书中 §21.27）' }}>
+        <Thm kind="definition" name={{ en: 'Buchholz hydra (book §21.27)', zh: 'Buchholz 九头蛇（书中 §21.27）' }}>
           <B
             zh={
               <>
-                <p>有根树：根标 +，紧挨根的节点标 0，其余节点标 <M t="0,1,2,\ldots" /> 或 <M t="\omega" />。第 <M t="n" /> 回合（<M t="n\ge1" />）砍掉一个头（叶子）<M t="\sigma" />，其父节点为 <M t="\tau" />（只剩根时你赢）：</p>
+                <p>有根树，根标 +，根的孩子标 0，其余节点标 <M t="0,1,2,\ldots" /> 或 <M t="\omega" />。第 <M t="n\ge1" /> 回合砍掉头 <M t="\sigma" />（父节点 <M t="\tau" />），只剩根时你赢：</p>
                 <ol>
                   <li><M t="\sigma" /> 标 0：若 <M t="\tau" /> 是根，<M t="\sigma" /> 直接消失；否则删掉 <M t="\sigma" />，把剩下的 <M t="\tau" />（连同子树）复制 <M t="n" /> 份，接到 <M t="\tau" /> 的父节点上。</li>
                   <li><M t="\sigma" /> 标 <M t="u\ge1" />：往下找第一个标签 <M t="v<u" /> 的节点 <M t="\varepsilon" />，用 <M t="\varepsilon" /> 子树的副本替换 <M t="\sigma" />，副本的根改标 <M t="u-1" />，副本里的 <M t="\sigma" /> 改标 0。</li>
@@ -585,7 +585,7 @@ export default function Chapter08() {
             }
             en={
               <>
-                <p>A rooted tree: root labelled +, nodes next to the root labelled 0, all others <M t="0,1,2,\ldots" /> or <M t="\omega" />. In round <M t="n\ge1" /> you cut a head (leaf) <M t="\sigma" /> with parent <M t="\tau" /> (you win when only the root is left):</p>
+                <p>A rooted tree; root labelled +, its children 0, all others <M t="0,1,2,\ldots" /> or <M t="\omega" />. In round <M t="n\ge1" /> cut a head <M t="\sigma" /> (parent <M t="\tau" />); you win when only the root is left:</p>
                 <ol>
                   <li><M t="\sigma" /> labelled 0: if <M t="\tau" /> is the root, <M t="\sigma" /> just disappears; otherwise remove <M t="\sigma" /> and attach <M t="n" /> copies of the trimmed <M t="\tau" /> (with its subtree) to <M t="\tau" />’s parent.</li>
                   <li><M t="\sigma" /> labelled <M t="u\ge1" />: go down to the first node <M t="\varepsilon" /> with label <M t="v<u" /> and replace <M t="\sigma" /> by a copy of <M t="\varepsilon" />’s subtree, with the copy’s root relabelled <M t="u-1" /> and the copy of <M t="\sigma" /> relabelled 0.</li>
@@ -597,14 +597,10 @@ export default function Chapter08() {
         </Thm>
         <Widget
           title={{ en: 'Fight a Buchholz hydra', zh: '与 Buchholz 九头蛇搏斗' }}
-          hint={{ en: 'Click a cyan head. Gold ring: the node the rule found; pink: freshly grown nodes.', zh: '点击青色的头。金色圈：规则找到的节点；粉色：新长出来的节点。' }}
+          hint={{ en: 'Click a cyan head (gold ring: node found by the rule; pink: new growth). The ω^ω hydra has only 0-labels — Chapter 6’s Kirby–Paris hydra — and dies on cut 37 if you always cut rightmost.', zh: '点击青色的头（金圈：规则找到的节点；粉色：新长出的）。ω^ω 那条只有 0 标签，就是第 6 章的 Kirby–Paris 九头蛇；一直砍最右边，第 37 刀死去。' }}
         >
           <BuchholzHydra />
         </Widget>
-        <P
-          zh={<>先选 <M t="\omega^\omega" /> 那条蛇，一直砍最右边的头：它在第 37 刀死去。只有 0 标签时，这就是第 6 章的 Kirby–Paris 九头蛇。</>}
-          en={<>Start with the <M t="\omega^\omega" /> hydra and keep cutting the rightmost head: it dies on cut 37. With only 0-labels this is Chapter 6’s Kirby–Paris hydra.</>}
-        />
         <P
           zh={<>规则 2 正是“找层再改名”：往下第一个标签更小的节点就是<b>坏根</b>，复制它的子树就是复制<b>坏部</b>，副本的根改标 <M t="u-1" />，对应副本改名为 <M t="\psi_{n-1}" />。标签 <M t="u" /> 就是 <M t="\psi_u" />：</>}
           en={<>Rule 2 is literally “find the layer, then rename”: the first node below with a smaller label is the <b>bad root</b>, copying its subtree copies the <b>bad part</b>, and relabelling the copy’s root <M t="u-1" /> matches renaming the copies <M t="\psi_{n-1}" />. Label <M t="u" /> is <M t="\psi_u" />:</>}
@@ -653,7 +649,7 @@ export default function Chapter08() {
                 <tr key={i}>
                   <td><M t={a} /></td>
                   <td><M t={b} /></td>
-                  <td className="muted small"><L {...c} /></td>
+                  <td className="muted small">{c.en === c.zh ? c.en : <L {...c} />}</td>
                 </tr>
               ))}
             </tbody>
@@ -690,7 +686,7 @@ export default function Chapter08() {
         <Expand kind="detail" title={{ en: 'A naming slip to watch for', zh: '一个要当心的命名错误' }}>
           <P
             zh={<>《大数理论》第 15 章的表（式 15.174）把 <M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" /> 的 PTO 写作 <M t="\psi(\varepsilon_{\Omega_\omega+1})" />（Buchholz 记法），这个序数是 Takeuti–Feferman–Buchholz 序数 TFBO（书中式 16.83 与 5.725 也这样称呼它），不要和 BO <M t="=\psi(\Omega_\omega)" /> 混淆——后者属于更弱的 <M t="\Pi^1_1\text{-}\mathsf{CA}_0" />。两者名字相近，网上的整理资料偶尔会把它们弄混。</>}
-            en={<>The PTO table in Chapter 15 of 《大数理论》 (eq. 15.174) gives <M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" /> the ordinal <M t="\psi(\varepsilon_{\Omega_\omega+1})" /> (Buchholz notation), This ordinal is the Takeuti–Feferman–Buchholz ordinal TFBO (as the book’s eqs. 16.83 and 5.725 call it). Do not confuse it with BO <M t="=\psi(\Omega_\omega)" />, which belongs to the weaker <M t="\Pi^1_1\text{-}\mathsf{CA}_0" />; the similar names are easy to mix up, and online summaries occasionally do.</>}
+            en={<>The PTO table in Chapter 15 of 《大数理论》 (eq. 15.174) gives <M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" /> the ordinal <M t="\psi(\varepsilon_{\Omega_\omega+1})" /> (Buchholz notation). This ordinal is the Takeuti–Feferman–Buchholz ordinal TFBO (as the book’s eqs. 16.83 and 5.725 call it). Do not confuse it with BO <M t="=\psi(\Omega_\omega)" />, which belongs to the weaker <M t="\Pi^1_1\text{-}\mathsf{CA}_0" />; the similar names are easy to mix up, and online summaries occasionally do.</>}
           />
         </Expand>
       </Section>

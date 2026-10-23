@@ -24,10 +24,10 @@ export default function Chapter07() {
           en={<>The duel goes on. Your rival plays <M t="\varepsilon_0" />, the ordinal where hydras, Goodstein and all of Peano arithmetic run out of breath. Answer <M t="\varepsilon_0+1" />? That is just “repeat once more”, and your rival smiles.</>}
         />
         <P
-          zh={<>真正的一跳要像 <M t="\varepsilon_0" /> 本身那样来得猛。回想它是怎么造出来的：从 0 出发，反复作用 <M t="\alpha\mapsto\omega^\alpha" />，再取上确界。</>}
-          en={<>A real leap must be as violent as <M t="\varepsilon_0" /> itself. Recall how it was made: start at 0, apply <M t="\alpha\mapsto\omega^\alpha" /> again and again, and take the supremum.</>}
+          zh={<>真正的一跳要像 <M t="\varepsilon_0" /> 本身那样猛：从 0 出发反复作用 <M t="\alpha\mapsto\omega^\alpha" />，再取上确界。</>}
+          en={<>A real leap must be as violent as <M t="\varepsilon_0" /> itself: apply <M t="\alpha\mapsto\omega^\alpha" /> to 0 again and again, then take the supremum.</>}
         />
-        <MB t="0\ \mapsto\ 1\ \mapsto\ \omega\ \mapsto\ \omega^\omega\ \mapsto\ \omega^{\omega^\omega}\ \mapsto\ \cdots\qquad \varepsilon_0=\sup\{0,1,\omega,\omega^\omega,\ldots\},\quad \omega^{\varepsilon_0}=\varepsilon_0." />
+        <MB t="\begin{gathered}0\mapsto 1\mapsto \omega\mapsto \omega^\omega\mapsto \omega^{\omega^\omega}\mapsto \cdots\\ \varepsilon_0=\sup\{0,1,\omega,\omega^\omega,\ldots\},\quad \omega^{\varepsilon_0}=\varepsilon_0.\end{gathered}" />
         <P
           zh={<>这是一台机器，而且它不挑原料：喂给它任何递增的映射 <M t="f" />，它都会转起来。</>}
           en={<>That is a machine, and it is not picky: feed it any increasing map <M t="f" /> and it will run.</>}
@@ -151,8 +151,8 @@ export default function Chapter07() {
         </Expand>
         <Expand kind="deeper" title={{ en: 'Oswald Veblen', zh: 'Oswald Veblen 其人' }}>
           <P
-            zh={<>Oswald Veblen（1880–1960）主要是几何学家和拓扑学家，也是经济学家 Thorstein Veblen（“炫耀性消费”一词的提出者）的侄子。1908 年他在论文《有限与超限序数的连续递增函数》中引入了这套不动点层级。后来他成为普林斯顿高等研究院的第一位教授，参与把 von Neumann 等人请到了那里。</>}
-            en={<>Oswald Veblen (1880–1960) was mainly a geometer and topologist, and a nephew of the economist Thorstein Veblen (who coined “conspicuous consumption”). His 1908 paper “Continuous increasing functions of finite and transfinite ordinals” introduced this hierarchy of fixed points. He later became the first professor of the Institute for Advanced Study in Princeton and helped bring von Neumann and others there.</>}
+            zh={<>Oswald Veblen（1880–1960）主要是几何学家和拓扑学家，也是经济学家 Thorstein Veblen（“炫耀性消费”一词的提出者）的侄子。1908 年他在论文《有限与超限序数的连续递增函数》中引入了这套不动点层级。后来他成为普林斯顿高等研究院的第一位教授，并为研究院招揽了第一批数学家。</>}
+            en={<>Oswald Veblen (1880–1960) was mainly a geometer and topologist, and a nephew of the economist Thorstein Veblen (who coined “conspicuous consumption”). His 1908 paper “Continuous increasing functions of finite and transfinite ordinals” introduced this hierarchy of fixed points. He later became the first professor of the Institute for Advanced Study in Princeton and helped recruit its first mathematicians.</>}
           />
         </Expand>
       </Section>
@@ -163,7 +163,7 @@ export default function Chapter07() {
           zh={<>先对 <M t="\alpha\mapsto\omega^\alpha" /> 求导。它的不动点叫 <Term en="epsilon numbers" zh="ε 数" />，第 β 号记作 <M t="\varepsilon_\beta" />。头一个就是老朋友 <M t="\varepsilon_0" />。</>}
           en={<>First, differentiate <M t="\alpha\mapsto\omega^\alpha" />. Its fixed points are the <Term en="epsilon numbers" zh="ε 数" />; number β is written <M t="\varepsilon_\beta" />. The first is our old friend <M t="\varepsilon_0" />.</>}
         />
-        <MB t="\varepsilon_1=\sup\{\varepsilon_0+1,\ \omega^{\varepsilon_0+1},\ \omega^{\omega^{\varepsilon_0+1}},\ \ldots\},\qquad \varepsilon_\omega=\sup\{\varepsilon_0,\varepsilon_1,\varepsilon_2,\ldots\}." />
+        <MB t="\begin{gathered}\varepsilon_1=\sup\{\varepsilon_0+1,\ \omega^{\varepsilon_0+1},\ \omega^{\omega^{\varepsilon_0+1}},\ \ldots\},\\ \varepsilon_\omega=\sup\{\varepsilon_0,\varepsilon_1,\varepsilon_2,\ldots\}.\end{gathered}" />
         <P
           zh={<>注意 <M t="\varepsilon_1" /> 的爬法：跳出 <M t="\varepsilon_0" /> 后再造一座 ω 的塔，只不过塔顶放的是 <M t="\varepsilon_0+1" />。</>}
           en={<>Look at how <M t="\varepsilon_1" /> climbs: after jumping out of <M t="\varepsilon_0" />, build another tower of ω's, this time with <M t="\varepsilon_0+1" /> on top.</>}
@@ -185,7 +185,7 @@ export default function Chapter07() {
           zh={<>下标可以是任何序数：<M t="\varepsilon_{\varepsilon_0},\ \varepsilon_{\varepsilon_{\varepsilon_0}},\ldots" />。这串数本身就是在迭代映射 <M t="\alpha\mapsto\varepsilon_\alpha" />——一个新的正规函数。</>}
           en={<>Subscripts can be any ordinal: <M t="\varepsilon_{\varepsilon_0},\ \varepsilon_{\varepsilon_{\varepsilon_0}},\ldots" />. That list is just iteration of the map <M t="\alpha\mapsto\varepsilon_\alpha" />, a new normal function.</>}
         />
-        <MB t="\zeta_0=\sup\{0,\ \varepsilon_0,\ \varepsilon_{\varepsilon_0},\ \varepsilon_{\varepsilon_{\varepsilon_0}},\ \ldots\},\qquad \varepsilon_{\zeta_0}=\zeta_0." />
+        <MB t="\begin{gathered}\zeta_0=\sup\{0,\ \varepsilon_0,\ \varepsilon_{\varepsilon_0},\ \varepsilon_{\varepsilon_{\varepsilon_0}},\ \ldots\},\\ \varepsilon_{\zeta_0}=\zeta_0.\end{gathered}" />
         <P
           zh={<><M t="\zeta_0" /> 是一个“下标等于自己”的 ε 数。它的不动点列表记作 <M t="\zeta_\beta" />；再对 <M t="\alpha\mapsto\zeta_\alpha" /> 求导得 <M t="\eta_\beta" />。在不动点机器里选 <M t="\varepsilon_\alpha" /> 或 <M t="\zeta_\alpha" /> 就能看到它们。</>}
           en={<><M t="\zeta_0" /> is an ε-number equal to its own subscript. Its fixed points are listed as <M t="\zeta_\beta" />; differentiating <M t="\alpha\mapsto\zeta_\alpha" /> gives <M t="\eta_\beta" />. Choose <M t="\varepsilon_\alpha" /> or <M t="\zeta_\alpha" /> in the fixed-point machine of Section 1 to watch them appear.</>}
@@ -214,7 +214,7 @@ export default function Chapter07() {
           zh={<>于是 <M t="\varphi(1,\beta)=\varepsilon_\beta" />，<M t="\varphi(2,\beta)=\zeta_\beta" />，<M t="\varphi(3,\beta)=\eta_\beta" />。后继层 <M t="\alpha+1" /> 就是对第 <M t="\alpha" /> 层求导；极限层（如 <M t="\alpha=\omega" />）则取前面所有层的<b>共同</b>不动点。</>}
           en={<>So <M t="\varphi(1,\beta)=\varepsilon_\beta" />, <M t="\varphi(2,\beta)=\zeta_\beta" />, <M t="\varphi(3,\beta)=\eta_\beta" />. A successor level <M t="\alpha+1" /> is the derivative of level <M t="\alpha" />; a limit level such as <M t="\omega" /> takes fixed points <b>common</b> to all earlier levels.</>}
         />
-        <MB t="\varphi(\omega,0)=\sup\{\varphi(0,0),\varphi(1,0),\varphi(2,0),\ldots\}=\sup\{1,\varepsilon_0,\zeta_0,\eta_0,\ldots\}." />
+        <MB t="\begin{aligned}\varphi(\omega,0)&=\sup\{\varphi(0,0),\varphi(1,0),\ldots\}\\&=\sup\{1,\varepsilon_0,\zeta_0,\eta_0,\ldots\}.\end{aligned}" />
         <Thm name={{ en: 'every row is normal', zh: '每一行都是正规函数' }}>
           <B
             zh={<p>对每个 <M t="\alpha" />，<M t="\beta\mapsto\varphi(\alpha,\beta)" /> 是正规函数。所以定义中的“第 β 号”总存在。</p>}
@@ -318,7 +318,7 @@ export default function Chapter07() {
           zh={<>φ 的第二个变量我们已经玩透了。现在让<b>第一个</b>变量也迭代起来：</>}
           en={<>We have squeezed the second argument of φ dry. Now iterate the <b>first</b> one:</>}
         />
-        <MB t="\Gamma_0=\sup\{0,\ \varphi(0,0),\ \varphi(\varphi(0,0),0),\ \ldots\}=\sup\{0,\ 1,\ \varepsilon_0,\ \varphi(\varepsilon_0,0),\ \varphi(\varphi(\varepsilon_0,0),0),\ \ldots\}." />
+        <MB t="\begin{aligned}\Gamma_0&=\sup\{0,\ \varphi(0,0),\ \varphi(\varphi(0,0),0),\ \ldots\}\\&=\sup\{0,\ 1,\ \varepsilon_0,\ \varphi(\varepsilon_0,0),\ \ldots\}.\end{aligned}" />
         <P
           zh={<><M t="\Gamma_0" /> 是映射 <M t="\alpha\mapsto\varphi(\alpha,0)" /> 的第一个不动点：<M t="\varphi(\Gamma_0,0)=\Gamma_0" />。它是“层级号等于自身”的序数。</>}
           en={<><M t="\Gamma_0" /> is the first fixed point of <M t="\alpha\mapsto\varphi(\alpha,0)" />: <M t="\varphi(\Gamma_0,0)=\Gamma_0" />. It is the ordinal whose level number equals itself.</>}
@@ -392,7 +392,7 @@ export default function Chapter07() {
             zh={<><b>最后一个变量是计数器</b>，数的是第几号不动点。<b>它左边第一个非零变量 α 是层级</b>：把它减一，并把它右边紧挨着的位置空出来当作自变量 δ，得到要求不动点的映射。更左边的变量全部冻结。</>}
             en={<><b>The last argument is the counter</b>: which fixed point. <b>The first non-zero argument to its left, α, is the level</b>: lower it by one and free the slot just right of it as the variable δ — that is the map whose fixed points we list. Everything further left is frozen.</>}
           />
-          <MB t="\varphi(\#,\alpha{+}1,\underbrace{0,\ldots,0}_{Z},\beta)=f'(\beta),\qquad f(\delta)=\varphi(\#,\alpha,\delta,Z)." />
+          <MB t="\begin{gathered}\varphi(\#,\alpha{+}1,\underbrace{0,\ldots,0}_{Z},\beta)=f'(\beta),\\ f(\delta)=\varphi(\#,\alpha,\delta,Z).\end{gathered}" />
         </KeyIdea>
         <Widget
           title={{ en: 'The Veblen odometer', zh: 'Veblen 里程表' }}
@@ -408,7 +408,7 @@ export default function Chapter07() {
           zh={<>为了不数零，把“第 k 个位置上是 a”写成 <M t="a@k" />（从右往左、从 0 数起）：<M t="\varphi(1,0,0,0,0)=\varphi(1@4)" />。允许任意有限多个变量，上确界就是</>}
           en={<>To stop counting zeros, write “a in slot k” as <M t="a@k" /> (slots counted from the right, starting at 0): <M t="\varphi(1,0,0,0,0)=\varphi(1@4)" />. Allowing any finite number of arguments, the supremum is</>}
         />
-        <MB t="\text{SVO}=\sup\{\varphi(1),\ \varphi(1,0),\ \varphi(1,0,0),\ \ldots\}=\varphi(1@\omega)." />
+        <MB t="\begin{aligned}\text{SVO}&=\sup\{\varphi(1),\varphi(1,0),\varphi(1,0,0),\ldots\}\\&=\varphi(1@\omega).\end{aligned}" />
         <P
           zh={<>这就是<Term en="small Veblen ordinal" zh="小 Veblen 序数" />（SVO）：有限元 Veblen 函数的极限。它的基本列很自然：<M t="\text{SVO}[n]" /> 是 1 后面跟 <M t="n" /> 个 0。</>}
           en={<>This is the <Term en="small Veblen ordinal" zh="小 Veblen 序数" /> (SVO): the limit of Veblen functions with finitely many arguments. Its fundamental sequence is natural: <M t="\text{SVO}[n]" /> is 1 followed by <M t="n" /> zeros.</>}
@@ -435,7 +435,7 @@ export default function Chapter07() {
           zh={<>既然 SVO = <M t="\varphi(1@\omega)" />，何不让位置本身是任意序数？<M t="\varphi(1@(\omega+1))" />、<M t="\varphi(1@\varepsilon_0)" />……于是 <M t="\alpha\mapsto\varphi(1@\alpha)" /> 又是一个可以迭代的映射，它的第一个不动点叫<Term en="large Veblen ordinal" zh="大 Veblen 序数" />（LVO）：</>}
           en={<>Since SVO = <M t="\varphi(1@\omega)" />, why not let positions be any ordinal? <M t="\varphi(1@(\omega+1))" />, <M t="\varphi(1@\varepsilon_0)" />, … Then <M t="\alpha\mapsto\varphi(1@\alpha)" /> is yet another map to iterate; its first fixed point is the <Term en="large Veblen ordinal" zh="大 Veblen 序数" /> (LVO):</>}
         />
-        <MB t="\text{LVO}=\sup\{0,\ \varphi(1@0),\ \varphi(1@\varphi(1@0)),\ \ldots\}." />
+        <MB t="\text{LVO}=\sup\{\varphi(1@0),\varphi(1@\varphi(1@0)),\ldots\}." />
         <Caution>
           <L
             zh={<>书中提醒：在 <M t="\alpha{}@\beta" /> 里，<M t="\beta" /> 已经不再是真正的“第几个位置”（你永远只能写出有限个非零项），最好只把它看成一个参数。</>}
@@ -483,7 +483,7 @@ export default function Chapter07() {
         <H3 en="Test an embedding" zh="动手检验嵌入" />
         <Widget
           title={{ en: 'Embedding checker', zh: '嵌入检查器' }}
-          hint={{ en: 'Select a vertex, then edit. The checker searches all embeddings exactly.', zh: '选中一个点再编辑。检查器精确搜索所有嵌入。' }}
+         
         >
           <EmbeddingChecker />
         </Widget>

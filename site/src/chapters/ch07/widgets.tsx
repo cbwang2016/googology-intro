@@ -483,13 +483,13 @@ export function FSExplorer() {
         </button>
       </div>
       {err && <div className="c07-err">{err}</div>}
-      <div className="c07-crumbs">
+      {path.length > 1 && <div className="c07-crumbs">
         {path.map((p, i) => (
           <button key={i} className={`chip ${i === path.length - 1 ? 'on' : ''}`} onClick={() => setPath(path.slice(0, i + 1))}>
             <M t={tex(p)} />
           </button>
         ))}
-      </div>
+      </div>}
       <div className="readout c07-fsbox">
         {isZero(x) ? (
           <L en="0 — the bottom. Every path ends here." zh="0——到底了。每条路都在这里结束。" />

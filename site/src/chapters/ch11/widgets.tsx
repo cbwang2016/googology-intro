@@ -210,7 +210,7 @@ export function BehaviourGallery() {
         <span className="mono small c11-codeshow">{g.code}</span>
         <Slider value={steps} min={20} max={1500} step={20} onChange={setSteps} label={<L en="steps" zh="步数" />} />
       </div>
-      <SpaceTime rows={data.rows} maxH={270} />
+      <SpaceTime rows={data.rows} maxH={165} />
       <StLegend n={data.n} />
       <div className="readout small c11-prose">
         <L {...g.text} />
@@ -394,7 +394,7 @@ const PROGS: Prog[] = [
 
 export function HaltingTable() {
   const { t } = useLang()
-  const [sel, setSel] = useState<number | null>(5)
+  const [sel, setSel] = useState<number | null>(2)
   const N = PROGS.length
   const flip = (c: Cell): Cell => (c === 'H' ? 'L' : c === 'L' ? 'H' : '?')
   const sym = (c: Cell) => (c === 'H' ? '■' : c === 'L' ? '∞' : '?')

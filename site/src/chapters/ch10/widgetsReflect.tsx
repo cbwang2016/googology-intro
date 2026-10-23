@@ -33,7 +33,7 @@ export function ReflectionStaircase() {
   const { t } = useLang()
   const [i, setI] = useState(3)
   const s = STEPS[i]
-  const W = 57
+  const W = 56
   return (
     <div>
       <div className="scroll-x">

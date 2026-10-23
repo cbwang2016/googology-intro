@@ -353,8 +353,8 @@ export function DiagonalTable() {
       </table>
       <div className="muted small" style={{ marginTop: 6 }}>
         {t(
-          'Gold cells: the diagonal. Click a row: from the column where the diagonal passes it, every later diagonal entry is bigger than that row’s entry. (Column n = 2 is always 4: 2↑ᵐ2 = 4.)',
-          '金色格子是对角线。点一行：对角线经过这一行之后，后面每一个对角线上的数都比这一行同一列的数大。（n = 2 那一列永远是 4：2↑ᵐ2 = 4。）',
+          'Gold: the diagonal. Once the diagonal passes a row, every later diagonal entry beats that row. (Column n = 2 is all 4s.)',
+          '金色是对角线。对角线越过某一行之后，每个对角元都胜过该行。（n = 2 一列全是 4。）',
         )}
       </div>
     </div>
@@ -468,7 +468,7 @@ export function CubeColoring() {
     <div>
       <svg
         viewBox="0 0 400 300"
-        style={{ width: '100%', maxWidth: 520, display: 'block', margin: '0 auto', touchAction: 'none' }}
+        style={{ width: '100%', maxWidth: 350, display: 'block', margin: '0 auto', touchAction: 'none' }}
         onPointerDown={(e) => (drag.current = { x: e.clientX, a: ang })}
         onPointerMove={(e) => drag.current && setAng(drag.current.a + (e.clientX - drag.current.x) / 120)}
         onPointerUp={() => (drag.current = null)}

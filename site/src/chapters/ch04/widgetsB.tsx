@@ -102,10 +102,8 @@ export function SmallCases() {
       [1, 1],
       [1, 3],
       [1, 5],
-      [2, 1],
       [2, 2],
       [2, 3],
-      [3, 1],
       [3, 2],
     ]) {
       const L3 = arrowSize(3, c, b)
@@ -177,8 +175,8 @@ export function SmallCases() {
       </table>
       <div className="muted small" style={{ marginTop: 6 }}>
         {t(
-          'All entries computed live (exactly, or by tower height when too large). Lemma F fails at x = 1 and holds from x = 2 on; the proof only needs x ≥ 4.',
-          '所有格子都是当场算的（能精确就精确，太大就比塔高）。引理 F 在 x = 1 时不成立，从 x = 2 起成立；证明里只需要 x ≥ 4。',
+          'Lemma E rows are computed live (exactly, or by tower height); Lemma F rows follow from the definitions. F fails at x = 1, holds from x = 2; the proof only needs x ≥ 4.',
+          '引理 E 各行当场计算（能精确就精确，否则比塔高）；引理 F 各行由定义推出。F 在 x = 1 时不成立，从 x = 2 起成立；证明只需要 x ≥ 4。',
         )}
       </div>
     </div>
@@ -254,8 +252,8 @@ export function TamperFS() {
       <div className="readout small c04-text">
         {weak ? (
           <L
-            en={<>Weakened: <M t="\varepsilon_0=\sup\{\omega,\omega^\omega,\ldots\}" /> with <M t="\varepsilon_0[n]=\omega\uparrow\uparrow(n+1)" />, and the rung <M t="\omega\uparrow\uparrow k" /> gets a sequence starting with <M t="k" /> zeros. Every ordinal is the same; <M t="f_{\varepsilon_0}" /> collapses to <M t="n+1" />.</>}
-            zh={<>削弱版：<M t="\varepsilon_0=\sup\{\omega,\omega^\omega,\ldots\}" />，<M t="\varepsilon_0[n]=\omega\uparrow\uparrow(n+1)" />，而第 <M t="k" /> 级 <M t="\omega\uparrow\uparrow k" /> 的基本列开头垫了 <M t="k" /> 个 0。序数一个没变，<M t="f_{\varepsilon_0}" /> 却塌缩成了 <M t="n+1" />。</>}
+            en={<>Weakened: <M t="\varepsilon_0=\sup\{\omega,\omega^\omega,\ldots\}" /> with <M t="\varepsilon_0[n]=\omega\uparrow\uparrow(n+1)" />, and the rung <M t="\omega\uparrow\uparrow k" /> gets a sequence starting with <M t="k" /> zeros (it stalls, so it is no longer strictly increasing). Every ordinal is the same; <M t="f_{\varepsilon_0}" /> collapses to <M t="n+1" />.</>}
+            zh={<>削弱版：<M t="\varepsilon_0=\sup\{\omega,\omega^\omega,\ldots\}" />，<M t="\varepsilon_0[n]=\omega\uparrow\uparrow(n+1)" />，而第 <M t="k" /> 级 <M t="\omega\uparrow\uparrow k" /> 的基本列开头垫了 <M t="k" /> 个 0（停在原地，不再严格递增）。序数一个没变，<M t="f_{\varepsilon_0}" /> 却塌缩成了 <M t="n+1" />。</>}
           />
         ) : (
           <L en={<>Standard: <M t="\varepsilon_0[n]=\omega\uparrow\uparrow n" /> and the rules of Def 3.6.</>} zh={<>标准版：<M t="\varepsilon_0[n]=\omega\uparrow\uparrow n" />，其余按定义 3.6。</>} />

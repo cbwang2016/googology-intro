@@ -150,7 +150,7 @@ export function BeatTheBeaver() {
           )}
         </div>
         <div>
-          <SpaceTime rows={rows} maxH={300} />
+          <SpaceTime rows={rows} maxH={235} />
           <StLegend n={n} />
         </div>
       </div>
@@ -228,7 +228,7 @@ export function ChampionRunner() {
       </div>
       <RowTape r={r} />
       <div className="c12-champ">
-        <SpaceTime rows={rows.slice(0, k + 1)} maxH={300} />
+        <SpaceTime rows={rows.slice(0, k + 1)} maxH={235} />
         <div className="c12-champ-stats">
           <div className="stat">
             <span className="stat-label">{t('steps', '步数')}</span>
@@ -565,8 +565,8 @@ export function Pipeline() {
       </div>
       <div className="small muted">
         {t(
-          `Bar length is logarithmic. Gold part = halting machines. Total: ${fmt(total)} machines (133,005,895 never halt, 48,379,894 halt).`,
-          `条形长度按对数画。金色部分为停机的机器。合计 ${fmt(total)} 台（133,005,895 台永不停机，48,379,894 台停机）。`,
+          `Log-scale bars; gold = halting. Total ${fmt(total)} (133,005,895 never halt, 48,379,894 halt).`,
+          `条形按对数画；金色 = 停机。合计 ${fmt(total)} 台（133,005,895 台永不停机，48,379,894 台停机）。`,
         )}
       </div>
       <div className="c12-stage">
@@ -583,7 +583,7 @@ export function Pipeline() {
               <span className="mono c11-codeshow">{s.example}</span>
               <Slider value={steps} min={50} max={3000} step={50} onChange={setSteps} label={<L en="steps" zh="步数" />} />
             </div>
-            <SpaceTime rows={rows} maxH={150} />
+            <SpaceTime rows={rows} maxH={95} />
           </div>
         )}
       </div>
@@ -623,7 +623,7 @@ export function Antihydra() {
     return { as, a, bDigits: b.toString().length, minA, evens, halted }
   }, [iters])
   const W = 600
-  const H = 200
+  const H = 140
   const maxA = Math.max(...data.as, 10)
   const pts = data.as
     .filter((_, i) => i % Math.max(1, Math.floor(data.as.length / 600)) === 0)
@@ -727,7 +727,7 @@ export function IndependenceChart() {
   const { t } = useLang()
   const [hover, setHover] = useState<number | null>(10)
   const W = 640
-  const H = 300
+  const H = 250
   const x0 = 2015.8
   const x1 = 2027
   const X = (d: number) => 50 + ((d - x0) / (x1 - x0)) * (W - 70)

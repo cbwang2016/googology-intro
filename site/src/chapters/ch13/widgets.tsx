@@ -258,7 +258,7 @@ function setLabel(code: number) {
 export function VkEvaluator() {
   const { t } = useLang()
   const [src, setSrc] = useFormula()
-  const [k, setK] = useState(4)
+  const [k, setK] = useState(3)
   const res = useMemo(() => parse(src), [src])
   const all = useMemo(() => (res.ok ? [1, 2, 3, 4].map((kk) => evalIn(res.f, kk)) : null), [res])
   const v = all?.[k - 1]

@@ -8,7 +8,7 @@ const browser = await chromium.launch({ executablePath: '/usr/bin/chromium-brows
 const page = await browser.newPage({ viewport: { width: Number(width), height: Number(height) } })
 await page.addInitScript((m) => { localStorage.setItem('googology-lang-mode', m); localStorage.setItem('googology-view-mode', 'story'); sessionStorage.clear() }, mode)
 await page.goto(`http://localhost:${PORT}/#/ch/${slug}`)
-await page.waitForTimeout(3000)
+await page.waitForTimeout(6000)
 const want = beats.split(',').map(Number); const max = Math.max(...want)
 for (let i = 1; i <= max; i++) {
   if (want.includes(i)) { await page.waitForTimeout(400); await page.screenshot({ path: `/tmp/rC-${slug.slice(0,6)}-b${i}-${mode}.png`, fullPage: true }) }

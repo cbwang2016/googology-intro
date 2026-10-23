@@ -124,8 +124,8 @@ export default function Chapter13() {
           <BerryBudget />
         </Widget>
         <P
-          zh={<>预算小的时候，Berry 短语本身太长，什么事都没有。一旦预算大到装得下这句话，矛盾就出现了——而且此后每一个 B 都有矛盾。</>}
-          en={<>For small budgets the Berry phrase is too long to count, and nothing happens. Once the budget can hold the phrase, the contradiction appears — and it stays for every larger B.</>}
+          zh={<>预算小的时候，Berry 短语本身太长，什么事都没有。一旦预算大到装得下这句话，矛盾就出现了——而且此后每一个 B 都有矛盾。所以问题不在“二十”这个具体数字，而在这句话本身的结构。</>}
+          en={<>For small budgets the Berry phrase is too long to count, and nothing happens. Once the budget can hold the phrase, the contradiction appears — and it stays for every larger B. So the trouble is not the particular number sixty but the shape of the phrase itself.</>}
         />
 
         <H3 en="Object language and metalanguage" zh="对象语言与元语言" />
@@ -204,8 +204,8 @@ export default function Chapter13() {
         />
         <MB t="\begin{gathered}\ell(x_i\in x_j)=\ell(x_i=x_j)=3,\qquad \ell((\neg A))=\ell(A)+3,\\ \ell((A\wedge B))=\ell(A)+\ell(B)+3,\qquad \ell(\exists x_i(A))=\ell(A)+4.\end{gathered}" />
         <P
-          zh={<>换句话说：把公式写成括号齐全的标准形，数一数有几个符号。括号、<M t="\neg" />、<M t="\wedge" />、<M t="\exists" /> 和变量各算一个。</>}
-          en={<>In words: write the formula fully parenthesized and count every symbol — each bracket, <M t="\neg" />, <M t="\wedge" />, <M t="\exists" /> and variable counts once.</>}
+          zh={<>换句话说：把公式写成括号齐全的标准形，数一数有几个符号。括号、<M t="\neg" />、<M t="\wedge" />、<M t="\exists" /> 和变量各算一个；变量的下标不另计，<M t="x_{1000}" /> 也只算一个符号。缩写 <M t="\forall" />、<M t="\to" /> 必须先展开再数。</>}
+          en={<>In words: write the formula fully parenthesized and count every symbol — each bracket, <M t="\neg" />, <M t="\wedge" />, <M t="\exists" /> and variable counts once; a variable’s index is free, so <M t="x_{1000}" /> is one symbol. Abbreviations such as <M t="\forall" /> and <M t="\to" /> must be expanded before counting.</>}
         />
         <Thm kind="definition" name={{ en: 'Rayo’s function (book Def. 27.1, with our convention)', zh: 'Rayo 函数（书中定义 27.1，采用本课程的约定）' }}>
           <B
@@ -241,8 +241,8 @@ export default function Chapter13() {
         </Expand>
         <H3 en="Counting ink" zh="数墨水" />
         <P
-          zh={<>在下面的工作台里写公式。<M t="a" /> 就是自由变元 <M t="x_1" />，<M t="b,c,\ldots" /> 是 <M t="x_2,x_3,\ldots" />。每个方块是一个符号，方块的总数就是长度 <M t="\ell" />。</>}
-          en={<>Write formulas in the workbench. <M t="a" /> is the free variable <M t="x_1" />; <M t="b,c,\ldots" /> are <M t="x_2,x_3,\ldots" />. Each tile is one symbol; the number of tiles is the length <M t="\ell" />.</>}
+          zh={<>在下面的工作台里写公式。<M t="a" /> 就是自由变元 <M t="x_1" />，<M t="b,c,\ldots" /> 是 <M t="x_2,x_3,\ldots" />。每个方块是一个符号，方块的总数就是长度 <M t="\ell" />。先试试预设的“命名 1”，再把它改写成用 <M t="\forall" /> 和 <M t="\to" /> 的版本：看起来更短，展开后却更长。</>}
+          en={<>Write formulas in the workbench. <M t="a" /> is the free variable <M t="x_1" />; <M t="b,c,\ldots" /> are <M t="x_2,x_3,\ldots" />. Each tile is one symbol; the number of tiles is the length <M t="\ell" />. Try the preset “names 1”, then its version with <M t="\forall" /> and <M t="\to" />: it looks shorter but expands to more ink.</>}
         />
         <Widget
           title={{ en: 'Formula workbench: counting symbols', zh: '公式工作台：数符号' }}
@@ -347,8 +347,8 @@ export default function Chapter13() {
           <RayoStaircase />
         </Widget>
         <P
-          zh={<>注意阶梯上的比例。人们能具体说出点什么的，全在 <M t="N\le7339" /> 这一小段里，横轴的 4% 都不到。从那里到 <M t="10^{100}" />，是一片完全无人知晓的荒原。</>}
-          en={<>Mind the proportions. Everything anyone can say concretely sits at <M t="N\le7339" />, under 4% of the axis. From there to <M t="10^{100}" /> stretches a wilderness nobody knows anything about.</>}
+          zh={<>注意阶梯上的比例。人们能具体说出点什么的，全在 <M t="N\le7339" /> 这一小段里，横轴的 4% 都不到。从那里到 <M t="10^{100}" />，是一片完全无人知晓的荒原：我们只知道 Rayo 函数在那里一直在长，却说不出它长成了什么样。</>}
+          en={<>Mind the proportions. Everything anyone can say concretely sits at <M t="N\le7339" />, under 4% of the axis. From there to <M t="10^{100}" /> stretches a wilderness nobody knows anything about: we know Rayo’s function keeps growing there, but not what it grows into.</>}
         />
 
         <H3 en="Swallowing the Busy Beaver" zh="吞下忙碌海狸" />
@@ -407,8 +407,8 @@ export default function Chapter13() {
           />
         </Proof>
         <P
-          zh={<>这就是“不可定义数”这个名字的来由。也正因为如此，Rayo 函数的增长刻度——书中记作 <M t="\sigma" />——高于每一个能在集合论中定义的函数的刻度。</>}
-          en={<>Hence the name “undefinable numbers”. And hence Rayo’s growth label — the book calls it <M t="\sigma" /> — lies above the label of every function definable in set theory.</>}
+          zh={<>这就是“不可定义数”这个名字的来由。也正因为如此，Rayo 函数的增长刻度——书中记作 <M t="\sigma" />（只是一个名字，与第 10 章的最小稳定序数 σ 无关）——高于每一个能在集合论中定义的函数的刻度。</>}
+          en={<>Hence the name “undefinable numbers”. And hence Rayo’s growth label — the book calls it <M t="\sigma" />, just a name, unrelated to Chapter 10’s least stable ordinal σ — lies above the label of every function definable in set theory.</>}
         />
         <OpenProblem title={{ en: 'Where is σ?', zh: 'σ 在哪里？' }}>
           <P
@@ -537,8 +537,8 @@ export default function Chapter13() {
           />
         </Caution>
         <P
-          zh={<>整个擂台只靠两个动作：<b>重复</b>（刻度 +1）和<b>对角化</b>（越过一整列，到达新的极限）。第 2 章用 <M t="d(n)=n\uparrow^{n}n" /> 越过了所有固定箭头数。这一招有没有失灵的时候？</>}
-          en={<>The whole duel ran on two moves: <b>repeat</b> (label +1) and <b>diagonalize</b> (leap past a whole sequence to a new limit). Chapter 2’s <M t="d(n)=n\uparrow^{n}n" /> leapt past every fixed number of arrows. Does the trick ever fail?</>}
+          zh={<>整个擂台只靠两个动作：<b>重复</b>（刻度 +1）和<b>对角化</b>（越过一整列，到达新的极限）。第 2 章用 <M t="d(n)=n\uparrow^{n}n" /> 越过了所有固定箭头数；第 4 章的 <M t="f_\lambda(n)=f_{\lambda[n]}(n)" /> 把同一招做成了规则；忙碌海狸与 Rayo 则对“全部算法”“全部定义”做了一次对角化。这一招有没有失灵的时候？</>}
+          en={<>The whole duel ran on two moves: <b>repeat</b> (label +1) and <b>diagonalize</b> (leap past a whole sequence to a new limit). Chapter 2’s <M t="d(n)=n\uparrow^{n}n" /> leapt past every fixed number of arrows; Chapter 4’s <M t="f_\lambda(n)=f_{\lambda[n]}(n)" /> made the same move a rule; Busy Beaver and Rayo diagonalized over all algorithms and all definitions. Does the trick ever fail?</>}
         />
         <Thm name={{ en: '(one function beats any countable family)', zh: '（一个函数胜过任何可数族）' }}>
           <B
@@ -630,8 +630,8 @@ export default function Chapter13() {
       {/* ---------------------------------------------------------------- */}
       <Section id="journey" kicker={{ en: 'Look back', zh: '回望' }} title={{ en: 'The whole journey', zh: '全程回顾' }}>
         <P
-          zh={<>回头看，这十三章只用了寥寥几个招数：重复；对角化；给极限起名并把它当作新的起点（<M t="\omega" />、<M t="\varepsilon_0" />、<M t="\Gamma_0" />、<M t="\Omega" />）；借来够不着的东西再折回来；越过算法；最后越过定义本身。</>}
-          en={<>Looking back, thirteen chapters used only a handful of tricks: repeat; diagonalize; name the limit and start again from it (<M t="\omega" />, <M t="\varepsilon_0" />, <M t="\Gamma_0" />, <M t="\Omega" />); borrow something unreachable and fold it back down; go beyond algorithms; and finally go beyond definition itself.</>}
+          zh={<>回头看，这十三章只用了寥寥几个招数：重复；对角化；给极限起名并把它当作新的起点（<M t="\omega" />、<M t="\varepsilon_0" />、<M t="\Gamma_0" />、<M t="\Omega" />）；借来够不着的东西再折回来；越过算法；最后越过定义本身。下一幕的尺子把这些招数留下的刻度排成一列。</>}
+          en={<>Looking back, thirteen chapters used only a handful of tricks: repeat; diagonalize; name the limit and start again from it (<M t="\omega" />, <M t="\varepsilon_0" />, <M t="\Gamma_0" />, <M t="\Omega" />); borrow something unreachable and fold it back down; go beyond algorithms; and finally go beyond definition itself. The ruler in the next scene lines up the marks these tricks left behind.</>}
         />
         <Widget
           title={{ en: 'The ruler of growth, from 0 to the horizon', zh: '增长之尺：从 0 到地平线' }}
@@ -640,23 +640,23 @@ export default function Chapter13() {
           <JourneyRuler />
         </Widget>
         <P
-          zh={<>在尺子上，每一段都比前一段“长”得无法想象，可画出来却一样宽。这就是序数刻度的诚实之处：它只记录先后，不记录距离。</>}
-          en={<>On the ruler, each segment is unimaginably “longer” than the last, yet they are drawn the same width. That is the honesty of ordinal labels: they record order, not distance.</>}
+          zh={<>在尺子上，每一段都比前一段“长”得无法想象，可画出来却一样宽。这就是序数刻度的诚实之处：它只记录先后，不记录距离。从 ω 到 ε₀ 的一小段，和从 BO 到 SHO 的一小段，在图上一样长，在“威力”上却毫无可比性。</>}
+          en={<>On the ruler, each segment is unimaginably “longer” than the last, yet they are drawn the same width. That is the honesty of ordinal labels: they record order, not distance. The step from ω to ε₀ and the step from BO to SHO look equally long, yet their power is beyond comparison.</>}
         />
       </Section>
 
       {/* ---------------------------------------------------------------- */}
       <Section id="open" kicker={{ en: 'Unfinished', zh: '未完成' }} title={{ en: 'What nobody knows yet', zh: '至今无人知晓' }}>
         <P
-          zh={<>大数数学最迷人的地方在于：问题小学生就能听懂，答案却在数学的最前沿。下面收集了本课程各章遇到的未解问题与猜想。</>}
-          en={<>The charm of googology is that a child understands the questions while the answers sit at the frontier of mathematics. Here are the open problems and conjectures met across the course.</>}
+          zh={<>大数数学最迷人的地方在于：问题小学生就能听懂，答案却在数学的最前沿。下面收集了本课程各章遇到的未解问题与猜想：有的关于具体的数，有的关于序数与记号，有的关于逻辑与计算的边界。每一条都注明出自哪一章，回到那一章就能读到完整的讨论；问号标出的是猜想，其余是公认的未解问题。</>}
+          en={<>The charm of googology is that a child understands the questions while the answers sit at the frontier of mathematics. Here are the open problems and conjectures met across the course — about specific numbers, about ordinals and notations, and about the limits of logic and computation. Each entry names the chapter it comes from, where the full discussion lives; a question mark flags a conjecture, the rest are recognised open problems.</>}
         />
         <Widget title={{ en: 'Open-problem explorer', zh: '未解问题浏览器' }} hint={{ en: 'Filter by act or by area. “?” marks a conjecture.', zh: '按幕或领域筛选。“?”表示猜想。' }}>
           <OpenProblemExplorer />
         </Widget>
         <P
-          zh={<>有些问题（例如 BB(6)）也许要靠成百上千人的合作加上计算机证明，就像 2024 年的 BB(5)；有些（例如良定义性）需要的是新的想法。两类都有业余爱好者做出过真正的贡献。</>}
-          en={<>Some problems, like BB(6), may yield to hundreds of collaborators plus computer-checked proof, as BB(5) did in 2024. Others, like well-definedness, need new ideas. Amateurs have made real contributions to both kinds.</>}
+          zh={<>有些问题（例如 BB(6)）也许要靠成百上千人的合作加上计算机证明，就像 2024 年的 BB(5)；有些（例如良定义性）需要的是新的想法。两类都有业余爱好者做出过真正的贡献：BB(5) 证明的作者名单里，就有许多人只署了网名。</>}
+          en={<>Some problems, like BB(6), may yield to hundreds of collaborators plus computer-checked proof, as BB(5) did in 2024. Others, like well-definedness, need new ideas. Amateurs have made real contributions to both kinds: many authors of the BB(5) proof signed only with their online handles.</>}
         />
       </Section>
 
@@ -671,14 +671,24 @@ export default function Chapter13() {
             <div className="c13-community">
               <div><b>Googology Wiki</b><br />2008 年在 Fandom 上线，长期是最重要的平台；2025 年由 Phyrion 发起、数十位编辑共同维护的新 Wiki 站以现代的眼光重新整理了近年进展。</div>
               <div><b>Discord</b><br />“Googology and Apeirology”频道建于 2019 年底，至今是国际社区的讨论中心。</div>
-              <div><b>QQ 群</b><br />test_alpha0 于 2021 年创建“googology/数学爱好者讨论群”（930971194）；夏夜星空的“大数数学爱好者聚集地”（592891596）在 2025 年成为第一大群。</div>
-              <div><b>日文社区</b><br />巨大数研究 Wiki（2013），以及 Fish 的《巨大数論》。Bashicu 矩阵等 Worm 型记号就诞生于此。</div>
             </div>
           }
           en={
             <div className="c13-community">
               <div><b>Googology Wiki</b><br />Launched on Fandom in 2008 and long the central hub. In 2025 a new wiki, started by Phyrion and maintained by dozens of editors, reorganized recent progress with a modern eye.</div>
               <div><b>Discord</b><br />The “Googology and Apeirology” server, founded at the end of 2019, is the discussion centre of the international community.</div>
+            </div>
+          }
+        />
+        <B
+          zh={
+            <div className="c13-community">
+              <div><b>QQ 群</b><br />test_alpha0 于 2021 年创建“googology/数学爱好者讨论群”（930971194）；夏夜星空的“大数数学爱好者聚集地”（592891596）在 2025 年成为第一大群。</div>
+              <div><b>日文社区</b><br />巨大数研究 Wiki（2013），以及 Fish 的《巨大数論》。Bashicu 矩阵等 Worm 型记号就诞生于此。</div>
+            </div>
+          }
+          en={
+            <div className="c13-community">
               <div><b>QQ groups (Chinese)</b><br />test_alpha0’s “googology/数学爱好者讨论群” (930971194, 2021); 夏夜星空’s “大数数学爱好者聚集地” (592891596) became the largest in 2025.</div>
               <div><b>Japanese community</b><br />The 巨大数研究 Wiki (2013) and Fish’s book 《巨大数論》. Worm-type notations such as Bashicu matrices were born here.</div>
             </div>

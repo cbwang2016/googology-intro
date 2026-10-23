@@ -121,9 +121,10 @@ export default function Chapter09() {
           zh={<>PSS 的项是嵌套的 <M t="p_k" />（书中写作 <M t="\psi^H_k" />），例如 <M t="p_1(p_2(p_3))" />。展开规则：最里面、最后的 <M t="p_{k+1}" /> 往外层找，找到第一个包住它的 <M t="p_k" />，然后把这个 <M t="p_k(\cdots)" /> 一层层套进自己里面。</>}
           en={<>PSS terms are nested <M t="p_k" /> (the book writes <M t="\psi^H_k" />), such as <M t="p_1(p_2(p_3))" />. The rule: the innermost last <M t="p_{k+1}" /> looks outward for the first enclosing <M t="p_k" />, then nests copies of that <M t="p_k(\cdots)" /> inside one another.</>}
         />
-        <Widget title={{ en: 'PSS ↔ 2-row BMS translator', zh: 'PSS ↔ 双行 BMS 翻译器' }} hint={{ en: 'Dictionary: a column (d, s) is the term p_{s+1} at bracket depth d, so a row-0 parent is the directly enclosing term. Type either form. Gold = last term, green = bad root, pink = rest of the bad part.', zh: '字典：一列 (d, s) 就是第 d 层括号里的一项 p_{s+1}，所以第 0 行的父项就是直接包住它的那一项。两种写法都能输入。金色 = 最后一项，绿色 = 坏根，粉色 = 坏部其余部分。' }}>
+        <Widget title={{ en: 'PSS ↔ 2-row BMS translator', zh: 'PSS ↔ 双行 BMS 翻译器' }} hint={{ en: 'A column (d, s) is the term pₛ₊₁ at bracket depth d; a row-0 parent is the enclosing term. Gold = last term, green = bad root, pink = rest of the bad part.', zh: '一列 (d, s) 就是第 d 层括号里的一项 pₛ₊₁；第 0 行的父项就是直接包住它的项。金色 = 最后一项，绿色 = 坏根，粉色 = 坏部其余部分。' }}>
           <PssTranslator />
         </Widget>
+        <H3 en="What the strange rule means" zh="怪规则的含义" />
         <P
           zh={<>于是那条怪规则就有了含义：“第 1 行的父项必须是第 0 行的祖先”，翻译过来就是“只在<b>外层括号</b>里找更小的下标”，旁边的兄弟项一律不算。试试预设 <Mx s="(0,0)(1,1)(2,0)(2,1)(3,1)" />：末列 c4 第 1 行是 1，c2 的 0 虽然更小，却不能当它的父项，因为 c2 不包住它；坏根于是落在 c0。</>}
           en={<>So the strange rule has a meaning: “the row-1 parent must be a row-0 ancestor” translates to “look for a smaller subscript only among the <b>enclosing brackets</b>.” Siblings don’t count. Try the preset <Mx s="(0,0)(1,1)(2,0)(2,1)(3,1)" />: the last column c4 has a 1 in row 1, and c2’s 0 is smaller, but c2 does not enclose c4, so it cannot be the parent. The bad root falls back to c0.</>}
@@ -133,7 +134,7 @@ export default function Chapter09() {
           zh={<>现在看 <Mx s="(0,0)(1,1)(2,2)" />。坏根是 c1，Δ = (1,0)，于是 <M t="[n]=(0,0)(1,1)(2,1)(3,1)\cdots(n+1,1)" />。第二行停在 1 不动，所有的攀登都发生在第一行：每多复制一份，第一行就多爬一格。把这些项的值排出来，看它们在第 7、8 章的尺子上落在哪里：</>}
           en={<>Now look at <Mx s="(0,0)(1,1)(2,2)" />. The bad root is c1 and Δ = (1,0), so <M t="[n]=(0,0)(1,1)(2,1)(3,1)\cdots(n+1,1)" />. Row 1 stays at 1 and all the climbing happens in row 0: each extra copy is one more step up. Line up the values of these terms and see where they land on the ruler of Chapters 7 and 8:</>}
         />
-        <Widget title={{ en: 'Walking a fundamental sequence', zh: '沿着基本列走' }} hint={{ en: 'Values come from the book’s tables (ψ = Madore’s ψ). A dash means the book gives no value.', zh: '值取自书中的表格（ψ 指 Madore 的 ψ）。“—” 表示书中没有给出。' }}>
+        <Widget title={{ en: 'Walking a fundamental sequence', zh: '沿着基本列走' }} hint={{ en: 'Values from the book’s tables; ψ = Madore’s ψ (MOCF); — = not given.', zh: '值取自书中的表格；ψ 指 Madore 的 ψ（MOCF）；“—”表示书中未给出。' }}>
           <FsWalker initial={1} />
         </Widget>
         <P
@@ -212,6 +213,7 @@ export default function Chapter09() {
         <Widget title={{ en: 'The BMS expander', zh: 'BMS 展开器' }}>
           <BmsExpander initial={5} />
         </Widget>
+        <H3 en="A three-row example" zh="一个三行的例子" />
         <P
           zh={<>书中第一个三行例子 <Mx s="(0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,2,0)" />：末列最下面的非零数在第 1 行，它的父项在 c1，Δ = (1,0,0)，结果是 <Mx s="…(3,1,0)(2,1,1)(3,1,1)(4,1,0)(3,1,1)(4,1,1)(5,1,0)…" />（书中式 13.18）。</>}
           en={<>The book’s first 3-row example, <Mx s="(0,0,0)(1,1,1)(2,1,1)(3,1,0)(2,2,0)" />: the lowermost nonzero entry of the last column is in row 1, its parent is c1, Δ = (1,0,0), and the result is <Mx s="…(3,1,0)(2,1,1)(3,1,1)(4,1,0)(3,1,1)(4,1,1)(5,1,0)…" /> (book eq. 13.18).</>}
@@ -297,6 +299,7 @@ export default function Chapter09() {
           zh={<>坏根是 c0，Δ = (1,1,0)。c2 第 1 行的 0 没有父项，它的祖先里当然没有坏根，所以每份复制里它都保持为 0；没有这条规则，它会变成 1、2、……</>}
           en={<>The bad root is c0 and Δ = (1,1,0). The 0 in row 1 of c2 has no parent, so the bad root is not among its ancestors, and it stays 0 in every copy. Without the rule it would become 1, 2, …</>}
         />
+        <H3 en="Side by side" zh="并排比较" />
         <Widget title={{ en: 'Special rule: on vs off — the same S[n], computed both ways', zh: '额外规则：开与关——同一个 S[n] 的两种算法' }}>
           <RuleCompare />
         </Widget>
@@ -309,9 +312,11 @@ export default function Chapter09() {
           zh={<>只靠合法的基本列步骤（每一步都取某个 S[n]），就能从 <M t="A_0" /> 走到 <M t="A_1" />，它的结尾和 <M t="A_0" /> 一模一样，只是整体抬高了一格；再从 <M t="A_1" /> 走到 <M t="A_2" />……</>}
           en={<>Using only legal fundamental-sequence steps (each step replaces S by some S[n]), you can walk from <M t="A_0" /> to <M t="A_1" />, whose tail is a copy of <M t="A_0" />’s tail shifted up by one. From <M t="A_1" /> you reach <M t="A_2" /> the same way, and so on.</>}
         />
-        <Widget title={{ en: 'The infinite descent (special rule off)', zh: '无穷降链（关掉额外规则）' }} hint={{ en: 'Every step is S → S[n]. The route between milestones is found by the code and replayed here.', zh: '每一步都是 S → S[n]。里程碑之间的路线由程序搜索得到，在这里回放。' }}>
+        <H3 en="Watch it fall forever" zh="看它永远往下掉" />
+        <Widget title={{ en: 'The infinite descent (special rule off)', zh: '无穷降链（关掉额外规则）' }} hint={{ en: 'Every step is S → S[n]; the route was found by computer search.', zh: '每一步都是 S → S[n]；路线由程序搜索得到。' }}>
           <DescentChain />
         </Widget>
+        <H3 en="Why this is fatal" zh="为什么这是致命的" />
         <P
           zh={<>每一步都是“取基本列的一项”，所以如果这些矩阵代表序数，每一步都严格变小。可是模式永远重复下去：<M t="A_0>A_1>A_2>\cdots" /> 是一条无穷严格递降链。由第 3 章的定理，序数里没有这种东西。</>}
           en={<>Each step takes a fundamental-sequence term, so if these matrices denoted ordinals, every step would strictly decrease. Yet the pattern repeats forever: <M t="A_0>A_1>A_2>\cdots" /> is an infinite strictly decreasing chain. By Chapter 3’s theorem, ordinals have no such thing.</>}
@@ -417,6 +422,7 @@ export default function Chapter09() {
           zh={<>BO 以上的名字（TFBO、EBO、JO、SRO、SSO、LRO、TSSO、QSSO、SHO）这里只是名字。它们的含义依赖“反射”“稳定”“投影”等思想，第 10 章会解释。这些位置来自社区的分析，属于社区估计。 <Status kind="folklore" /></>}
           en={<>Above BO the names (TFBO, EBO, JO, SRO, SSO, LRO, TSSO, QSSO, SHO) are only names here. Their meaning relies on reflection, stability and projection, which Chapter 10 explains. Their positions come from community analysis and are community estimates. <Status kind="folklore" /></>}
         />
+        <H3 en="The ladder, rung by rung" zh="逐级看阶梯" />
         <Widget title={{ en: 'The strength ladder', zh: '强度阶梯' }} hint={{ en: 'Click a rung. Order on the ladder is plain dictionary order on the matrices.', zh: '点击一级台阶。阶梯上的先后，就是矩阵的字典序。' }}>
           <StrengthLadder />
         </Widget>
@@ -465,9 +471,11 @@ export default function Chapter09() {
           zh={<><b>0-Y 序列</b>更进一步：对序列反复取“每项 − 它的父项”，一层层往上画，就得到一座<b>山脉</b>。山脉的父项结构，正好就是 BMS 矩阵的父项结构。</>}
           en={<>The <b>0-Y sequence</b> goes further: repeatedly take “entry − its parent,” stacking layer on layer, and you get a <b>mountain</b>. The parent structure of the mountain is exactly that of a BMS matrix.</>}
         />
-        <Widget title={{ en: 'BMS ↔ 0-Y mountain', zh: 'BMS ↔ 0-Y 山脉' }} hint={{ en: 'The widget expands the BMS matrix and translates the result back. Compare with the book.', zh: '组件先展开 BMS 矩阵，再把结果翻译回 0-Y。可以和书中的结果对照。' }}>
+        <H3 en="Draw the mountain" zh="画出山脉" />
+        <Widget title={{ en: 'BMS ↔ 0-Y mountain', zh: 'BMS ↔ 0-Y 山脉' }} hint={{ en: 'Expand the matrix; the result is translated back to 0-Y.', zh: '展开矩阵，结果再翻译回 0-Y。' }}>
           <Mountain />
         </Widget>
+        <H3 en="Checking against the book" zh="与书对照" />
         <P
           zh={<>书中的例子：0-Y(1,4,10,13) 对应 <Mx s="(0,0,0)(1,1,1)(2,2,2)(3,1,1)" />，展开为 (1,4,10,12,16,23,26,31,39,…)。组件把矩阵展开后再翻译回来，得到的正是这一串。书中说 BMS 和 0-Y “完全等价”，同时也坦白：这种等价性“尚未得到严格的证明”。<Status kind="open" /></>}
           en={<>The book’s example: 0-Y(1,4,10,13) corresponds to <Mx s="(0,0,0)(1,1,1)(2,2,2)(3,1,1)" /> and expands to (1,4,10,12,16,23,26,31,39,…). Expanding the matrix in the widget and translating back gives exactly this sequence. The book calls BMS and 0-Y “completely equivalent,” and admits in the same breath that the equivalence “has not yet been rigorously proved.” <Status kind="open" /></>}

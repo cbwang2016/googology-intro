@@ -12,6 +12,7 @@ export default function Chapter11() {
           { en: <>The informal notions “algorithm” and “computable”, the Church–Turing thesis, and diagonalization (Chapter 2).</>, zh: <>“算法”“可计算”的非正式说法、Church–Turing 论题，以及对角化（第 2 章）。</> },
           { en: <>Countable vs uncountable sets and Cantor’s diagonal argument (Chapter 3).</>, zh: <>可数与不可数集合、Cantor 对角线论证（第 3 章）。</> },
           { en: <>Recursive ordinals and <M t="\Omega=\omega_1^{\mathrm{CK}}" />, the first non-recursive ordinal (Chapter 8) — only in one optional panel.</>, zh: <>递归序数与 <M t="\Omega=\omega_1^{\mathrm{CK}}" />，即第一个非递归序数（第 8 章）——只在一个选读面板里用到。</> },
+          { en: <>Counting quantifier alternations, <M t="\Sigma_n" /> and <M t="\Pi_n" />; Gödel’s theorems; recursively axiomatized theories (Chapter 10).</>, zh: <>数量词交替的 <M t="\Sigma_n" /> 与 <M t="\Pi_n" />；哥德尔定理；递归可枚举公理化的理论（第 10 章）。</> },
         ]}
       />
 
@@ -51,13 +52,23 @@ export default function Chapter11() {
       {/* ---------------------------------------------------------------- */}
       <Section id="machine" kicker={{ en: 'The model', zh: '模型' }} title={{ en: 'A clerk on a strip of paper', zh: '纸带上的抄写员' }}>
         <P
-          zh={<>Turing 的出发点是一个正在做计算的人。他的记忆有限，一次只看几个符号，一次只改一个符号，然后把注意力挪一点点。</>}
-          en={<>Turing started from a human doing a computation. Her memory is finite; she looks at a few symbols at a time, changes one symbol at a time, then shifts her attention a little.</>}
+          zh={<>Turing 的出发点是一个正在计算的人：记忆有限，一次只看、只改一个符号，再挪一点注意力。把非本质的东西剥掉：纸变成一条格子带，符号只剩 0 和 1，“心里的状态”变成有限个字母 A、B、C……</>}
+          en={<>Turing started from a human computing: finite memory, reading and changing one symbol at a time, then shifting attention a little. Strip away everything inessential: the paper becomes a strip of cells, the symbols shrink to 0 and 1, and her “state of mind” becomes one of finitely many letters A, B, C, …</>}
         />
         <P
-          zh={<>把一切非本质的东西剥掉：纸变成一条格子带，符号只剩 0 和 1，“心里的状态”变成有限个字母 A、B、C……</>}
-          en={<>Strip away everything inessential: the paper becomes a strip of cells, the symbols shrink to 0 and 1, and her “state of mind” becomes one of finitely many letters A, B, C, …</>}
+          zh={<>下面的定义里，一台机器就是一张转移表，整张表可以写成一行：按 A0 A1 _ B0 B1 _ … 的顺序排列。例如 <code>1RB1LB_1LA1RZ</code> 就是一台完整的二状态机器；<code>---</code> 表示一个没用上的格子。</>}
+          en={<>In the definition below, a machine is a transition table, and the whole table fits on one line in the order A0 A1 _ B0 B1 _ …. For example <code>1RB1LB_1LA1RZ</code> is a complete 2-state machine; <code>---</code> marks an unused entry.</>}
         />
+        <Expand kind="detail" title={{ en: 'Conventions differ between books', zh: '不同书的约定不一样' }}>
+          <P
+            zh={<>有的书用单向无穷纸带、更多符号、或把“写”和“移动”拆成两种指令。对“能算什么”来说，这些模型全都等价；但对下一章的忙碌海狸数值来说，约定会影响具体数字。我们始终用本章定义中的约定（也是 bbchallenge 社区的约定）。</>}
+            en={<>Some books use one-way tapes, more symbols, or separate “write” and “move” instructions. For <i>what can be computed</i> all these are equivalent, but the exact Busy Beaver values of the next chapter depend on the convention. We always use the one in the definition (also the bbchallenge community’s).</>}
+          />
+          <P
+            zh={<>本章的模拟器中，如果机器碰到一个 <code>---</code> 格子，就当它是 <code>1RZ</code>：写 1、停机，并计一步。这正是下文“树标准形”填空的方式。</>}
+            en={<>In this chapter’s simulators, reaching an undefined <code>---</code> entry is treated as <code>1RZ</code>: write 1, halt, count one step. That is exactly how Tree Normal Form fills in entries later in this chapter.</>}
+          />
+        </Expand>
         <Thm kind="definition" name={{ en: 'Turing machine (the book’s conventions, §25.3)', zh: 'Turing 机（采用书中 §25.3 的约定）' }}>
           <B
             zh={
@@ -78,20 +89,6 @@ export default function Chapter11() {
             }
           />
         </Thm>
-        <P
-          zh={<>整张表可以写成一行：按 A0 A1 _ B0 B1 _ … 的顺序排列。例如 <code>1RB1LB_1LA1RZ</code> 就是一台完整的二状态机器。<code>---</code> 表示一个没用上的格子。</>}
-          en={<>The whole table fits on one line, in the order A0 A1 _ B0 B1 _ …. For example <code>1RB1LB_1LA1RZ</code> is a complete 2-state machine. <code>---</code> marks an unused entry.</>}
-        />
-        <Expand kind="detail" title={{ en: 'Conventions differ between books', zh: '不同书的约定不一样' }}>
-          <P
-            zh={<>有的书用单向无穷纸带、更多符号、或把“写”和“移动”拆成两种指令。对“能算什么”来说，这些模型全都等价；但对下一章的忙碌海狸数值来说，约定会影响具体数字。我们始终用本章定义中的约定（也是 bbchallenge 社区的约定）。</>}
-            en={<>Some books use one-way tapes, more symbols, or separate “write” and “move” instructions. For <i>what can be computed</i> all these are equivalent, but the exact Busy Beaver values of the next chapter depend on the convention. We always use the one in the definition (also the bbchallenge community’s).</>}
-          />
-          <P
-            zh={<>本章的模拟器中，如果机器碰到一个 <code>---</code> 格子，就当它是 <code>1RZ</code>：写 1、停机，并计一步。这正是下文“树标准形”填空的方式。</>}
-            en={<>In this chapter’s simulators, reaching an undefined <code>---</code> entry is treated as <code>1RZ</code>: write 1, halt, count one step. That is exactly how Tree Normal Form fills in entries later in this chapter.</>}
-          />
-        </Expand>
         <Widget
           title={{ en: 'Turing-machine workbench', zh: 'Turing 机工作台' }}
           hint={{ en: 'Edit any entry of the table, or paste a code. The highlighted entry is the one just used.', zh: '可以改表里任何一格，或直接粘贴代码。高亮的格子是刚刚用到的那条转移。' }}
@@ -148,8 +145,8 @@ export default function Chapter11() {
         />
         <MB t="\begin{gathered}(4n+4)^{2n}\\ \small n=2:\ 20{,}736;\qquad n=5:\ 63{,}403{,}380{,}965{,}376\end{gathered}" />
         <P
-          zh={<>张表。数目惊人，但始终是有限的；全体机器则是<b>可数</b>多台。</>}
-          en={<>tables. Enormous, but finite for each <M t="n" />; and all machines together form a <b>countable</b> set.</>}
+          zh={<>张表。数目惊人，但对每个 <M t="n" /> 都是有限的；所以全体机器是<b>可数</b>多台——先列出所有一状态的表，再列二状态的，依此类推。</>}
+          en={<>tables. Enormous, but finite for each <M t="n" />; so all machines together form a <b>countable</b> set — list the 1-state tables, then the 2-state ones, and so on.</>}
         />
         <Thm name={{ en: 'most functions are uncomputable', zh: '绝大多数函数不可计算' }}>
           <B
@@ -172,8 +169,8 @@ export default function Chapter11() {
       {/* ---------------------------------------------------------------- */}
       <Section id="behaviours" kicker={{ en: 'Field guide', zh: '野外图鉴' }} title={{ en: 'What machines do all day', zh: '机器整天在干什么' }}>
         <P
-          zh={<>要看清一台机器的行为，最好的办法是<Term en="space-time diagram" zh="时空图" />：每走一步，就把整条纸带画成一行，时间向下流动。金色是 1，彩色小块是读头（颜色表示状态）。</>}
-          en={<>The best way to see what a machine is doing is a <Term en="space-time diagram" zh="时空图" />: after each step, draw the whole tape as one row, with time flowing downward. Gold is a 1; the coloured mark is the head (its colour shows the state).</>}
+          zh={<>要看清一台机器的行为，最好的办法是<Term en="space-time diagram" zh="时空图" />：每走一步，就把整条纸带画成一行，时间向下流动。金色是 1，彩色小块是读头（颜色表示状态）。斜着走的细线是读头在扫动，竖直的色带是一段从不移动的 1；读懂这两种笔画，大部分行为一眼就能认出来。</>}
+          en={<>The best way to see what a machine is doing is a <Term en="space-time diagram" zh="时空图" />: after each step, draw the whole tape as one row, with time flowing downward. Gold is a 1; the coloured mark is the head (its colour shows the state). A slanted thin line is the head sweeping; a vertical band is a block of ones that never moves. Learn those two strokes and most behaviours can be read at a glance.</>}
         />
         <Widget
           title={{ en: 'Five kinds of behaviour', zh: '五种行为' }}
@@ -182,16 +179,16 @@ export default function Chapter11() {
           <BehaviourGallery />
         </Widget>
         <P
-          zh={<>循环机、平移循环机、弹跳机、计数器——这四种“不停机”的形状一直延续到五状态机器。下一章证明 BB(5) 时，每一种都要靠专门的程序去识别。</>}
-          en={<>Cyclers, translated cyclers, bouncers, counters: these four never-halting shapes persist all the way up to 5-state machines. In the next chapter’s proof of BB(5), each one needs its own dedicated recognizer.</>}
+          zh={<>循环机、平移循环机、弹跳机、计数器——这四种“不停机”的形状一直延续到五状态机器。下一章证明 BB(5) 时，每一种都要靠专门的程序去识别。停机的机器反而好办——跑下去就是了；每一个忙碌海狸证明真正的难处，都在于给“永不停机”开出证书。</>}
+          en={<>Cyclers, translated cyclers, bouncers, counters: these four never-halting shapes persist all the way up to 5-state machines. In the next chapter’s proof of BB(5), each one needs its own dedicated recognizer. Halting machines are the easy part — just run them; the real work in every Busy Beaver proof is certifying the ones that never halt.</>}
         />
       </Section>
 
       {/* ---------------------------------------------------------------- */}
       <Section id="church-turing" kicker={{ en: 'One notion', zh: '殊途同归' }} title={{ en: 'Every model computes the same things', zh: '所有模型算的东西都一样' }}>
         <P
-          zh={<>1936 年前后，“可计算”的定义一下子冒出好几个：Church 的 λ 演算、Gödel–Herbrand–Kleene 的递归函数、Turing 机、Post 的产生式系统。它们看上去毫无关系。</>}
-          en={<>Around 1936 several definitions of “computable” appeared at once: Church’s λ-calculus, the recursive functions of Gödel, Herbrand and Kleene, Turing machines, Post’s production systems. They look nothing alike.</>}
+          zh={<>1936 年前后，“可计算”的定义冒出好几个，看上去毫无关系。</>}
+          en={<>Around 1936 several definitions of “computable” appeared at once, looking nothing alike.</>}
         />
         <Thm name={{ en: 'equivalence of the classical models (Kleene 1936, Turing 1937)', zh: '经典模型的等价性（Kleene 1936，Turing 1937）' }}>
           <B
@@ -282,6 +279,10 @@ export default function Chapter11() {
           zh={<>关键一步是把 TROLL <b>自己的代码</b>喂给它。这和第 2 章的对角函数 <M t="d(n)=n\uparrow^{n}n" />、第 3 章 Cantor 的对角线是同一个动作：沿对角线走，处处唱反调。</>}
           en={<>The key move is feeding TROLL <b>its own code</b>. It is the same move as Chapter 2’s diagonal function <M t="d(n)=n\uparrow^{n}n" /> and Cantor’s diagonal in Chapter 3: walk down the diagonal and disagree everywhere.</>}
         />
+        <P
+          zh={<>如果表中列出了<b>所有</b>程序，TROLL 也应该是其中某一行，比如第 k 行。可它在第 k 格上与第 k 行相反——它不可能在表里。</>}
+          en={<>If the table listed <b>all</b> programs, TROLL would be some row, say row k. But it disagrees with row k in column k — so it cannot be in the table.</>}
+        />
         <Widget
           title={{ en: 'The halting table and its diagonal', zh: '停机表与它的对角线' }}
           hint={{ en: 'Rows are programs, columns are inputs. Click a row to see where TROLL disagrees with it.', zh: '行是程序，列是输入。点一行，看 TROLL 在哪里和它唱反调。' }}
@@ -289,12 +290,8 @@ export default function Chapter11() {
           <HaltingTable />
         </Widget>
         <P
-          zh={<>如果表中列出了<b>所有</b>程序，TROLL 也应该是其中某一行，比如第 k 行。可它在第 k 格上与第 k 行相反——它不可能在表里。</>}
-          en={<>If the table listed <b>all</b> programs, TROLL would be some row, say row k. But it disagrees with row k in column k — so it cannot be in the table.</>}
-        />
-        <P
-          zh={<>注意表的最后一行：要写出 TROLL 的那一格，就得先知道 Goldbach 猜想是否成立。停机判定器若存在，就能顺手解决所有这类猜想。</>}
-          en={<>Notice the last row: to fill in TROLL’s entry there, you would have to know whether Goldbach’s conjecture holds. A halting decider, if it existed, would settle every conjecture of this kind in passing.</>}
+          zh={<>再看表的最后一行：要写出 TROLL 的那一格，就得先知道 Goldbach 猜想是否成立（那一行的程序“寻找不是两素数之和的偶数”）。这个猜想 1742 年由 Goldbach 写信向 Euler 提出，此后两百八十多年，没有人找到反例，也没有人给出证明。停机判定器若存在，就能顺手解决所有这类“找反例”式的猜想。</>}
+          en={<>Look again at the last row: to fill in TROLL’s entry there, you would have to know whether Goldbach’s conjecture holds (that row’s program searches for an even number that is not a sum of two primes). Goldbach posed it in a 1742 letter to Euler; in over 280 years nobody has found a counterexample or a proof. A halting decider, if it existed, would settle every such “search for a counterexample” conjecture in passing.</>}
         />
         <Caution>
           <L
@@ -390,12 +387,8 @@ export default function Chapter11() {
           <TNFExplorer />
         </Widget>
         <P
-          zh={<>结果：二状态的 TNF 树只有 41 片叶子。15 台停机（正是书中列出的 15 台），最长 6 步，最多 4 个 1；其余 26 台不停：3 台循环机，23 台平移循环机。</>}
-          en={<>The result: the 2-state TNF tree has just 41 leaves. 15 halt (exactly the 15 the book lists), the longest after 6 steps, the most ones being 4; the other 26 never halt — 3 cyclers and 23 translated cyclers.</>}
-        />
-        <P
-          zh={<>（分类由小程序自动做出；每种情形都能从时空图上手工验证。）三状态有 4057 片叶子，停机者最多走 21 步，最多留下 6 个 1。</>}
-          en={<>(The widget classifies by simple automatic tests; each case is easy to confirm from its diagram.) Three states give 4057 leaves, whose halting members run at most 21 steps and leave at most 6 ones.</>}
+          zh={<>结果：二状态的 TNF 树只有 41 片叶子。15 台停机（正是书中列出的 15 台），最长 6 步，最多 4 个 1；其余 26 台不停：3 台循环机，23 台平移循环机。（分类由小程序自动做出；每种情形都能从时空图上手工验证。）三状态有 4057 片叶子，停机者最多走 21 步，最多留下 6 个 1。</>}
+          en={<>The result: the 2-state TNF tree has just 41 leaves. 15 halt (exactly the 15 the book lists), the longest after 6 steps, the most ones being 4; the other 26 never halt — 3 cyclers and 23 translated cyclers. (The widget classifies by simple automatic tests; each case is easy to confirm from its diagram.) Three states give 4057 leaves, whose halting members run at most 21 steps and leave at most 6 ones.</>}
         />
         <H3 en="Proving that a machine never halts" zh="怎样证明一台机器永不停机" />
         <P
@@ -421,8 +414,8 @@ export default function Chapter11() {
           <InvariantProver />
         </Widget>
         <P
-          zh={<>对机器 <code>1RB0LA_1LA---</code>，精心设计的 C 有三种形状。写法：纸带内容，状态字母写在被读格子的前面，左边全是 0。三行就验证完所有长度：</>}
-          en={<>For the machine <code>1RB0LA_1LA---</code>, the careful C has three shapes. Notation: tape contents, with the state letter just before the scanned cell and blanks to the left. Three lines check every length:</>}
+          zh={<>对机器 <code>1RB0LA_1LA---</code>，精心设计的 C 有三种形状。写法：纸带内容，状态字母写在被读格子的前面，左边全是 0。<M t="v" /> 代表任意 0/1 串。唯一的停机入口是 B1，所以只需验证：C 含起点、走一步仍在 C 中、且 C 里状态 B 从不读到 1。三行就验证完所有长度：</>}
+          en={<>For the machine <code>1RB0LA_1LA---</code>, the careful C has three shapes. Notation: tape contents, with the state letter just before the scanned cell and blanks to the left. <M t="v" /> stands for any 0/1 word. The only exit is entry B1, so we must check: C contains the start, is closed under one step, and never has state B reading a 1. Three lines check every length:</>}
         />
         <MB t="\begin{aligned}\texttt{A}1v\ &\xrightarrow{\ \texttt{0LA}\ }\ \texttt{A}00v,\\ \texttt{A}0,\ \texttt{A}00v\ &\xrightarrow{\ \texttt{1RB}\ }\ 1\texttt{B}0v,\\ 1\texttt{B}0v\ &\xrightarrow{\ \texttt{1LA}\ }\ \texttt{A}11v.\end{aligned}" />
         <P

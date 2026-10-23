@@ -181,7 +181,7 @@ export const PROBLEMS: Problem[] = [
   {
     ch: 10, area: 'logic', status: 'open',
     title: { en: 'PTO(Z₃), …, PTO(ZFC)', zh: 'PTO(Z₃)、……、PTO(ZFC)' },
-    body: { en: 'Ordinal analysis has reached second-order arithmetic Z₂ (= ψ_Ω(I_ω) per the book). Beyond it — third-order arithmetic, ZFC — the proof-theoretic ordinals are unknown.', zh: '序数分析目前的前沿是二阶算术 Z₂（书中给出 ψ_Ω(I_ω)）。再往上——三阶算术、ZFC——证明论序数完全未知。' },
+    body: { en: 'Ordinal analysis has reached second-order arithmetic: Arai’s preprint arXiv:2311.12459 (2023, v4 2025) gives |Z₂| = ψ_Ω(I_ω), still being vetted. Beyond it — third-order arithmetic, ZFC — the proof-theoretic ordinals are unknown.', zh: '序数分析目前的前沿是二阶算术：Arai 的预印本 arXiv:2311.12459（2023，2025 年第 4 版）给出 |Z₂| = ψ_Ω(I_ω)，仍待检验。再往上——三阶算术、ZFC——证明论序数完全未知。' },
   },
   {
     ch: 10, area: 'logic', status: 'open',

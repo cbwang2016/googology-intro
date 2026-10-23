@@ -313,7 +313,7 @@ export function BuchholzHydra() {
         ))}
       </div>
       {drawable ? (
-        <svg viewBox={`0 0 ${VW} ${VH}`} className="c08-hydra" style={{ maxHeight: 200 }}>
+        <svg viewBox={`0 0 ${VW} ${VH}`} className="c08-hydra" style={{ maxHeight: 180 }}>
           {pos.map((q, i) =>
             q.parent ? <line key={'l' + i} x1={px(q.parent.x)} y1={py(q.parent.y)} x2={px(q.x)} y2={py(q.y)} stroke="#3a4680" strokeWidth={2} /> : null,
           )}

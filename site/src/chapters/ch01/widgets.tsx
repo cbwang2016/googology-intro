@@ -292,7 +292,7 @@ export function Chessboard() {
 /* ------------------------------------------------------------------ */
 /* 6. Hall of champions                                                */
 /* ------------------------------------------------------------------ */
-export function Arena({ upTo }: { upTo: number }) {
+export function Arena({ upTo, note = true }: { upTo: number; note?: boolean }) {
   const list = CHAMPIONS.slice(0, upTo)
   const maxBar = 4
   return (
@@ -326,12 +326,12 @@ export function Arena({ upTo }: { upTo: number }) {
           </div>
         )
       })}
-      <div className="muted arena-note">
+      {note && <div className="muted arena-note">
         <L
           en="Bar length = how many times you must take “number of digits” before the number shrinks to about 1 (a super-logarithm). Each extra unit of bar is an extra layer of “digits of digits”."
           zh="条形长度 = 要连续取多少次“位数”，这个数才缩到 1 左右（超对数）。条形每长一格，就多了一层“位数的位数”。"
         />
-      </div>
+      </div>}
     </div>
   )
 }
@@ -491,11 +491,15 @@ export function ZoomOut() {
       return { ...p, off, xv }
     })
   const rowsEnd: number[] = []
-  const withRow = placed.map((p) => {
+  const offs = placed.filter((p) => p.off)
+  const shown = [...placed.filter((p) => !p.off), ...(offs.length ? [offs[0]] : [])]
+  const withRow = shown.map((p) => {
+    const endA = p.off || p.xv > W - 280
+    const start = p.off ? p.xv - 300 : endA ? p.xv - 260 : p.xv
     let r = 0
-    while (rowsEnd[r] !== undefined && rowsEnd[r] > p.xv - 6) r++
-    rowsEnd[r] = p.xv + 120
-    return { ...p, row: r }
+    while (rowsEnd[r] !== undefined && rowsEnd[r] > start - 6) r++
+    rowsEnd[r] = endA ? p.xv : p.xv + 120
+    return { ...p, row: r, endA }
   })
   const tooSmall = pts.filter((p) => p.pos === null).length
   const nRows = Math.max(1, ...withRow.map((p) => p.row + 1))
@@ -533,9 +537,8 @@ export function ZoomOut() {
           <g key={p.i}>
             <circle cx={p.xv} cy={40} r={4} fill={p.off ? '#ff7ab6' : '#ffd36b'} />
             <line x1={p.xv} y1={44} x2={p.xv} y2={58 + p.row * 22} stroke="#2a3563" />
-            <text x={p.xv + 3} y={62 + p.row * 22} fill={p.off ? '#ff7ab6' : '#e6e9f5'} fontSize="12.5">
-              {t(p.lm.name.en, p.lm.name.zh)}
-              {p.off ? ' →' : ''}
+            <text x={p.endA ? p.xv - 4 : p.xv + 3} y={62 + p.row * 22} fill={p.off ? '#ff7ab6' : '#e6e9f5'} fontSize="12.5" textAnchor={p.endA ? 'end' : 'start'}>
+              {p.off ? t(`${offs.length} more beyond →`, `另有 ${offs.length} 个在右边 →`) : t(p.lm.name.en, p.lm.name.zh)}
             </text>
           </g>
         ))}

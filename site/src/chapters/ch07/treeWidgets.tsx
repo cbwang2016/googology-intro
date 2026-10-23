@@ -147,10 +147,10 @@ function Editor({
 /* Embedding checker                                                   */
 /* ================================================================== */
 const EMB_PRESETS: { name: { en: string; zh: string }; a: string; b: string }[] = [
-  { name: { en: 'path into a longer path', zh: '短链嵌入长链' }, a: '0(0)', b: '0(0(0))' },
-  { name: { en: 'cherry into a star', zh: '樱桃嵌入星形' }, a: '0(0,0)', b: '0(0,1,0(0))' },
-  { name: { en: 'the meeting-point trap', zh: '“交汇点”陷阱' }, a: '2(0,0)', b: '2(0(0,0))' },
-  { name: { en: 'skipped vertices can be any colour', zh: '被跳过的点颜色随意' }, a: '0(0)', b: '0(1(0))' },
+  { name: { en: 'path in path', zh: '短链进长链' }, a: '0(0)', b: '0(0(0))' },
+  { name: { en: 'cherry in star', zh: '樱桃进星形' }, a: '0(0,0)', b: '0(0,1,0(0))' },
+  { name: { en: 'meeting-point trap', zh: '交汇点陷阱' }, a: '2(0,0)', b: '2(0(0,0))' },
+  { name: { en: 'skipped: any colour', zh: '跳过的点随意' }, a: '0(0)', b: '0(1(0))' },
   { name: { en: 'neither way', zh: '谁也嵌不进谁' }, a: '0(0(0))', b: '0(0,0,0)' },
 ]
 
@@ -190,12 +190,12 @@ export function EmbeddingChecker() {
         ))}
       </div>
       <div className="c07-two">
-        <div>
-          <div className="c07-label">A</div>
+        <div className="c07-ed-wrap">
+          <div className="c07-label c07-label-in">A</div>
           <Editor tree={A} setTree={(t) => { setA(t); setAi(-1) }} colours={3} sel={sa} setSel={setSa} marks={marksA} maxSize={8} />
         </div>
-        <div>
-          <div className="c07-label">B</div>
+        <div className="c07-ed-wrap">
+          <div className="c07-label c07-label-in">B</div>
           <Editor tree={B} setTree={(t) => { setB(t); setAi(-1) }} colours={3} sel={sb} setSel={setSb} marks={marksB} maxSize={10} />
         </div>
       </div>
@@ -215,8 +215,8 @@ export function EmbeddingChecker() {
       {ai === 2 && (
         <div className="small muted">
           <L
-            en="Trap: send A's blue root to B's root and the two red leaves to B's two red leaves. Every vertex keeps its colour and its ancestors — but the two leaves now meet at the red middle vertex, not at the image of the blue root. Friedman's rule forbids this."
-            zh="陷阱：把 A 的蓝根送到 B 的根，两片红叶送到 B 的两片红叶。颜色、祖先关系都没破坏——可是这两片叶子在 B 中的交汇点变成了红色的中间点，而不是蓝根的像。Friedman 的规则不允许这样。"
+            en="Trap: map blue root to blue root, red leaves to red leaves. Colours and ancestry survive, but in B the leaves meet at the red middle vertex, not at the image of the root — forbidden."
+            zh="陷阱：蓝根对蓝根、红叶对红叶，颜色和祖先关系都保住了；可两片叶子在 B 中交汇于红色中间点，而不是根的像——不允许。"
           />
         </div>
       )}

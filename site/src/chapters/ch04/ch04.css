@@ -17,3 +17,4 @@ table.c04-small td, table.c04-small th { font-size: 14px; white-space: nowrap; }
 .c04-hstate { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 4px 2px; }
 .c04-hstate .katex { font-size: 1.3em; color: var(--gold); }
 .c04-rep { display: grid; gap: 6px; }
+table.c04-small td, table.c04-small th { padding-top: 4px; padding-bottom: 4px; }

@@ -27,7 +27,7 @@ export default function Chapter10() {
       <Prereq
         items={[
           { en: <>Ordinals, ω₁, countable vs uncountable, Cantor’s diagonal argument (Chapter 3).</>, zh: <>序数、ω₁、可数与不可数、Cantor 对角线论证（第 3 章）。</> },
-          { en: <>The bad-root rule of primitive sequences (Chapter 5).</>, zh: <>初等序列的坏根规则（第 5 章）。</> },
+          { en: <>Towers and Ackermann’s function (Chapters 1–2); the bad-root rule of primitive sequences (Chapter 5); Γ₀, SVO and Kruskal’s theorem (Chapter 7).</>, zh: <>指数塔与 Ackermann 函数（第 1–2 章）；初等序列的坏根规则（第 5 章）；Γ₀、SVO 与 Kruskal 定理（第 7 章）。</> },
           { en: <>Peano arithmetic PA, Gödel’s theorems as slogans, the proof-theoretic ordinal PTO (Chapter 6).</>, zh: <>Peano 算术 PA、作为口号的哥德尔定理、证明论序数 PTO（第 6 章）。</> },
           { en: <><M t="\Omega=\omega_1^{\mathrm{CK}}" />, the collapsing function ψ, <M t="\Omega_\omega" />, BHO and BO (Chapter 8); the Bashicu matrix landmarks (Chapter 9).</>, zh: <><M t="\Omega=\omega_1^{\mathrm{CK}}" />、折叠函数 ψ、<M t="\Omega_\omega" />、BHO 与 BO（第 8 章）；Bashicu 矩阵的里程碑（第 9 章）。</> },
         ]}
@@ -67,7 +67,6 @@ export default function Chapter10() {
 
       {/* ================================================================ */}
       <Section id="sets" kicker={{ en: 'Toolkit I', zh: '工具箱 · 一' }} title={{ en: 'Everything is a set', zh: '万物皆集合' }}>
-        <H3 en="Numbers out of nothing" zh="从空无中造出数" />
         <P
           zh={<>现代数学只用一种东西：<Term en="set" zh="集合" />，以及一种关系：属于 <M t="\in" />。数也要用集合造出来。von Neumann（1923）的办法是：</>}
           en={<>Modern mathematics is built from one kind of object, the <Term en="set" zh="集合" />, and one relation, membership <M t="\in" />. Even numbers must be made of sets. Von Neumann’s recipe (1923):</>}
@@ -156,8 +155,8 @@ export default function Chapter10() {
       {/* ================================================================ */}
       <Section id="language" kicker={{ en: 'Toolkit II', zh: '工具箱 · 二' }} title={{ en: 'A language with five symbols', zh: '只有五个符号的语言' }}>
         <P
-          zh={<>Russell 悖论钻的是“性质”一词的空子。所以我们把“能说的话”精确化成形式语言；第 13 章会逐字使用这个定义。</>}
-          en={<>Russell’s paradox crawled out of the vague word “property”. So we pin down “what can be said” as a formal language; Chapter 13 uses this definition word for word.</>}
+          zh={<>Russell 悖论钻了“性质”一词的空子。所以我们把“能说的话”写成形式语言；第 13 章逐字沿用。</>}
+          en={<>Russell’s paradox exploited the vague word “property”. So we make “what can be said” a formal language; Chapter 13 uses it word for word.</>}
         />
         <Thm kind="definition" name={{ en: 'first-order formulas of set theory', zh: '集合论的一阶公式' }}>
           <P
@@ -242,7 +241,6 @@ export default function Chapter10() {
 
       {/* ================================================================ */}
       <Section id="godel" kicker={{ en: 'Toolkit IV', zh: '工具箱 · 四' }} title={{ en: 'Truth, proof and Gödel', zh: '真、证明与哥德尔' }}>
-        <H3 en="Theories and models" zh="理论与模型" />
         <P
           zh={<><Term en="theory" zh="理论" /> T 就是一组语句（公理）。T 的<Term en="model" zh="模型" />是让所有公理都为真的结构。<M t="T\vdash\varphi" /> 表示 φ 能从 T 出发用有限的形式证明推出；<M t="T\models\varphi" /> 表示 φ 在 T 的每个模型中都为真。</>}
           en={<>A <Term en="theory" zh="理论" /> T is a set of sentences, its axioms. A <Term en="model" zh="模型" /> of T is a structure in which all of them are true. <M t="T\vdash\varphi" /> means φ follows from T by a finite formal proof; <M t="T\models\varphi" /> means φ is true in every model of T.</>}
@@ -323,7 +321,6 @@ export default function Chapter10() {
 
       {/* ================================================================ */}
       <Section id="reflection" kicker={{ en: 'The ladder', zh: '阶梯' }} title={{ en: 'Reflection: big ordinals that look small from inside', zh: '反射：从里面看像小序数的大序数' }}>
-        <H3 en="Why Ω works" zh="Ω 为什么好用" />
         <P
           zh={<>第 8 章的 <M t="\Omega=\omega_1^{\mathrm{CK}}" /> 是第一个不能写成“自然数上可计算良序的序型”的序数。它在 ψ 里能折叠，是因为从下面出发的任何递归过程都到不了它。</>}
           en={<>Chapter 8’s <M t="\Omega=\omega_1^{\mathrm{CK}}" /> is the first ordinal that is not the order type of a computable well-order of ℕ. It folds inside ψ because no recursive process from below can reach it.</>}
@@ -419,35 +416,30 @@ export default function Chapter10() {
           zh={<>Ω 折叠了 <M t="\alpha\mapsto\omega^\alpha" /> 的一切迭代；I 折叠了 <M t="\alpha\mapsto\Omega_\alpha" /> 的一切迭代；M 折叠了整个 I 函数；K 折叠了任意深度的 Π₂ 反射。书中把这条规律写成一个展开规则（定理 9.5）。</>}
           en={<>Ω folds every iteration of <M t="\alpha\mapsto\omega^\alpha" />; I folds every iteration of <M t="\alpha\mapsto\Omega_\alpha" />; M folds the whole I-function; K folds Π₂-reflection of any depth. The book condenses the pattern into one expansion rule (Thm 9.5).</>}
         />
+        <P
+          zh={<>下面这条规则藏着一个惊喜：把表达式<b>倒过来</b>读，它恰好是第 5 章初等序列的坏根规则——删去末项，找坏根，复制坏部。书中的解释是：反射序数本身就带有一个 ε₀ 形状的树结构，所以它们像初等序列一样展开。</>}
+          en={<>The rule below hides a surprise: read the expression <b>backwards</b> and it is exactly Chapter 5’s bad-root rule for primitive sequences — delete the last term, find the bad root, copy the bad part. The book’s explanation: reflecting ordinals themselves carry an ε₀-shaped tree structure, so they expand like primitive sequences.</>}
+        />
         <Thm kind="definition" name={{ en: 'the folding rule (book Thm 9.5)', zh: '折叠规则（书定理 9.5）' }}>
           <P
             zh={<>设反射表达式为 <M t="a_k\ \#_1\ a_i\ \#_2" />，其中 <M t="a_k" /> 是最左项，<M t="a_i" /> 是它右边第一个比它小的项（必要时补上一项 <M t="a_k-1" />）。则</>}
             en={<>Write a reflection expression as <M t="a_k\ \#_1\ a_i\ \#_2" />, where <M t="a_k" /> is the leftmost term and <M t="a_i" /> the first term to its right that is smaller (padding in a term <M t="a_k-1" /> if needed). Then</>}
           />
           <MB t="a_k\ \#_1\ (a_k-1)\ \#_2\ \Rightarrow\ \bigl(\#_1\ (a_k-1){-}\bigr)^{\alpha}\ \#_2 ." />
-          <P
-            zh={<>惊喜在这里：把表达式<b>倒过来</b>读，这恰好是第 5 章初等序列的坏根规则——删去末项，找坏根，复制坏部。</>}
-            en={<>The surprise: read the expression <b>backwards</b> and this is exactly Chapter 5’s bad-root rule for primitive sequences — delete the last term, find the bad root, copy the bad part.</>}
-          />
         </Thm>
+        <Expand kind="detail" title={{ en: 'A misprint caught by the rule', zh: '规则抓到的一处印刷错误' }}>
+          <P
+            zh={<>书中 (9.313) 写 <M t="4\ 2{-}4\Rightarrow(4\ 2{-}4\ 1{-})^\alpha\,4\ 2{-}4" />，(9.314) 写 <M t="2{-}4\ 2{-}4\Rightarrow(3{-})^\alpha\,2{-}4" />。用定理 9.5 计算：<M t="4\ 2{-}4" /> 的首项 4 右边第一个更小的项是 2 &lt; 3，于是补上 3，得到 <M t="(3{-})^\alpha\,2{-}4" />；而 <M t="2{-}4\ 2{-}4" /> 中找不到比 2 小的项，整段被迭代。两式的右边恰好互换了。在下一幕的展开器里选 “4 2−4” 即可验证。</>}
+            en={<>The book prints (9.313) <M t="4\ 2{-}4\Rightarrow(4\ 2{-}4\ 1{-})^\alpha\,4\ 2{-}4" /> and (9.314) <M t="2{-}4\ 2{-}4\Rightarrow(3{-})^\alpha\,2{-}4" />. Thm 9.5 says otherwise: in <M t="4\ 2{-}4" /> the first term smaller than 4 is 2 &lt; 3, so a 3 is padded in, giving <M t="(3{-})^\alpha\,2{-}4" />; in <M t="2{-}4\ 2{-}4" /> nothing is smaller than 2, so the whole rest is iterated. The two right-hand sides are swapped. Choose the preset “4 2−4” in the expander of the next scene to check.</>}
+          />
+        </Expand>
         <Widget title={{ en: 'Reflection expressions are primitive sequences in disguise', zh: '反射表达式是乔装的初等序列' }} hint={{ en: 'Pick a preset or type digits. [n] is the n-th approximation; names appear where the book gives one.', zh: '选一个预设或输入数字。[n] 是第 n 个近似；书中有名字的会显示出来。' }}>
           <ReflectionExpander />
         </Widget>
-        <P
-          zh={<>书中的解释是：反射序数本身就带有一个 ε₀ 形状的树结构，所以它们像初等序列一样展开。</>}
-          en={<>The book’s explanation: the reflecting ordinals themselves carry an ε₀-shaped tree structure, so they expand just like primitive sequences.</>}
-        />
-        <Expand kind="detail" title={{ en: 'A misprint caught by the rule', zh: '规则抓到的一处印刷错误' }}>
-          <P
-            zh={<>书中 (9.313) 写 <M t="4\ 2{-}4\Rightarrow(4\ 2{-}4\ 1{-})^\alpha\,4\ 2{-}4" />，(9.314) 写 <M t="2{-}4\ 2{-}4\Rightarrow(3{-})^\alpha\,2{-}4" />。用定理 9.5 计算：<M t="4\ 2{-}4" /> 的首项 4 右边第一个更小的项是 2 &lt; 3，于是补上 3，得到 <M t="(3{-})^\alpha\,2{-}4" />；而 <M t="2{-}4\ 2{-}4" /> 中找不到比 2 小的项，整段被迭代。两式的右边恰好互换了。在前一幕的展开器里选 “4 2−4” 即可验证。</>}
-            en={<>The book prints (9.313) <M t="4\ 2{-}4\Rightarrow(4\ 2{-}4\ 1{-})^\alpha\,4\ 2{-}4" /> and (9.314) <M t="2{-}4\ 2{-}4\Rightarrow(3{-})^\alpha\,2{-}4" />. Thm 9.5 says otherwise: in <M t="4\ 2{-}4" /> the first term smaller than 4 is 2 &lt; 3, so a 3 is padded in, giving <M t="(3{-})^\alpha\,2{-}4" />; in <M t="2{-}4\ 2{-}4" /> nothing is smaller than 2, so the whole rest is iterated. The two right-hand sides are swapped. Choose the preset “4 2−4” in the reflection-expression expander to check.</>}
-          />
-        </Expand>
       </Section>
 
       {/* ================================================================ */}
       <Section id="stability" kicker={{ en: 'Beyond reflection', zh: '反射之上' }} title={{ en: 'Stability, projection, and the BMS landmarks', zh: '稳定、投影与 BMS 里程碑' }}>
-        <H3 en="Stability: a miniature that cannot be caught lying" zh="稳定：一个抓不到破绽的微缩模型" />
         <Thm kind="definition" name={{ en: 'stability (book Def 10.1–10.2)', zh: '稳定（书定义 10.1–10.2）' }}>
           <P
             zh={<>对 <M t="\alpha<\beta" />，称 α 是 <b>β-稳定</b>的，记作 <M t="L_\alpha\prec_{\Sigma_1}L_\beta" />，如果每个参数取自 <M t="L_\alpha" /> 的 Σ₁ 公式，只要在 <M t="L_\beta" /> 中为真，在 <M t="L_\alpha" /> 中也为真。</>}
@@ -561,8 +553,8 @@ export default function Chapter10() {
           </table>
         </div>
         <P
-          zh={<>再往上：Π₃、Πω 反射，然后是稳定与投影。三行 BMS 的极限 TSSO 已对应有限阶投影；全体 BMS 的极限 SHO 需要“向上投影”。</>}
-          en={<>Higher up: Π₃- and Πω-reflection, then stability and projection. The 3-row limit TSSO already matches finite-order projection; SHO, the limit of all BMS, needs “upward projection”.</>}
+          zh={<>再往上：Π₃、Πω 反射，然后是稳定与投影，直到 BMS 的极限 SHO。</>}
+          en={<>Higher up: Π₃- and Πω-reflection, then stability and projection, up to SHO, the limit of BMS.</>}
         />
         <div className="scroll-x">
           <table className="grid c10-table">
@@ -700,8 +692,8 @@ export default function Chapter10() {
           en={<>The ψ-notation follows Chapter 8; the last rows use each author’s own OCF. Keep two rows apart: <M t="\Pi^1_1\text{-}\mathsf{CA}_0" /> has BO <M t="=\psi(\Omega_\omega)" />, while <M t="\Pi^1_1\text{-}\mathsf{CA}+\mathsf{BI}" /> has the larger TFBO <M t="=\psi(\varepsilon_{\Omega_\omega+1})" />.</>}
         />
         <P
-          zh={<><M t="\mathsf{Z}_2" /> 是完整的二阶算术，几乎容纳全部经典分析。2023 年 Arai 在预印本 arXiv:2311.12459 中对带 <M t="\Pi_N" />-收集的集合论做了序数分析；书中据此写出 <M t="|\mathsf{Z}_2|=\psi_\Omega(I_\omega)" />，其中 <M t="I_N" /> 对应 <M t="\mathsf{KP}+\Pi_N" />-收集。书中称之为“目前序数分析的极限”。它还很新，尚待学界充分检验。</>}
-          en={<><M t="\mathsf{Z}_2" /> is full second-order arithmetic, roomy enough for nearly all of classical analysis. In 2023 Arai’s preprint arXiv:2311.12459 gave an ordinal analysis of set theory with <M t="\Pi_N" />-collection; from it the book reads off <M t="|\mathsf{Z}_2|=\psi_\Omega(I_\omega)" />, where <M t="I_N" /> corresponds to <M t="\mathsf{KP}+\Pi_N" />-collection. The book calls it “the current limit of ordinal analysis”. It is recent and still being digested by the community.</>}
+          zh={<><M t="\mathsf{Z}_2" /> 是完整的二阶算术，几乎容纳全部经典分析。Arai 的预印本 arXiv:2311.12459（2023 年 11 月初稿，2025 年 8 月第 4 版）先对 <M t="\mathsf{KP}\omega+\Pi_N" />-收集做序数分析（得到 <M t="\psi_\Omega(\varepsilon_{I_N+1})" />，其中 <M t="L_{I_N}" /> 满足这个理论），再在定理 1.4 中得出 <M t="|\mathsf{Z}_2|=\psi_\Omega(I_\omega)=\sup_N\psi_\Omega(I_N)" />，这里的 <M t="\mathsf{Z}_2" /> 含相依选择，且与 ZFC 去掉幂集公理的强度相同。书中称之为“目前序数分析的极限”。它尚未正式发表，仍有待学界充分检验。</>}
+          en={<><M t="\mathsf{Z}_2" /> is full second-order arithmetic, roomy enough for nearly all of classical analysis. Arai’s preprint arXiv:2311.12459 (first version November 2023, v4 August 2025) analyses <M t="\mathsf{KP}\omega+\Pi_N" />-Collection (ordinal <M t="\psi_\Omega(\varepsilon_{I_N+1})" />, where <M t="L_{I_N}" /> models that theory) and concludes in its Theorem 1.4 that <M t="|\mathsf{Z}_2|=\psi_\Omega(I_\omega)=\sup_N\psi_\Omega(I_N)" />, for <M t="\mathsf{Z}_2" /> with dependent choice, the same strength as ZFC without power set. The book calls it “the current limit of ordinal analysis”. It is not yet published and still being vetted.</>}
         />
         <P
           zh={<>有人猜测 BMS 能达到 PTO(Z₂)，理由是 BMS 良序性的证明用到了所有 Σₙ 稳定序数。书中强调这只是猜测：BMS 也许在弱得多的系统里就能证明良序。</>}
@@ -717,7 +709,6 @@ export default function Chapter10() {
 
       {/* ================================================================ */}
       <Section id="large-cardinals" kicker={{ en: 'Up into the uncountable', zh: '走进不可数' }} title={{ en: 'Large cardinals', zh: '大基数' }}>
-        <H3 en="A new axiom of infinity" zh="新的无限公理" />
         <P
           zh={<>从有限数出发，用有限次运算永远到不了 ω。去掉无限公理的 ZFC 证明不了 ω 存在；是<b>无限公理</b>直接宣布了它。大基数公理把同一个把戏搬到更高的楼层。</>}
           en={<>Starting from the finite numbers, finite operations never reach ω. ZFC minus the <b>axiom of infinity</b> cannot prove ω exists; that axiom simply declares it. Large-cardinal axioms play the same trick on a higher floor.</>}
@@ -852,8 +843,8 @@ export default function Chapter10() {
                 <li>曹知秋《大数理论》第 7–12 章（集合、逻辑、反射、稳定、投影、强非递归序数），第 15、17 章（证明论序数、大基数），§22.22（Laver 表）。</li>
                 <li>W. Richter, P. Aczel, Inductive definitions and reflecting properties of admissible ordinals (1974)。</li>
                 <li>M. Rathjen, Proof theory of reflection, Ann. Pure Appl. Logic 68 (1994)。</li>
-                <li>T. Arai, An ordinal analysis of Π_N-Collection, arXiv:2311.12459 (2023)。</li>
-                <li>R. Laver, On the algebra of elementary embeddings of a rank into itself, Adv. Math. 110 (1995)；R. Dougherty, Critical points in an algebra of elementary embeddings, Ann. Pure Appl. Logic 65 (1993)；P. Dehornoy, Braids and Self-Distributivity (2000)。</li>
+                <li>T. Arai, An ordinal analysis of Π_N-Collection, arXiv:2311.12459（2023；2025 年第 4 版）。</li>
+                <li>R. Laver, The left distributive law and the freeness of an algebra of elementary embeddings, Adv. Math. 91 (1992)；R. Laver, On the algebra of elementary embeddings of a rank into itself, Adv. Math. 110 (1995)；R. Dougherty, Critical points in an algebra of elementary embeddings, Ann. Pure Appl. Logic 65 (1993)；P. Dehornoy, Braid groups and left distributive operations, Trans. AMS 345 (1994)；P. Dehornoy, Braids and Self-Distributivity (2000)。</li>
                 <li>A. Kanamori, The Higher Infinite（大基数的标准参考书）。</li>
               </ul>
             }
@@ -862,8 +853,8 @@ export default function Chapter10() {
                 <li>曹知秋, 《大数理论》, Chs. 7–12 (sets, logic, reflection, stability, projection, strongly non-recursive ordinals), Chs. 15 and 17 (proof-theoretic ordinals, large cardinals), §22.22 (Laver tables).</li>
                 <li>W. Richter, P. Aczel, Inductive definitions and reflecting properties of admissible ordinals (1974).</li>
                 <li>M. Rathjen, Proof theory of reflection, Ann. Pure Appl. Logic 68 (1994).</li>
-                <li>T. Arai, An ordinal analysis of Π_N-Collection, arXiv:2311.12459 (2023).</li>
-                <li>R. Laver, On the algebra of elementary embeddings of a rank into itself, Adv. Math. 110 (1995); R. Dougherty, Critical points in an algebra of elementary embeddings, Ann. Pure Appl. Logic 65 (1993); P. Dehornoy, Braids and Self-Distributivity (2000).</li>
+                <li>T. Arai, An ordinal analysis of Π_N-Collection, arXiv:2311.12459 (2023; v4 2025).</li>
+                <li>R. Laver, The left distributive law and the freeness of an algebra of elementary embeddings, Adv. Math. 91 (1992); R. Laver, On the algebra of elementary embeddings of a rank into itself, Adv. Math. 110 (1995); R. Dougherty, Critical points in an algebra of elementary embeddings, Ann. Pure Appl. Logic 65 (1993); P. Dehornoy, Braid groups and left distributive operations, Trans. AMS 345 (1994); P. Dehornoy, Braids and Self-Distributivity (2000).</li>
                 <li>A. Kanamori, The Higher Infinite (the standard reference on large cardinals).</li>
               </ul>
             }

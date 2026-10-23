@@ -28,7 +28,7 @@
 .c09-term-s { overflow-wrap: anywhere; color: #cdd3ee; }
 .c09-term-v { color: var(--gold); text-align: right; }
 
-.c09-pss { display: grid; gap: 4px; margin: 6px 0; overflow-x: auto; }
+.c09-pss { display: flex; flex-wrap: wrap; column-gap: 22px; row-gap: 2px; align-items: baseline; margin: 4px 0; overflow-x: auto; }
 
 .c09-ladder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 14px; }
 @media (max-width: 720px) { .c09-ladder { grid-template-columns: 1fr; } }

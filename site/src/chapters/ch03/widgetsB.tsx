@@ -123,7 +123,7 @@ export function DescentGame() {
     push([trim(v)])
   }
   const W = 700
-  const Hh = 120
+  const Hh = 72
   const shown = hist.slice(-300)
   const pts = shown.map((s, i) => `${20 + (i / Math.max(shown.length - 1, 1)) * (W - 40)},${Hh - 10 - stPos(s) * (Hh - 24)}`).join(' ')
   const left = movesLeft(cur, N)
@@ -340,7 +340,7 @@ export function HilbertHotel() {
       return { x: 10 + rw * (r + 0.5), y: 40, vis: r < ROOMS }
     }
     if (g.bus === 0) return { x: 10 + rw * (g.k + 0.5), y: 40, vis: g.k < ROOMS }
-    return { x: 40 + g.k * 34, y: 70 + g.bus * 26, vis: true }
+    return { x: 40 + g.k * 34, y: 64 + g.bus * 22, vis: true }
   }
   const order = { one: '\\omega+1', bus: '\\omega\\cdot 2', buses: '\\omega\\cdot\\omega=\\omega^{2}' }[s]
   return (
@@ -358,8 +358,11 @@ export function HilbertHotel() {
             {x === 'one' ? <L en="1 new guest" zh="来了 1 位客人" /> : x === 'bus' ? <L en="a bus with ω guests" zh="一辆载着 ω 位客人的大巴" /> : <L en="ω buses" zh="ω 辆大巴" />}
           </button>
         ))}
+        <button className="btn small" onClick={() => setMoved(!moved)}>
+          {moved ? <L en="Undo" zh="撤回" /> : <L en="Announce the room change" zh="广播：换房间！" />}
+        </button>
       </div>
-      <svg viewBox={`0 0 ${W} 170`} style={{ width: '100%', display: 'block' }} role="img" aria-label={t('Hilbert’s hotel', '希尔伯特旅馆')}>
+      <svg viewBox={`0 0 ${W} 150`} style={{ width: '100%', display: 'block' }} role="img" aria-label={t('Hilbert’s hotel', '希尔伯特旅馆')}>
         {Array.from({ length: ROOMS }, (_, r) => (
           <g key={r}>
             <rect x={10 + rw * r + 2} y={22} width={rw - 4} height={36} rx={5} fill="#0b1128" stroke={COL.line} />
@@ -372,7 +375,7 @@ export function HilbertHotel() {
           …
         </text>
         {!moved && s !== 'one' && (
-          <text x={W - 10} y={120} fill={COL.dim} fontSize={14} textAnchor="end">
+          <text x={W - 10} y={110} fill={COL.dim} fontSize={14} textAnchor="end">
             …
           </text>
         )}
@@ -388,16 +391,11 @@ export function HilbertHotel() {
           )
         })}
         {!moved && (
-          <text x={10} y={160} fill={COL.muted} fontSize={12}>
+          <text x={10} y={144} fill={COL.muted} fontSize={12}>
             {s === 'one' ? t('waiting at the door', '在门口等着') : s === 'bus' ? t('waiting in the bus', '在大巴上等着') : t('waiting in buses 1, 2, 3, … (old guests count as bus 0)', '在第 1、2、3……辆大巴上等着（老住客算第 0 辆）')}
           </text>
         )}
       </svg>
-      <div className="btn-row">
-        <button className="btn small" onClick={() => setMoved(!moved)}>
-          {moved ? <L en="Undo" zh="撤回" /> : <L en="Announce the room change" zh="广播：换房间！" />}
-        </button>
-      </div>
       <div className="readout small c03-text">
         {s === 'one' && <L en={<>Rule: the guest in room n moves to room n+1; the newcomer takes room 0.</>} zh={<>规则：n 号房的客人搬到 n+1 号房；新客人住进 0 号房。</>} />}
         {s === 'bus' && <L en={<>Rule: the guest in room n moves to room 2n; bus passenger k takes room 2k+1.</>} zh={<>规则：n 号房的客人搬到 2n 号房；大巴上第 k 位乘客住进 2k+1 号房。</>} />}
@@ -408,7 +406,7 @@ export function HilbertHotel() {
           />
         )}
         <div style={{ marginTop: 4 }}>
-          <L en={<>In order of arrival the guests form a line of type <M t={order} />. After the move, every guest has a room and no room is double-booked.</>} zh={<>按到达顺序排队，客人的序型是 <M t={order} />。换房之后，人人有房，没有哪间房住两个人。</>} />
+          <L en={<>In order of arrival the guests form a line of type <M t={order} />; after the move, everyone has a room of their own.</>} zh={<>按到达顺序排队，客人的序型是 <M t={order} />；换房之后，人人有房，互不重叠。</>} />
         </div>
       </div>
     </div>

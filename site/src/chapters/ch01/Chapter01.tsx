@@ -28,7 +28,7 @@ export default function Chapter01() {
           en={<>Add one rule and the game turns deep: <b>limit the ink</b> — ten symbols, say, or one page. Now the contest is not about patience but about <b>notation</b>: with the same ink, whose notation reaches further?</>}
         />
         <P
-          zh={<>这就是<Term en="googology" zh="大数数学" />（googology）的核心问题，名字来自 <Term en="googol" zh="古戈尔" /> <M t="10^{100}" />。人类在这个擂台上已经比了几千年。我们一回合一回合地重放：每位擂主带来一个新招数，而每个新招数都让上一位擂主显得渺小。</>}
+          zh={<>这就是<Term en="googology" zh="大数数学" />的核心问题，名字来自 <Term en="googol" zh="古戈尔" /> <M t="10^{100}" />。人类在这个擂台上已经比了几千年。我们一回合一回合地重放：每位擂主带来一个新招数，而每个新招数都让上一位擂主显得渺小。</>}
           en={<>That is the central question of <Term en="googology" zh="大数数学" />, named after the <Term en="googol" zh="古戈尔" />, <M t="10^{100}" />. Humanity has fought this duel for millennia. We replay it round by round: each champion brings one new trick, and each trick dwarfs the last champion.</>}
         />
       </Section>
@@ -70,16 +70,16 @@ export default function Chapter01() {
       {/* ---------------------------------------------------------------- */}
       <Section id="round3" kicker={{ en: 'Round 3', zh: '第三回合' }} title={{ en: 'Doubling and squaring', zh: '翻倍与平方' }}>
         <P
-          zh={<>古印度传说：智者只求在棋盘第一格放 1 粒米，此后每格翻倍，放满 64 格。国王一口答应，然后傻了眼。</>}
-          en={<>An Indian legend: a sage asks for one grain of rice on the first square of a chessboard, doubling on each square, all 64 squares. The king agrees at once — and regrets it.</>}
+          zh={<>传说智者只求棋盘第一格放 1 粒米，此后每格翻倍。国王一口答应，然后傻了眼。</>}
+          en={<>A sage asks for one grain of rice on the first square of a chessboard, doubling on each square. The king agrees — and regrets it.</>}
         />
-        <Widget title={{ en: 'Rice on the chessboard', zh: '棋盘上的米粒' }} hint={{ en: 'Assumes 0.025 g per grain and a world paddy-rice harvest of ≈780 million tonnes a year.', zh: '假设每粒米约 0.025 克，全世界稻谷年产量约 7.8 亿吨。' }}>
+        <Widget title={{ en: 'Rice on the chessboard', zh: '棋盘上的米粒' }}>
           <Chessboard />
         </Widget>
         <MB t="1+2+2^2+\cdots+2^{63}=2^{64}-1=18\,446\,744\,073\,709\,551\,615" />
         <P
-          zh={<>约等于全世界六百年的稻谷产量。新招数是<b>重复乘法</b>，即乘方 <M t="a^b" />。<M t="10^n" /> 是 1 后面跟 <M t="n" /> 个 0，所以科学计数法 <M t="1.8\times10^{19}" /> 的指数直接告诉你：这是个 20 位数。</>}
-          en={<>That is roughly six centuries of the world’s rice harvest. The new trick is <b>repeated multiplication</b>, the power <M t="a^b" />. Since <M t="10^n" /> is 1 followed by <M t="n" /> zeros, the exponent in <M t="1.8\times10^{19}" /> tells you at a glance: 20 digits.</>}
+          zh={<>按每粒 0.025 克、全球稻谷年产 7.8 亿吨算，约等于六百年的产量。新招数是<b>重复乘法</b>，即乘方 <M t="a^b" />。<M t="10^n" /> 是 1 后面跟 <M t="n" /> 个 0，所以科学计数法 <M t="1.8\times10^{19}" /> 的指数直接告诉你：这是个 20 位数。</>}
+          en={<>At 0.025 g a grain and a world harvest of 780 million tonnes a year, that is about six centuries of rice. The new trick is <b>repeated multiplication</b>, the power <M t="a^b" />. Since <M t="10^n" /> is 1 followed by <M t="n" /> zeros, the exponent in <M t="1.8\times10^{19}" /> tells you at a glance: 20 digits.</>}
         />
         <Thm name={{ en: '(the exponent counts digits)', zh: '（指数就是位数）' }}>
           <B
@@ -131,8 +131,8 @@ export default function Chapter01() {
       {/* ---------------------------------------------------------------- */}
       <Section id="round4" kicker={{ en: 'Round 4', zh: '第四回合' }} title={{ en: 'Archimedes counts the sand', zh: '阿基米德数沙子' }}>
         <P
-          zh={<>公元前 3 世纪，希腊数词只到“万”（myriad），“沙粒之数”是“数不清”的同义词。阿基米德在《数沙者》里反驳：<b>把整个宇宙填满沙子</b>，沙粒数也写得出来——不超过 <M t="10^{63}" />。</>}
-          en={<>In the 3rd century BC Greek number words stopped at the myriad, ten thousand, and “as many as the sand” meant uncountable. In <i>The Sand Reckoner</i> Archimedes showed that even the sand needed to <b>fill the whole universe</b> can be counted: at most <M t="10^{63}" /> grains.</>}
+          zh={<>公元前 3 世纪，希腊数词只到“万”（myriad），“沙粒之数”就是“数不清”。阿基米德在《数沙者》里反驳：<b>把整个宇宙填满沙子</b>，沙粒也不超过 <M t="10^{63}" /> 粒。</>}
+          en={<>In the 3rd century BC Greek number words stopped at the myriad, and “as many as the sand” meant uncountable. In <i>The Sand Reckoner</i> Archimedes showed that the sand <b>filling the whole universe</b> is at most <M t="10^{63}" /> grains.</>}
         />
         <P
           zh={<>为此他造了一套记号：以万万 <M t="10^8" /> 为单位，数满万万个单位进一级；万万级之后到达 <M t="P=(10^8)^{10^8}" />，再以 <M t="P" /> 为新起点把整个过程重复万万次，最后到达</>}
@@ -140,8 +140,8 @@ export default function Chapter01() {
         />
         <MB t="P^{10^8}=10^{8\times10^{16}}." />
         <P
-          zh={<>这是<b>指数里还有指数</b>的数：它的位数 <M t="8\times10^{16}" /> 本身也要用指数来写。不过，它只落在华严第 54 与第 55 个单位之间——记号远超阿基米德的需要，反复平方却走得更远。</>}
-          en={<>This number has <b>an exponent inside its exponent</b>: its digit count, <M t="8\times10^{16}" />, itself needs an exponent. Yet it falls between the 54th and 55th Avatamsaka units: Archimedes built far more than he needed, but repeated squaring went further.</>}
+          zh={<><b>指数里还有指数</b>。可它只落在华严第 54 与第 55 个单位之间：反复平方走得更远。</>}
+          en={<><b>An exponent inside an exponent.</b> Yet it falls between the 54th and 55th Avatamsaka units: repeated squaring went further.</>}
         />
         <Widget title={{ en: 'The arena so far', zh: '擂台战况' }}>
           <Arena upTo={7} />
@@ -183,31 +183,31 @@ export default function Chapter01() {
         </Widget>
         <H3 en="The ancient champion" zh="古代的冠军" />
         <P
-          zh={<>古代真正的冠军来自耆那教经典《Anuyogadvāra Sūtra》（成书年代众说纷纭，约在公元前后）里的 JPA（“最小的不可数之数”）。想象大地是一圈圈同心圆环；用巨大的圆柱容器装满芥子，一圈撒一粒，撒完就造一个以最后那圈为直径的更大容器，如此反复。每造一个新容器，芥子数就<b>多一层指数</b>，而要造的容器数本身又是天文数字。</>}
-          en={<>The true ancient champion is JPA, the “smallest innumerable,” from the Jain <i>Anuyogadvāra Sūtra</i> (dated variously, around the turn of the era). Picture concentric rings; fill a giant cylinder with mustard seeds, drop one seed per ring, and when it is empty build a bigger cylinder as wide as the last ring reached — and repeat. Each cylinder adds <b>one more layer of exponent</b>, and the number of cylinders is itself astronomical.</>}
+          zh={<>古代真正的冠军是耆那教经典《Anuyogadvāra Sūtra》（约公元前后成书）里的 JPA（“最小的不可数之数”）。用巨大的容器装满芥子，往一圈圈同心圆环里一圈撒一粒；撒完就造一个以最后那圈为直径的更大容器，如此反复。每个新容器让芥子数<b>多一层指数</b>。</>}
+          en={<>The true ancient champion is JPA, the “smallest innumerable,” from the Jain <i>Anuyogadvāra Sūtra</i> (around the turn of the era). Fill a giant container with mustard seeds and drop one per concentric ring; when empty, build a bigger container as wide as the last ring reached, and repeat. Each container adds <b>one more layer of exponent</b>.</>}
         />
         <P
           zh={<>按 Gupta 等人的估算（《大数理论》沿用），JPA 大约是一座<b>高约 <M t="1.3\times10^{136}" /> 层</b>的 10 的指数塔。华严大数只是两三层的塔，JPA 的<b>层数</b>就要用指数来写。</>}
           en={<>By R. C. Gupta’s estimate (used in 曹知秋’s <i>Googology</i>), JPA is a tower of tens about <b><M t="1.3\times10^{136}" /> levels high</b>. The Avatamsaka number is a tower of two or three levels; JPA’s <b>height</b> already needs an exponent.</>}
         />
-        <Widget title={{ en: 'The arena, all ancient champions', zh: '擂台：古代全部擂主' }}>
-          <Arena upTo={8} />
-        </Widget>
         <P
           zh={<>耆那教数学家还没停手。他们把 <M t="n\mapsto n^n" /> 对 <M t="a" /> 反复做 <M t="a" /> 次得到 <M t="b" />，再对 <M t="b" /> 反复做 <M t="b" /> 次……得到“层数是一座塔、而那座塔的层数又是一座塔”的数，最大的 UAnAn 嵌套了三十多层。这种“塔的塔”超出了指数塔的写法——我们需要全新的记号。那是第 2 章的故事。</>}
           en={<>The Jain mathematicians kept going. Apply <M t="n\mapsto n^n" /> to <M t="a" />, <M t="a" /> times, to get <M t="b" />; then to <M t="b" />, <M t="b" /> times… The result is a tower whose height is a tower whose height is a tower; their largest, UAnAn, nests this over thirty times. Such towers of towers are beyond tower notation — we need a new notation. That is Chapter 2.</>}
         />
+        <Widget title={{ en: 'The arena, all ancient champions', zh: '擂台：古代全部擂主' }}>
+          <Arena upTo={8} note={false} />
+        </Widget>
       </Section>
 
       {/* ---------------------------------------------------------------- */}
       <Section id="universe" kicker={{ en: 'Interlude', zh: '幕间' }} title={{ en: 'Does the universe have room?', zh: '宇宙装得下吗？' }}>
         <P
-          zh={<>可观测宇宙约有 <M t="10^{80}" /> 个原子。1920 年，九岁的 Milton Sirotta 给 <M t="10^{100}" /> 起名 <b>googol</b>，还提议了 <b>googolplex</b>：“写 1，然后一直写 0，写到累为止”。他的舅舅、数学家 Edward Kasner 把它定为 <M t="10^{10^{100}}" />——位数比宇宙的原子还多，永远写不出来。</>}
-          en={<>The observable universe holds about <M t="10^{80}" /> atoms. In 1920 nine-year-old Milton Sirotta named <M t="10^{100}" /> a <b>googol</b> and proposed a <b>googolplex</b>: “one, followed by writing zeroes until you get tired.” His uncle, the mathematician Edward Kasner, fixed it as <M t="10^{10^{100}}" /> — more digits than the universe has atoms.</>}
+          zh={<>1920 年，九岁的 Milton Sirotta 给 <M t="10^{100}" /> 起名 <b>googol</b>，还提议 <b>googolplex</b> 是“写个 1，再一直写 0 写到累”。他的舅舅、数学家 Edward Kasner 把它定为 <M t="10^{10^{100}}" />——位数比可观测宇宙的原子（约 <M t="10^{80}" /> 个）还多。</>}
+          en={<>In 1920 nine-year-old Milton Sirotta named <M t="10^{100}" /> a <b>googol</b> and proposed a <b>googolplex</b>: “one, followed by zeroes until you get tired.” His uncle, the mathematician Edward Kasner, fixed it as <M t="10^{10^{100}}" />: more digits than the observable universe has atoms (about <M t="10^{80}" />).</>}
         />
         <P
-          zh={<>物理里最大的数之一，是 Don Page 估计的宇宙“庞加莱回归时间”，约 <M t="10^{10^{10^{10^{2.08}}}}" /> 年。要把它们画在同一条数轴上，就用刚学的习惯：把每个数换成它的位数，数轴“缩小”一次；不够就再缩。</>}
-          en={<>Among the biggest numbers in physics is Don Page’s estimate of the universe’s Poincaré recurrence time, about <M t="10^{10^{10^{10^{2.08}}}}" /> years. To put all these on one line, use our habit: replace each number by its digit count to zoom out once — and again if needed.</>}
+          zh={<>物理里最大的数之一：Don Page 估算的宇宙庞加莱回归时间，约 <M t="10^{10^{10^{10^{2.08}}}}" /> 年。</>}
+          en={<>One of physics’ largest numbers: Don Page’s estimate of the universe’s Poincaré recurrence time, about <M t="10^{10^{10^{10^{2.08}}}}" /> years.</>}
         />
         <Widget title={{ en: 'Zoom out', zh: '缩小，再缩小' }} hint={{ en: 'Each zoom replaces every number by (roughly) its number of digits.', zh: '每缩小一次，每个数都被换成（大约）它的位数。' }}>
           <ZoomOut />
@@ -219,7 +219,7 @@ export default function Chapter01() {
       </Section>
 
       {/* ---------------------------------------------------------------- */}
-      <Section id="far-ahead" kicker={{ en: 'Reflection', zh: '复盘' }} title={{ en: 'What does “far ahead” mean?', zh: '什么才叫“遥遥领先”？' }}>
+      <Section id="far-ahead" kicker={{ en: 'Reflection', zh: '复盘' }} title={{ en: 'How far is “far ahead”?', zh: '什么叫遥遥领先' }}>
         <P
           zh={<>没有一位擂主是靠“加一”或“乘二”获胜的，每一位都带来了<b>新招数</b>。要比较招数，就把每种记号看成一个<b>数列</b>：第 <M t="n" /> 项是花“<M t="n" /> 份力气”能写出的典型的数。</>}
           en={<>No champion won by adding one or doubling; each brought a <b>new trick</b>. To compare tricks, view each notation as a <b>sequence</b>: its <M t="n" />-th term is a typical number written with “<M t="n" /> units of effort.”</>}

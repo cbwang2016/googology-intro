@@ -114,5 +114,7 @@
 .c10-table tr.frontier { background: rgba(255, 169, 94, 0.08); }
 
 table.grid.c10-table td, table.grid.c10-table th { padding-top: 3px; padding-bottom: 3px; }
-.c10-laver td { height: 25px; line-height: 1; padding: 0 3px; }
 .c10-laver th { line-height: 1.2; }
+.c10-stat3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 6px; }
+.c10-stat3 .stat { padding: 6px 10px; }
+.c10-stat3 .stat-value { font-size: 1.05em; }

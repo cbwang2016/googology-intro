@@ -24,6 +24,7 @@ export default function Chapter02() {
           zh={<>同种箭头连写时<b>从右往左</b>算，和指数塔一样。所以 <M t="a\uparrow\uparrow b" /> 是 <M t="b" /> 层的指数塔，<M t="a\uparrow\uparrow\uparrow b" /> 是把“搭塔”重复 <M t="b" /> 次。</>}
           en={<>A chain of equal arrows is evaluated <b>from the right</b>, like a tower. So <M t="a\uparrow\uparrow b" /> is a tower of height <M t="b" />, and <M t="a\uparrow\uparrow\uparrow b" /> repeats “build a tower” <M t="b" /> times.</>}
         />
+        <H3 en="Climb the ladder" zh="沿阶梯往上" />
         <Widget title={{ en: 'The ladder of operations', zh: '运算的阶梯' }}>
           <OperationLadder />
         </Widget>
@@ -44,6 +45,7 @@ export default function Chapter02() {
           en={<>Dots are fine for small cases, but once the number of arrows is too large to write, “and so on” cannot be trusted. The right tool is a <b>recursive definition</b>: say where to start and how each step follows from the previous one. For instance <M t="a+0=a" />, <M t="a+(b+1)=(a+b)+1" />, and</>}
         />
         <MB t="a\times0=0,\quad a\times(b+1)=a+a\times b;\qquad a^0=1,\quad a^{b+1}=a\times a^{b}." />
+        <H3 en="Knuth’s arrows, defined" zh="箭头的严格定义" />
         <Thm kind="definition" name={{ en: 'Knuth arrows (《大数理论》 Def. 2.11)', zh: 'Knuth 箭头（《大数理论》定义 2.11）' }}>
           <B
             zh={<p>对正整数 <M t="a,c" /> 和自然数 <M t="b" />，<M t="a\uparrow^{c}b" />（<M t="c" /> 个箭头）定义为：</p>}
@@ -139,9 +141,10 @@ export default function Chapter02() {
           en={<>Each extra arrow climbs one notch. Is there a function faster than <b>all</b> of them? Yes, and the trick is startlingly simple: let the number of arrows grow with <M t="n" />.</>}
         />
         <MB t="d(n)=n\uparrow^{n}n:\qquad 1\uparrow1=1,\quad 2\uparrow\uparrow2=4,\quad 3\uparrow\uparrow\uparrow3,\quad 4\uparrow\uparrow\uparrow\uparrow4,\ \ldots" />
+        <H3 en="Walking the diagonal" zh="沿对角线走" />
         <P
-          zh={<>把各行排成一张表，<M t="d(n)" /> 就沿着对角线走。这一招叫<Term en="diagonalization" zh="对角化" />，是大数数学最重要的武器之一。</>}
-          en={<>Lay the rows out as a table, and <M t="d(n)" /> walks down the diagonal. This is <Term en="diagonalization" zh="对角化" />, one of the most important weapons in googology.</>}
+          zh={<><M t="d(n)" /> 沿着这张表的对角线走。这一招叫<Term en="diagonalization" zh="对角化" />。</>}
+          en={<><M t="d(n)" /> walks down the diagonal of this table: <Term en="diagonalization" zh="对角化" />.</>}
         />
         <Widget title={{ en: 'The diagonal', zh: '对角线' }}>
           <DiagonalTable />
@@ -245,8 +248,8 @@ export default function Chapter02() {
       {/* ---------------------------------------------------------------- */}
       <Section id="algorithm" kicker={{ en: 'A word we will need', zh: '一个以后要用的词' }} title={{ en: 'What is an algorithm?', zh: '什么是算法？' }}>
         <P
-          zh={<>到目前为止定义的每个数都有一份<b>有限、精确的操作说明</b>，机械地照做，原则上就能算出它——哪怕要算到宇宙终结。这样的说明叫<b>算法</b>。箭头的递归定义几乎可以逐字翻译成程序：</>}
-          en={<>Every number so far comes with a <b>finite, precise list of instructions</b> that a machine could follow to compute it, at least in principle, even if it took longer than the life of the universe. Such a list is an <b>algorithm</b>. The recursive definition of arrows translates almost word for word into a program:</>}
+          zh={<>迄今每个数都有一份<b>有限、精确的操作说明</b>，机械照做原则上就能算出它（哪怕要算到宇宙终结）。这样的说明叫<b>算法</b>。箭头的递归定义几乎能逐字译成程序：</>}
+          en={<>Every number so far comes with a <b>finite, precise list of instructions</b> a machine could follow to compute it, in principle. Such a list is an <b>algorithm</b>. The recursive definition of arrows is almost literally a program:</>}
         />
         <Widget title={{ en: 'Arrows as a program', zh: '把箭头写成程序' }}>
           <ArrowProgram />

@@ -358,7 +358,7 @@ export function Sandwich() {
     [m],
   )
   const W = 700
-  const H = 185
+  const H = 160
   const YMAX = 7
   const X = (n: number) => 50 + (n / 7) * (W - 90)
   const Y = (v: number) => H - 26 - (Math.min(v, YMAX) / YMAX) * (H - 56)
@@ -429,8 +429,8 @@ export function Sandwich() {
       </div>
       <div className="muted small">
         <L
-          en={<>↑ = off the chart. The gold curve hugs the cyan one while the pink one flies away: <M t={`f_{${m + 1}}`} /> is “{m} arrow{m > 1 ? 's' : ''}, plus a little,” nowhere near {m + 1} arrows. (The theorem’s bounds are claimed only from n = 2 resp. n = 4 on.)</>}
-          zh={<>↑ 表示超出图表。金线紧贴青线，粉线一飞冲天：<M t={`f_{${m + 1}}`} /> 是“{m} 个箭头再多一点”，远远够不着 {m + 1} 个箭头。（定理的下界、上界分别只对 n ≥ 2、n ≥ 4 断言。）</>}
+          en={<>↑ = off the chart. Gold hugs cyan while pink flies away: <M t={`f_{${m + 1}}`} /> is “{m} arrow{m > 1 ? 's' : ''}, plus a little.” (Bounds claimed from n = 2 resp. 4.)</>}
+          zh={<>↑ 表示超出图表。金线紧贴青线，粉线一飞冲天：<M t={`f_{${m + 1}}`} /> 是“{m} 个箭头再多一点”。（上下界分别从 n = 2、4 起断言。）</>}
         />
       </div>
     </div>

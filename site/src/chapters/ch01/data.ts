@@ -52,7 +52,7 @@ export const CHAMPIONS: Champion[] = [
   { who: { en: '“Upper” numbers (上数)', zh: '《数术记遗》上数' }, era: { en: 'Han dynasty', zh: '汉代' }, trick: { en: 'each unit = previous squared', zh: '数穷则变：亿亿为兆' }, tex: '10^{4096}', ...mk(fromLog10(4096)) },
   { who: { en: 'Avatamsaka Sutra', zh: '《华严经》' }, era: { en: '1st–4th c.', zh: '约公元 1–4 世纪' }, trick: { en: 'square, 122 times', zh: '连续平方 122 次' }, tex: '10^{7\\cdot2^{122}}', ...mk(fromLog10(3.7218383881977644e37)) },
   { who: { en: 'Archimedes, The Sand Reckoner', zh: '阿基米德《数沙者》' }, era: { en: '3rd c. BC', zh: '公元前 3 世纪' }, trick: { en: 'powers of powers', zh: '幂的幂' }, tex: '10^{8\\times10^{16}}', ...mk(fromLog10(8e16)) },
-  { who: { en: 'Jain cosmology (JPA)', zh: '耆那教 JPA' }, era: { en: 'c. 1st c. BC–1st c. AD', zh: '约公元前后' }, trick: { en: 'a tower of exponents', zh: '指数塔' }, tex: '10^{10^{\\cdots^{10}}}\\ (\\approx10^{136}\\text{ levels})', v: null, slog: 1.285e136 },
+  { who: { en: 'Jain cosmology (JPA)', zh: '耆那教 JPA' }, era: { en: 'c. 1st c. BC–1st c. AD', zh: '约公元前后' }, trick: { en: 'a tower of exponents', zh: '指数塔' }, tex: '10^{10^{\\cdots^{10}}}\\ (\\approx1.3\\times10^{136}\\text{ levels})', v: null, slog: 1.285e136 },
 ]
 
 /** Tower values used in the comparison presets. */

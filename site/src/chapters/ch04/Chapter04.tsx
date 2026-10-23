@@ -101,18 +101,12 @@ export default function Chapter04() {
           />
         </Thm>
         <P
-          zh={<>用《大数理论》的话说：<b>不断从末尾拆出一个 <M t="\omega" />，直到拆不动为止，再把最后那个 <M t="\omega" /> 换成 <M t="n" /></b>。下面的步进器会逐条显示用了哪条规则，包括书中的例子 <M t="\omega^{\omega^{\omega+1}\cdot2}\cdot3" />。</>}
-          en={<>In the book’s words: <b>keep splitting an <M t="\omega" /> off the end until you can’t, then replace that last <M t="\omega" /> by <M t="n" /></b>. The stepper shows which rule fires at each stage, including the book’s example <M t="\omega^{\omega^{\omega+1}\cdot2}\cdot3" />.</>}
+          zh={<>用书里的话说：<b>不断从末尾拆出一个 ω，拆不动了，就把最后那个 ω 换成 n</b>。</>}
+          en={<>In the book’s words: <b>keep splitting an ω off the end until you can’t, then replace that last ω by n</b>.</>}
         />
         <Widget title={{ en: 'Fundamental-sequence stepper', zh: '基本列步进器' }} hint={{ en: 'Pick an ordinal and an n; click a rung below to jump to it.', zh: '选一个序数和 n；点下面的某一级可以直接跳过去。' }}>
           <FSStepper />
         </Widget>
-        <Caution>
-          <L
-            zh={<>规则只对<b>标准型</b>使用。若把 (2) 硬套在 <M t="1+\omega" /> 上，会得到梯子 <M t="1+n" />——而 <M t="1+\omega" /> 就是 <M t="\omega" />，它的梯子应当是 <M t="n" />。同一个序数，两架梯子，FGH 就不再良定义。</>}
-            en={<>Apply the rules to <b>normal forms</b> only. Forcing rule (2) onto <M t="1+\omega" /> gives the ladder <M t="1+n" />, yet <M t="1+\omega" /> is just <M t="\omega" />, whose ladder is <M t="n" />. One ordinal with two ladders would make the FGH ill-defined.</>}
-          />
-        </Caution>
         <Thm kind="fact" name={{ en: '(the ladders really climb)', zh: '（梯子确实通向目标）' }}>
           <B
             zh={<p>对每个极限 <M t="\lambda\le\varepsilon_0" />：<M t="\lambda[0]<\lambda[1]<\cdots<\lambda" />，且 <M t="\sup_n\lambda[n]=\lambda" />。</p>}
@@ -125,6 +119,12 @@ export default function Chapter04() {
             en={<>Transfinite induction on <M t="\lambda" />, rule by rule. (1) is clear. (3): <M t="\omega^{\alpha}\cdot n" /> strictly increases with supremum <M t="\omega^{\alpha}\cdot\omega=\omega^{\alpha+1}" />. (4): by induction <M t="\lambda[n]\nearrow\lambda" /> (here <M t="\lambda<\omega^{\lambda}" /> since we are below <M t="\varepsilon_0" />), and <M t="\beta\mapsto\omega^{\beta}" /> is strictly increasing and continuous at limits (that is exactly the limit rule for powers), so <M t="\omega^{\lambda[n]}\nearrow\omega^{\lambda}" />. (2): <M t="\beta\mapsto\alpha+\beta" /> is strictly increasing and continuous too. The case <M t="\varepsilon_0" /> is its definition.</>}
           />
         </Proof>
+        <Caution>
+          <L
+            zh={<>规则只用于<b>标准型</b>：硬套在 <M t="1+\omega" />（就是 <M t="\omega" />）上会得到第二架梯子 <M t="1+n" />。</>}
+            en={<>Use the rules on <b>normal forms</b> only: forced onto <M t="1+\omega" /> (which is <M t="\omega" />) they would give a second ladder, <M t="1+n" />.</>}
+          />
+        </Caution>
         <Expand kind="detail" title={{ en: 'The book’s ε₀[n] is shifted by one', zh: '书中的 ε₀[n] 差了一格' }}>
           <P
             zh={<>《大数理论》取 <M t="\varepsilon_0=\sup\{0,1,\omega,\omega^\omega,\ldots\}" />，即 <M t="\varepsilon_0[n]=\omega\uparrow\uparrow(n-1)" />（<M t="\varepsilon_0[0]=0" />）。本课程沿用更常见的 <M t="\varepsilon_0[n]=\omega\uparrow\uparrow n" />，它也和第 5 章初等序列的极限 <M t="(0,1,\ldots,n)" /> 对得上。</>}
@@ -176,20 +176,16 @@ export default function Chapter04() {
       {/* ---------------------------------------------------------------- */}
       <Section id="arrows" kicker={{ en: 'Calibration', zh: '校准' }} title={{ en: 'Finite levels are arrows', zh: '有限层就是箭头' }}>
         <P
-          zh={<>第 2 章说 <M t="n\uparrow^{m}n" /> 的刻度是 <M t="m+1" />。现在可以把它变成定理：<M t="f_{m+1}" /> 被夹在 <M t="m" /> 个箭头和 <M t="m+1" /> 个箭头之间，而且紧贴下沿。</>}
-          en={<>Chapter 2 put <M t="n\uparrow^{m}n" /> at mark <M t="m+1" />. Now that becomes a theorem: <M t="f_{m+1}" /> is sandwiched between <M t="m" /> and <M t="m+1" /> arrows — and hugs the lower side.</>}
+          zh={<>第 2 章凭直觉把 <M t="n\uparrow^{m}n" /> 放在刻度 <M t="m+1" />，理由是“重复 <M t="n" /> 次，刻度加一”。现在它变成定理：<M t="f_{m+1}" /> 被夹在 <M t="m" /> 个箭头和 <M t="m+1" /> 个箭头之间，而且紧贴下沿。粗略地说，<M t="f_{m+1}(n)" /> 就是“<M t="m" /> 个箭头作用在大约 <M t="n" /> 上”。</>}
+          en={<>Chapter 2 placed <M t="n\uparrow^{m}n" /> at mark <M t="m+1" /> by intuition: “iterating <M t="n" /> times adds one.” Now that becomes a theorem: <M t="f_{m+1}" /> is sandwiched between <M t="m" /> and <M t="m+1" /> arrows, and hugs the lower side. Roughly, <M t="f_{m+1}(n)" /> is “<M t="m" /> arrows applied to about <M t="n" />.”</>}
         />
-        <Thm name={{ en: '(FGH vs Knuth arrows)', zh: '（FGH 与 Knuth 箭头）' }}>
-          <B
-            zh={<p>对每个 <M t="m\ge1" />：</p>}
-            en={<p>For every <M t="m\ge1" />:</p>}
-          />
+        <Thm name={{ en: '(FGH vs Knuth arrows; every m ≥ 1)', zh: '（FGH 与 Knuth 箭头；对每个 m ≥ 1）' }}>
           <MB t="\begin{aligned}&\text{(a)}\quad f_{m+1}(n)\ \ge\ 2\uparrow^{m}(n+1)\quad(n\ge2;\ \text{strict for } n\ge3),\\&\text{(b)}\quad f_{m+1}(n)\ \le\ 2\uparrow^{m}(3n)\quad(n\ge1),\\&\text{(c)}\quad 2\uparrow^{m}(n+1)\ <\ f_{m+1}(n)\ <\ 2\uparrow^{m+1}(n+1)\quad(n\ge4).\end{aligned}" />
         </Thm>
         <Proof>
           <L
-            zh={<>只证 (a)，(b)(c) 见下面的展开。对 <M t="m" /> 归纳。<M t="m=1" />：<M t="n2^n\ge2\cdot2^n" />。归纳步：令 <M t="h(y)=2\uparrow^{m}y" />。由 Def 2.11 的规则 (3)，<M t="2\uparrow^{m+1}(n+1)=h^{n}(2)" />。由归纳假设和 <M t="f_{m+1}(1)=2=h(1)" />，对 <M t="y\ge1" /> 有 <M t="f_{m+1}(y)\ge h(y)" />；<M t="h" /> 递增（引理 B），所以 <M t="f_{m+1}^{\,k}(y)\ge h^{k}(y)" />。于是 <M t="f_{m+2}(n)=f_{m+1}^{\,n}(n)\ge h^{n}(n)\ge h^{n}(2)=2\uparrow^{m+1}(n+1)" />，<M t="n\ge3" /> 时最后一步严格。</>}
-            en={<>We prove (a); (b) and (c) are in the panel below. Induct on <M t="m" />. For <M t="m=1" />: <M t="n2^n\ge2\cdot2^n" />. Step: let <M t="h(y)=2\uparrow^{m}y" />. By rule (3) of Def 2.11, <M t="2\uparrow^{m+1}(n+1)=h^{n}(2)" />. By hypothesis and <M t="f_{m+1}(1)=2=h(1)" />, we have <M t="f_{m+1}(y)\ge h(y)" /> for <M t="y\ge1" />; <M t="h" /> is increasing (Lemma B), so <M t="f_{m+1}^{\,k}(y)\ge h^{k}(y)" />. Hence <M t="f_{m+2}(n)=f_{m+1}^{\,n}(n)\ge h^{n}(n)\ge h^{n}(2)=2\uparrow^{m+1}(n+1)" />, strictly for <M t="n\ge3" />.</>}
+            zh={<>(a)：对 <M t="m" /> 归纳。<M t="m=1" />：<M t="n2^n\ge2\cdot2^n" />。归纳步：令 <M t="h(y)=2\uparrow^{m}y" />。由 Def 2.11 的规则 (3)，<M t="2\uparrow^{m+1}(n+1)=h^{n}(2)" />。由归纳假设和 <M t="f_{m+1}(1)=2=h(1)" />，对 <M t="y\ge1" /> 有 <M t="f_{m+1}(y)\ge h(y)" />；<M t="h" /> 递增（引理 B），所以 <M t="f_{m+1}^{\,k}(y)\ge h^{k}(y)" />。于是 <M t="f_{m+2}(n)=f_{m+1}^{\,n}(n)\ge h^{n}(n)\ge h^{n}(2)=2\uparrow^{m+1}(n+1)" />，<M t="n\ge3" /> 时最后一步严格。</>}
+            en={<>(a): induct on <M t="m" />. For <M t="m=1" />: <M t="n2^n\ge2\cdot2^n" />. Step: let <M t="h(y)=2\uparrow^{m}y" />. By rule (3) of Def 2.11, <M t="2\uparrow^{m+1}(n+1)=h^{n}(2)" />. By hypothesis and <M t="f_{m+1}(1)=2=h(1)" />, we have <M t="f_{m+1}(y)\ge h(y)" /> for <M t="y\ge1" />; <M t="h" /> is increasing (Lemma B), so <M t="f_{m+1}^{\,k}(y)\ge h^{k}(y)" />. Hence <M t="f_{m+2}(n)=f_{m+1}^{\,n}(n)\ge h^{n}(n)\ge h^{n}(2)=2\uparrow^{m+1}(n+1)" />, strictly for <M t="n\ge3" />.</>}
           />
         </Proof>
         <Expand title={{ en: 'Basic monotonicity, and the upper bounds (b), (c)', zh: '基本单调性，以及上界 (b)(c)' }}>
@@ -218,20 +214,16 @@ export default function Chapter04() {
             en={<><b>Proof of (c).</b> The lower bound is (a). Upper: for <M t="n\ge4" />, <M t="3n<2^n\le2\uparrow^{m+1}n" />, so <M t="f_{m+1}(n)\le2\uparrow^{m}(3n)<2\uparrow^{m}(2\uparrow^{m+1}n)=2\uparrow^{m+1}(n+1)" />.</>}
           />
         </Expand>
-        <Widget title={{ en: 'The sandwich', zh: '夹心饼干' }} hint={{ en: 'Height = slog₁₀, the number of log₁₀’s needed to get below 1. Compare the three curves.', zh: '高度是 slog₁₀，即要取几次 log₁₀ 才能降到 1 以下。比较三条曲线。' }}>
+        <Widget title={{ en: 'The sandwich', zh: '夹心饼干' }} hint={{ en: 'Height = slog₁₀: how many log₁₀’s bring the value below 1.', zh: '高度 = slog₁₀：取几次 log₁₀ 才降到 1 以下。' }}>
           <Sandwich />
         </Widget>
-        <P
-          zh={<>直观地说，<M t="f_{m+1}(n)" /> 就是“<M t="m" /> 个箭头、参数大约 <M t="n" />”。这正是第 2 章的刻度规则“重复 <M t="n" /> 次刻度加一”的精确版本。</>}
-          en={<>Informally, <M t="f_{m+1}(n)" /> is “<M t="m" /> arrows applied to about <M t="n" />.” That is the precise form of Chapter 2’s rule “iterating <M t="n" /> times adds one to the mark.”</>}
-        />
       </Section>
 
       {/* ---------------------------------------------------------------- */}
-      <Section id="omega" kicker={{ en: 'Crossing ω', zh: '越过 ω' }} title={{ en: 'Level ω: the diagonal, made precise', zh: 'ω 层：把对角线说严格' }}>
+      <Section id="omega" kicker={{ en: 'Crossing ω', zh: '越过 ω' }} title={{ en: 'Level ω: the diagonal', zh: 'ω 层：对角线' }}>
         <P
-          zh={<>由于 <M t="\omega[n]=n" />，<M t="f_\omega(n)=f_n(n)" />：这正是第 2 章对角化 <M t="d(n)=n\uparrow^{n}n" /> 的同一招，只是行换成了 FGH 的各层。</>}
-          en={<>Since <M t="\omega[n]=n" />, <M t="f_\omega(n)=f_n(n)" /> — the very diagonal trick of Chapter 2’s <M t="d(n)=n\uparrow^{n}n" />, with the rows now being FGH levels.</>}
+          zh={<><M t="\omega[n]=n" />，所以 <M t="f_\omega(n)=f_n(n)" />：第 2 章的对角化，只是行换成了 FGH 的各层。</>}
+          en={<>As <M t="\omega[n]=n" />, <M t="f_\omega(n)=f_n(n)" />: Chapter 2’s diagonal trick, with FGH levels as the rows.</>}
         />
         <Thm name={{ en: '(the ω level)', zh: '（ω 层）' }}>
           <B
@@ -331,20 +323,16 @@ export default function Chapter04() {
             en={<>Let <M t="a_k=f_\omega^{\,k}(64)" />. Claim: <M t="a_k\ge G(k)+1" />. For <M t="k=0" />: <M t="64\ge5" />. Step: <M t="G" /> is increasing (Lemma C: more arrows, bigger), so <M t="G(k)\ge4" />; and <M t="f_\omega" /> is strictly increasing (ω-level theorem (iii)). So <M t="a_{k+1}=f_\omega(a_k)\ge f_\omega(G(k)+1)>3\uparrow^{G(k)}3=G(k+1)" /> by Lemma F with <M t="x=G(k)" />, i.e. <M t="a_{k+1}\ge G(k+1)+1" />. At <M t="k=64" />: <M t="f_{\omega+1}(64)=a_{64}>G(64)" />.</>}
           />
         </Proof>
-        <Widget title={{ en: 'Layer by layer', zh: '一层一层比' }} hint={{ en: 'Slide through the 64 layers; each shows the inequality chain used at that step.', zh: '拖动滑块走过 64 层；每一层都列出那一步用到的不等式链。' }}>
-          <GrahamDuel />
-        </Widget>
         <P
           zh={<>证明其实给出了更多：起点只要 <M t="a_0\ge5" /> 就够，所以 <M t="f_\omega^{\,64}(5)" /> 已经超过 Graham 数。64 这个起点是大大的浪费。</>}
           en={<>The proof gives more: the start only needs <M t="a_0\ge5" />, so <M t="f_\omega^{\,64}(5)" /> already exceeds Graham’s number. Starting at 64 is lavish overkill.</>}
         />
+        <Widget title={{ en: 'Layer by layer', zh: '一层一层比' }} hint={{ en: 'Slide through the 64 layers; each shows the inequality chain used at that step.', zh: '拖动滑块走过 64 层；每一层都列出那一步用到的不等式链。' }}>
+          <GrahamDuel />
+        </Widget>
         <Widget title={{ en: 'Where the inequalities kick in', zh: '不等式从哪里开始成立' }} hint={{ en: 'Lemmas E and F checked on small cases by computer.', zh: '用计算机检验引理 E 和 F 的小情形。' }}>
           <SmallCases />
         </Widget>
-        <P
-          zh={<>注意 <M t="f_\omega(2)=8<27=3\uparrow3" />：引理 F 在 <M t="x=1" /> 时是错的。小情形里的反例提醒我们，“显然更大”的直觉在小参数处靠不住，证明里的门槛（这里是 <M t="x\ge4" />）是必要的严谨。</>}
-          en={<>Note <M t="f_\omega(2)=8<27=3\uparrow3" />: Lemma F is false at <M t="x=1" />. Small cases are a reminder that “obviously bigger” fails for small inputs; thresholds like <M t="x\ge4" /> in a proof are not pedantry.</>}
-        />
       </Section>
 
       {/* ---------------------------------------------------------------- */}
@@ -354,16 +342,13 @@ export default function Chapter04() {
           en={<>Computing <M t="f_{\omega^\omega}(3)" /> starts by hunting for the innermost call: at a limit take the 3rd rung; at a successor, <M t="f_{\beta+1}(3)=f_\beta(f_\beta(f_\beta(3)))" />, dive into the innermost <M t="f_\beta(3)" />. The index ordinal keeps falling:</>}
         />
         <MB t="\omega^\omega\to\omega^3\to\omega^2\cdot3\to\omega^2\cdot2+\omega\cdot3\to\omega^2\cdot2+\omega\cdot2+3\to\cdots\to1\to0." />
-        <Widget title={{ en: 'Countdown from ω^ω at n = 3', zh: '从 ω^ω 出发的倒计时（n = 3）' }} hint={{ en: 'Violet bars: limit steps. Cyan bars: successor steps, each leaving two outer calls waiting.', zh: '紫色：极限步；青色：后继步，每一步在外面留下两层等待的调用。' }}>
+        <H3 en="Watch it count down" zh="看它倒数" />
+        <Widget title={{ en: 'Countdown from ω^ω at n = 3', zh: '从 ω^ω 出发的倒计时（n = 3）' }} hint={{ en: 'Violet: limit steps. Cyan: successor steps, each leaving two outer calls waiting. After 41 steps the first real value appears: f₀(3) = 4.', zh: '紫色：极限步；青色：后继步，每步在外面留下两层等待的调用。走完 41 步，才第一次真正算出一个数：f₀(3) = 4。' }}>
           <Countdown />
         </Widget>
         <P
-          zh={<>这一趟倒计时有 41 步，然后才第一次真正“算”出一个数：<M t="f_0(3)=4" />。之后外面排队的调用一个个带着更大的参数重新出发，每一次又是一场倒计时。</>}
-          en={<>This first countdown takes 41 steps before anything is actually computed: <M t="f_0(3)=4" />. Then the waiting outer calls restart one by one with bigger arguments, each launching a countdown of its own.</>}
-        />
-        <P
-          zh={<>它为什么一定会结束？值的存在性由超穷递归保证；而<b>计算过程</b>的终止，可以这样看：调用栈里的序数从外到内单调不增，栈按“从外到内的字典序”比较时是良序的，每一步都让栈严格变小——再用第 3 章的“不存在无穷下降”。下一节的 Hardy 层次把这一点变得一目了然：那里只有一个序数，每步严格下降。</>}
-          en={<>Why must it end? The values exist by transfinite recursion; for the <b>computation</b> itself, note that the stack’s ordinals are non-increasing from outside in, stacks compared lexicographically from the outside form a well-order, and every step makes the stack strictly smaller — then apply Chapter 3’s no-infinite-descent theorem. The Hardy hierarchy in a later scene makes this transparent: a single ordinal that drops at every step.</>}
+          zh={<>之后外面排队的调用带着更大的参数重新出发，每次又是一场倒计时。它为什么一定会结束？值的存在性由超穷递归保证；而<b>计算过程</b>的终止，可以这样看：调用栈里的序数从外到内单调不增，栈按“从外到内的字典序”比较时是良序的，每一步都让栈严格变小——再用第 3 章的“不存在无穷下降”。后面的 Hardy 层次把这一点变得一目了然：那里只有一个序数，每步严格下降。</>}
+          en={<>Then the waiting outer calls restart with bigger arguments, each launching a countdown of its own. Why must it all end? The values exist by transfinite recursion; for the <b>computation</b> itself, note that the stack’s ordinals are non-increasing from outside in, stacks compared lexicographically from the outside form a well-order, and every step makes the stack strictly smaller — then apply Chapter 3’s no-infinite-descent theorem. The Hardy hierarchy in a later scene makes this transparent: a single ordinal that drops at every step.</>}
         />
       </Section>
 
@@ -394,17 +379,13 @@ export default function Chapter04() {
       </Section>
 
       {/* ---------------------------------------------------------------- */}
-      <Section id="pathology" kicker={{ en: 'Fine print that matters', zh: '要紧的细则' }} title={{ en: 'The ladder is part of the definition', zh: '梯子是定义的一部分' }}>
-        <P
-          zh={<>说“<M t="f_{\varepsilon_0}" />”而不说用哪套基本列，其实什么也没说。同样的序数，换一套梯子，函数可以面目全非。</>}
-          en={<>Saying “<M t="f_{\varepsilon_0}" />” without naming the fundamental sequences says nothing. Same ordinals, different ladders, and the function can become unrecognizable.</>}
-        />
+      <Section id="pathology" kicker={{ en: 'Fine print that matters', zh: '要紧的细则' }} title={{ en: 'The ladder matters', zh: '梯子是定义的一部分' }}>
         <Widget title={{ en: 'Tamper with the ladders', zh: '篡改梯子' }} hint={{ en: 'Toggle the two sabotage switches from 《大数理论》 §3.3.', zh: '切换《大数理论》§3.3 里的两种“破坏”。' }}>
           <TamperFS />
         </Widget>
         <P
-          zh={<>削弱：每级梯子开头垫上足够多的 0，<M t="f_{\varepsilon_0}(n)" /> 就塌成 <M t="n+1" />。增强：令 <M t="\omega[n]=f_{\varepsilon_0}(n)" />——仍是一架通向 <M t="\omega" /> 的合法梯子——<M t="f_\omega" /> 就超过了标准的 <M t="f_{\varepsilon_0}" />。任何强度都能藏进一架梯子里。</>}
-          en={<>Weaken: pad each rung’s ladder with enough zeros and <M t="f_{\varepsilon_0}(n)" /> collapses to <M t="n+1" />. Strengthen: set <M t="\omega[n]=f_{\varepsilon_0}(n)" /> — still a legitimate ladder to <M t="\omega" /> — and <M t="f_\omega" /> overtakes the standard <M t="f_{\varepsilon_0}" />. Any strength can be smuggled into a ladder.</>}
+          zh={<>说“<M t="f_{\varepsilon_0}" />”而不说用哪套基本列，等于什么也没说。增强：令 <M t="\omega[n]=f_{\varepsilon_0}(n)" />——仍是一架严格递增、通向 <M t="\omega" /> 的合法梯子——<M t="f_\omega" /> 就超过了标准的 <M t="f_{\varepsilon_0}" />。削弱：书中让梯子开头停在 0 不动（不再严格递增），<M t="f_{\varepsilon_0}(n)" /> 就塌成 <M t="n+1" />；即使坚持严格递增，让第 <M t="k" /> 级梯子从 <M t="0,1,\ldots,k-1" /> 开始，也能把它拖到 <M t="f_\omega(n)" />。</>}
+          en={<>Saying “<M t="f_{\varepsilon_0}" />” without naming the fundamental sequences says nothing. Strengthen: set <M t="\omega[n]=f_{\varepsilon_0}(n)" /> — still a strictly increasing ladder to <M t="\omega" /> — and <M t="f_\omega" /> overtakes the standard <M t="f_{\varepsilon_0}" />. Weaken: the book lets ladders stall at 0 (no longer strictly increasing), and <M t="f_{\varepsilon_0}(n)" /> collapses to <M t="n+1" />; even with strictly increasing ladders, starting rung <M t="k" /> with <M t="0,1,\ldots,k-1" /> drags it down to <M t="f_\omega(n)" />.</>}
         />
         <KeyIdea>
           <L
@@ -534,8 +515,8 @@ export default function Chapter04() {
           />
         </Expand>
         <P
-          zh={<>“写成遗传 <M t="n" /> 进制、把 <M t="n" /> 换成 <M t="\omega" />”这个动作，正是第 6 章 Goodstein 定理证明的核心：一个看上去会永远增长的整数序列，影子里藏着一个必然下降的序数。</>}
-          en={<>“Write in hereditary base <M t="n" />, replace <M t="n" /> by <M t="\omega" />” is the heart of Chapter 6’s proof of Goodstein’s theorem: an integer sequence that seems to grow forever casts an ordinal shadow that must descend.</>}
+          zh={<>“写成遗传 <M t="n" /> 进制、再把 <M t="n" /> 换成 <M t="\omega" />”这个动作，正是第 6 章 Goodstein 定理证明的核心。那里的整数序列看上去会永远增长下去，可它的“影子”是一个序数，而这个序数每一步都严格下降——由第 3 章的定理，序列必然在有限步后归零。</>}
+          en={<>“Write in hereditary base <M t="n" />, then replace <M t="n" /> by <M t="\omega" />” is the heart of Chapter 6’s proof of Goodstein’s theorem. There an integer sequence seems to grow forever, yet its “shadow” is an ordinal that strictly decreases at every step — so, by Chapter 3’s theorem, the sequence must reach zero after finitely many steps.</>}
         />
       </Section>
 

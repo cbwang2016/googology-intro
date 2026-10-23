@@ -181,7 +181,7 @@ export function Mountain() {
   const Y = rows(S)
   const X = S.length
   const cw = X > 14 ? 40 : 48
-  const lh = 40
+  const lh = 36
   const W = 30 + X * cw
   const H = 24 + (Y + 1) * lh
   const cx = (x: number) => 30 + x * cw + cw / 2
@@ -240,8 +240,8 @@ export function Mountain() {
       </div>
       <div className="muted small">
         <L
-          en={<>Bottom row: the 0-Y sequence. Each node above an entry is the difference “entry − its parent”: solid leg down to the entry, dashed leg to its parent. Same parent structure as the BMS matrix, drawn upside down.</>}
-          zh={<>最底行就是 0-Y 序列。每个数正上方的节点是“这个数 − 它的父项”：实线腿连到这个数，虚线腿连到它的父项。父项结构和 BMS 矩阵完全一样，只是上下颠倒。</>}
+          en={<>Bottom row: the 0-Y sequence. Each node above is “entry − its parent” (solid leg: the entry; dashed leg: its parent) — the BMS parent structure, upside down.</>}
+          zh={<>最底行是 0-Y 序列。上方每个节点是“这个数 − 它的父项”（实线腿连这个数，虚线腿连父项）——就是 BMS 的父项结构，上下颠倒。</>}
         />{' '}
         {n > 0 && <M t={`\\text{0-Y}(${zeroY(base)[0].join(',')})[${n}]`} />}
       </div>

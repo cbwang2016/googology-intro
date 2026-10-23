@@ -147,12 +147,8 @@ export default function Chapter12() {
       {/* ---------------------------------------------------------------- */}
       <Section id="bb5" kicker={{ en: 'Five states', zh: '五个状态' }} title={{ en: '47,176,870 steps', zh: '47,176,870 步' }}>
         <P
-          zh={<>1989 年，Heiner Marxen 和 Jürgen Buntrock 用计算机搜索找到了一台五状态机器：它走 47,176,870 步后停机，留下 4098 个 1。此后三十多年，再没人找到更好的。</>}
-          en={<>In 1989 Heiner Marxen and Jürgen Buntrock found, by computer search, a 5-state machine that halts after 47,176,870 steps leaving 4098 ones. For more than thirty years nobody found a better one.</>}
-        />
-        <P
-          zh={<>四千七百万步对 1989 年的电脑是大工程；对你的浏览器只是零点几秒。</>}
-          en={<>Forty-seven million steps was serious work for a 1989 computer. For your browser it is a fraction of a second.</>}
+          zh={<>1989 年，Marxen 与 Buntrock 用计算机搜索找到一台五状态机器：47,176,870 步后停机，留下 4098 个 1，三十多年无人超越。</>}
+          en={<>In 1989 Heiner Marxen and Jürgen Buntrock found by computer search a 5-state machine that halts after 47,176,870 steps leaving 4098 ones; nobody beat it for over thirty years.</>}
         />
         <Widget
           title={{ en: 'Run the BB(5) champion', zh: '运行 BB(5) 冠军' }}
@@ -162,8 +158,8 @@ export default function Chapter12() {
         </Widget>
         <H3 en="A Collatz machine in disguise" zh="一台伪装的 Collatz 机器" />
         <P
-          zh={<>那些路标是什么？记 <M t="g(x)" /> 为这样的格局：纸带上只有连续 <M t="x" /> 个 1，读头处于状态 A，位于这串 1 左边紧挨着的空格上。起点就是 <M t="g(0)" />。</>}
-          en={<>What are the landmarks? Let <M t="g(x)" /> be the configuration whose tape is blank except for <M t="x" /> consecutive ones, with the head in state A on the blank cell just left of them. The start is <M t="g(0)" />.</>}
+          zh={<>那些路标是什么？记 <M t="g(x)" /> 为这样的格局：纸带上只有连续 <M t="x" /> 个 1，读头处于状态 A，位于这串 1 左边紧挨着的空格上。起点就是 <M t="g(0)" />。这些格局是机器的“检查站”：两个检查站之间，它做的是一段很长、但完全可以预测的来回扫描。</>}
+          en={<>What are the landmarks? Let <M t="g(x)" /> be the configuration whose tape is blank except for <M t="x" /> consecutive ones, with the head in state A on the blank cell just left of them. The start is <M t="g(0)" />. These are the machine’s checkpoints: between two of them it performs a long but completely predictable back-and-forth sweep.</>}
         />
         <Thm kind="fact" name={{ en: 'the macro rules of the BB(5) champion (book eq. 26.24–26.26)', zh: 'BB(5) 冠军的宏规则（书中式 26.24–26.26）' }} status="proved">
           <MB t="\begin{aligned} g(3n)&\xrightarrow{\;5n^2+19n+15\;}g(5n+6),\\ g(3n+1)&\xrightarrow{\;5n^2+25n+27\;}g(5n+9),\\ g(3n+2)&\xrightarrow{\;6n+12\;}\text{HALT}.\end{aligned}" />
@@ -181,20 +177,16 @@ export default function Chapter12() {
           zh={<><M t="12284=3\cdot4094+2" />，所以第 15 段用 <M t="6\cdot4094+12=24576" /> 步停机，留下 <M t="4094+4=4098" /> 个 1。各段步数相加恰为 47,176,870。</>}
           en={<><M t="12284=3\cdot4094+2" />, so the last leg halts after <M t="6\cdot4094+12=24576" /> steps with <M t="4094+4=4098" /> ones. The leg lengths add up to exactly 47,176,870.</>}
         />
+        <P
+          zh={<>如果把 <M t="x \bmod 3" /> 看作随机的，每一段都有约 1/3 的机会停机。活过 14 段的概率约为 <M t="(2/3)^{14}\approx0.3\%" />：BB(5) 冠军是一次幸运的长寿。这不是巧合。要让一台小机器跑得极久却仍然停机，最便宜的办法就是实现一个“看起来随机”的算术迭代。这也意味着：确定 BB 的值，迟早要撞上 Collatz 一类的难题。</>}
+          en={<>If <M t="x \bmod 3" /> behaved randomly, each leg would halt with probability about 1/3. Surviving 14 legs has probability about <M t="(2/3)^{14}\approx0.3\%" />: the BB(5) champion is a lucky survivor. This is no accident. The cheapest way for a small machine to run very long and still halt is to implement an arithmetic iteration that looks random. Which means that pinning down BB values runs, sooner or later, into Collatz-type problems.</>}
+        />
         <Widget
           title={{ en: 'The orbit, leg by leg', zh: '轨道，一段一段地走' }}
           hint={{ en: 'Start the map from other values of x. Most orbits die quickly; the real one, from 0, survives 14 legs.', zh: '从别的 x 出发试试。大多数轨道很快就停；从 0 出发的真实轨道活过了 14 段。' }}
         >
           <CollatzOrbit />
         </Widget>
-        <P
-          zh={<>如果把 <M t="x \bmod 3" /> 看作随机的，每一段都有约 1/3 的机会停机。活过 14 段的概率约为 <M t="(2/3)^{14}\approx0.3\%" />：BB(5) 冠军是一次幸运的长寿。</>}
-          en={<>If <M t="x \bmod 3" /> behaved randomly, each leg would halt with probability about 1/3. Surviving 14 legs has probability about <M t="(2/3)^{14}\approx0.3\%" />: the BB(5) champion is a lucky survivor.</>}
-        />
-        <P
-          zh={<>这不是巧合。要让一台小机器跑得极久却仍然停机，最便宜的办法就是实现一个“看起来随机”的算术迭代。这也意味着：确定 BB 的值，迟早要撞上 Collatz 一类的难题。</>}
-          en={<>This is no accident. The cheapest way for a small machine to run very long and still halt is to implement an arithmetic iteration that looks random. Which means that pinning down BB values runs, sooner or later, into Collatz-type problems.</>}
-        />
       </Section>
 
       {/* ---------------------------------------------------------------- */}
@@ -343,8 +335,8 @@ export default function Chapter12() {
         />
         <MB t="\begin{aligned} A(a,\,2b)&\to A(a+2,\,3b+2),\\ A(a+1,\,2b+1)&\to A(a,\,3b+3),\\ A(0,\,2b+1)&\to\text{HALT}.\end{aligned}" />
         <P
-          zh={<>从空白纸带出发，11 步后到达 <M t="A(0,4)" />。换句话说：反复做 <M t="b\mapsto\lfloor 3b/2\rfloor+2" />；b 为偶数时计数器 a 加 2，为奇数时减 1；若 a 已为 0 时遇到奇数，就停机。</>}
-          en={<>From a blank tape it reaches <M t="A(0,4)" /> after 11 steps. In other words: iterate <M t="b\mapsto\lfloor 3b/2\rfloor+2" />; the counter a gains 2 on each even b and loses 1 on each odd b; the machine halts if an odd b arrives when a is already 0.</>}
+          zh={<>从空白纸带出发，11 步后到达 <M t="A(0,4)" />。换句话说：反复做 <M t="b\mapsto\lfloor 3b/2\rfloor+2" />；b 为偶数时计数器 a 加 2，为奇数时减 1；若 a 已为 0 时遇到奇数，就停机。b 每步约乘 3/2，很快就有几百位；a 则记录偶数比奇数“多”了多少。</>}
+          en={<>From a blank tape it reaches <M t="A(0,4)" /> after 11 steps. In other words: iterate <M t="b\mapsto\lfloor 3b/2\rfloor+2" />; the counter a gains 2 on each even b and loses 1 on each odd b; the machine halts if an odd b arrives when a is already 0. Since b grows by about 3/2 per step it soon has hundreds of digits, while a keeps score of evens against odds.</>}
         />
         <Widget
           title={{ en: 'Iterate the Antihydra', zh: '迭代 Antihydra' }}
@@ -371,12 +363,8 @@ export default function Chapter12() {
       {/* ---------------------------------------------------------------- */}
       <Section id="independence" kicker={{ en: 'Beyond proof', zh: '超越证明' }} title={{ en: 'Busy beavers that ZFC cannot tame', zh: 'ZFC 驯服不了的海狸' }}>
         <P
-          zh={<>很多猜想都是“某台机器永不停机”。书中给出的例子：一台 25 状态机器当且仅当 Goldbach 猜想不成立时停机；15 状态对应 Erdős 关于 2 的幂的三进制猜想；744 状态对应黎曼猜想。这些数字也出现在 bbchallenge 2025 年的 BB(5) 论文中，其中 Goldbach 机器已用 Lean 形式化验证。</>}
-          en={<>Many conjectures say “some machine never halts.” The book’s examples: a 25-state machine halts iff Goldbach’s conjecture fails; 15 states for Erdős’s conjecture on powers of 2 in base 3; 744 states for the Riemann hypothesis. The same figures appear in bbchallenge’s 2025 BB(5) paper, where the Goldbach machine is verified in Lean.</>}
-        />
-        <P
-          zh={<>所以知道 <M t="S(25)" /> 就能解决 Goldbach 猜想：把那台机器跑 <M t="S(25)" /> 步。书中也指出这是循环论证：要算出 <M t="S(25)" />，本来就得先判定那台机器。</>}
-          en={<>So knowing <M t="S(25)" /> would settle Goldbach: run that machine for <M t="S(25)" /> steps. As the book notes, this is circular in practice — computing <M t="S(25)" /> requires deciding that very machine.</>}
+          zh={<>很多猜想都是“某台机器永不停机”。书中给出的例子：一台 25 状态机器当且仅当 Goldbach 猜想不成立时停机；15 状态对应 Erdős 关于 2 的幂的三进制猜想；744 状态对应黎曼猜想。这些数字也出现在 bbchallenge 2025 年的 BB(5) 论文中，其中 Goldbach 机器已用 Lean 形式化验证。所以知道 <M t="S(25)" /> 就能解决 Goldbach 猜想：把那台机器跑 <M t="S(25)" /> 步。书中也指出这是循环论证：要算出 <M t="S(25)" />，本来就得先判定那台机器。但它说明了 BB 值里“压缩”着多少数学：一个数就装下了整个猜想。</>}
+          en={<>Many conjectures say “some machine never halts.” The book’s examples: a 25-state machine halts iff Goldbach’s conjecture fails; 15 states for Erdős’s conjecture on powers of 2 in base 3; 744 states for the Riemann hypothesis. The same figures appear in bbchallenge’s 2025 BB(5) paper, where the Goldbach machine is verified in Lean. So knowing <M t="S(25)" /> would settle Goldbach: run that machine for <M t="S(25)" /> steps. As the book notes, this is circular in practice — computing <M t="S(25)" /> requires deciding that very machine. Still, it shows how much mathematics a single BB value compresses: one number holds a whole conjecture.</>}
         />
         <Thm name={{ en: 'the proof-theoretic barrier', zh: '证明论屏障' }}>
           <B
@@ -391,13 +379,13 @@ export default function Chapter12() {
           />
         </Proof>
         <P
-          zh={<>下界总是可以证明的：把冠军跑一遍就行。T 永远够不着的是<b>上界</b>。<M t="n_T" /> 越大，T 越强——它是衡量理论强度的一把尺子。</>}
-          en={<>Lower bounds are always provable: just run a champion. What T can never reach are <b>upper bounds</b>. The larger <M t="n_T" />, the stronger T: it is a yardstick for the strength of theories.</>}
+          zh={<>下界总是可以证明的：把冠军跑一遍就行。T 永远够不着的是<b>上界</b>。<M t="n_T" /> 越大，T 越强：更强的理论（比如 ZFC 加上大基数公理）能判定更多机器，所以 <M t="n_T" /> 是衡量理论强度的一把尺子。</>}
+          en={<>Lower bounds are always provable: just run a champion. What T can never reach are <b>upper bounds</b>. The larger <M t="n_T" />, the stronger T: stronger theories (ZFC plus large-cardinal axioms, say) settle more machines, so <M t="n_T" /> is a yardstick for the strength of theories.</>}
         />
         <H3 en="How small is n_ZFC?" zh="n_ZFC 有多小？" />
         <P
-          zh={<>书中写道：存在一台 432 状态的机器，它的停机性在 ZFC 中不可判定，所以 <M t="S(432)" /> 的值无法在 ZFC 中证明。这个纪录来自 Andrew J. Wade（2025 年 8 月 19 日）。从那以后它又被大幅压低了：</>}
-          en={<>The book says there is a 432-state machine whose halting ZFC cannot decide, so the value of <M t="S(432)" /> is unprovable in ZFC. That record is Andrew J. Wade’s (19 August 2025). It has since dropped sharply:</>}
+          zh={<>书中写道：存在一台 432 状态的机器，它的停机性在 ZFC 中不可判定，所以 <M t="S(432)" /> 的值无法在 ZFC 中证明。这个纪录来自 Andrew J. Wade（2025 年 8 月 19 日）。这类机器的做法都一样：搜索某个公理系统里“0 = 1”的证明，找到就停。从那以后纪录又被大幅压低了：</>}
+          en={<>The book says there is a 432-state machine whose halting ZFC cannot decide, so the value of <M t="S(432)" /> is unprovable in ZFC. That record is Andrew J. Wade’s (19 August 2025). All such machines work the same way: search for a proof of “0 = 1” from some axioms, and halt if one turns up. The record has since dropped sharply:</>}
         />
         <Widget
           title={{ en: 'The shrinking independence record', zh: '不断缩小的独立性纪录' }}
@@ -410,8 +398,8 @@ export default function Chapter12() {
           en={<>As of 20 October 2026 the bbchallenge wiki records 254 states by Mira (with ChatGPT) and Jeff Ketchersid (Rocq formalisation, with Claude) on 13 October 2026, and <b>230 states</b> by Elliot Glazer on 19 October, also formalised in Rocq. So <M t="6\le n_{\mathrm{ZF}}\le230" />.</>}
         />
         <P
-          zh={<>这里写 ZF 而不是 ZFC：由 Shoenfield 绝对性定理，加入选择公理不影响任何关于 Turing 机停机的结论。Aaronson 猜测真正的阈值小得多：<M t="n_{\mathrm{ZF}}\le20" />。</>}
-          en={<>ZF rather than ZFC: by Shoenfield absoluteness, the axiom of choice changes nothing about whether Turing machines halt. Aaronson conjectures the true threshold is far smaller, <M t="n_{\mathrm{ZF}}\le20" />.</>}
+          zh={<>这里写 ZF 而不是 ZFC：由 Shoenfield 绝对性定理，加入选择公理不影响任何关于 Turing 机停机的结论（停机是算术命题，它在 V 与满足选择公理的 L 中真假相同）。Aaronson 猜测真正的阈值小得多：<M t="n_{\mathrm{ZF}}\le20" />。</>}
+          en={<>ZF rather than ZFC: by Shoenfield absoluteness, the axiom of choice changes nothing about whether Turing machines halt (halting is an arithmetic statement, with the same truth value in V and in Gödel’s L, where choice holds). Aaronson conjectures the true threshold is far smaller, <M t="n_{\mathrm{ZF}}\le20" />.</>}
         />
         <Caution>
           <L

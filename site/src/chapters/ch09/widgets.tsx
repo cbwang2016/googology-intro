@@ -41,6 +41,7 @@ export function MatrixView({
   arcs = false,
   braces = false,
   maxRows,
+  noFoot = false,
 }: {
   S: Mat
   stage?: number
@@ -51,6 +52,7 @@ export function MatrixView({
   arcs?: boolean
   braces?: boolean
   maxRows?: number
+  noFoot?: boolean
 }) {
   const { pick } = useLang()
   const X = S.length
@@ -62,7 +64,7 @@ export function MatrixView({
   const ch = 26
   const showDelta = !!lim && stage >= 4
   const W = padL + X * cw + (showDelta ? cw + 22 : 6)
-  const H = padT + Y * rh - (rh - ch) + 22 + (braces ? 18 : 0)
+  const H = padT + Y * rh - (rh - ch) + (noFoot ? 4 : 22) + (braces ? 18 : 0)
   const cx = (x: number) => padL + x * cw + cw / 2
   const top = (y: number) => padT + y * rh
   const last = X - 1
@@ -167,7 +169,7 @@ export function MatrixView({
   const footY = top(Y - 1) + ch + 14
   const labels: ReactNode[] = []
   for (let x = 0; x < X; x++)
-    if (X <= 24 || x % 2 === 0)
+    if (!noFoot && (X <= 24 || x % 2 === 0))
       labels.push(
         <text key={`l${x}`} x={cx(x)} y={footY} textAnchor="middle" fontSize={10} fill={lim && stage >= 3 && x === lim.r ? '#7dffa8' : '#6b7399'}>
           {lim && stage >= 3 && x === lim.r ? pick('root', '坏根') : `c${x}`}
@@ -404,7 +406,7 @@ export function FsWalker({ roots = WALK_ROOTS, initial = 1 }: { roots?: typeof W
         ))}
       </div>
       <Slider value={n} min={0} max={5} onChange={setN} label="n" />
-      <MatrixView S={cells.map((c) => c.map((e) => e.v))} cells={cells} braces cw={30} rh={34} />
+      <MatrixView S={cells.map((c) => c.map((e) => e.v))} cells={cells} braces cw={30} rh={30} />
       <div className="c09-terms">
         {terms.map((tm, k) => (
           <div key={k} className={`c09-term ${k === n ? 'cur' : ''}`}>
@@ -546,13 +548,13 @@ export function RuleCompare() {
           <L en="Rule on (BM4)" zh="有额外规则（BM4）" />
         </b>
       </div>
-      <MatrixView S={on.map((c) => c.map((e) => e.v))} cells={on} braces cw={30} rh={31} />
+      <MatrixView S={on.map((c) => c.map((e) => e.v))} cells={on} cw={30} rh={29} noFoot />
       <div className="small">
         <b className="c09-bad">
           <L en="Rule off" zh="去掉额外规则" />
         </b>
       </div>
-      <MatrixView S={off.map((c) => c.map((e) => e.v))} cells={off} braces cw={30} rh={31} />
+      <MatrixView S={off.map((c) => c.map((e) => e.v))} cells={off} braces cw={30} rh={29} />
       <div className="muted small">
         {diff === 0 ? (
           <L en="No difference here: in every row where Δ ≠ 0, all bad-part entries descend from the bad root." zh="这里没有区别：在 Δ 不为 0 的每一行，坏部的数都是坏根的后代。" />

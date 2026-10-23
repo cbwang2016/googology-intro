@@ -101,7 +101,7 @@ export function LaverBuilder() {
     while (j < order.length && order[j][1] !== N) j++
     setK(Math.min(order.length, j + 1))
   }
-  const cell = Math.max(18, Math.min(34, Math.floor(420 / (N + 1))))
+  const cell = Math.max(18, Math.min(29, Math.floor(400 / (N + 1))))
   return (
     <div>
       <div className="btn-row">
@@ -194,7 +194,7 @@ const getLaver = (n: number) => getTimed(n).L
 export function LaverPeriods() {
   const { t } = useLang()
   const [n, setN] = useState(6)
-  const [row, setRow] = useState(1)
+  const [row, setRow] = useState(3)
   const canvas = useRef<HTMLCanvasElement>(null)
   const [periods, setPeriods] = useState<number[]>([])
   const Lt = getLaver(n)
@@ -257,6 +257,7 @@ export function LaverPeriods() {
           </div>
         </div>
         <div className="c10-lp-right">
+          <div className="c10-stat3">
           <div className="stat">
             <span className="stat-label">
               <L en="size" zh="大小" />
@@ -276,6 +277,7 @@ export function LaverPeriods() {
               <L en={`period of row ${row}`} zh={`第 ${row} 行周期`} />
             </span>
             <span className="stat-value">{pRow}</span>
+          </div>
           </div>
           <div className="muted small">
             {t(

@@ -120,7 +120,7 @@ export default function Chapter03() {
             zh={<>“序型”是一类队伍的共同形状。集合论里人们希望每个序数都是一个具体的集合。John von Neumann 的办法是：<b>每个序数就是所有比它小的序数组成的集合</b>。</>}
             en={<>An “order type” is the common shape of a whole class of lines. In set theory one wants each ordinal to be one concrete set. John von Neumann’s trick: <b>each ordinal is the set of all smaller ordinals</b>.</>}
           />
-          <MB t="0=\varnothing,\quad 1=\{0\},\quad 2=\{0,1\},\quad \ldots,\quad \omega=\{0,1,2,\ldots\},\quad \omega+1=\{0,1,2,\ldots,\omega\}." />
+          <MB t="0=\varnothing,\ \ 1=\{0\},\ \ 2=\{0,1\},\ \ldots,\ \ \omega=\{0,1,2,\ldots\},\ \ \omega+1=\omega\cup\{\omega\}." />
           <P
             zh={<>于是 <M t="\alpha<\beta" /> 就是 <M t="\alpha\in\beta" />，而“后继”就是 <M t="\alpha+1=\alpha\cup\{\alpha\}" />。严格的定义是：一个集合是序数，当且仅当它的每个元素也是它的子集，并且它在 <M t="\in" /> 下是良序的。第 10 章会再用到这种写法。</>}
             en={<>Then <M t="\alpha<\beta" /> simply means <M t="\alpha\in\beta" />, and the successor is <M t="\alpha+1=\alpha\cup\{\alpha\}" />. Officially: a set is an ordinal iff each of its elements is also a subset of it and it is well-ordered by <M t="\in" />. Chapter 10 uses this form again.</>}
@@ -141,30 +141,30 @@ export default function Chapter03() {
       {/* ---------------------------------------------------------------- */}
       <Section id="limits" kicker={{ en: 'Two ways to move', zh: '两种走法' }} title={{ en: 'Successors and limits', zh: '后继与极限' }}>
         <P
-          zh={<>良序队伍里的位置只有两种。一种紧跟在某个位置后面，比如 3 紧跟 2、<M t="\omega+1" /> 紧跟 <M t="\omega" />；另一种前面没有“紧挨着的那一个”，比如 <M t="\omega" />：无论你说哪个 <M t="n" />，后面都还有 <M t="n+1" /> 挡着。</>}
-          en={<>A well-ordered line has two kinds of positions. Some come right after another position: 3 after 2, <M t="\omega+1" /> after <M t="\omega" />. Others have no immediate predecessor, like <M t="\omega" />: whatever <M t="n" /> you name, <M t="n+1" /> sits in between.</>}
+          zh={<>位置有两种：紧跟在某个位置之后的（3 跟着 2，<M t="\omega+1" /> 跟着 <M t="\omega" />），和没有“紧挨着的前一个”的（<M t="\omega" />：无论你说哪个 <M t="n" />，中间都隔着 <M t="n+1" />）。</>}
+          en={<>Positions come in two kinds: those right after another (3 after 2, <M t="\omega+1" /> after <M t="\omega" />), and those with no immediate predecessor (<M t="\omega" />: whatever <M t="n" /> you name, <M t="n+1" /> sits in between).</>}
         />
         <Thm kind="definition" name={{ en: 'successor, supremum, limit', zh: '后继、上确界、极限' }}>
           <B
             zh={
               <ul>
                 <li><M t="\alpha+1" /> 是紧跟在 <M t="\alpha" /> 之后的序数，叫 <M t="\alpha" /> 的<Term en="successor" zh="后继" />。</li>
-                <li>一组序数的<Term en="supremum" zh="上确界" /> <M t="\sup" /> 是大于等于它们全体的最小序数（由第 3 条基本事实，它总存在）。</li>
-                <li>既不是 0、也不是后继的序数叫<Term en="limit ordinal" zh="极限序数" />。每个<b>可数的</b>极限序数 <M t="\lambda" /> 都可以写成一个严格递增序列的上确界 <M t="\lambda=\sup\{\lambda[0],\lambda[1],\lambda[2],\ldots\}" />，这个序列叫 <M t="\lambda" /> 的<Term en="fundamental sequence" zh="基本列" />。例如 <M t="\omega=\sup\{0,1,2,\ldots\}" />。</li>
+                <li>一组序数的<Term en="supremum" zh="上确界" /> <M t="\sup" /> 是大于等于它们全体的最小序数（它总是存在）。</li>
+                <li>既不是 0、也不是后继的序数叫<Term en="limit ordinal" zh="极限序数" />。</li>
               </ul>
             }
             en={
               <ul>
                 <li><M t="\alpha+1" />, the ordinal right after <M t="\alpha" />, is its <Term en="successor" zh="后继" />.</li>
-                <li>The <Term en="supremum" zh="上确界" /> of a set of ordinals is the least ordinal <M t="\ge" /> all of them (it exists by basic fact 3).</li>
-                <li>An ordinal that is neither 0 nor a successor is a <Term en="limit ordinal" zh="极限序数" />. Every <b>countable</b> limit <M t="\lambda" /> is the supremum of a strictly increasing sequence, <M t="\lambda=\sup\{\lambda[0],\lambda[1],\lambda[2],\ldots\}" />, called a <Term en="fundamental sequence" zh="基本列" /> for <M t="\lambda" />. For example <M t="\omega=\sup\{0,1,2,\ldots\}" />.</li>
+                <li>The <Term en="supremum" zh="上确界" /> of a set of ordinals is the least ordinal <M t="\ge" /> all of them (it always exists).</li>
+                <li>An ordinal that is neither 0 nor a successor is a <Term en="limit ordinal" zh="极限序数" />.</li>
               </ul>
             }
           />
         </Thm>
         <P
-          zh={<>约定：自然数从 0 开始，基本列也从第 0 项开始编号。第 4 章会为每个极限序数指定一个标准的基本列。</>}
-          en={<>Convention: natural numbers start at 0, and fundamental sequences are indexed from 0. Chapter 4 fixes a standard fundamental sequence for each limit we use.</>}
+          zh={<>每个<b>可数的</b>极限序数 <M t="\lambda" /> 都是某个严格递增序列的上确界：<M t="\lambda=\sup\{\lambda[0],\lambda[1],\lambda[2],\ldots\}" />。这样的序列叫 <M t="\lambda" /> 的<Term en="fundamental sequence" zh="基本列" />，例如 <M t="\omega=\sup\{0,1,2,\ldots\}" />。约定自然数和基本列都从 0 开始编号；第 4 章会为每个用到的极限指定标准基本列。</>}
+          en={<>Every <b>countable</b> limit <M t="\lambda" /> is the supremum of a strictly increasing sequence, <M t="\lambda=\sup\{\lambda[0],\lambda[1],\lambda[2],\ldots\}" />, called a <Term en="fundamental sequence" zh="基本列" /> for <M t="\lambda" />; e.g. <M t="\omega=\sup\{0,1,2,\ldots\}" />. Natural numbers and fundamental sequences are indexed from 0; Chapter 4 fixes a standard fundamental sequence for each limit we use.</>}
         />
         <KeyIdea>
           <L
@@ -174,10 +174,10 @@ export default function Chapter03() {
         </KeyIdea>
         <H3 en="Zoom and squeeze" zh="放大与压缩" />
         <P
-          zh={<>比赛的画法可以一层层套下去：把整条 <M t="\omega" /> 队伍压缩进 <M t="[0,\tfrac12)" />，后面再接一条压缩进 <M t="[\tfrac12,\tfrac34)" />……每个极限序数都是无穷多个点堆积成的那一点。</>}
-          en={<>The race picture nests. Squeeze a whole <M t="\omega" />-line into <M t="[0,\tfrac12)" />, the next one into <M t="[\tfrac12,\tfrac34)" />, and so on. Every limit ordinal is a point where infinitely many points pile up.</>}
+          zh={<>比赛的画法可以层层嵌套，每个极限序数都是一个堆积点。</>}
+          en={<>The race picture nests; every limit ordinal is a pile-up point.</>}
         />
-        <Widget title={{ en: 'Every ordinal below ω^ω on one line', zh: '把 ω^ω 以下的序数画在一条线上' }} hint={{ en: 'Switch stages to watch whole lines get squeezed; click to zoom into a pile-up.', zh: '切换阶段，看整条队伍怎样被压缩；点击放大某个堆积点。' }}>
+        <Widget title={{ en: 'Every ordinal below ω^ω on one line', zh: '把 ω^ω 以下的序数画在一条线上' }} hint={{ en: 'Switch stages; click to zoom into a pile-up.', zh: '切换阶段；点击可放大堆积点。' }}>
           <AccumLine />
         </Widget>
         <P
@@ -192,13 +192,13 @@ export default function Chapter03() {
           zh={<>序数的加法就是<b>排队</b>：<M t="\alpha+\beta" /> 是一条 <M t="\alpha" /> 型的队伍后面接一条 <M t="\beta" /> 型的队伍。乘法 <M t="\alpha\cdot\beta" /> 是把 <M t="\beta" /> 条 <M t="\alpha" /> 型队伍首尾相接。</>}
           en={<>Ordinal addition is <b>queueing</b>: <M t="\alpha+\beta" /> is a line of type <M t="\alpha" /> followed by a line of type <M t="\beta" />. Multiplication <M t="\alpha\cdot\beta" /> is <M t="\beta" /> copies of <M t="\alpha" />, end to end.</>}
         />
-        <Widget title={{ en: 'Build lines out of sticks', zh: '用小棍拼队伍' }} hint={{ en: 'Top row: the line as you built it. Bottom row: the same sticks, renumbered in order. Thin lines show where each stick goes.', zh: '上排是你拼出的队伍，下排是同一批小棍按顺序重新编号后的样子，细线连着每根小棍的去向。' }}>
-          <Sticks />
-        </Widget>
         <P
           zh={<><M t="1+\omega" />：一个人插在整条 <M t="\omega" /> 队伍<b>前面</b>。重新编号时他是第 0 名，其余每人往后挪一位——队伍的形状没变，还是 <M t="\omega" />。<M t="\omega+1" />：一个人排在所有人<b>后面</b>，谁也挪不出位置给他，于是多出一个最后的名次。</>}
           en={<><M t="1+\omega" />: one person joins <b>in front of</b> an <M t="\omega" />-line. Renumbering, he is place 0 and everyone else shifts back by one — the shape is unchanged, still <M t="\omega" />. <M t="\omega+1" />: one person joins <b>behind</b> everyone, and no shifting makes room, so a new last place appears.</>}
         />
+        <Widget title={{ en: 'Build lines out of sticks', zh: '用小棍拼队伍' }} hint={{ en: 'Top: the line as built. Bottom: the same sticks renumbered in order.', zh: '上排是拼出的队伍，下排是同一批小棍按顺序重新编号。' }}>
+          <Sticks />
+        </Widget>
         <Thm kind="definition" name={{ en: 'ordinal arithmetic (book Defs 3.1–3.3)', zh: '序数运算（《大数理论》定义 3.1–3.3）' }}>
           <MB t="\begin{aligned}&\alpha+0=\alpha,&&\alpha+(\beta+1)=(\alpha+\beta)+1,&&\alpha+\lambda=\sup_{\beta<\lambda}(\alpha+\beta),\\&\alpha\cdot0=0,&&\alpha\cdot(\beta+1)=\alpha\cdot\beta+\alpha,&&\alpha\cdot\lambda=\sup_{\beta<\lambda}\alpha\cdot\beta,\\&\alpha^{0}=1,&&\alpha^{\beta+1}=\alpha^{\beta}\cdot\alpha,&&\alpha^{\lambda}=\sup_{\beta<\lambda}\alpha^{\beta}\quad(\lambda\text{ limit}).\end{aligned}" />
         </Thm>
@@ -215,23 +215,6 @@ export default function Chapter03() {
             en={<>Use the limit column: <M t="1+\omega=\sup_n(1+n)=\sup\{1,2,3,\ldots\}=\omega" />; <M t="2\cdot\omega=\sup_n 2n=\omega" />; <M t="2^{\omega}=\sup_n 2^n=\omega" />. Meanwhile <M t="\omega\cdot2=\omega+\omega" /> and <M t="\omega+1" /> both attach something after <M t="\omega" />, so both exceed it.</>}
           />
         </Proof>
-        <P
-          zh={<>口诀：<b>小的东西放在左边会被“吞掉”</b>。<M t="\omega" /> 个“2 人小组”排成一队还是 <M t="\omega" />；2 条 <M t="\omega" /> 队伍首尾相接却是 <M t="\omega\cdot2" />。</>}
-          en={<>Rule of thumb: <b>something small on the left gets swallowed</b>. <M t="\omega" /> pairs in a row is still <M t="\omega" />; two <M t="\omega" />-lines end to end make <M t="\omega\cdot2" />.</>}
-        />
-        <Quiz
-          q={{ zh: <p><M t="(\omega+1)\cdot2" /> 等于多少？</p>, en: <p>What is <M t="(\omega+1)\cdot2" />?</p> }}
-          options={[
-            { zh: <p><M t="\omega\cdot2+2" />（乘法分配律）</p>, en: <p><M t="\omega\cdot2+2" /> (distribute)</p> },
-            { zh: <p><M t="\omega\cdot2+1" /></p>, en: <p><M t="\omega\cdot2+1" /></p> },
-            { zh: <p><M t="\omega\cdot2" /></p>, en: <p><M t="\omega\cdot2" /></p> },
-          ]}
-          answer={1}
-          explain={{
-            zh: <p><M t="(\omega+1)\cdot2=(\omega+1)+(\omega+1)=\omega+(1+\omega)+1=\omega+\omega+1" />。中间那个 1 后面紧跟一整条 <M t="\omega" />，被吞掉了；最后那个 1 后面没人，留了下来。右分配律对序数不成立。</p>,
-            en: <p><M t="(\omega+1)\cdot2=(\omega+1)+(\omega+1)=\omega+(1+\omega)+1=\omega+\omega+1" />. The middle 1 is followed by a whole <M t="\omega" /> and gets swallowed; the last 1 has nobody after it and survives. Right distributivity fails for ordinals.</p>,
-          }}
-        />
         <Expand kind="detail" title={{ en: 'Which laws survive?', zh: '哪些运算律还成立？' }}>
           <B
             zh={
@@ -250,6 +233,23 @@ export default function Chapter03() {
             }
           />
         </Expand>
+        <P
+          zh={<>口诀：<b>小的东西放在左边会被“吞掉”</b>。<M t="\omega" /> 个“2 人小组”排成一队还是 <M t="\omega" />；2 条 <M t="\omega" /> 队伍首尾相接却是 <M t="\omega\cdot2" />。</>}
+          en={<>Rule of thumb: <b>something small on the left gets swallowed</b>. <M t="\omega" /> pairs in a row is still <M t="\omega" />; two <M t="\omega" />-lines end to end make <M t="\omega\cdot2" />.</>}
+        />
+        <Quiz
+          q={{ zh: <p><M t="(\omega+1)\cdot2" /> 等于多少？</p>, en: <p>What is <M t="(\omega+1)\cdot2" />?</p> }}
+          options={[
+            { zh: <p><M t="\omega\cdot2+2" />（乘法分配律）</p>, en: <p><M t="\omega\cdot2+2" /> (distribute)</p> },
+            { zh: <p><M t="\omega\cdot2+1" /></p>, en: <p><M t="\omega\cdot2+1" /></p> },
+            { zh: <p><M t="\omega\cdot2" /></p>, en: <p><M t="\omega\cdot2" /></p> },
+          ]}
+          answer={1}
+          explain={{
+            zh: <p><M t="(\omega+1)\cdot2=(\omega+1)+(\omega+1)=\omega+(1+\omega)+1=\omega+\omega+1" />。中间那个 1 后面紧跟一整条 <M t="\omega" />，被吞掉了；最后那个 1 后面没人，留了下来。右分配律对序数不成立。</p>,
+            en: <p><M t="(\omega+1)\cdot2=(\omega+1)+(\omega+1)=\omega+(1+\omega)+1=\omega+\omega+1" />. The middle 1 is followed by a whole <M t="\omega" /> and gets swallowed; the last 1 has nobody after it and survives. Right distributivity fails for ordinals.</p>,
+          }}
+        />
       </Section>
 
       {/* ---------------------------------------------------------------- */}
@@ -264,6 +264,7 @@ export default function Chapter03() {
           en={<>Write <M t="\omega\uparrow\uparrow0=1" /> and <M t="\omega\uparrow\uparrow(n+1)=\omega^{\omega\uparrow\uparrow n}" />: a tower of <M t="n" /> omegas. The supremum of all these towers has its own name, given by Cantor in 1897:</>}
         />
         <MB t="\varepsilon_0=\sup\{1,\ \omega,\ \omega^{\omega},\ \omega^{\omega^{\omega}},\ \ldots\}=\sup_n\ \omega\uparrow\uparrow n." />
+        <H3 en="The first fixed point" zh="第一个不动点" />
         <Thm name={{ en: '(ε₀ is the first fixed point of α ↦ ω^α)', zh: '（ε₀ 是 α ↦ ω^α 的第一个不动点）' }}>
           <B
             zh={<p><M t="\omega^{\varepsilon_0}=\varepsilon_0" />；并且任何满足 <M t="\omega^{\alpha}=\alpha" /> 的序数都 <M t="\ge\varepsilon_0" />。</p>}
@@ -295,13 +296,14 @@ export default function Chapter03() {
           zh={<>来玩个游戏。从 <M t="\omega^{\omega}" /> 出发，每一步走到任意一个<b>更小</b>的序数。步子随你迈：可以从 <M t="\omega^{\omega}" /> 跳到 <M t="\omega^{1000000}" />，也可以从 <M t="\omega" /> 跳到十亿。目标：永远走下去。</>}
           en={<>A game. Start at <M t="\omega^{\omega}" />; each move goes to any <b>smaller</b> ordinal. Steps can be as wild as you like: <M t="\omega^{\omega}" /> to <M t="\omega^{1000000}" />, or <M t="\omega" /> to a billion. Your goal: keep going forever.</>}
         />
-        <Widget title={{ en: 'The descent game', zh: '下降游戏' }} hint={{ en: 'Type the coefficients of your next ordinal, or let the greedy player move. Watch the altitude.', zh: '输入下一个序数的各项系数，或者让贪心玩家替你走。注意高度曲线。' }}>
+        <P
+          zh={<>游戏想拖多长都行：每到一个极限，比如 <M t="\omega" />，你就报一个天文数字。那么，能不能让它<b>永不结束</b>？</>}
+          en={<>You can make the game as long as you like: at a limit such as <M t="\omega" />, just name an astronomical number. So can you make it <b>never end</b>?</>}
+        />
+        <H3 en="Your move" zh="轮到你了" />
+        <Widget title={{ en: 'The descent game', zh: '下降游戏' }} hint={{ en: 'Type your next ordinal’s coefficients, or let the greedy player move.', zh: '输入下一个序数的系数，或让贪心玩家替你走。' }}>
           <DescentGame />
         </Widget>
-        <P
-          zh={<>怪事在于：你可以让游戏长到任意程度——到达 <M t="\omega" /> 时随便报一个天文数字就行——但无论怎么走，它总会结束。<b>有限，却没有上限</b>。</>}
-          en={<>Here is the strange part: you can make the game as long as you like — on reaching <M t="\omega" />, just name an astronomical number — but however you play, it ends. <b>Finite, yet unbounded.</b></>}
-        />
         <Thm name={{ en: '(no infinite descent)', zh: '（不存在无穷下降）' }}>
           <B
             zh={<p>不存在严格递减的无穷序数列 <M t="\alpha_0>\alpha_1>\alpha_2>\cdots" />。</p>}
@@ -316,8 +318,8 @@ export default function Chapter03() {
         </Proof>
         <KeyIdea>
           <L
-            zh={<>这是后面每一个“它一定会停”的证明背后的发动机：给过程的每个状态配一个序数，证明每一步序数都严格变小，于是过程必然终止。第 4 章用它说明 FGH 的值总能算完；第 5 章用它对付初等序列；第 6 章用它驯服 Goodstein 序列和九头蛇——哪怕那些过程长得超乎想象。</>}
-            en={<>This is the engine behind every “it must stop” proof to come. Attach an ordinal to each state of a process, show it strictly decreases at every step, and termination follows. Chapter 4 uses it to show FGH values are well defined; Chapter 5 tames primitive sequences with it; Chapter 6 tames Goodstein sequences and the hydra — however absurdly long those processes run.</>}
+            zh={<>所以下降游戏<b>有限，却没有上限</b>。这是后面每一个“它一定会停”的证明背后的发动机：给过程的每个状态配一个序数，证明每一步序数都严格变小，于是过程必然终止。第 4 章用它说明 FGH 的值总能算完；第 5 章用它对付初等序列；第 6 章用它驯服 Goodstein 序列和九头蛇——哪怕那些过程长得超乎想象。</>}
+            en={<>So the descent game is <b>finite, yet unbounded</b>. This is the engine behind every “it must stop” proof to come. Attach an ordinal to each state of a process, show it strictly decreases at every step, and termination follows. Chapter 4 uses it to show FGH values are well defined; Chapter 5 tames primitive sequences with it; Chapter 6 tames Goodstein sequences and the hydra — however absurdly long those processes run.</>}
           />
         </KeyIdea>
         <Expand kind="detail" title={{ en: 'Transfinite induction, and the converse', zh: '超穷归纳法，以及逆命题' }}>
@@ -334,10 +336,6 @@ export default function Chapter03() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="cnf" kicker={{ en: 'Addresses', zh: '门牌号' }} title={{ en: 'Cantor normal form', zh: 'Cantor 标准型' }}>
-        <P
-          zh={<>到目前为止，我们见过的每个序数都写成了“<M t="\omega" /> 的多项式”。这不是巧合：</>}
-          en={<>Every ordinal we have met so far was written as a “polynomial in <M t="\omega" />.” That is no accident:</>}
-        />
         <Thm name={{ en: 'Cantor normal form (Cantor, 1897)', zh: 'Cantor 标准型（Cantor，1897）' }}>
           <B
             zh={<p>每个序数 <M t="\alpha>0" /> 都可以<b>唯一地</b>写成</p>}
@@ -347,15 +345,17 @@ export default function Chapter03() {
         </Thm>
         <Proof>
           <L
-            zh={<>思路是“贪心地取最高位”，就像把一个数写成十进制。取最大的 <M t="\beta_1" /> 使 <M t="\omega^{\beta_1}\le\alpha" />，再取最大的自然数 <M t="c_1" /> 使 <M t="\omega^{\beta_1}\cdot c_1\le\alpha" />（因为 <M t="\omega^{\beta_1}\cdot\omega=\omega^{\beta_1+1}>\alpha" />，<M t="c_1" /> 有限）。剩下的部分 <M t="\rho" /> 满足 <M t="\alpha=\omega^{\beta_1}c_1+\rho" />，<M t="\rho<\omega^{\beta_1}" />。对 <M t="\rho" /> 重复。指数严格递减，由“不存在无穷下降”定理，这个过程有限步就停。唯一性：首项由 <M t="\alpha" /> 决定（它就是上面贪心取出的那一项），其余部分归纳。</>}
-            en={<>Greedily take the top “digit,” as with decimals. Let <M t="\beta_1" /> be the largest exponent with <M t="\omega^{\beta_1}\le\alpha" />, and <M t="c_1" /> the largest natural number with <M t="\omega^{\beta_1}\cdot c_1\le\alpha" /> (finite, because <M t="\omega^{\beta_1}\cdot\omega=\omega^{\beta_1+1}>\alpha" />). The remainder <M t="\rho" /> satisfies <M t="\alpha=\omega^{\beta_1}c_1+\rho" /> with <M t="\rho<\omega^{\beta_1}" />. Repeat on <M t="\rho" />. The exponents strictly decrease, so by the no-infinite-descent theorem the process stops. Uniqueness: the leading term is forced (it is the greedy one), and the rest follows by induction.</>}
+            zh={<>思路：像十进制一样贪心地取最高位；指数严格递减，由上一幕的定理有限步即停；首项被 <M t="\alpha" /> 唯一确定，唯一性由归纳得到。</>}
+            en={<>Idea: take the top “digit” greedily, as with decimals; the exponents strictly decrease, so the previous scene’s theorem stops the process; the leading term is forced, so uniqueness follows by induction.</>}
           />
         </Proof>
-        <P
-          zh={<>比大小也像十进制：先比最高次项的指数（指数本身也用同样的办法比），再比系数，然后比下一项。<b>Cantor 标准型就是“<M t="\omega" /> 进制”</b>。</>}
-          en={<>Comparison works like decimals too: compare the top exponents (recursively, by the same rule), then the coefficients, then the next terms. <b>Cantor normal form is place value in base <M t="\omega" /></b>.</>}
-        />
-        <Widget title={{ en: 'Normal-form calculator', zh: '标准型计算器' }} hint={{ en: 'Each preset pits two expressions that look alike. Predict before you click.', zh: '每个预设都是两个看起来差不多的式子。点之前先猜一猜。' }}>
+        <Expand kind="proof" title={{ en: 'The greedy step in detail', zh: '贪心步骤的细节' }}>
+          <L
+            zh={<>贪心地取最高位：最大的 <M t="\beta_1" /> 使 <M t="\omega^{\beta_1}\le\alpha" />，最大的 <M t="c_1" /> 使 <M t="\omega^{\beta_1}c_1\le\alpha" />（有限，因为 <M t="\omega^{\beta_1+1}>\alpha" />），余下 <M t="\rho<\omega^{\beta_1}" />，对 <M t="\rho" /> 重复。指数严格递减，由上一幕的定理有限步即停。首项被 <M t="\alpha" /> 唯一确定，唯一性由归纳得到。</>}
+            en={<>Take the top “digit” greedily: the largest <M t="\beta_1" /> with <M t="\omega^{\beta_1}\le\alpha" />, the largest <M t="c_1" /> with <M t="\omega^{\beta_1}c_1\le\alpha" /> (finite, as <M t="\omega^{\beta_1+1}>\alpha" />), leaving <M t="\rho<\omega^{\beta_1}" />; repeat on <M t="\rho" />. Exponents strictly decrease, so the previous scene’s theorem stops the process. The leading term is forced by <M t="\alpha" />, so uniqueness follows by induction.</>}
+          />
+        </Expand>
+        <Widget title={{ en: 'Normal-form calculator', zh: '标准型计算器' }} hint={{ en: 'Compare like decimals: top exponents first, then coefficients — base-ω place value. Each preset pits two look-alikes; predict first.', zh: '像十进制一样比大小：先比首项指数，再比系数——这就是“ω 进制”。每个预设都是一对“长得像”的式子，先猜再点。' }}>
           <CNFCalc />
         </Widget>
         <P
@@ -383,7 +383,8 @@ export default function Chapter03() {
           zh={<>David Hilbert 在 1924 年的讲座里讲过一个故事，后来因 George Gamow 1947 年的科普书《从一到无穷大》而广为人知：一家旅馆有房间 0、1、2、……，每间都住满了。又来了客人，还住得下吗？</>}
           en={<>David Hilbert told a story in a 1924 lecture, later made famous by George Gamow’s 1947 book <i>One Two Three… Infinity</i>: a hotel has rooms 0, 1, 2, …, every one occupied. More guests arrive. Is there room?</>}
         />
-        <Widget title={{ en: 'The hotel that is never full', zh: '永远住不满的旅馆' }} hint={{ en: 'Pick an arrival, then announce the room change.', zh: '选一种来客情形，然后广播换房。' }}>
+        <H3 en="Room for everyone" zh="人人有房" />
+        <Widget title={{ en: 'Hilbert’s hotel', zh: '希尔伯特旅馆' }} hint={{ en: 'Pick an arrival, then announce the room change.', zh: '选一种来客情形，然后广播换房。' }}>
           <HilbertHotel />
         </Widget>
         <Thm kind="definition" name={{ en: 'countable', zh: '可数' }}>
@@ -464,7 +465,7 @@ export default function Chapter03() {
       </Section>
 
       {/* ---------------------------------------------------------------- */}
-      <Section id="omega1" kicker={{ en: 'The horizon', zh: '地平线' }} title={{ en: 'ω₁: the first uncountable ordinal', zh: 'ω₁：第一个不可数序数' }}>
+      <Section id="omega1" kicker={{ en: 'The horizon', zh: '地平线' }} title={{ en: 'ω₁: beyond every ladder', zh: 'ω₁：梯子之外' }}>
         <P
           zh={<>我们爬过的每个序数——<M t="\omega" />、<M t="\omega^{\omega}" />、<M t="\varepsilon_0" />——都是可数的。到底有没有不可数的序数？</>}
           en={<>Every ordinal we have climbed past — <M t="\omega" />, <M t="\omega^{\omega}" />, <M t="\varepsilon_0" /> — is countable. Is there any uncountable ordinal at all?</>}
@@ -477,8 +478,8 @@ export default function Chapter03() {
         </Thm>
         <Proof>
           <L
-            zh={<>每个可数序数都是 <M t="\N" /> 的某个子集上某个良序的序型，所以全体可数序数组成一个集合 <M t="W" />。由基本事实第 3 条，<M t="W" /> 按大小是良序的；设它的序型为 <M t="\omega_1" />。可数序数的更小者也可数（它的队伍是原队伍的一段），所以 <M t="W" /> 向下封闭，由第 2 条 <M t="W=\{\beta:\beta<\omega_1\}" />。若 <M t="\omega_1" /> 可数，则 <M t="\omega_1\in W" />，即 <M t="\omega_1<\omega_1" />，荒谬。所以 <M t="\omega_1" /> 不可数，而比它小的都在 <M t="W" /> 里，都可数。</>}
-            en={<>Each countable ordinal is the order type of some well-order on a subset of <M t="\N" />, so the countable ordinals form a set <M t="W" />. By basic fact 3, <M t="W" /> is well-ordered by size; call its order type <M t="\omega_1" />. Anything below a countable ordinal is countable (its line is part of the bigger line), so <M t="W" /> is closed downward, and by fact 2, <M t="W=\{\beta:\beta<\omega_1\}" />. If <M t="\omega_1" /> were countable, then <M t="\omega_1\in W" />, i.e. <M t="\omega_1<\omega_1" /> — absurd. So <M t="\omega_1" /> is uncountable, and everything below it lies in <M t="W" />, hence is countable.</>}
+            zh={<>可数序数都是 <M t="\N" /> 的子集上良序的序型，所以组成一个集合 <M t="W" />，它向下封闭且按大小良序（基本事实第 3 条）。设其序型为 <M t="\omega_1" />，由第 2 条 <M t="W=\{\beta:\beta<\omega_1\}" />。若 <M t="\omega_1" /> 可数，则 <M t="\omega_1\in W" />，即 <M t="\omega_1<\omega_1" />，荒谬。</>}
+            en={<>Countable ordinals are order types of well-orders on subsets of <M t="\N" />, so they form a set <M t="W" />, closed downward and well-ordered by size (basic fact 3). Let <M t="\omega_1" /> be its type; by fact 2, <M t="W=\{\beta:\beta<\omega_1\}" />. If <M t="\omega_1" /> were countable, then <M t="\omega_1\in W" />, i.e. <M t="\omega_1<\omega_1" /> — absurd.</>}
           />
         </Proof>
         <Thm name={{ en: '(no countable ladder reaches ω₁)', zh: '（可数的梯子够不着 ω₁）' }}>

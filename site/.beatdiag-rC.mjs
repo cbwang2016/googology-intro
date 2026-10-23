@@ -8,9 +8,9 @@ const browser = await chromium.launch({ executablePath: '/usr/bin/chromium-brows
 const page = await browser.newPage({ viewport: { width: Number(width), height: Number(height) } })
 await page.addInitScript((m) => { localStorage.setItem('googology-lang-mode', m); localStorage.setItem('googology-view-mode', 'story'); sessionStorage.clear() }, mode)
 await page.goto(`http://localhost:${PORT}/#/ch/${slug}`)
-await page.waitForTimeout(3000)
+await page.waitForTimeout(6000)
 const total = Number((await page.evaluate(() => document.querySelector('.story-count')?.textContent || '0 / 0')).split('/')[1])
-const want = only ? only.split(',').map(Number) : null
+const want = only && only !== 'all' ? only.split(',').map(Number) : null
 for (let i = 0; i < total; i++) {
   await page.waitForTimeout(200)
   const r = await page.evaluate(() => {
@@ -18,7 +18,8 @@ for (let i = 0; i < total; i++) {
     const els = [...document.querySelectorAll('.chapter-flow [data-beats]')].filter((e) => e.offsetParent !== null && !e.matches('section'))
     return { h, v, els: els.map((e) => `${Math.round(e.getBoundingClientRect().height)}px <${e.tagName.toLowerCase()} ${e.className}> ${(e.textContent || '').slice(0, 70).replace(/\s+/g, ' ')}`) }
   })
-  if ((want && want.includes(i + 1)) || (!want && r.h > r.v + 4)) { console.log(`beat ${i + 1}: ${r.h}`); r.els.forEach((e) => console.log('   ' + e)) }
+  if (only === 'all') console.log(`${i + 1}: ${r.h} | ` + r.els.map((e) => e.slice(0, 50)).join(' ;; '))
+  else if ((want && want.includes(i + 1)) || (!want && r.h > r.v + 4)) { console.log(`beat ${i + 1}: ${r.h}`); r.els.forEach((e) => console.log('   ' + e)) }
   await page.keyboard.press('ArrowRight')
 }
 await browser.close(); srv.kill()
