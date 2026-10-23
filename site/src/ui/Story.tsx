@@ -42,10 +42,15 @@ function computeBeats(blocks: StoryBlock[], bilingual: boolean) {
   let text = 0
   let heavy = false
   let closed = false
-  const flush = () => {
+  // a paragraph ending in a colon introduces the next block: a page break before
+  // that block moves the lead-in to the new page with it
+  let lead: { el: Element; len: number } | null = null
+  const flush = (keepLead = false) => {
+    const carry = keepLead && lead && cur.length > 1 && cur[cur.length - 1] === lead.el ? lead : null
+    if (carry) cur.pop()
     if (cur.length) beats.push(cur)
-    cur = []
-    text = 0
+    cur = carry ? [carry.el] : []
+    text = carry ? carry.len : 0
     heavy = false
     closed = false
   }
@@ -56,6 +61,8 @@ function computeBeats(blocks: StoryBlock[], bilingual: boolean) {
     const txt = el.textContent || ''
     const cjk = (txt.match(/[\u3000-\u9fff\uff00-\uffef]/g) || []).length
     const len = (txt.length - cjk + 2.1 * cjk) / (bilingual ? 2.1 : 1)
+    const introduced = lead !== null && cur[cur.length - 1] === lead.el
+    const brk = () => { if (!(introduced && cur.length === 1)) flush(true) }
     switch (k) {
       case 'card':
         // chapter-end + nav share a screen; the title card and the prerequisites each get their own
@@ -78,24 +85,25 @@ function computeBeats(blocks: StoryBlock[], bilingual: boolean) {
           text += len
           break
         }
-        if (closed || heavy || (text > 0 && text + len > TEXT_LIMIT)) flush()
+        if (closed || heavy || (text > 0 && text + len > TEXT_LIMIT)) brk()
         cur.push(el)
         text += len
         break
       case 'math':
-        if (closed) flush()
+        if (closed) brk()
         cur.push(el)
         break
       case 'attach':
         cur.push(el)
         break
       case 'heavy':
-        if (heavy || closed || text > HEAVY_INTRO) flush()
+        if (heavy || closed || text > HEAVY_INTRO) brk()
         cur.push(el)
         heavy = true
         closed = true
         break
     }
+    lead = k === 'text' && /[:：]\s*$/.test(txt.trim()) ? { el, len } : null
     prevKind = k
   }
   flush()

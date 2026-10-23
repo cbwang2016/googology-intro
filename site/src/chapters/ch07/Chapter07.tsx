@@ -324,7 +324,6 @@ export default function Chapter07() {
           zh={<>φ 的第二个变量我们已经玩透了。现在让<b>第一个</b>变量也迭代起来：</>}
           en={<>We have squeezed the second argument of φ dry. Now iterate the <b>first</b> one:</>}
         />
-        <H3 en="Make the row number grow" zh="让层级号增长" />
         <Widget title={{ en: "Γ₀: feed the output into the row number", zh: "Γ₀：把输出放回层级号" }}><LimitWorkshop kind="gamma" /></Widget>
         <H3 en="The boundary of binary Veblen notation" zh="二元 Veblen 记号的边界" />
         <P
@@ -445,7 +444,6 @@ export default function Chapter07() {
           zh={<>既然 SVO = <M t="\varphi(1@\omega)" />，何不让位置本身是任意序数？<M t="\varphi(1@(\omega+1))" />、<M t="\varphi(1@\varepsilon_0)" />……于是 <M t="\alpha\mapsto\varphi(1@\alpha)" /> 又是一个可以迭代的映射，它的第一个不动点叫<Term en="large Veblen ordinal" zh="大 Veblen 序数" />（LVO）：</>}
           en={<>Since SVO = <M t="\varphi(1@\omega)" />, why not let positions be any ordinal? <M t="\varphi(1@(\omega+1))" />, <M t="\varphi(1@\varepsilon_0)" />, … Then <M t="\alpha\mapsto\varphi(1@\alpha)" /> is yet another map to iterate; its first fixed point is the <Term en="large Veblen ordinal" zh="大 Veblen 序数" /> (LVO):</>}
         />
-        <H3 en="Iterate the position parameter" zh="迭代位置参数" />
         <Widget title={{ en: "LVO: let the slot index grow too", zh: "LVO：位置参数也参与迭代" }}><LimitWorkshop kind="lvo" /></Widget>
         <H3 en="Why another notation will help" zh="为什么需要另一种记号" />
         <Caution>

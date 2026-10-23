@@ -261,11 +261,11 @@ export default function Chapter03() {
           en={<>With +1 and suprema we can keep climbing. Each landmark is the limit of the previous run:</>}
         />
         <MB t="0,1,2,\ldots,\ \omega,\ \omega+1,\ldots,\ \omega\cdot2,\ldots,\ \omega^2,\ldots,\ \omega^3,\ldots,\ \omega^{\omega},\ldots,\ \omega^{\omega^{\omega}},\ldots" />
+        <H3 en="Build taller ω towers" zh="搭起更高的 ω 塔" />
         <P
           zh={<>记 <M t="\omega\uparrow\uparrow0=1" />，<M t="\omega\uparrow\uparrow(n+1)=\omega^{\omega\uparrow\uparrow n}" />，也就是 <M t="n" /> 层的 <M t="\omega" /> 指数塔。这一整列指数塔的上确界有一个专门的名字，是 Cantor 在 1897 年起的：</>}
           en={<>Write <M t="\omega\uparrow\uparrow0=1" /> and <M t="\omega\uparrow\uparrow(n+1)=\omega^{\omega\uparrow\uparrow n}" />: a tower of <M t="n" /> omegas. The supremum of all these towers has its own name, given by Cantor in 1897:</>}
         />
-        <H3 en="Build taller ω towers" zh="搭起更高的 ω 塔" />
         <Widget title={{ en: "ε₀: towers without a last floor", zh: "ε₀：没有最后一层的塔" }}><LimitWorkshop kind="epsilon" /></Widget>
         <H3 en="Why the tower limit is a fixed point" zh="为什么塔的极限是不动点" />
         <H3 en="The first fixed point" zh="第一个不动点" />

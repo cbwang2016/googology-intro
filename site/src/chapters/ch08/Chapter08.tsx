@@ -514,11 +514,11 @@ export default function Chapter08() {
         </Caution>
 
         <H3 en="Buchholz’s ordinal" zh="Buchholz 序数" />
+        <H3 en="Move through the Ω levels" zh="穿过各个 Ω 层级" />
         <P
           zh={<><M t="\Omega_3" /> 配 <M t="\psi_2" />，<M t="\Omega_4" /> 配 <M t="\psi_3" />……每加一层就能多折叠一次。把它们全部取上确界：</>}
           en={<><M t="\Omega_3" /> comes with <M t="\psi_2" />, <M t="\Omega_4" /> with <M t="\psi_3" />, and so on; each new floor allows one more fold. Take the supremum of all of them:</>}
         />
-        <H3 en="Move through the Ω levels" zh="穿过各个 Ω 层级" />
         <Widget title={{ en: "BO: use every finite Ω level", zh: "BO：用上每个有限的 Ω 层级" }}><LimitWorkshop kind="bo" /></Widget>
         <H3 en="Beyond a single collapse level" zh="越过单个折叠层级" />
         <P
