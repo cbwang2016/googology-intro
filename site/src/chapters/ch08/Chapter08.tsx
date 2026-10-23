@@ -1,3 +1,5 @@
+import { ComputableHorizon } from './ComputableHorizon'
+import { LimitWorkshop } from '../ch07/LimitWorkshop'
 import './ch08.css'
 import { B, L, P, Term } from '../../i18n'
 import { M, MB } from '../../math'
@@ -78,6 +80,7 @@ export default function Chapter08() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="stuck" kicker={{ en: 'The climb resumes', zh: '继续攀登' }} title={{ en: 'Stuck at the edge of the Veblen world', zh: '卡在 Veblen 世界的边缘' }}>
+        <P en="Our goal is still a stronger finite-number recipe. Veblen notation has made its ordinal index cumbersome. Collapsing will compress the index: we use a large auxiliary symbol Ω to describe new countable landmarks, then return to finite computations through hierarchy rules." zh="目标仍是写出更强的有限数配方，Veblen 记号却让索引越来越笨重。折叠将压缩索引：借助较大的辅助符号 Ω 描述新的可数路标，再通过层次规则回到有限计算。" />
         <P
           zh={<>第 7 章结束时，我们站在大 Veblen 序数 LVO 上：给 Veblen 函数 φ 越来越多的变量，再让变量的“位置”本身也变成序数。</>}
           en={<>Chapter 7 left us on the large Veblen ordinal LVO: give the Veblen function φ more and more arguments, then let the argument positions themselves be ordinals.</>}
@@ -147,18 +150,27 @@ export default function Chapter08() {
           zh={<>由封闭性 (a)，递归序数从 0 开始排成连续的一段，中间没有空缺；由 (b)，这一段没有最大元。它的上确界，就是本章的主角。</>}
           en={<>By closure fact (a), the recursive ordinals form an unbroken initial stretch starting at 0; by (b), that stretch has no largest member. Its supremum is the hero of this chapter.</>}
         />
-        <Thm kind="theorem" name={{ en: 'the Church–Kleene ordinal (1937–38)', zh: 'Church–Kleene 序数（1937–38）' }}>
+        <H3 en="Name the boundary" zh="给边界命名" />
+        <figure className="c08-milestone"><figcaption><L en="New milestone" zh="新的里程碑" /><strong><L en="ω₁^CK · Church–Kleene" zh="ω₁^CK · Church–Kleene 序数" /></strong></figcaption>
+<Thm kind="theorem" name={{ en: 'the Church–Kleene ordinal (1937–38)', zh: 'Church–Kleene 序数（1937–38）' }}>
           <B
             zh={<p>令 <M t="\Omega=\omega_1^{\mathrm{CK}}" /> 为所有递归序数的上确界。那么 (i) <M t="\Omega" /> 不是递归序数——它是第一个非递归序数；(ii) <M t="\Omega" /> 是<b>可数</b>的。</p>}
             en={<p>Let <M t="\Omega=\omega_1^{\mathrm{CK}}" /> be the supremum of all recursive ordinals. Then (i) <M t="\Omega" /> is not recursive — it is the first non-recursive ordinal; (ii) <M t="\Omega" /> is <b>countable</b>.</p>}
           />
         </Thm>
+        </figure>
+        <H3 en="Why this boundary exists" zh="为什么这道边界存在" />
         <Proof>
           <L
             zh={<>(i) 递归序数恰好是所有 <M t="<\Omega" /> 的序数；若 <M t="\Omega" /> 是递归的，就有 <M t="\Omega<\Omega" />。(ii) 程序是有限长的文本，只有可数多个，所以递归序数（即 <M t="\Omega" /> 的元素）只有可数多个：<M t="\Omega" /> 可数。</>}
             en={<>(i) The recursive ordinals are exactly the ordinals <M t="<\Omega" />; if <M t="\Omega" /> were recursive we would get <M t="\Omega<\Omega" />. (ii) Programs are finite texts, so there are countably many of them; hence countably many recursive ordinals, i.e. elements of <M t="\Omega" />: <M t="\Omega" /> is countable.</>}
           />
         </Proof>
+        <H3 en="The computable world fits below Ω" zh="可计算的世界都在 Ω 之下" />
+        <Widget title={{ en: 'Every computable landmark fits below Ω', zh: '所有可计算路标都在 Ω 之下' }}><ComputableHorizon /></Widget>
+        <H3 en="Two different boundaries" zh="两道不同的边界" />
+        <P en={<>The Church–Kleene boundary <M t="\omega_1^{\mathrm{CK}}" /> is still countable. The first uncountable ordinal <M t="\omega_1" /> lies above it: <M t="\omega_1^{\mathrm{CK}}&lt;\omega_1" />. The first boundary concerns computability; the second concerns cardinality.</>} zh={<>Church–Kleene 边界 <M t="\omega_1^{\mathrm{CK}}" /> 仍然可数。第一个不可数序数 <M t="\omega_1" /> 在它之上：<M t="\omega_1^{\mathrm{CK}}&lt;\omega_1" />。第一道边界关乎可计算性，第二道关乎基数。</>} />
+        <H3 en="Check the kind of boundary" zh="辨认边界的种类" />
         <Quiz
           q={{
             zh: <p><M t="\Omega=\omega_1^{\mathrm{CK}}" /> 比我们能用算法写出的每一个序数都大。那么它是什么样的集合？</p>,
@@ -175,6 +187,7 @@ export default function Chapter08() {
             en: <p>There are only countably many programs, hence countably many recursive ordinals, and their supremum <M t="\Omega" /> is countable — far below Chapter 3’s <M t="\omega_1" />. “Unreachable” here is a limit of <b>computability</b>, not of size.</p>,
           }}
         />
+        <H3 en="Conventions behind Ω" zh="Ω 背后的约定" />
         <Expand kind="detail" title={{ en: 'Why not ω₁? And what are Ω₂, Ω₃, …?', zh: '为什么不用 ω₁？Ω₂、Ω₃……又是什么？' }}>
           <P
             zh={<>较老的文献取 <M t="\Omega=\omega_1" />（第一个不可数序数）。对我们要做的事，<M t="\omega_1" /> “火力过猛”：折叠函数只用到一件事——<M t="\Omega" /> 从下面够不着。书中采用 <M t="\omega_1^{\mathrm{CK}}" />，并指出：只用 <M t="\Omega" /> 的折叠函数里，甚至取 <M t="\Omega=" /> BHO 就够了；取第一个非递归序数，是为了保证以后的任何扩展都碰不到它。</>}
@@ -390,7 +403,9 @@ export default function Chapter08() {
           en={<>One more storey in the exponent means one more Veblen argument: <M t="\psi(\Omega^{\Omega^n})=\varphi(1@(n+1))" />, a 1 followed by <M t="n+1" /> zeros. Taking the supremum:</>}
         />
         <MB t="\psi(\Omega^{\Omega^\omega})=\text{SVO},\qquad \psi(\Omega^{\Omega^\Omega})=\text{LVO}," />
-        <MB t="\psi(\varepsilon_{\Omega+1})=\sup\{\psi(\Omega),\ \psi(\Omega^\Omega),\ \psi(\Omega^{\Omega^\Omega}),\ldots\}=\text{BHO}." />
+        <H3 en="Collapse the whole tower ladder" zh="折叠整架塔梯" />
+        <Widget title={{ en: "BHO: collapse taller and taller Ω towers", zh: "BHO：折叠越来越高的 Ω 塔" }}><LimitWorkshop kind="bho" /></Widget>
+        <H3 en="What BHO closes off" zh="BHO 封住了什么" />
         <P
           zh={<>最后这个 <Term en="Bachmann–Howard ordinal" zh="Bachmann–Howard 序数" />（BHO）是所有 Veblen 扩展的极限。这里 <M t="\varepsilon_{\Omega+1}=\Omega^{\Omega^{\Omega^{\cdots}}}" /> 是 <M t="\Omega" /> 之后的第一个 ε 数。Heinz Bachmann 在 1950 年最早构造了这种“折叠”，William Howard 在 1972 年算出了它的证明论意义。</>}
           en={<>This last one, the <Term en="Bachmann–Howard ordinal" zh="Bachmann–Howard 序数" /> (BHO), is the limit of every Veblen extension. Here <M t="\varepsilon_{\Omega+1}=\Omega^{\Omega^{\Omega^{\cdots}}}" /> is the first ε-number after <M t="\Omega" />. Heinz Bachmann introduced this kind of collapsing in 1950; William Howard established its proof-theoretic meaning in 1972.</>}
@@ -503,7 +518,9 @@ export default function Chapter08() {
           zh={<><M t="\Omega_3" /> 配 <M t="\psi_2" />，<M t="\Omega_4" /> 配 <M t="\psi_3" />……每加一层就能多折叠一次。把它们全部取上确界：</>}
           en={<><M t="\Omega_3" /> comes with <M t="\psi_2" />, <M t="\Omega_4" /> with <M t="\psi_3" />, and so on; each new floor allows one more fold. Take the supremum of all of them:</>}
         />
-        <MB t="\text{BO}=\psi(\Omega_\omega)=\sup\{\psi(\Omega),\ \psi(\Omega_2),\ \psi(\Omega_3),\ \ldots\},\qquad \Omega_\omega[k]=\Omega_k." />
+        <H3 en="Move through the Ω levels" zh="穿过各个 Ω 层级" />
+        <Widget title={{ en: "BO: use every finite Ω level", zh: "BO：用上每个有限的 Ω 层级" }}><LimitWorkshop kind="bo" /></Widget>
+        <H3 en="Beyond a single collapse level" zh="越过单个折叠层级" />
         <P
           zh={<>这就是 <Term en="Buchholz’s ordinal" zh="Buchholz 序数" />（BO）。第 9 章会看到，两行 Bashicu 矩阵的极限恰好也是它。</>}
           en={<>This is <Term en="Buchholz’s ordinal" zh="Buchholz 序数" /> (BO). Chapter 9 will show that the limit of two-row Bashicu matrices is exactly this ordinal.</>}

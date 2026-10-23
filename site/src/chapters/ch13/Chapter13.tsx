@@ -20,6 +20,7 @@ export default function Chapter13() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="duel" kicker={{ en: 'The final round', zh: '最后一回合' }} title={{ en: 'A duel at MIT', zh: 'MIT 的一场决斗' }}>
+        <P en="The duel began with limited ink. Busy Beaver spent that budget on programs; Rayo will spend it on formulas. The final leap changes what counts as a permitted description. Keep asking two questions: what is the language, and why does the description pick a finite number?" zh="决斗从有限的墨水开始。忙碌海狸把预算花在程序上，Rayo 把它花在公式上。最后一跳改变了允许使用的描述方式。始终追问：用的是什么语言？这段描述为什么能指定一个有限数？" />
         <P
           zh={<>第 1 章开头，我们说过：“说一个更大的数”这个游戏，只要墨水不限，就永远分不出胜负。真正的比赛得限制墨水。</>}
           en={<>Chapter 1 opened with a game: name a bigger number. With unlimited ink nobody ever wins. A real contest has to limit the ink.</>}
@@ -207,12 +208,16 @@ export default function Chapter13() {
           zh={<>换句话说：把公式写成括号齐全的标准形，数一数有几个符号。括号、<M t="\neg" />、<M t="\wedge" />、<M t="\exists" /> 和变量各算一个；变量的下标不另计，<M t="x_{1000}" /> 也只算一个符号。缩写 <M t="\forall" />、<M t="\to" /> 必须先展开再数。</>}
           en={<>In words: write the formula fully parenthesized and count every symbol — each bracket, <M t="\neg" />, <M t="\wedge" />, <M t="\exists" /> and variable counts once; a variable’s index is free, so <M t="x_{1000}" /> is one symbol. Abbreviations such as <M t="\forall" /> and <M t="\to" /> must be expanded before counting.</>}
         />
-        <Thm kind="definition" name={{ en: 'Rayo’s function (book Def. 27.1, with our convention)', zh: 'Rayo 函数（书中定义 27.1，采用本课程的约定）' }}>
+        <H3 en="Spend the ink on definitions" zh="把墨水花在定义上" />
+        <figure className="c13-milestone"><figcaption><L en="New milestone" zh="新的里程碑" /><strong><L en="Rayo · A new language for the duel" zh="Rayo · 用新语言继续决斗" /></strong></figcaption>
+<Thm kind="definition" name={{ en: 'Rayo’s function (book Def. 27.1, with our convention)', zh: 'Rayo 函数（书中定义 27.1，采用本课程的约定）' }}>
           <B
             zh={<p><M t="\mathrm{Rayo}(n)" /> 是比所有“能用长度<b>不超过</b> <M t="n" /> 的公式命名的自然数”都大的最小自然数。Rayo 数是 <M t="\mathrm{Rayo}(10^{100})" />。</p>}
             en={<p><M t="\mathrm{Rayo}(n)" /> is the smallest natural number greater than every natural number named by a formula of length <b>at most</b> <M t="n" />. Rayo’s number is <M t="\mathrm{Rayo}(10^{100})" />.</p>}
           />
         </Thm>
+        </figure>
+        <H3 en="Fix the symbol budget precisely" zh="把符号预算说准确" />
         <Expand kind="detail" title={{ en: '“Fewer than n” or “at most n”?', zh: "“少于 n”还是“不超过 n”？" }}>
           <P
             zh={<>书中的形式定义写的是“少于 <M t="n" /> 个符号”，Rayo 在比赛时写的也是“少于一个古戈尔”。但书中给出的小值 <M t="\mathrm{Rayo}(10)=1" /> 要求长度恰为 10 的公式也算数，即“不超过 <M t="n" />”。维基百科的表述也是“一个古戈尔或更少”。</>}

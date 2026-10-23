@@ -18,7 +18,6 @@ function ChapterRoute() {
   const meta = chapterBySlug(slug)
   const Page = pages[slug]
   if (!meta || !Page) return <Navigate to={`/ch/${chapters[0].slug}`} replace />
-  localStorage.setItem('googology-last', slug)
   return (
     <ChapterShell meta={meta}>
       <Suspense fallback={<div className="loading">…</div>}>
@@ -30,7 +29,8 @@ function ChapterRoute() {
 
 /** No landing page: go straight into the journey (resume the last chapter read). */
 function Resume() {
-  const last = localStorage.getItem('googology-last')
+  let last: string | undefined
+  try { last = JSON.parse(localStorage.getItem('googology-reading-position') || 'null')?.chapter } catch { /* start at chapter one */ }
   const target = chapters.find((c) => c.slug === last && c.built) ?? chapters[0]
   return <Navigate to={`/ch/${target.slug}`} replace />
 }

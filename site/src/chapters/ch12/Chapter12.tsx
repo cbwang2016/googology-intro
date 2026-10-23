@@ -18,6 +18,7 @@ export default function Chapter12() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="game" kicker={{ en: 'The game', zh: '游戏' }} title={{ en: 'Radó’s busy beavers', zh: 'Radó 的忙碌海狸' }}>
+        <P en="The halting problem gives us a new move: define a finite maximum over programs that halt, even when no algorithm can identify all of them. Busy Beaver turns that obstacle into a number. Its input is a program-size budget; its output is a finite running time." zh="停机问题带来一种新招：在所有会停机的程序中取有限最大值，即使没有算法能把它们全部认出来。忙碌海狸把这个障碍变成一个数：输入是程序规模预算，输出是有限的运行步数。" />
         <P
           zh={<>1962 年，俄亥俄州立大学的 Tibor Radó 在论文《论不可计算函数》中提出一个游戏：用 n 个状态造一台 Turing 机，从空白纸带出发，<b>必须停机</b>——但要在停机前尽可能“忙碌”。</>}
           en={<>In 1962 Tibor Radó of Ohio State proposed a game in his paper “On non-computable functions”: build an n-state Turing machine that, started on a blank tape, <b>must halt</b> — but only after being as busy as possible.</>}
@@ -26,6 +27,8 @@ export default function Chapter12() {
           zh={<>这正是第 11 章开头那位挑战者的数，只是把“程序”换成了 Turing 机：对所有会停的机器取最大值。</>}
           en={<>This is exactly the opening challenger’s number from Chapter 11, with “program” made precise as “Turing machine”: a maximum over all machines that halt.</>}
         />
+        <H3 en="A new milestone: Busy Beaver" zh="新的里程碑：忙碌海狸" />
+        <figure className="c12-milestone"><figcaption><L en="BB(n) · A finite maximum beyond algorithms" zh="BB(n) · 超出算法能力的有限最大值" /></figcaption>
         <Thm kind="definition" name={{ en: 'Busy Beaver functions', zh: '忙碌海狸函数' }}>
           <B
             zh={
@@ -48,6 +51,8 @@ export default function Chapter12() {
             }
           />
         </Thm>
+        </figure>
+        <H3 en="Steps and ones are different scores" zh="步数与 1 的个数是两种分数" />
         <Caution>
           <L
             zh={<>记号冲突：本课程沿用现代用法（bbchallenge、维基百科），<b>BB = S = 步数</b>，<M t="\Sigma" /> = 1 的个数。书中两者都叫 BB：定义 26.1 写“记为 Σ(n) 或 BB(n)”，并把它描述为“扫过的最大格子数”，可书中给出的数值 4、6、13、4098 其实是 1 的个数；定义 26.2 又说 S(n)“有时也称为 BB(n)”。</>}

@@ -208,7 +208,7 @@ export const PTO_ROWS: PtoRow[] = [
   { sys: '\\mathsf{KPM}', what: { en: 'recursively Mahlo', zh: '递归 Mahlo' }, pto: '\\psi(\\varepsilon_{M+1})', who: 'Rathjen', state: 'done' },
   { sys: '\\mathsf{KP}+\\Pi_3\\text{-Ref}', what: { en: 'Π₃-reflection', zh: 'Π₃ 反射' }, pto: '\\psi(\\varepsilon_{K+1})', who: 'Rathjen 1994', state: 'done' },
   { sys: '\\mathsf{KP}+\\Pi_n\\text{-Ref}', what: { en: 'Πₙ-reflection, each n', zh: '每个 n 的 Πₙ 反射' }, pto: '\\psi(\\varepsilon_{\\Pi_n+1})', who: 'Arai; Stegert', state: 'done' },
-  { sys: '\\mathsf{Z}_2', what: { en: 'full second-order arithmetic', zh: '完整的二阶算术' }, pto: '\\psi_\\Omega(I_\\omega)', who: 'Arai, arXiv 2311.12459', state: 'preprint' },
+  { sys: '\\mathsf{Z}_2', what: { en: 'full second-order arithmetic', zh: '完整的二阶算术' }, pto: '\\psi_\\Omega(I_\\omega)', who: 'Arai', state: 'preprint' },
   { sys: '\\mathsf{Z}_3,\\ \\ldots,\\ \\mathsf{Z}_\\omega', what: { en: 'higher-order arithmetic', zh: '高阶算术' }, pto: '?', who: '', state: 'unknown' },
   { sys: '\\mathsf{ZFC}', what: { en: 'all of ordinary mathematics', zh: '几乎全部常规数学' }, pto: '?', who: '', state: 'unknown' },
 ]

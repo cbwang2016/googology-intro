@@ -1,3 +1,4 @@
+import './ch02.css'
 import { B, L, P, Term } from '../../i18n'
 import { M, MB } from '../../math'
 import { Caution, Expand, H3, KeyIdea, OpenProblem, Prereq, Proof, Quiz, Section, Thm, Widget } from '../../ui/blocks'
@@ -215,7 +216,9 @@ export default function Chapter02() {
           en={<>After diagonalizing, what next? The old trick: <b>repeat</b>. The function <M t="x\mapsto3\uparrow^{x}3" /> sits at mark <M t="\omega" />; iterate it 64 times and you get perhaps the most famous big number in the world.</>}
         />
         <Thm kind="definition" name={{ en: 'Graham’s number', zh: 'Graham 数' }}>
-          <MB t="G(0)=4,\qquad G(n+1)=3\uparrow^{G(n)}3,\qquad \text{Graham's number}=G(64)." />
+          <figure className="c02-milestone"><figcaption><L en="New milestone" zh="新的里程碑" /><strong><L en="Graham’s number" zh="Graham 数" /></strong></figcaption>
+<MB t="G(0)=4,\qquad G(n+1)=3\uparrow^{G(n)}3,\qquad \text{Graham's number}=G(64)." />
+        </figure>
         </Thm>
         <Widget title={{ en: '64 layers', zh: '64 层' }}>
           <GrahamLayers />

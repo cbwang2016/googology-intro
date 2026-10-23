@@ -14,7 +14,7 @@ export function ChapterShell({ meta, children }: { meta: ChapterMeta; children: 
   const act = acts.find((a) => a.id === meta.act)!
   return (
     <article className="chapter">
-      <StoryFlow key={meta.slug} storageKey={`beat-${meta.slug}`}>
+      <StoryFlow key={meta.slug} storageKey={meta.slug} previous={prev?.built ? prev.slug : undefined}>
       {meta.num === 1 && <JourneyCover />}
       <header className="chapter-head">
         <div className="chapter-act">

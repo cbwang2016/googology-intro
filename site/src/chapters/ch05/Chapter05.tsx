@@ -29,6 +29,7 @@ export default function Chapter05() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="odometer" kicker={{ en: 'Linear arrays', zh: '线性数阵' }} title={{ en: 'An odometer that counts in base ω', zh: '逢 ω 进一的里程表' }}>
+        <P en="The fast-growing hierarchy turns an ordinal index and a finite input into a number. Can we package that machinery into a short string of integers? Watch a string expand while its ordinal label falls: the expansion makes the number; the falling label explains why it finishes." zh="快速增长层次把序数索引和有限输入变成一个数。能否把这套机器装进一小串整数？接下来，一边看字符串膨胀，一边看它的序数标签下降：展开产生大数，下降解释它为何终止。" />
         <P
           zh={<>到第 2 章为止，每登上一个新刻度都要发明一个新符号：多一个箭头，多一层 Graham。这样爬下去，符号会先用完。</>}
           en={<>Up to Chapter 2, every new mark on the ruler cost a new symbol: one more arrow, one more Graham layer. Climb like that and you run out of symbols long before you run out of ruler.</>}

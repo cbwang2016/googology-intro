@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useLang } from '../i18n'
 import { useView } from './view'
 
@@ -50,7 +51,10 @@ function computeBeats(root: HTMLElement, bilingual: boolean) {
   let prevKind: Kind | null = null
   for (const { el } of blocks) {
     const k = classify(el)
-    const len = (el.textContent || '').length / (bilingual ? 1.9 : 1)
+    // visual weight: a CJK character is about twice as wide as a Latin letter
+    const txt = el.textContent || ''
+    const cjk = (txt.match(/[\u3000-\u9fff\uff00-\uffef]/g) || []).length
+    const len = (txt.length - cjk + 2.1 * cjk) / (bilingual ? 2.1 : 1)
     switch (k) {
       case 'card':
         // chapter-end + nav share a screen; the title card and the prerequisites each get their own
@@ -113,13 +117,22 @@ function computeBeats(root: HTMLElement, bilingual: boolean) {
   return { count: beats.length, sections, signature: blocks.map((b) => b.el).length }
 }
 
-export function StoryFlow({ storageKey, children }: { storageKey: string; children: ReactNode }) {
+const POSITION_KEY = 'googology-reading-position'
+function savedBeat(chapter: string) {
+  try {
+    const saved = JSON.parse(localStorage.getItem(POSITION_KEY) || 'null')
+    return saved?.chapter === chapter && Number.isInteger(saved.page) && saved.page >= 0 ? saved.page : 0
+  } catch { return 0 }
+}
+
+export function StoryFlow({ storageKey, previous, children }: { storageKey: string; previous?: string; children: ReactNode }) {
+  const navigate = useNavigate()
   const { view } = useView()
   const { mode, t } = useLang()
   const ref = useRef<HTMLDivElement>(null)
   const [count, setCount] = useState(0)
   const [sections, setSections] = useState<{ first: number; en: string; zh: string }[]>([])
-  const [beat, setBeat] = useState(() => Number(sessionStorage.getItem(storageKey) || 0))
+  const [beat, setBeat] = useState(() => savedBeat(storageKey))
   const [anim, setAnim] = useState(0)
   const [menu, setMenu] = useState(false)
   const lastBlocks = useRef<Element[]>([])
@@ -130,6 +143,7 @@ export function StoryFlow({ storageKey, children }: { storageKey: string; childr
     if (!root) return
     let raf = 0
     const run = () => {
+      if (root.querySelector('.loading')) return
       const blocks: Element[] = []
       for (const c of Array.from(root.children)) {
         if (c.matches('section.section')) blocks.push(...Array.from(c.children))
@@ -157,24 +171,38 @@ export function StoryFlow({ storageKey, children }: { storageKey: string; childr
   useEffect(() => {
     if (count && beat > count - 1) setBeat(count - 1)
   }, [count, beat])
-  useEffect(() => sessionStorage.setItem(storageKey, String(beat)), [beat, storageKey])
+  useEffect(() => {
+    try {
+      // Retire the old per-chapter bookmarks, retaining only the current pair.
+      localStorage.removeItem('googology-last')
+      sessionStorage.removeItem(POSITION_KEY)
+      Object.keys(sessionStorage).filter((key) => key.startsWith('beat-')).forEach((key) => sessionStorage.removeItem(key))
+      localStorage.setItem(POSITION_KEY, JSON.stringify({ chapter: storageKey, page: beat }))
+    } catch { /* Reading still works when browser storage is unavailable. */ }
+  }, [beat, storageKey])
 
   const go = useCallback(
     (b: number) => {
+      if (b < 0 && previous) {
+        navigate(`/ch/${previous}`)
+        window.scrollTo({ top: 0 })
+        return
+      }
       const nb = Math.max(0, Math.min(count - 1, b))
       if (nb === beat) return
       setBeat(nb)
       setAnim((a) => a + 1)
       window.scrollTo({ top: 0 })
     },
-    [beat, count],
+    [beat, count, previous, navigate],
   )
 
   useEffect(() => {
     if (view !== 'story') return
     const onKey = (e: KeyboardEvent) => {
       const tgt = e.target as HTMLElement
-      if (tgt.closest('input, textarea, select, [contenteditable="true"]')) return
+      if (document.querySelector('.toc-overlay')) return
+      if (tgt.closest('input, textarea, select, button, a, [contenteditable="true"]')) return
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey)) {
         // Space only advances when the beat is fully visible (otherwise let the page scroll)
         if (e.key === ' ' && window.innerHeight + window.scrollY < document.documentElement.scrollHeight - 4) return
@@ -189,8 +217,35 @@ export function StoryFlow({ storageKey, children }: { storageKey: string; childr
     return () => window.removeEventListener('keydown', onKey)
   }, [view, beat, go])
 
-  // swipe on touch screens
-  const touch = useRef<{ x: number; y: number } | null>(null)
+  // Document-level gestures also cover the blank area below a short scene.
+  useEffect(() => {
+    if (view !== 'story') return
+    let start: { x: number; y: number; time: number } | null = null
+    const interactive = 'a, button, input, textarea, select, label, summary, [role="button"], [contenteditable="true"], .widget-body, .story-bar, .toc-overlay, header:not(.chapter-head), nav, svg, canvas'
+    const onStart = (e: TouchEvent) => {
+      start = null
+      if (e.touches.length !== 1 || (e.target as Element).closest(interactive)) return
+      start = { x: e.touches[0].clientX, y: e.touches[0].clientY, time: Date.now() }
+    }
+    const onEnd = (e: TouchEvent) => {
+      const from = start
+      start = null
+      if (!from || e.touches.length || !e.changedTouches.length || window.getSelection()?.toString()) return
+      const end = e.changedTouches[0]
+      const dx = end.clientX - from.x, dy = end.clientY - from.y
+      if (Math.abs(dx) > 70 && Math.abs(dx) > 2 * Math.abs(dy)) go(beat + (dx < 0 ? 1 : -1))
+      else if (Math.hypot(dx, dy) < 12 && Date.now() - from.time < 500) go(beat + (end.clientX >= window.innerWidth / 2 ? 1 : -1))
+    }
+    const cancel = () => { start = null }
+    document.addEventListener('touchstart', onStart, { passive: true })
+    document.addEventListener('touchend', onEnd, { passive: true })
+    document.addEventListener('touchcancel', cancel)
+    return () => {
+      document.removeEventListener('touchstart', onStart)
+      document.removeEventListener('touchend', onEnd)
+      document.removeEventListener('touchcancel', cancel)
+    }
+  }, [view, beat, go])
   const story = view === 'story'
   const curSection = [...sections].reverse().find((s) => s.first <= beat)
 
@@ -202,22 +257,13 @@ export function StoryFlow({ storageKey, children }: { storageKey: string; childr
         className="chapter-flow"
         data-anim={anim % 2}
         data-cur={beat}
-        onTouchStart={(e) => (touch.current = { x: e.touches[0].clientX, y: e.touches[0].clientY })}
-        onTouchEnd={(e) => {
-          if (!story || !touch.current) return
-          const dx = e.changedTouches[0].clientX - touch.current.x
-          const dy = e.changedTouches[0].clientY - touch.current.y
-          const tgt = e.target as HTMLElement
-          if (tgt.closest('input, svg, canvas, .widget-body')) return
-          if (Math.abs(dx) > 70 && Math.abs(dx) > 2 * Math.abs(dy)) go(beat + (dx < 0 ? 1 : -1))
-          touch.current = null
-        }}
+
       >
         {children}
       </div>
       {story && count > 0 && (
         <div className="story-bar">
-          <button className="story-btn" onClick={() => go(beat - 1)} disabled={beat === 0} aria-label={t('Previous', '上一页')}>
+          <button className="story-btn" onClick={() => go(beat - 1)} disabled={beat === 0 && !previous} aria-label={t('Previous', '上一页')}>
             ←
           </button>
           <button className="story-where" onClick={() => setMenu(!menu)}>

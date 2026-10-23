@@ -38,3 +38,11 @@ table.c03-diag td.mis { background: rgba(255, 122, 182, 0.35) !important; border
 .c03-ladder span.gold { border-color: var(--gold); }
 .c03-ladder span.gold .katex { color: var(--gold); }
 .readout.c03-text { word-break: normal; overflow-wrap: anywhere; white-space: normal; }
+
+.c03-milestone { margin: 20px 0; padding: clamp(14px, 3vw, 28px); border: 2px solid var(--gold); border-radius: 16px; background: var(--bg2); min-width: 0; }
+.c03-milestone > figcaption { color: var(--gold); display: grid; gap: 8px; }
+.c03-milestone > figcaption strong { font-size: clamp(1.3rem, 3vw, 2rem); line-height: 1.25; }
+.c03-milestone .mb { overflow-x: auto; }
+
+.c03-milestone .thm { border: 0; padding: 0; margin: 10px 0 0; background: transparent; }
+.c03-milestone .thm-head { font-size: .85em; }

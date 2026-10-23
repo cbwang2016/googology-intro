@@ -1,3 +1,4 @@
+import { GrowthWorkshop } from './GrowthWorkshop'
 import './ch04.css'
 import { B, L, P, Term } from '../../i18n'
 import { M, MB } from '../../math'
@@ -139,6 +140,9 @@ export default function Chapter04() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="fgh" kicker={{ en: 'The definition', zh: '定义' }} title={{ en: 'The fast-growing hierarchy', zh: '快速增长层次' }}>
+        <H3 en="Follow the finite calculation" zh="跟着有限计算走" />
+        <Widget title={{ en: 'Turn an index into a finite calculation', zh: '把索引变成有限计算' }}><GrowthWorkshop /></Widget>
+        <H3 en="Three rules behind the animation" zh="动画背后的三条规则" />
         <Thm kind="definition" name={{ en: 'FGH (book Def 3.4)', zh: 'FGH（《大数理论》定义 3.4）' }}>
           <MB t="f_0(n)=n+1,\qquad f_{\alpha+1}(n)=f_\alpha^{\,n}(n),\qquad f_\lambda(n)=f_{\lambda[n]}(n)\ \ (\lambda\text{ limit})." />
           <B

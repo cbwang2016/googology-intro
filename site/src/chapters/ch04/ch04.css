@@ -18,3 +18,18 @@ table.c04-small td, table.c04-small th { font-size: 14px; white-space: nowrap; }
 .c04-hstate .katex { font-size: 1.3em; color: var(--gold); }
 .c04-rep { display: grid; gap: 6px; }
 table.c04-small td, table.c04-small th { padding-top: 4px; padding-bottom: 4px; }
+
+.c04-growth-lab { display: grid; gap: 14px; }
+.c04-growth-roles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.c04-growth-roles > div { display: grid; gap: 8px; border-left: 3px solid var(--cyan); padding: 10px; background: var(--bg2); }
+.c04-growth-roles > div:last-child { border-color: var(--gold); }
+.c04-growth-pipeline { display: flex; gap: 10px; align-items: center; overflow-x: auto; padding: 12px 0; }
+.c04-growth-pipeline > span { display: flex; align-items: center; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; flex-shrink: 0; }
+.c04-growth-pipeline .active { border-color: var(--gold); background: var(--bg2); color: var(--gold); }
+.c04-growth-lab button[aria-pressed=true] { border-color: var(--cyan); }
+.c04-growth-lab { gap: 10px; font-size: 16px; }
+.c04-growth-lab .btn { padding: 8px 14px; }
+.c04-growth-roles > div { gap: 4px; }
+.c04-growth-lab { gap: 6px; line-height: 1.5; }
+.c04-growth-lab .btn-row { margin: 2px 0; }
+.c04-growth-pipeline { padding: 6px 0; }

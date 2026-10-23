@@ -18,6 +18,7 @@ export default function Chapter11() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="prologue" kicker={{ en: 'Act V opens', zh: '第五幕开场' }} title={{ en: 'A challenger with no recipe', zh: '一位不带配方的挑战者' }}>
+        <P en="Every recipe so far came with computational rules. Could a short definition specify numbers beyond the reach of every algorithm? To answer that, we need a precise model of computation and a precise reason why some questions cannot be decided by one." zh="到目前为止，每个配方都有计算规则。一段简短定义能否指定超出一切算法能力的数？要回答，就得精确定义计算，并说明为什么有些问题不可能由算法统一判定。" />
         <P
           zh={<>到目前为止，擂台上的每一位擂主——从阿基米德的“万万”到 Bashicu 矩阵——都带着一份<b>配方</b>：一套有耐心的抄写员可以机械执行的步骤。</>}
           en={<>So far every champion in the duel — from Archimedes’ myriads to the Bashicu matrix — came with a <b>recipe</b>: steps a patient clerk could carry out mechanically.</>}

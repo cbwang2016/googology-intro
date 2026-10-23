@@ -49,3 +49,22 @@
 .c08-ladder td, .c08-ladder th { white-space: nowrap; }
 .c08-ladder td.muted { white-space: normal; }
 .c08-ladder tr.hi td { background: rgba(255, 211, 107, 0.06); }
+
+.c08-horizon { display: grid; gap: 12px; }
+.c08-horizon-region { border: 1px solid var(--cyan); border-radius: 12px; padding: 14px; }
+.c08-horizon-marks { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+.c08-horizon-marks > span { padding: 6px 10px; background: var(--bg2); border-radius: 6px; }
+.c08-horizon-wall { border-left: 5px solid var(--gold); padding: 12px 16px; display: grid; gap: 8px; overflow-x: auto; }
+.c08-horizon-wall > b { font-size: 1.5rem; color: var(--gold); }
+.c08-horizon-beyond { border-top: 1px dashed var(--line); padding-top: 12px; display: grid; gap: 8px; }
+
+.c08-milestone { margin: 20px 0; padding: clamp(14px, 3vw, 28px); border: 2px solid var(--gold); border-radius: 16px; background: var(--bg2); min-width: 0; }
+.c08-milestone > figcaption { color: var(--gold); display: grid; gap: 8px; }
+.c08-milestone > figcaption strong { font-size: clamp(1.3rem, 3vw, 2rem); line-height: 1.25; }
+.c08-milestone .mb { overflow-x: auto; }
+
+.c08-milestone .thm { border: 0; padding: 0; margin: 10px 0 0; background: transparent; }
+.c08-milestone .thm-head { font-size: .85em; }
+.c08-horizon { font-size: 16px; gap: 10px; }
+.c08-horizon .btn { padding: 8px 14px; }
+.c08-horizon { gap: 6px; }

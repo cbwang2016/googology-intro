@@ -23,6 +23,7 @@ export default function Chapter09() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="copying" kicker={{ en: 'A new challenger', zh: '新的挑战者' }} title={{ en: 'Past Buchholz with nothing but small integers', zh: '只用小整数，越过 Buchholz' }}>
+        <P en="Collapsing functions gave us larger ordinal indices. Now we want a compact executable notation. Matrices provide the instructions; expansion produces a finite number. The ordinal interpretation measures the strength of those instructions, not the size of a matrix entry." zh="折叠函数给了我们更大的序数索引。现在需要一种简短、能执行的记号。矩阵给出指令，展开产生有限数；序数解释衡量的是这套指令的强度，不是某个矩阵元素的大小。" />
         <P
           zh={<>第 8 章我们登上了 Buchholz 序数 <M t="\mathrm{BO}=\psi(\Omega_\omega)" />。代价不小：先借来一串“够不着”的序数 <M t="\Omega,\Omega_2,\dots,\Omega_\omega" />，再把它们一层层折叠回来。</>}
           en={<>Chapter 8 reached Buchholz’s ordinal <M t="\mathrm{BO}=\psi(\Omega_\omega)" />. It came at a price: borrow a tower of unreachable ordinals <M t="\Omega,\Omega_2,\dots,\Omega_\omega" />, then fold them back down layer by layer.</>}
@@ -260,7 +261,9 @@ export default function Chapter09() {
           zh={<>一般地，<M t="(0,\dots,0)(1,\dots,1)" />（每列 k+1 个数）是 k 行 BMS 的极限。三行的极限叫 <b>TSSO</b>，四行叫 <b>QSSO</b>，所有有限行的极限叫<b>小 Hydra 序数 SHO</b>：</>}
           en={<>In general <M t="(0,\dots,0)(1,\dots,1)" /> with k+1 entries per column is the limit of k-row BMS. The 3-row limit is called <b>TSSO</b>, the 4-row limit <b>QSSO</b>, and the limit of all finite-row BMS is the <b>Small Hydra Ordinal, SHO</b>:</>}
         />
-        <MB t="\mathrm{SHO}=\sup_k\,(\underbrace{0,\dots,0}_{k})(\underbrace{1,\dots,1}_{k})." />
+        <figure className="c09-milestone"><figcaption><L en="New milestone" zh="新的里程碑" /><strong><L en="SHO · Small Hydra ordinal" zh="SHO · 小九头蛇序数" /></strong></figcaption>
+<MB t="\mathrm{SHO}=\sup_k\,(\underbrace{0,\dots,0}_{k})(\underbrace{1,\dots,1}_{k})." />
+        </figure>
         <H3 en="Length versus height" zh="长度与高度" />
         <Quiz
           q={{
@@ -517,8 +520,8 @@ export default function Chapter09() {
         </OpenProblem>
         <OpenProblem title={{ en: 'BMS and second-order arithmetic', zh: 'BMS 与二阶算术' }}>
           <P
-            zh={<>社区里有人猜测，SHO 与二阶算术 <M t="Z_2" /> 的证明论序数（第 6 章的 PTO）有关。目前没有可靠证据支持或否定，《大数理论》也没有这样的说法。<Status kind="conjecture" /></>}
-            en={<>Some in the community have guessed that SHO is related to the proof-theoretic ordinal (Chapter 6’s PTO) of second-order arithmetic <M t="Z_2" />. There is no reliable evidence either way, and the book makes no such claim. <Status kind="conjecture" /></>}
+            zh={<>社区里有人猜测，SHO 与二阶算术 <M t="Z_2" /> 的证明论序数（第 6 章的 PTO）有关。《大数理论》提到了这个猜测：BMS 良序性的证明用到了全部 Σₙ 稳定序数，因此有人猜它或许能达到 PTO(Z₂)；但书中也强调这并无定论——BMS 的良序性也许在弱得多的体系里就能证明。目前没有可靠证据支持或否定。<Status kind="conjecture" /></>}
+            en={<>Some in the community have guessed that SHO is related to the proof-theoretic ordinal (Chapter 6’s PTO) of second-order arithmetic <M t="Z_2" />. The book mentions this guess — the well-ordering proof of BMS uses all the Σₙ-stable ordinals, which suggests PTO(Z₂) — but stresses that it is unsettled, since BMS might already be provably well-ordered in a much weaker system. There is no reliable evidence either way. <Status kind="conjecture" /></>}
           />
         </OpenProblem>
         <OpenProblem title={{ en: 'Ideal α-Y, LHO, FOS, FFFZ', zh: '理想 α-Y、LHO、FOS、FFFZ' }}>

@@ -18,11 +18,11 @@
 .c10-err { color: var(--red); }
 .c10-assign { font-family: var(--mono); font-size: 14px; }
 .c10-assign select { background: var(--card2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 2px 4px; font-family: var(--mono); }
-.c10-verdict { margin: 8px 0 4px; font-weight: 600; }
+.c10-verdict { margin: 4px 0 2px; font-weight: 600; }
 .c10-verdict.yes { color: var(--green); }
 .c10-verdict.no { color: var(--red); }
 .c10-defset { color: var(--gold); font-weight: 500; font-family: var(--mono); font-size: 13.5px; }
-.c10-trace { max-height: 62px; overflow: auto; background: #0b1128; border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; }
+.c10-trace { max-height: 52px; overflow: auto; background: #0b1128; border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; }
 .c10-trace .ok { color: #bdf5cf; }
 .c10-trace .bad { color: #ffb3b3; }
 
@@ -118,3 +118,4 @@ table.grid.c10-table td, table.grid.c10-table th { padding-top: 3px; padding-bot
 .c10-stat3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 6px; }
 .c10-stat3 .stat { padding: 6px 10px; }
 .c10-stat3 .stat-value { font-size: 1.05em; }
+.c10-lab .btn-row { margin-top: 4px; margin-bottom: 4px; }

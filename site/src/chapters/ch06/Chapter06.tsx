@@ -19,6 +19,7 @@ export default function Chapter06() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="goodstein" kicker={{ en: 'Specimen 1', zh: '标本一' }} title={{ en: 'A sequence that must come home', zh: '一个注定回家的数列' }}>
+        <P en="A short rule can name a huge number by saying how long a process lasts. Goodstein sequences and hydras make this concrete: the visible state grows, while a hidden ordinal decreases. Keep those two quantities separate throughout this chapter." zh="一句短规则也能用“过程持续多久”来命名大数。Goodstein 数列和九头蛇把这件事变得具体：眼前的状态越来越大，背后的序数却越来越小。本章始终要分清这两个量。" />
         <P
           zh={<>到目前为止，<M t="\varepsilon_0" /> 都是我们亲手造出来的。这一章去野外：它会在数论、游戏和逻辑本身里自己冒出来。</>}
           en={<>So far every <M t="\varepsilon_0" /> we met was built by hand. This chapter goes into the wild, where it turns up on its own — in number theory, in games, and in logic itself.</>}

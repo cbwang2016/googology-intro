@@ -35,6 +35,7 @@ export default function Chapter10() {
 
       {/* ================================================================ */}
       <Section id="beyond" kicker={{ en: 'The duel resumes', zh: '擂台重开' }} title={{ en: 'Running out of recursive ammunition', zh: '递归弹药告罄' }}>
+        <P en="Why interrupt a large-number course with logic? A recipe only names a number if its computation really ends. Proof systems tell us which termination arguments we can justify; stronger systems suggest new ordinal tools. The large cardinals here explain those tools, rather than serving as finite-number answers." zh="为什么大数课程要转向逻辑？配方只有真的终止，才能给出一个数。证明系统告诉我们能论证哪些过程终止；更强的系统提示新的序数工具。本章的大基数解释这些工具，而不是有限数决斗的答案。" />
         <P
           zh={<>第 9 章结束时，擂台上站着 Bashicu 矩阵，它的极限叫 SHO。我们给它起了一长串名字：TFBO、EBO、JO、SRO、SSO、LRO、TSSO……却还没说这些名字<b>是什么意思</b>。</>}
           en={<>Chapter 9 ended with the Bashicu matrix system on the stage, its limit called SHO. We recited a string of names on the way — TFBO, EBO, JO, SRO, SSO, LRO, TSSO — without saying what any of them <b>mean</b>.</>}

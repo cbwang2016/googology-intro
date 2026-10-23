@@ -1,3 +1,4 @@
+import { LimitWorkshop } from '../ch07/LimitWorkshop'
 import './ch03.css'
 import { B, L, P, Term } from '../../i18n'
 import { M, MB } from '../../math'
@@ -23,6 +24,7 @@ export default function Chapter03() {
 
       {/* ---------------------------------------------------------------- */}
       <Section id="race" kicker={{ en: 'Act II opens', zh: '第二幕开场' }} title={{ en: 'Who finishes in place ω?', zh: '谁是第 ω 名？' }}>
+        <P en="We still want a finite number that wins the duel. To design stronger recipes, we first need to order the recipes themselves. This chapter builds that index: an ordinal records a position; it is not the finite number we will eventually print." zh="我们仍然想写出一个赢得决斗的有限数。要设计更强的配方，先得给配方本身排好顺序。本章建立这种索引：序数记录位置，并不是最后要写出的那个有限数。" />
         <P
           zh={<>第 2 章留下了一个悬案：对角函数 <M t="d(n)=n\uparrow^{n}n" /> 比刻度 0、1、2、……都快，我们只好给它一个排在“所有自然数之后”的刻度 <M t="\omega" />。可是，“在所有自然数之后”到底是什么意思？</>}
           en={<>Chapter 2 left a loose end. The diagonal function <M t="d(n)=n\uparrow^{n}n" /> outruns marks 0, 1, 2, …, so we gave it a mark <M t="\omega" /> placed “after all natural numbers.” But what does “after all of them” even mean?</>}
@@ -263,7 +265,9 @@ export default function Chapter03() {
           zh={<>记 <M t="\omega\uparrow\uparrow0=1" />，<M t="\omega\uparrow\uparrow(n+1)=\omega^{\omega\uparrow\uparrow n}" />，也就是 <M t="n" /> 层的 <M t="\omega" /> 指数塔。这一整列指数塔的上确界有一个专门的名字，是 Cantor 在 1897 年起的：</>}
           en={<>Write <M t="\omega\uparrow\uparrow0=1" /> and <M t="\omega\uparrow\uparrow(n+1)=\omega^{\omega\uparrow\uparrow n}" />: a tower of <M t="n" /> omegas. The supremum of all these towers has its own name, given by Cantor in 1897:</>}
         />
-        <MB t="\varepsilon_0=\sup\{1,\ \omega,\ \omega^{\omega},\ \omega^{\omega^{\omega}},\ \ldots\}=\sup_n\ \omega\uparrow\uparrow n." />
+        <H3 en="Build taller ω towers" zh="搭起更高的 ω 塔" />
+        <Widget title={{ en: "ε₀: towers without a last floor", zh: "ε₀：没有最后一层的塔" }}><LimitWorkshop kind="epsilon" /></Widget>
+        <H3 en="Why the tower limit is a fixed point" zh="为什么塔的极限是不动点" />
         <H3 en="The first fixed point" zh="第一个不动点" />
         <Thm name={{ en: '(ε₀ is the first fixed point of α ↦ ω^α)', zh: '（ε₀ 是 α ↦ ω^α 的第一个不动点）' }}>
           <B
@@ -470,18 +474,23 @@ export default function Chapter03() {
           zh={<>我们爬过的每个序数——<M t="\omega" />、<M t="\omega^{\omega}" />、<M t="\varepsilon_0" />——都是可数的。到底有没有不可数的序数？</>}
           en={<>Every ordinal we have climbed past — <M t="\omega" />, <M t="\omega^{\omega}" />, <M t="\varepsilon_0" /> — is countable. Is there any uncountable ordinal at all?</>}
         />
-        <Thm name={{ en: '(the first uncountable ordinal; Hartogs, 1915)', zh: '（第一个不可数序数；Hartogs，1915）' }}>
+        <H3 en="Name the boundary" zh="给边界命名" />
+        <figure className="c03-milestone"><figcaption><L en="New milestone" zh="新的里程碑" /><strong><L en="ω₁ · First uncountable ordinal" zh="ω₁ · 第一个不可数序数" /></strong></figcaption>
+<Thm name={{ en: '(the first uncountable ordinal; Hartogs, 1915)', zh: '（第一个不可数序数；Hartogs，1915）' }}>
           <B
             zh={<p>存在一个最小的不可数序数，记作 <M t="\omega_1" />。比它小的序数恰好就是全体可数序数。</p>}
             en={<p>There is a least uncountable ordinal, written <M t="\omega_1" />. The ordinals below it are exactly the countable ordinals.</p>}
           />
         </Thm>
+        </figure>
+        <H3 en="Why this boundary exists" zh="为什么这道边界存在" />
         <Proof>
           <L
             zh={<>可数序数都是 <M t="\N" /> 的子集上良序的序型，所以组成一个集合 <M t="W" />，它向下封闭且按大小良序（基本事实第 3 条）。设其序型为 <M t="\omega_1" />，由第 2 条 <M t="W=\{\beta:\beta<\omega_1\}" />。若 <M t="\omega_1" /> 可数，则 <M t="\omega_1\in W" />，即 <M t="\omega_1<\omega_1" />，荒谬。</>}
             en={<>Countable ordinals are order types of well-orders on subsets of <M t="\N" />, so they form a set <M t="W" />, closed downward and well-ordered by size (basic fact 3). Let <M t="\omega_1" /> be its type; by fact 2, <M t="W=\{\beta:\beta<\omega_1\}" />. If <M t="\omega_1" /> were countable, then <M t="\omega_1\in W" />, i.e. <M t="\omega_1<\omega_1" /> — absurd.</>}
           />
         </Proof>
+        <H3 en="Why a sequence cannot reach ω₁" zh="为什么数列到不了 ω₁" />
         <Thm name={{ en: '(no countable ladder reaches ω₁)', zh: '（可数的梯子够不着 ω₁）' }}>
           <B
             zh={<p><M t="\omega_1" /> 是极限序数；并且任何可数序数的序列 <M t="\alpha_0<\alpha_1<\alpha_2<\cdots" />，其上确界仍然 <M t="<\omega_1" />。</p>}

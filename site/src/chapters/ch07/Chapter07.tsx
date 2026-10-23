@@ -1,3 +1,4 @@
+import { LimitWorkshop } from '../ch07/LimitWorkshop'
 import './ch07.css'
 import { B, L, P, Term } from '../../i18n'
 import { M, MB } from '../../math'
@@ -20,8 +21,8 @@ export default function Chapter07() {
       {/* ================================================================ */}
       <Section id="machine" kicker={{ en: 'Round ε₀+1', zh: '第 ε₀+1 回合' }} title={{ en: 'A machine that manufactures infinities', zh: '一台制造无穷的机器' }}>
         <P
-          zh={<>决斗继续。对手亮出了 <M t="\varepsilon_0" />：九头蛇、Goodstein 和整个 Peano 算术都栽在这里。你回一句 <M t="\varepsilon_0+1" />？这只是“再重复一次”，对手轻轻一笑。</>}
-          en={<>The duel goes on. Your rival plays <M t="\varepsilon_0" />, the ordinal where hydras, Goodstein and all of Peano arithmetic run out of breath. Answer <M t="\varepsilon_0+1" />? That is just “repeat once more”, and your rival smiles.</>}
+          zh={<>第 6 章用 ε₀ 衡量 Goodstein 与九头蛇的增长。决斗需要的仍是有限数：我们要加强的是产生它的配方。本章先造更强的序数索引，再回到树游戏，看看这些索引为什么有用。</>}
+          en={<>Chapter 6 used ε₀ to measure Goodstein and hydra growth. The duel still asks for a finite number; what we need to strengthen is its recipe. We will first build stronger ordinal indices, then return to a tree game that gives those indices a purpose.</>}
         />
         <P
           zh={<>真正的一跳要像 <M t="\varepsilon_0" /> 本身那样猛：从 0 出发反复作用 <M t="\alpha\mapsto\omega^\alpha" />，再取上确界。</>}
@@ -185,11 +186,16 @@ export default function Chapter07() {
           zh={<>下标可以是任何序数：<M t="\varepsilon_{\varepsilon_0},\ \varepsilon_{\varepsilon_{\varepsilon_0}},\ldots" />。这串数本身就是在迭代映射 <M t="\alpha\mapsto\varepsilon_\alpha" />——一个新的正规函数。</>}
           en={<>Subscripts can be any ordinal: <M t="\varepsilon_{\varepsilon_0},\ \varepsilon_{\varepsilon_{\varepsilon_0}},\ldots" />. That list is just iteration of the map <M t="\alpha\mapsto\varepsilon_\alpha" />, a new normal function.</>}
         />
-        <MB t="\begin{gathered}\zeta_0=\sup\{0,\ \varepsilon_0,\ \varepsilon_{\varepsilon_0},\ \varepsilon_{\varepsilon_{\varepsilon_0}},\ \ldots\},\\ \varepsilon_{\zeta_0}=\zeta_0.\end{gathered}" />
+        <H3 en="Let ε become its own index" zh="让 ε 的输出成为下标" />
+        <Widget title={{ en: "ζ₀: feed the output into the subscript", zh: "ζ₀：把输出放回下标" }}><LimitWorkshop kind="zeta" /></Widget>
+        <H3 en="An ε-number equal to its index" zh="下标等于自身的 ε 数" />
         <P
           zh={<><M t="\zeta_0" /> 是一个“下标等于自己”的 ε 数。它的不动点列表记作 <M t="\zeta_\beta" />；再对 <M t="\alpha\mapsto\zeta_\alpha" /> 求导得 <M t="\eta_\beta" />。在不动点机器里选 <M t="\varepsilon_\alpha" /> 或 <M t="\zeta_\alpha" /> 就能看到它们。</>}
           en={<><M t="\zeta_0" /> is an ε-number equal to its own subscript. Its fixed points are listed as <M t="\zeta_\beta" />; differentiating <M t="\alpha\mapsto\zeta_\alpha" /> gives <M t="\eta_\beta" />. Choose <M t="\varepsilon_\alpha" /> or <M t="\zeta_\alpha" /> in the fixed-point machine of Section 1 to watch them appear.</>}
         />
+        <H3 en="Repeat the move one level higher" zh="再升一层，重复同一招" />
+        <Widget title={{ en: 'η₀: repeat the same construction with ζ', zh: 'η₀：对 ζ 重复同样的构造' }}><LimitWorkshop kind="eta" /></Widget>
+        <H3 en="Keep the names distinct" zh="分清这些名字" />
         <Caution>
           <L
             zh={<>名字冲突：本课程（和大数圈）里 <M t="\eta_0" /> 是 ζ 的第一个不动点；一些证明论文献却用 <M t="\eta_0" /> 表示第 8 章的 Bachmann–Howard 序数。读文献时要看清。</>}
@@ -318,7 +324,9 @@ export default function Chapter07() {
           zh={<>φ 的第二个变量我们已经玩透了。现在让<b>第一个</b>变量也迭代起来：</>}
           en={<>We have squeezed the second argument of φ dry. Now iterate the <b>first</b> one:</>}
         />
-        <MB t="\begin{aligned}\Gamma_0&=\sup\{0,\ \varphi(0,0),\ \varphi(\varphi(0,0),0),\ \ldots\}\\&=\sup\{0,\ 1,\ \varepsilon_0,\ \varphi(\varepsilon_0,0),\ \ldots\}.\end{aligned}" />
+        <H3 en="Make the row number grow" zh="让层级号增长" />
+        <Widget title={{ en: "Γ₀: feed the output into the row number", zh: "Γ₀：把输出放回层级号" }}><LimitWorkshop kind="gamma" /></Widget>
+        <H3 en="The boundary of binary Veblen notation" zh="二元 Veblen 记号的边界" />
         <P
           zh={<><M t="\Gamma_0" /> 是映射 <M t="\alpha\mapsto\varphi(\alpha,0)" /> 的第一个不动点：<M t="\varphi(\Gamma_0,0)=\Gamma_0" />。它是“层级号等于自身”的序数。</>}
           en={<><M t="\Gamma_0" /> is the first fixed point of <M t="\alpha\mapsto\varphi(\alpha,0)" />: <M t="\varphi(\Gamma_0,0)=\Gamma_0" />. It is the ordinal whose level number equals itself.</>}
@@ -408,7 +416,9 @@ export default function Chapter07() {
           zh={<>为了不数零，把“第 k 个位置上是 a”写成 <M t="a@k" />（从右往左、从 0 数起）：<M t="\varphi(1,0,0,0,0)=\varphi(1@4)" />。允许任意有限多个变量，上确界就是</>}
           en={<>To stop counting zeros, write “a in slot k” as <M t="a@k" /> (slots counted from the right, starting at 0): <M t="\varphi(1,0,0,0,0)=\varphi(1@4)" />. Allowing any finite number of arguments, the supremum is</>}
         />
-        <MB t="\begin{aligned}\text{SVO}&=\sup\{\varphi(1),\varphi(1,0),\varphi(1,0,0),\ldots\}\\&=\varphi(1@\omega).\end{aligned}" />
+        <H3 en="Outgrow every finite number of slots" zh="超越任意有限个位置" />
+        <Widget title={{ en: "SVO: no finite number of slots suffices", zh: "SVO：任意有限个位置都不够" }}><LimitWorkshop kind="svo" /></Widget>
+        <H3 en="A new index for the tree game" zh="给树游戏一个新索引" />
         <P
           zh={<>这就是<Term en="small Veblen ordinal" zh="小 Veblen 序数" />（SVO）：有限元 Veblen 函数的极限。它的基本列很自然：<M t="\text{SVO}[n]" /> 是 1 后面跟 <M t="n" /> 个 0。</>}
           en={<>This is the <Term en="small Veblen ordinal" zh="小 Veblen 序数" /> (SVO): the limit of Veblen functions with finitely many arguments. Its fundamental sequence is natural: <M t="\text{SVO}[n]" /> is 1 followed by <M t="n" /> zeros.</>}
@@ -435,7 +445,9 @@ export default function Chapter07() {
           zh={<>既然 SVO = <M t="\varphi(1@\omega)" />，何不让位置本身是任意序数？<M t="\varphi(1@(\omega+1))" />、<M t="\varphi(1@\varepsilon_0)" />……于是 <M t="\alpha\mapsto\varphi(1@\alpha)" /> 又是一个可以迭代的映射，它的第一个不动点叫<Term en="large Veblen ordinal" zh="大 Veblen 序数" />（LVO）：</>}
           en={<>Since SVO = <M t="\varphi(1@\omega)" />, why not let positions be any ordinal? <M t="\varphi(1@(\omega+1))" />, <M t="\varphi(1@\varepsilon_0)" />, … Then <M t="\alpha\mapsto\varphi(1@\alpha)" /> is yet another map to iterate; its first fixed point is the <Term en="large Veblen ordinal" zh="大 Veblen 序数" /> (LVO):</>}
         />
-        <MB t="\text{LVO}=\sup\{\varphi(1@0),\varphi(1@\varphi(1@0)),\ldots\}." />
+        <H3 en="Iterate the position parameter" zh="迭代位置参数" />
+        <Widget title={{ en: "LVO: let the slot index grow too", zh: "LVO：位置参数也参与迭代" }}><LimitWorkshop kind="lvo" /></Widget>
+        <H3 en="Why another notation will help" zh="为什么需要另一种记号" />
         <Caution>
           <L
             zh={<>书中提醒：在 <M t="\alpha{}@\beta" /> 里，<M t="\beta" /> 已经不再是真正的“第几个位置”（你永远只能写出有限个非零项），最好只把它看成一个参数。</>}
