@@ -105,15 +105,15 @@ export default function Chapter01() {
           en={<>Faster than doubling is <b>squaring</b>: <M t="(10^{a})^2=10^{2a}" />, so each squaring doubles the <b>exponent</b>. The “upper” system of the Han-dynasty <i>Shushu Jiyi</i> does exactly this — “when the numbers run out, change”: 万万 make 亿, 亿亿 make 兆, … ten units from <M t="10^{8}" /> up to <M t="10^{4096}" />.</>}
         />
         <P
-          zh={<>佛经把这一招用到了极致。《华严经·阿僧祇品》中，心王菩萨问“不可说”有多大，佛陀一口气报出 123 个单位：“一百洛叉为一俱胝，俱胝俱胝为一阿庾多……”每个单位都是上一个的平方。</>}
-          en={<>Buddhist scripture took this to the limit. In the <i>Avatamsaka Sutra</i> a bodhisattva asks how big “the unspeakable” is, and the Buddha recites 123 units: “a hundred lakṣas make a koṭi; a koṭi koṭis make an ayuta…” Each unit is the square of the previous one.</>}
+          zh={<>佛经把这一招用到了极致。《华严经·阿僧祇品》中，心王菩萨问“不可说”有多大，佛陀答：“一百洛叉为一俱胝，俱胝俱胝为一阿庾多……”一口气报出 123 个单位，每个都是上一个的平方：</>}
+          en={<>Buddhist scripture took this to the limit. In the <i>Avatamsaka Sutra</i> a bodhisattva asks how big “the unspeakable” is, and the Buddha answers: “a hundred lakṣas make a koṭi; a koṭi koṭis make an ayuta…” — 123 units in one breath, each the square of the previous one:</>}
         />
         <Widget title={{ en: 'The 123 units of the Avatamsaka Sutra', zh: '华严经的 123 个大数单位' }}>
           <HuayanLadder />
         </Widget>
         <P
-          zh={<>俱胝是 <M t="10^7" />，平方 <M t="n-1" /> 次后，第 <M t="n" /> 个单位是 <M t="A_n=10^{7\cdot2^{n-1}}" />。最后一个“不可说不可说转”是</>}
-          en={<>A koṭi is <M t="10^7" />; after <M t="n-1" /> squarings the <M t="n" />-th unit is <M t="A_n=10^{7\cdot2^{n-1}}" />. The last, “the unspeakable unspeakable turn” (不可说不可说转), is</>}
+          zh={<>俱胝是 <M t="10^7" />，平方 <M t="n-1" /> 次后，第 <M t="n" /> 个单位是 <M t="A_n=10^{7\cdot2^{n-1}}" />。最后一个“不可说不可说转”是：</>}
+          en={<>A koṭi is <M t="10^7" />; after <M t="n-1" /> squarings the <M t="n" />-th unit is <M t="A_n=10^{7\cdot2^{n-1}}" />. The last, “the unspeakable unspeakable turn” (不可说不可说转), is:</>}
         />
         <MB t="A_{123}=10^{7\cdot2^{122}}=10^{37\,218\,383\,881\,977\,644\,441\,306\,597\,687\,849\,648\,128}." />
         <P
