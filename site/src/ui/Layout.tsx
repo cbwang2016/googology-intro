@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 import { L, LangSwitch, useLang } from '../i18n'
 import { acts, chapters } from '../chapters/registry'
 import { Ruler } from './Ruler'
+import { Reference } from './Reference'
+import { ReferenceButton } from './ReferenceButton'
 import { useView, ViewSwitch } from './view'
 
 function ProgressBar() {
@@ -67,6 +69,7 @@ function Toc({ onClose }: { onClose: () => void }) {
 
 export function Layout({ children }: { children: ReactNode }) {
   const [toc, setToc] = useState(false)
+  const [reference, setReference] = useState(false)
   const loc = useLocation()
   const { t } = useLang()
   const { view } = useView()
@@ -86,9 +89,11 @@ export function Layout({ children }: { children: ReactNode }) {
             <L en="From 1 to ω₁" zh="从 1 到 ω₁" />
           </span>
         </Link>
+        <ReferenceButton onOpen={() => setReference(true)} blocked={toc || reference} />
         <ViewSwitch />
         <LangSwitch />
       </header>
+      {reference && <Reference onClose={() => setReference(false)} />}
       {toc && <Toc onClose={() => setToc(false)} />}
       <main>{children}</main>
       {view === 'scroll' && <footer className="site-footer">

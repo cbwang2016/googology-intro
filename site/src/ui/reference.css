@@ -1,0 +1,53 @@
+.reference-trigger { white-space: nowrap; padding: 5px 10px; background: var(--card); border: 1px solid var(--cyan); border-radius: 10px; cursor: pointer; font-size: 14px; }
+.reference-dialog { padding: 0; width: min(1080px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); border: 1px solid var(--line); border-radius: 16px; background: var(--bg2); color: var(--text); box-shadow: 0 24px 100px #0008; }
+.reference-dialog::backdrop { background: #030717b8; }
+.reference-panel { display: flex; flex-direction: column; max-height: calc(100dvh - 36px); }
+.reference-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px 0; }
+.reference-head h2 { font-size: 22px; margin: 0; line-height: 1.3; }
+.reference-close { flex-shrink: 0; font-size: 28px; width: 44px; height: 44px; cursor: pointer; background: transparent; border: 1px solid var(--line); border-radius: 10px; }
+.reference-intro { margin: 8px 20px; font-size: 14px; color: var(--muted); }
+.reference-search { padding: 0 20px 12px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.reference-search > div { display: flex; gap: 8px; }
+.reference-search input { width: 100%; min-width: 0; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; font-size: 16px; }
+.reference-search button { background: var(--card); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+.reference-count { display: block; margin-top: 5px; color: var(--muted); }
+.reference-results { min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 0 20px 16px; }
+.reference-table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.6; text-align: left; table-layout: fixed; }
+.reference-table th, .reference-table td { padding: 16px 12px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+.reference-table thead th { color: var(--muted); font-weight: normal; }
+.reference-table th:first-child { width: 24%; }
+.reference-table th:last-child { width: 13%; }
+.reference-symbol { color: var(--gold); overflow-x: auto; margin-bottom: 8px; font-size: 18px; }
+.reference-name { font-weight: 500; }
+.reference-formula { margin-top: 10px; padding: 8px; overflow-x: auto; background: var(--bg); border-radius: 6px; }
+.reference-empty { color: var(--muted); }
+.reference-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+.reference-dialog :focus-visible, .reference-trigger:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+@media (max-width: 560px) {
+  .topbar { gap: 6px; padding-left: 8px; padding-right: 8px; }
+  .reference-trigger { padding: 7px; }
+  .reference-dialog { width: calc(100vw - 12px); max-height: calc(100dvh - 12px); border-radius: 12px; }
+  .reference-panel { max-height: calc(100dvh - 16px); }
+  .reference-head { padding: 12px 12px 0; }
+  .reference-head h2 { font-size: 19px; }
+  .reference-intro { margin: 8px 12px; }
+  .reference-search { padding: 0 12px 8px; }
+  .reference-results { padding: 0 12px 12px; }
+  .reference-table, .reference-table tbody { display: block; }
+  .reference-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .reference-table tr { display: grid; grid-template-columns: minmax(0, 1fr); padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .reference-table th, .reference-table td, .reference-table th:first-child { width: auto; border: 0; padding: 5px 0; min-width: 0; }
+}
+
+.reference-button-wrap { position: relative; }
+.reference-trigger-guided { border-color: var(--gold); box-shadow: 0 0 0 3px #ffd36b40; color: var(--gold); }
+.reference-guide { position: absolute; top: calc(100% + 14px); right: 0; width: 340px; padding: 16px; border: 1px solid var(--gold); border-radius: 12px; background: var(--bg2); color: var(--text); box-shadow: 0 12px 40px #0008; font-size: 15px; line-height: 1.5; }
+.reference-guide strong { display: block; color: var(--gold); }
+.reference-guide p { margin: 10px 0 14px; }
+.reference-guide-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.reference-guide-actions button { cursor: pointer; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); font-size: 14px; }
+.reference-guide-actions button:first-child { border-color: var(--cyan); }
+.reference-guide button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+@media (max-width: 560px) {
+  .reference-guide { position: fixed; top: 72px; left: 12px; right: 12px; width: auto; max-height: calc(100dvh - 100px); overflow-y: auto; }
+}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../i18n'
 import { useView } from './view'
@@ -29,13 +29,14 @@ function classify(el: Element): Kind {
   return 'text'
 }
 
-function computeBeats(root: HTMLElement, bilingual: boolean) {
-  // collect blocks in reading order
-  const blocks: { el: Element; section: Element | null }[] = []
-  for (const child of Array.from(root.children)) {
-    if (child.matches('section.section')) for (const c of Array.from(child.children)) blocks.push({ el: c, section: child })
-    else blocks.push({ el: child, section: null })
-  }
+type StoryBlock = { el: Element; section: string | null; position: number }
+function collectBlocks(root: HTMLElement): StoryBlock[] {
+  return Array.from(root.children).flatMap<StoryBlock>((child, position) => child.matches('section.section')
+    ? Array.from(child.children).map((el, position) => ({ el, section: child.id, position }))
+    : [{ el: child, section: null, position }])
+}
+
+function computeBeats(blocks: StoryBlock[], bilingual: boolean) {
   const beats: Element[][] = []
   let cur: Element[] = []
   let text = 0
@@ -114,7 +115,7 @@ function computeBeats(root: HTMLElement, bilingual: boolean) {
     en: sec.getAttribute('data-title-en') || '',
     zh: sec.getAttribute('data-title-zh') || '',
   }))
-  return { count: beats.length, sections, signature: blocks.map((b) => b.el).length }
+  return { count: beats.length, sections, beats, blocks }
 }
 
 const POSITION_KEY = 'googology-reading-position'
@@ -135,26 +136,50 @@ export function StoryFlow({ storageKey, previous, children }: { storageKey: stri
   const [beat, setBeat] = useState(() => savedBeat(storageKey))
   const [anim, setAnim] = useState(0)
   const [menu, setMenu] = useState(false)
-  const lastBlocks = useRef<Element[]>([])
+  const currentBeat = useRef(beat)
+  const lastLayout = useRef<(ReturnType<typeof computeBeats> & { mode: string }) | null>(null)
+  // Retain the chosen content across repeated switches, even if a translation
+  // groups it with earlier paragraphs. Explicit navigation chooses a new anchor.
+  const readingAnchor = useRef<StoryBlock | null>(null)
 
-  // (re)compute beats whenever the set of top-level blocks changes
-  useEffect(() => {
+  // Re-tag translated blocks and relocate the reader before the browser paints.
+  useLayoutEffect(() => {
     const root = ref.current
     if (!root) return
     let raf = 0
     const run = () => {
       if (root.querySelector('.loading')) return
-      const blocks: Element[] = []
-      for (const c of Array.from(root.children)) {
-        if (c.matches('section.section')) blocks.push(...Array.from(c.children))
-        else blocks.push(c)
-      }
-      const same = blocks.length === lastBlocks.current.length && blocks.every((b, i) => b === lastBlocks.current[i]) && blocks.every((b) => b.hasAttribute('data-beats'))
+      const blocks = collectBlocks(root)
+      const previous = lastLayout.current
+      const same = previous?.mode === mode && blocks.length === previous.blocks.length
+        && blocks.every((block, i) => block.el === previous.blocks[i].el && block.el.hasAttribute('data-beats'))
       if (same) return
-      lastBlocks.current = blocks
-      const r = computeBeats(root, mode === 'bi')
-      setCount(r.count)
-      setSections(r.sections)
+
+      let anchor = readingAnchor.current
+      if (!anchor && previous) {
+        const page = previous.beats[currentBeat.current] || []
+        // A widget or theorem is the focus of its scene; otherwise use its first block.
+        const focus = page.find(el => classify(el) === 'heavy') || page[0]
+        anchor = previous.blocks.find(block => block.el === focus) || null
+      }
+      const result = computeBeats(blocks, mode === 'bi')
+      if (anchor) {
+        // P/B can replace their DOM wrapper between single and bilingual modes.
+        // Their position within the section is the fallback identity.
+        const translated = blocks.find(block => block.el === anchor.el)
+          || blocks.find(block => block.section === anchor.section && block.position === anchor.position)
+        if (translated) {
+          const next = result.beats.findIndex(page => page.includes(translated.el))
+          if (next >= 0) {
+            currentBeat.current = next
+            setBeat(next)
+            readingAnchor.current = translated
+          }
+        }
+      }
+      lastLayout.current = { ...result, mode }
+      setCount(result.count)
+      setSections(result.sections)
     }
     run()
     const mo = new MutationObserver(() => {
@@ -169,7 +194,7 @@ export function StoryFlow({ storageKey, previous, children }: { storageKey: stri
   }, [mode])
 
   useEffect(() => {
-    if (count && beat > count - 1) setBeat(count - 1)
+    if (count && beat > count - 1) { currentBeat.current = count - 1; setBeat(count - 1) }
   }, [count, beat])
   useEffect(() => {
     try {
@@ -190,6 +215,8 @@ export function StoryFlow({ storageKey, previous, children }: { storageKey: stri
       }
       const nb = Math.max(0, Math.min(count - 1, b))
       if (nb === beat) return
+      readingAnchor.current = null
+      currentBeat.current = nb
       setBeat(nb)
       setAnim((a) => a + 1)
       window.scrollTo({ top: 0 })
@@ -201,7 +228,7 @@ export function StoryFlow({ storageKey, previous, children }: { storageKey: stri
     if (view !== 'story') return
     const onKey = (e: KeyboardEvent) => {
       const tgt = e.target as HTMLElement
-      if (document.querySelector('.toc-overlay')) return
+      if (document.querySelector('.toc-overlay, dialog[open]')) return
       if (tgt.closest('input, textarea, select, button, a, [contenteditable="true"]')) return
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey)) {
         // Space only advances when the beat is fully visible (otherwise let the page scroll)
@@ -221,9 +248,10 @@ export function StoryFlow({ storageKey, previous, children }: { storageKey: stri
   useEffect(() => {
     if (view !== 'story') return
     let start: { x: number; y: number; time: number } | null = null
-    const interactive = 'a, button, input, textarea, select, label, summary, [role="button"], [contenteditable="true"], .widget-body, .story-bar, .toc-overlay, header:not(.chapter-head), nav, svg, canvas'
+    const interactive = 'a, button, input, textarea, select, label, summary, [role="button"], [contenteditable="true"], .widget-body, .reference-guide, .story-bar, .toc-overlay, header:not(.chapter-head), nav, svg, canvas'
     const onStart = (e: TouchEvent) => {
       start = null
+      if (document.querySelector('dialog[open]')) return
       if (e.touches.length !== 1 || (e.target as Element).closest(interactive)) return
       start = { x: e.touches[0].clientX, y: e.touches[0].clientY, time: Date.now() }
     }
