@@ -183,6 +183,7 @@ export function PlaceValueChart() {
 /* 4. Avatamsaka ladder                                                */
 /* ------------------------------------------------------------------ */
 export function HuayanLadder() {
+  const { pick } = useLang()
   const [k, setK] = useState(3)
   const exp = 7n * 2n ** BigInt(k - 1)
   const expStr = exp.toString()
@@ -211,19 +212,9 @@ export function HuayanLadder() {
       <div className="huayan-chain">
         {recent.map((j) => (
           <span key={j} className={j === k ? 'cur' : ''}>
-            {j > 1 ? (
-              <>
-                {HUAYAN[j - 2]}
-                {HUAYAN[j - 2]}
-                <L en=" makes one " zh="为一" />
-                {HUAYAN[j - 1]}
-              </>
-            ) : (
-              <>
-                <L en="a hundred 洛叉 (10⁵) make one " zh="一百洛叉为一" />
-                {HUAYAN[0]}
-              </>
-            )}
+            {j > 1
+              ? pick(`${HUAYAN[j - 2]} ${HUAYAN[j - 2]} make one ${HUAYAN[j - 1]}`, `${HUAYAN[j - 2]}${HUAYAN[j - 2]}为一${HUAYAN[j - 1]}`)
+              : pick(`a hundred 洛叉 (10⁵) make one ${HUAYAN[0]}`, `一百洛叉为一${HUAYAN[0]}`)}
           </span>
         ))}
       </div>
