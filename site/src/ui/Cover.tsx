@@ -124,11 +124,11 @@ export function JourneyCover() {
       <div className="cover-text">
         <h1 className="cover-title">
           <span className="cover-count">1, 2, 3, …</span>
-          <L en="How big can a number be?" zh="数能有多大？" />
+          <L en="How big can a number be?" zh="自然数能有多大？" />
         </h1>
         <div className="cover-sub">
           <L
-            en="Start by counting on your fingers, build ever larger numbers, and keep going until mathematics itself can no longer say."
+            en="Start by counting on your fingers, build ever larger numbers, and keep going until philosophy itself can no longer say."
             zh="从掰手指开始，一步步造出更大的数，直到连数学都说不清的地方。"
           />
         </div>

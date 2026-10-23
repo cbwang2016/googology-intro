@@ -86,7 +86,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <Link to={`/ch/${chapters[0].slug}`} className="brand">
           <span className="brand-mark">ω</span>
           <span className="brand-text">
-            <L en="How big can a number be?" zh="数能有多大？" />
+            <L en="How big can a number be?" zh="自然数能有多大？" />
           </span>
         </Link>
         <a

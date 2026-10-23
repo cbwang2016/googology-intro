@@ -1,4 +1,4 @@
-# How Big Can a Number Be? · 数能有多大？
+# How Big Can a Number Be? · 自然数能有多大？
 
 **An interactive, bilingual (中文 / English) journey through googology — the mathematics of very large numbers.**
 

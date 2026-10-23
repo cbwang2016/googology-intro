@@ -1,4 +1,4 @@
-# Chapter Author Guide — "How Big Can a Number Be? / 数能有多大？"
+# Chapter Author Guide — "How Big Can a Number Be? / 自然数能有多大？"
 
 This guide is for every agent writing a chapter of the interactive googology course. Read all of it first.
 

@@ -1,4 +1,4 @@
-# 数能有多大？ · How Big Can a Number Be? — Course Outline (DRAFT v1, for discussion)
+# 自然数能有多大？ · How Big Can a Number Be? — Course Outline (DRAFT v1, for discussion)
 
 Main source: 曹知秋《大数理论》(2026-04 edition). Study notes: `ref/notes/p1…p7.md`.
 Starting point: 人教版四年级上册「大数的认识」.
