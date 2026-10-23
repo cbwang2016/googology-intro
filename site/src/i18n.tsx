@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { cloneElement, createContext, isValidElement, useContext, useEffect, useState, type ReactNode } from 'react'
 
 /** Display mode: English only, Chinese only, or both (Chinese first, English below). */
 export type Mode = 'en' | 'zh' | 'bi'
@@ -48,13 +48,44 @@ export function L({ en, zh }: Bi) {
   )
 }
 
-/** Block-level bilingual content: in bilingual mode renders both blocks, Chinese first. */
+/** Plain text of one language's content: picks that language from nested L/Term, TeX source for math. */
+function plain(node: ReactNode, lang: 'en' | 'zh'): string {
+  if (node == null || typeof node === 'boolean') return ''
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map((n) => plain(n, lang)).join('')
+  if (isValidElement(node)) {
+    const props = node.props as { en?: ReactNode; zh?: ReactNode; t?: unknown; children?: ReactNode }
+    if (props.en !== undefined && props.zh !== undefined) return plain(props[lang], lang)
+    if (typeof props.t === 'string') return props.t
+    return plain(props.children, lang)
+  }
+  return ''
+}
+
+/** Weighted length (a CJK character is about twice as wide as a Latin letter). */
+const weigh = (s: string) => {
+  const cjk = (s.match(/[\u3000-\u9fff\uff00-\uffef]/g) || []).length
+  return s.length - cjk + 2.1 * cjk
+}
+
+/**
+ * Block-level bilingual content: in bilingual mode renders both blocks, Chinese first.
+ * The block carries data-len / data-lead, computed from both languages whatever the mode,
+ * so story mode pages the chapter identically in en, zh and bilingual mode.
+ */
 export function B({ en, zh }: Bi) {
   const { mode } = useLang()
-  if (mode === 'en') return <>{en}</>
-  if (mode === 'zh') return <>{zh}</>
+  const z = plain(zh, 'zh').trim()
+  const e = plain(en, 'en').trim()
+  const attrs = {
+    'data-len': Math.round((weigh(z) + weigh(e)) / 2.1),
+    'data-lead': /[:：]$/.test(z) || /[:：]$/.test(e) ? '' : undefined,
+  }
+  const one = (node: ReactNode) => (isValidElement(node) && typeof node.type === 'string' ? cloneElement(node, attrs) : <>{node}</>)
+  if (mode === 'en') return one(en)
+  if (mode === 'zh') return one(zh)
   return (
-    <div className="bi-pair">
+    <div className="bi-pair" {...attrs}>
       <div className="bi-zh">{zh}</div>
       <div className="bi-en">{en}</div>
     </div>

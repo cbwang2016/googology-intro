@@ -59,8 +59,10 @@ function computeBeats(blocks: StoryBlock[], bilingual: boolean) {
     const k = classify(el)
     // visual weight: a CJK character is about twice as wide as a Latin letter
     const txt = el.textContent || ''
+    // bilingual blocks (B, P) carry a mode-independent length; anything else is measured as rendered
+    const tagged = el.matches('[data-len]') ? el : null
     const cjk = (txt.match(/[\u3000-\u9fff\uff00-\uffef]/g) || []).length
-    const len = (txt.length - cjk + 2.1 * cjk) / (bilingual ? 2.1 : 1)
+    const len = tagged ? Number(tagged.getAttribute('data-len')) : (txt.length - cjk + 2.1 * cjk) / (bilingual ? 2.1 : 1)
     const introduced = lead !== null && cur[cur.length - 1] === lead.el
     const brk = () => { if (!(introduced && cur.length === 1)) flush(true) }
     switch (k) {
@@ -103,7 +105,7 @@ function computeBeats(blocks: StoryBlock[], bilingual: boolean) {
         closed = true
         break
     }
-    lead = k === 'text' && /[:：]\s*$/.test(txt.trim()) ? { el, len } : null
+    lead = k === 'text' && (tagged ? tagged.hasAttribute('data-lead') : /[:：]\s*$/.test(txt.trim())) ? { el, len } : null
     prevKind = k
   }
   flush()
