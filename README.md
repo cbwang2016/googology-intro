@@ -1,4 +1,4 @@
-# From 1 to ω₁ · 从 1 到 ω₁
+# How Big Can a Number Be? · 数能有多大？
 
 **An interactive, bilingual (中文 / English) journey through googology — the mathematics of very large numbers.**
 

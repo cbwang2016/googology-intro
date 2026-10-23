@@ -123,15 +123,13 @@ export function JourneyCover() {
       <canvas ref={canvas} className="cover-canvas" aria-hidden />
       <div className="cover-text">
         <h1 className="cover-title">
-          <span className="cover-from">
-            <L en="From" zh="从" />
-          </span>{' '}
-          1 <span className="cover-arrow">→</span> ω₁
+          <span className="cover-count">1, 2, 3, …</span>
+          <L en="How big can a number be?" zh="数能有多大？" />
         </h1>
         <div className="cover-sub">
           <L
-            en="A journey to the farthest numbers the human mind has ever reached — and past them."
-            zh="一场旅行：去往人类思想抵达过的最远的数——然后，再往前走。"
+            en="Start by counting on your fingers, build ever larger numbers, and keep going until mathematics itself can no longer say."
+            zh="从掰手指开始，一步步造出更大的数，直到连数学都说不清的地方。"
           />
         </div>
         <ul className="cover-hooks">
