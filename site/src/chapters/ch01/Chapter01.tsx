@@ -117,8 +117,8 @@ export default function Chapter01() {
         />
         <MB t="A_{123}=10^{7\cdot2^{122}}=10^{37\,218\,383\,881\,977\,644\,441\,306\,597\,687\,849\,648\,128}." />
         <P
-          zh={<>它的位数本身就是一个 38 位数。每个原子写一位数字，整个可观测宇宙（约 <M t="10^{80}" /> 个原子）也远远不够。</>}
-          en={<>Its digit count is itself a 38-digit number. With one atom per digit, the observable universe (about <M t="10^{80}" /> atoms) falls hopelessly short.</>}
+          zh={<>华严大数 <M t="A_{123}" /> 的十进制位数是 <M t="7\cdot2^{122}+1\approx3.72\times10^{37}" />，本身是一个 38 位整数。若把可观测宇宙的约 <M t="10^{80}" /> 个原子各当作一个数字的位置，容量绰绰有余：超过原子总数的是<b>这个数本身</b>，不是它的<b>位数</b>。</>}
+          en={<>The decimal digit count of the Avatamsaka number <M t="A_{123}" /> is <M t="7\cdot2^{122}+1\approx3.72\times10^{37}" />, itself a 38-digit integer. If each of the observable universe’s roughly <M t="10^{80}" /> atoms held one digit, there would be ample room: the <b>number itself</b> exceeds the atom count, but its <b>digit count</b> does not.</>}
         />
         <Expand kind="deeper" title={{ en: 'Other versions of the list', zh: '经文的其他版本' }}>
           <P
