@@ -1,0 +1,36 @@
+/* Chapter 12 */
+.c12-beat { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+@media (max-width: 680px) { .c12-beat { grid-template-columns: 1fr; } }
+.c12-champ { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: start; }
+.c12-champ-stats { display: flex; flex-direction: column; gap: 8px; }
+@media (max-width: 560px) { .c12-champ { grid-template-columns: 1fr; } .c12-champ-stats { flex-direction: row; flex-wrap: wrap; } }
+.c12-bar { position: relative; height: 14px; border-radius: 7px; background: #0b1128; border: 1px solid var(--line); margin: 10px 0 4px; overflow: hidden; }
+.c12-bar-fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--cyan), var(--gold)); opacity: 0.7; }
+.c12-bar-tick { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--dim); }
+.c12-bar-tick.ok { background: var(--green); }
+.c12-marks { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 4px; margin-top: 8px; }
+.c12-mark { display: flex; gap: 6px; align-items: baseline; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); font-size: 14px; opacity: 0.6; }
+.c12-mark.ok { opacity: 1; border-color: rgba(125, 255, 168, 0.5); }
+.c12-mark.halt .mono { color: var(--red); }
+.c12-final { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; margin-top: 10px; align-items: start; }
+.c12-final-cv { width: 256px; max-width: 100%; image-rendering: pixelated; border: 1px solid var(--line); border-radius: 6px; }
+@media (max-width: 560px) { .c12-final { grid-template-columns: 1fr; } }
+.c12-orbit { max-height: 330px; overflow-y: auto; }
+.c12-orbit td { font-size: 14px; padding: 3px 8px; }
+.c12-haltrow td { background: rgba(255, 107, 107, 0.1); }
+.c12-funnel { display: flex; flex-direction: column; gap: 3px; }
+.c12-funnel-row { display: grid; grid-template-columns: 210px minmax(0, 1fr) 110px; gap: 8px; align-items: center; background: transparent; border: 1px solid transparent; border-radius: 8px; padding: 1px 6px; line-height: 1.3; color: var(--text); cursor: pointer; text-align: left; font-size: 14px; }
+.c12-funnel-row:hover { border-color: var(--line); }
+.c12-funnel-row.on { border-color: var(--cyan); background: var(--card2); }
+.c12-funnel-bar span { display: block; position: relative; height: 14px; border-radius: 4px; background: var(--cyan); overflow: hidden; }
+.c12-funnel-bar i.h { position: absolute; right: 0; top: 0; bottom: 0; background: var(--gold); }
+.c12-funnel-n { text-align: right; color: var(--gold); }
+@media (max-width: 600px) { .c12-funnel-row { grid-template-columns: 1fr 90px; } .c12-funnel-bar { grid-column: 1 / -1; grid-row: 2; } }
+.c12-stage { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+.c12-ah { width: 100%; display: block; background: #0b1128; border: 1px solid var(--line); border-radius: 10px; margin: 6px 0; }
+.c12-chart { width: 100%; display: block; background: #0b1128; border: 1px solid var(--line); border-radius: 10px; }
+.c12-values td, .c12-values th { font-size: 14.5px; }
+.c12-values td.mono { white-space: nowrap; }
+.c12-code { word-break: break-all; }
+.c12-stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; align-items: start; }
+@media (max-width: 680px) { .c12-stage { grid-template-columns: 1fr; } }

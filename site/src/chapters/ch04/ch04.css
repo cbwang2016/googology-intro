@@ -1,0 +1,19 @@
+/* ---------- ch4: fundamental sequences & FGH ---------- */
+.readout.c04-text { word-break: normal; overflow-wrap: anywhere; white-space: normal; }
+.c04-trace { display: flex; flex-direction: column; gap: 3px; margin-top: 8px; white-space: normal; word-break: normal; }
+.c04-tline { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; overflow-x: auto; }
+.c04-eq { color: var(--gold); width: 1ch; }
+.c04-tline:first-child .c04-eq { visibility: hidden; }
+.c04-rule { margin-left: auto; font-size: 12.5px; color: var(--cyan); white-space: nowrap; font-family: var(--sans); }
+.c04-seq { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
+.c04-machine { display: flex; flex-direction: column; gap: 4px; margin: 8px 0; min-height: 190px; }
+.c04-mline { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; padding: 4px 10px; border-radius: 8px; opacity: 0.55; overflow-x: auto; }
+.c04-mline.cur { opacity: 1; background: #0b1128; border: 1px solid var(--line); }
+.c04-cd { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; min-height: 3.2em; padding: 4px 2px; }
+.c04-cd .katex { font-size: 1.35em; color: var(--gold); }
+.c04-sand { display: grid; gap: 4px; white-space: normal; word-break: normal; }
+.c04-sand .katex { color: inherit; }
+table.c04-small td, table.c04-small th { font-size: 14px; white-space: nowrap; }
+.c04-hstate { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 4px 2px; }
+.c04-hstate .katex { font-size: 1.3em; color: var(--gold); }
+.c04-rep { display: grid; gap: 6px; }

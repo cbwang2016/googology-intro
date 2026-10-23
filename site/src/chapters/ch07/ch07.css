@@ -1,0 +1,68 @@
+/* Chapter 7 — fixed points, Veblen, TREE */
+.c07-iter { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; padding: 10px 12px; background: #0b1128; border: 1px solid var(--line); border-radius: 10px; min-height: 52px; }
+.c07-iter-item { display: inline-flex; align-items: center; gap: 6px; }
+.c07-arrow { color: var(--muted); }
+.c07-limit { margin: 10px 0 4px; }
+.c07-fp { color: var(--gold); }
+.c07-fplist { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0; }
+.c07-fpchip { padding: 1px 10px; border-radius: 999px; border: 1px solid rgba(255, 211, 107, 0.5); background: rgba(255, 211, 107, 0.08); }
+
+.c07-roads { display: flex; flex-direction: column-reverse; gap: 3px; margin-bottom: 8px; }
+.c07-road { padding: 3px 10px; border-radius: 8px; border-left: 4px solid; background: #0b1128; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.c07-road-A { border-color: var(--cyan); margin-right: 22%; }
+.c07-road-B { border-color: var(--pink); margin-left: 22%; }
+.c07-road-top { border-color: var(--gold); justify-content: center; }
+.c07-road-tag { font-family: var(--mono); font-size: 12px; color: var(--muted); min-width: 2.2em; }
+
+.c07-grid td, .c07-grid th { text-align: center; padding: 5px 8px; white-space: nowrap; }
+.c07-cell { cursor: pointer; transition: background 0.15s; }
+.c07-cell:hover { background: var(--card2); }
+.c07-cell.abs { background: rgba(255, 122, 182, 0.13); color: var(--pink); }
+.c07-cell.on { outline: 2px solid var(--gold); outline-offset: -2px; }
+.c07-corner { color: var(--muted); }
+.c07-explain { margin-top: 8px; white-space: normal; word-break: normal; }
+.c07-fsline { margin-top: 4px; }
+
+.c07-input { flex: 1; min-width: 160px; font-family: var(--mono); background: #0b1128; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 15px; }
+.c07-err { color: var(--red); font-size: 14px; }
+.c07-crumbs { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; }
+.c07-fsbox { white-space: normal; word-break: normal; font-family: var(--sans); }
+.c07-term { display: block; width: 100%; text-align: left; background: none; border: 1px solid transparent; border-radius: 8px; padding: 3px 8px; cursor: pointer; overflow-x: auto; }
+.c07-term:hover { border-color: var(--cyan); background: var(--card); }
+.c07-idx { font-family: var(--mono); color: var(--cyan); font-size: 13px; }
+
+.c07-dials { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin: 6px 0; }
+.c07-dial { display: flex; flex-direction: column; align-items: center; padding: 4px 6px; border-radius: 12px; border: 1px solid var(--line); background: #0b1128; min-width: 50px; }
+.c07-dial.ghost { opacity: 0.55; border-style: dashed; justify-content: center; max-width: 90px; text-align: center; }
+.c07-dial.count { border-color: var(--cyan); box-shadow: 0 0 10px rgba(107, 228, 255, 0.3); }
+.c07-dial.level { border-color: var(--pink); box-shadow: 0 0 10px rgba(255, 122, 182, 0.3); }
+.c07-dial-pos { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.c07-dial-val { font-family: var(--mono); font-size: 26px; color: var(--gold); line-height: 1.2; }
+.c07-dial-btn { background: var(--card2); border: 1px solid var(--line); border-radius: 6px; width: 34px; cursor: pointer; font-size: 11px; padding: 2px 0; }
+.c07-count { color: var(--cyan); font-weight: 600; }
+.c07-level { color: var(--pink); font-weight: 600; }
+
+.c07-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) { .c07-two { grid-template-columns: 1fr; } }
+.c07-label { font-weight: 700; color: var(--cyan); }
+.c07-editor { border: 1px solid var(--line); border-radius: 12px; padding: 6px 8px; background: #0b1128; }
+.c07-canvas { display: flex; justify-content: center; align-items: flex-end; min-height: 130px; overflow-x: auto; padding: 4px; }
+.c07-colchip { display: inline-flex; align-items: center; gap: 5px; }
+.c07-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.c07-verdict.yes { border-color: rgba(125, 255, 168, 0.55); }
+.c07-verdict.no { border-color: rgba(255, 107, 107, 0.55); }
+.c07-verdict { white-space: normal; word-break: normal; font-family: var(--sans); margin-top: 8px; }
+
+.c07-seq { display: flex; gap: 8px; overflow-x: auto; align-items: flex-end; padding: 6px 2px; min-height: 64px; }
+.c07-seq-item { display: flex; flex-direction: column; align-items: center; padding: 4px 6px; border: 1px solid var(--line); border-radius: 10px; background: #0b1128; flex: none; }
+.c07-seq-item.bad { border-color: var(--red); box-shadow: 0 0 10px rgba(255, 107, 107, 0.4); }
+.c07-seq-n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.c07-game { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 12px; align-items: start; }
+@media (max-width: 640px) { .c07-game { grid-template-columns: 1fr; } }
+.c07-game-side { padding-top: 22px; }
+.c07-bad { color: var(--red); }
+.c07-good { color: var(--green); }
+
+.c07-ladder { display: flex; flex-direction: column-reverse; gap: 4px; }
+.c07-rung { display: grid; grid-template-columns: 120px 1fr; gap: 10px; align-items: center; padding: 5px 10px; border-radius: 10px; background: #0b1128; border: 1px solid var(--line); }
+@media (max-width: 520px) { .c07-rung { grid-template-columns: 1fr; } }

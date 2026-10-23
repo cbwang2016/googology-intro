@@ -1,0 +1,48 @@
+/* Chapter 5 — primitive sequences (also reused by chapter 6's drawings) */
+.c05-center { text-align: center; }
+.c05-tree, .c05-mountain { width: 100%; height: auto; display: block; }
+.c05-gauge { width: 120px; flex: 0 0 120px; height: auto; }
+.c05-head { cursor: pointer; transition: r 0.15s; }
+.c05-head:hover { fill: var(--pink); }
+
+.c05-seq { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px; font-family: var(--mono); line-height: 1.5; }
+.c05-paren { color: var(--muted); padding: 0 2px; }
+.c05-term { display: inline-block; min-width: 1.35em; text-align: center; padding: 0 3px; border-radius: 5px; background: rgba(255, 255, 255, 0.05); border: 1px solid transparent; font-family: var(--mono); font-size: 0.95em; }
+.c05-term.good { color: var(--text); }
+.c05-term.root { background: rgba(125, 255, 168, 0.18); border-color: var(--green); color: var(--green); font-weight: 700; }
+.c05-term.bad { background: rgba(255, 122, 182, 0.16); color: var(--pink); }
+.c05-term.last { color: var(--dim); text-decoration: line-through; border-color: var(--dim); border-style: dashed; }
+.c05-term.copy1 { background: rgba(107, 228, 255, 0.16); color: var(--cyan); }
+.c05-term.copy2 { background: rgba(181, 155, 255, 0.18); color: var(--violet); }
+.c05-more { color: var(--muted); font-size: 0.85em; padding-left: 4px; }
+.c05-legend { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 6px 0; }
+
+.c05-input { background: #0b1128; border: 1px solid var(--line); border-radius: 8px; color: var(--text); padding: 4px 10px; min-width: 0; flex: 1 1 160px; max-width: 280px; }
+.c05-anat { background: #0b1128; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 8px 0; overflow-x: auto; }
+.c05-arrow { color: var(--gold); padding: 2px 0 2px 10px; }
+
+.c05-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+@media (max-width: 640px) { .c05-two { grid-template-columns: 1fr; } }
+.c05-panel { background: #0b1128; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 150px; overflow: hidden; }
+.c05-panel.bad { border-color: rgba(255, 107, 107, 0.45); }
+
+.c05-odo { display: flex; justify-content: center; gap: 8px; margin: 6px 0 10px; }
+.c05-wheel { width: 66px; border-radius: 12px; background: linear-gradient(180deg, #1b2447, #0b1128); border: 1px solid #3a4680; text-align: center; padding: 6px 0 4px; transition: opacity 0.2s; }
+.c05-wheel.off { opacity: 0.35; }
+.c05-wheel-v { font-family: var(--mono); font-size: 30px; color: var(--gold); line-height: 1.2; }
+.c05-wheel-l { font-size: 13px; color: var(--muted); }
+
+.c05-count { display: flex; gap: 10px; align-items: flex-start; }
+.c05-count-main { flex: 1 1 auto; min-width: 0; }
+@media (max-width: 520px) { .c05-count .c05-gauge { width: 84px; flex-basis: 84px; } }
+.c05-trace { background: #0b1128; border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; min-height: 230px; overflow-x: auto; }
+.c05-line { padding: 3px 0; border-bottom: 1px dashed rgba(42, 53, 99, 0.7); opacity: 0.55; }
+.c05-line.cur { opacity: 1; }
+.c05-line:last-child { border-bottom: 0; }
+.c05-arg { color: var(--gold); padding-left: 3px; }
+.c05-ordtag { margin-left: 10px; color: var(--green); }
+.c05-note { font-size: 12px; color: var(--muted); }
+
+.c05-shell td, .c05-shell th { text-align: center; white-space: nowrap; }
+.c05-shell td.c05-hl { background: rgba(125, 255, 168, 0.2); color: var(--green); }
+.c05-shell td { cursor: default; }

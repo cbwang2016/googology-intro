@@ -1,0 +1,13 @@
+/* Chapter 6 — ε₀ in the wild */
+.c06-rows > div { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; padding: 2px 0; }
+.c06-k { color: var(--muted); font-family: var(--sans); font-size: 13px; min-width: 110px; }
+.c06-chart, .c06-worm, .c06-fuse { width: 100%; height: auto; display: block; margin: 6px 0; background: #0b1128; border: 1px solid var(--line); border-radius: 10px; }
+.c06-hydra { background: radial-gradient(400px 200px at 50% 100%, rgba(125, 255, 168, 0.07), transparent), #0b1128; border: 1px solid var(--line); border-radius: 12px; }
+.c06-seq { word-break: break-all; margin: 4px 0; }
+.c06-select { background: var(--card2); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+.c06-race td, .c06-race th { text-align: center; }
+.c06-pto { display: flex; gap: 14px; align-items: flex-start; }
+.c06-pto-svg { width: 260px; flex: 0 0 260px; height: auto; }
+.c06-pto-side { flex: 1 1 auto; min-width: 0; }
+@media (max-width: 640px) { .c06-pto { flex-direction: column; } .c06-pto-svg { width: 100%; flex-basis: auto; } }
+.c06-tbl td, .c06-tbl th { text-align: left; }

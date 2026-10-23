@@ -1,0 +1,61 @@
+/* Chapter 9 · Bashicu Matrix System */
+.c09-mv { margin: 6px 0; padding-bottom: 2px; }
+.c09-mv svg { display: block; }
+.c09-input {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 15px;
+  background: #0b1128;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 7px 11px;
+  margin: 4px 0 6px;
+}
+.c09-input:focus { outline: none; border-color: var(--cyan); }
+.c09-stages .chip { font-size: 13px; padding: 3px 10px; }
+.c09-stages .chip:disabled { opacity: 0.35; cursor: default; }
+.c09-explain { min-height: 3.2em; font-size: 14.5px; line-height: 1.6; padding: 8px 12px; border-left: 3px solid var(--gold); background: rgba(255, 211, 107, 0.05); border-radius: 0 10px 10px 0; margin: 6px 0; }
+.c09-toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; cursor: pointer; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--card2); }
+.c09-toggle input { accent-color: var(--orange); }
+.c09-vals { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+
+.c09-terms { display: grid; gap: 2px; margin-top: 6px; font-size: 14px; }
+.c09-term { display: grid; grid-template-columns: 3.2em minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 2px 8px; border-radius: 8px; }
+.c09-term.cur { background: rgba(107, 228, 255, 0.08); }
+.c09-term.lim { border-top: 1px dashed var(--line); margin-top: 2px; padding-top: 4px; }
+.c09-term-k { color: var(--muted); }
+.c09-term-s { overflow-wrap: anywhere; color: #cdd3ee; }
+.c09-term-v { color: var(--gold); text-align: right; }
+
+.c09-pss { display: grid; gap: 4px; margin: 6px 0; overflow-x: auto; }
+
+.c09-ladder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 14px; }
+@media (max-width: 720px) { .c09-ladder { grid-template-columns: 1fr; } }
+.c09-rungs { list-style: none; margin: 0; padding: 0 0 0 14px; border-left: 3px solid var(--line); max-height: 400px; overflow-y: auto; }
+@media (max-width: 720px) { .c09-rungs { max-height: 260px; } }
+.c09-rung { display: flex; width: 100%; gap: 10px; align-items: baseline; text-align: left; background: none; border: 0; border-bottom: 1px solid rgba(42, 53, 99, 0.5); padding: 3px 6px; cursor: pointer; border-radius: 6px; }
+.c09-rung:hover { background: rgba(255, 255, 255, 0.04); }
+.c09-rung.on { background: rgba(107, 228, 255, 0.12); }
+.c09-rung.top { cursor: default; color: var(--gold); }
+.c09-rung-name { font-weight: 700; min-width: 3.4em; color: var(--cyan); }
+.c09-rung.beyond .c09-rung-name { color: var(--violet); }
+.c09-rung.top .c09-rung-name { color: var(--gold); }
+.c09-rung-s { color: var(--muted); overflow-wrap: anywhere; }
+.c09-rung-detail { min-width: 0; }
+.c09-rung-title { font-size: 16px; margin-bottom: 2px; }
+.c09-wrap { overflow-wrap: anywhere; }
+
+.c09-chain-head { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.c09-chain-head .stat { min-width: 96px; }
+.c09-milestones { display: grid; gap: 2px; overflow-x: auto; white-space: nowrap; }
+.c09-ruleon { margin-top: 8px; padding: 6px 10px; border-radius: 10px; background: rgba(125, 255, 168, 0.06); border: 1px solid rgba(125, 255, 168, 0.25); }
+.c09-bad { color: var(--red); }
+.c09-good { color: var(--green); }
+.c09-gold { color: var(--gold); }
+.c09-pair { display: grid; gap: 2px; margin: 6px 0; overflow-wrap: anywhere; }
+
+.c09-fig { margin: 14px 0; padding: 10px 12px; border-radius: 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--line); }
+.c09-fig-cap { font-size: 13.5px; color: var(--muted); margin-top: 4px; }
+.c09-fig-arrow { padding-left: 30px; }
+.c09-select { cursor: pointer; font-family: var(--sans); font-size: 14px; }

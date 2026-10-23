@@ -1,0 +1,40 @@
+/* ---------- ch3: ordinals ---------- */
+.c03-fp { display: flex; flex-wrap: wrap; gap: 6px 4px; align-items: center; min-height: 64px; padding: 10px 4px; }
+.c03-fp-step { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: #0b1128; border: 1px solid var(--line); animation: c03pop 0.35s ease; }
+.c03-fp-arrow { color: var(--cyan); font-size: 14px; }
+.c03-fp-sup { border-color: var(--gold); box-shadow: 0 0 16px rgba(255, 211, 107, 0.3); }
+.c03-fp-sup .katex { color: var(--gold); font-size: 1.25em; }
+@keyframes c03pop { from { transform: scale(0.7); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.c03-descent-cur { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 6px 4px; }
+.c03-descent-cur .katex { font-size: 1.6em; color: var(--gold); }
+.c03-coeffs { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; margin: 6px 0; }
+.c03-coeff { display: inline-flex; align-items: center; gap: 2px; }
+.c03-coeff input { width: 74px; padding: 4px 6px; }
+.c03-coeff + .c03-coeff::before { content: '+'; color: var(--muted); margin-right: 4px; }
+
+.c03-cnf-inputs { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 8px 0 2px; }
+.c03-cnf-inputs label { display: flex; align-items: center; gap: 6px; font-family: var(--mono); }
+.c03-cnf-inputs input { width: 190px; }
+.c03-cnf-out { margin-top: 8px; display: grid; gap: 4px; }
+.c03-cmp { font-size: 1.25em; color: var(--gold); text-align: center; padding: 4px 0; }
+.c03-cmp .katex { color: var(--gold); }
+.c03-ops { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 4px 14px; font-size: 0.95em; }
+
+table.c03-diag { border-collapse: separate; border-spacing: 3px; margin: 4px auto; font-family: var(--mono); }
+table.c03-diag th { color: var(--muted); font-weight: 500; padding: 0 6px; font-size: 14px; }
+table.c03-diag td { width: 26px; height: 26px; text-align: center; border-radius: 5px; background: #0b1128; border: 1px solid var(--line); cursor: pointer; font-size: 14px; transition: background 0.2s; }
+table.c03-diag td.dots { background: none; border: 0; color: var(--dim); cursor: default; }
+table.c03-diag td.dg { border-color: rgba(255, 211, 107, 0.6); }
+table.c03-diag td.hit { background: rgba(255, 211, 107, 0.28); }
+table.c03-diag tr.new td { cursor: default; border-style: dashed; color: var(--dim); }
+table.c03-diag tr.new td.got { color: var(--green); border-color: var(--green); border-style: solid; background: rgba(125, 255, 168, 0.1); }
+table.c03-diag tr.new th { color: var(--green); }
+table.c03-diag tr.chk td:not(.dots) { background: rgba(107, 228, 255, 0.12); }
+table.c03-diag td.mis { background: rgba(255, 122, 182, 0.35) !important; border-color: var(--pink) !important; color: #fff !important; }
+
+.c03-ladder { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; justify-content: center; margin: 10px 0; }
+.c03-ladder span { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg2); }
+.c03-ladder span.gold { border-color: var(--gold); }
+.c03-ladder span.gold .katex { color: var(--gold); }
+.readout.c03-text { word-break: normal; overflow-wrap: anywhere; white-space: normal; }
